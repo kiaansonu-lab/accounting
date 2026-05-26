@@ -205,7 +205,8 @@ exports.Prisma.CompanyScalarFieldEnum = {
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  inventoryConfig: 'inventoryConfig'
+  inventoryConfig: 'inventoryConfig',
+  invoiceTableHeaders: 'invoiceTableHeaders'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -396,6 +397,8 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   totalAmount: 'totalAmount',
   paidAmount: 'paidAmount',
   balanceAmount: 'balanceAmount',
+  currency: 'currency',
+  exchangeRate: 'exchangeRate',
   status: 'status',
   salesOrderId: 'salesOrderId',
   notes: 'notes',
@@ -586,7 +589,10 @@ exports.Prisma.ProductScalarFieldEnum = {
   remarks: 'remarks',
   companyId: 'companyId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  totalQty: 'totalQty',
+  totalInventoryValue: 'totalInventoryValue',
+  averageCost: 'averageCost'
 };
 
 exports.Prisma.PurchasebillScalarFieldEnum = {
@@ -604,6 +610,8 @@ exports.Prisma.PurchasebillScalarFieldEnum = {
   totalAmount: 'totalAmount',
   paidAmount: 'paidAmount',
   balanceAmount: 'balanceAmount',
+  currency: 'currency',
+  exchangeRate: 'exchangeRate',
   status: 'status',
   notes: 'notes',
   createdAt: 'createdAt',
@@ -1107,6 +1115,31 @@ exports.Prisma.ShippingaddressScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.Inventory_batchScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  warehouseId: 'warehouseId',
+  purchaseBillId: 'purchaseBillId',
+  qtyReceived: 'qtyReceived',
+  qtyRemaining: 'qtyRemaining',
+  rate: 'rate',
+  batchNumber: 'batchNumber',
+  expiryDate: 'expiryDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Inventory_consumptionScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  productId: 'productId',
+  batchId: 'batchId',
+  qtyUsed: 'qtyUsed',
+  rateUsed: 'rateUsed',
+  totalCost: 'totalCost',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1343,7 +1376,9 @@ exports.Prisma.ModelName = {
   voucher: 'voucher',
   voucheritem: 'voucheritem',
   role: 'role',
-  shippingaddress: 'shippingaddress'
+  shippingaddress: 'shippingaddress',
+  inventory_batch: 'inventory_batch',
+  inventory_consumption: 'inventory_consumption'
 };
 
 /**

@@ -1,7 +1,227 @@
 const prisma = require('../config/prisma');
 
+const calculateInventoryValue = async (companyId) => {
+    try {
+        const stocks = await prisma.stock.findMany({
+            where: { product: { companyId: parseInt(companyId) } },
+            include: { product: true }
+        });
+
+        let totalValue = 0;
+        stocks.forEach(s => {
+            const price = s.product.purchasePrice || s.product.initialCost || 0;
+            totalValue += (s.quantity * price);
+        });
+        return totalValue;
+    } catch (error) {
+        console.error("Error calculating inventory value:", error);
+        return 0;
+    }
+};
+
+const calculateOpeningBalanceEquityValue = async (companyId, inventoryValue) => {
+    try {
+        const ledgers = await prisma.ledger.findMany({
+            where: { companyId: parseInt(companyId) },
+            include: { accountgroup: true }
+        });
+
+        let totalCredits = 0;
+        let totalDebits = 0;
+
+        ledgers.forEach(l => {
+            if (l.name.toLowerCase().includes('opening balance equity')) {
+                return;
+            }
+
+            const type = l.accountgroup?.type;
+            let balance = l.currentBalance || 0;
+
+            if (l.name.toLowerCase().includes('inventory asset')) {
+                balance = inventoryValue;
+            }
+
+            if (['ASSETS', 'EXPENSES'].includes(type)) {
+                totalDebits += balance;
+            } else {
+                totalCredits += balance;
+            }
+        });
+
+        return totalCredits - totalDebits;
+    } catch (error) {
+        console.error("Error calculating opening balance equity:", error);
+        return 0;
+    }
+};
+
+/**
+ * Automatic Self-Cleanup: scans the transaction table for any Opening Stock
+ * entries that reference products that no longer exist, deletes them, and
+ * reverses the stale ledger balance adjustments.
+ */
+const cleanupStaleOpeningStockTransactions = async (companyId) => {
+    try {
+        const companyIdInt = parseInt(companyId);
+
+        // Find all opening-stock accounting transactions
+        const openingStockTxns = await prisma.transaction.findMany({
+            where: {
+                companyId: companyIdInt,
+                narration: { startsWith: 'Opening Stock for Product:' }
+            }
+        });
+
+        if (openingStockTxns.length === 0) return;
+
+        // Get all current product names for this company
+        const products = await prisma.product.findMany({
+            where: { companyId: companyIdInt },
+            select: { name: true }
+        });
+        const productNames = new Set(products.map(p => p.name));
+
+        // Identify stale transactions (product no longer exists)
+        const staleTxns = openingStockTxns.filter(t => {
+            const productName = t.narration.replace('Opening Stock for Product: ', '').trim();
+            return !productNames.has(productName);
+        });
+
+        if (staleTxns.length === 0) return;
+
+        console.log(`[COA Cleanup] Found ${staleTxns.length} stale opening-stock transaction(s). Cleaning up...`);
+
+        // Find ledgers once
+        const inventoryAsset = await prisma.ledger.findFirst({
+            where: { companyId: companyIdInt, name: 'Inventory Asset' }
+        });
+        const openingEquity = await prisma.ledger.findFirst({
+            where: { companyId: companyIdInt, name: 'Opening Balance Equity' }
+        });
+
+        const totalStaleAmount = staleTxns.reduce((sum, t) => sum + (t.amount || 0), 0);
+
+        // Delete stale transactions
+        await prisma.transaction.deleteMany({
+            where: { id: { in: staleTxns.map(t => t.id) } }
+        });
+
+        // Reverse ledger balance adjustments
+        if (inventoryAsset && totalStaleAmount > 0) {
+            await prisma.ledger.update({
+                where: { id: inventoryAsset.id },
+                data: { currentBalance: { decrement: totalStaleAmount } }
+            });
+        }
+        if (openingEquity && totalStaleAmount > 0) {
+            await prisma.ledger.update({
+                where: { id: openingEquity.id },
+                data: { currentBalance: { increment: totalStaleAmount } }
+            });
+        }
+
+        console.log(`[COA Cleanup] Removed stale amount: ${totalStaleAmount}. Ledger balances corrected.`);
+    } catch (error) {
+        // Non-fatal — log and continue
+        console.error('[COA Cleanup] Error during stale opening-stock cleanup:', error);
+    }
+};
+
+/**
+ * Calculate fully-dynamic balances for all ledgers using a single-pass
+ * groupBy aggregate on the transaction table.  Returns a Map keyed by
+ * ledger id whose value is { debitTotal, creditTotal, dynamicBalance }.
+ */
+const calculateDynamicLedgerBalances = async (companyId, inventoryValue) => {
+    try {
+        const companyIdInt = parseInt(companyId);
+
+        const ledgers = await prisma.ledger.findMany({
+            where: { companyId: companyIdInt },
+            include: { accountgroup: true }
+        });
+
+        // Single-pass aggregates
+        const [debitSums, creditSums] = await Promise.all([
+            prisma.transaction.groupBy({
+                by: ['debitLedgerId'],
+                where: { companyId: companyIdInt },
+                _sum: { amount: true }
+            }),
+            prisma.transaction.groupBy({
+                by: ['creditLedgerId'],
+                where: { companyId: companyIdInt },
+                _sum: { amount: true }
+            })
+        ]);
+
+        const debitMap = new Map(debitSums.map(d => [d.debitLedgerId, d._sum.amount || 0]));
+        const creditMap = new Map(creditSums.map(c => [c.creditLedgerId, c._sum.amount || 0]));
+
+        const balanceMap = new Map();
+        let totalAssets = 0;
+        let totalLiabilities = 0;
+        let totalOtherEquity = 0;
+        let totalIncome = 0;
+        let totalExpenses = 0;
+
+        ledgers.forEach(l => {
+            const isOBE = l.name.toLowerCase().includes('opening balance equity');
+            const isInventory = l.name.toLowerCase().includes('inventory asset');
+            const groupType = l.accountgroup?.type;
+            const opening = l.openingBalance || 0;
+            const txnDebit = debitMap.get(l.id) || 0;
+            const txnCredit = creditMap.get(l.id) || 0;
+
+            let dynamicBalance;
+            if (isInventory) {
+                dynamicBalance = inventoryValue;
+            } else if (isOBE) {
+                dynamicBalance = 0; // Will be set after totals
+            } else if (['ASSETS', 'EXPENSES'].includes(groupType)) {
+                dynamicBalance = opening + txnDebit - txnCredit;
+            } else {
+                dynamicBalance = opening + txnCredit - txnDebit;
+            }
+
+            balanceMap.set(l.id, {
+                ledger: l,
+                dynamicBalance,
+                isOBE,
+                isInventory,
+                groupType
+            });
+
+            if (!isOBE) {
+                if (groupType === 'ASSETS') totalAssets += isInventory ? inventoryValue : dynamicBalance;
+                else if (groupType === 'LIABILITIES') totalLiabilities += dynamicBalance;
+                else if (groupType === 'EQUITY') totalOtherEquity += dynamicBalance;
+                else if (groupType === 'INCOME') totalIncome += dynamicBalance;
+                else if (groupType === 'EXPENSES') totalExpenses += dynamicBalance;
+            }
+        });
+
+        // Opening Balance Equity = exact offset to balance the trial balance
+        const netProfit = totalIncome - totalExpenses;
+        const dynamicOBE = totalAssets - totalLiabilities - totalOtherEquity - netProfit;
+
+        // Apply OBE value back into the map
+        for (const [id, entry] of balanceMap) {
+            if (entry.isOBE) {
+                entry.dynamicBalance = dynamicOBE;
+            }
+        }
+
+        return balanceMap;
+    } catch (error) {
+        console.error('[COA] Error calculating dynamic ledger balances:', error);
+        return new Map();
+    }
+};
+
 // Initialize Default Chart of Accounts for a Company
 const initializeChartOfAccounts = async (companyId) => {
+
     try {
         // 1. Verify Company exists
         const company = await prisma.company.findUnique({
@@ -166,6 +386,9 @@ const initializeChartOfAccounts = async (companyId) => {
 // Get Chart of Accounts
 const getChartOfAccounts = async (companyId, filters = {}) => {
     try {
+        // Auto-cleanup stale opening-stock transactions before reading
+        await cleanupStaleOpeningStockTransactions(companyId);
+
         const { startDate, endDate, search } = filters;
 
         // Base filter for ledgers
@@ -185,26 +408,33 @@ const getChartOfAccounts = async (companyId, filters = {}) => {
                 accountsubgroup: {
                     include: {
                         ledger: {
-                            where: {
-                                ...ledgerWhere
-                            },
-                            include: {
-                                ledger: true
-                            }
+                            where: { ...ledgerWhere },
+                            include: { ledger: true }
                         }
                     }
                 },
                 ledger: {
-                    where: {
-                        subGroupId: null,
-                        ...ledgerWhere
-                    },
-                    include: {
-                        ledger: true
-                    }
+                    where: { subGroupId: null, ...ledgerWhere },
+                    include: { ledger: true }
                 }
             },
             orderBy: { type: 'asc' }
+        });
+
+        // --- Fully Dynamic Balances ---
+        // Use the single-pass aggregate helper so every ledger reflects
+        // live transaction data. This replaces any stale DB currentBalance.
+        const inventoryValue = await calculateInventoryValue(companyId);
+        const balanceMap = await calculateDynamicLedgerBalances(companyId, inventoryValue);
+
+        const applyDynamic = (l) => {
+            const entry = balanceMap.get(l.id);
+            if (entry) l.currentBalance = entry.dynamicBalance;
+        };
+
+        groups.forEach(group => {
+            group.ledger?.forEach(applyDynamic);
+            group.accountsubgroup?.forEach(sub => sub.ledger?.forEach(applyDynamic));
         });
 
         return groups;
@@ -385,6 +615,9 @@ const createLedger = async (data) => {
 // Get Ledger by ID
 const getLedgerById = async (id, companyId) => {
     try {
+        // Auto-cleanup stale opening-stock transactions before reading
+        await cleanupStaleOpeningStockTransactions(companyId);
+
         const ledger = await prisma.ledger.findFirst({
             where: {
                 id: parseInt(id),
@@ -408,6 +641,14 @@ const getLedgerById = async (id, companyId) => {
             }
         });
 
+        // Apply fully-dynamic balance using single-pass aggregate
+        if (ledger) {
+            const inventoryValue = await calculateInventoryValue(companyId);
+            const balanceMap = await calculateDynamicLedgerBalances(companyId, inventoryValue);
+            const entry = balanceMap.get(ledger.id);
+            if (entry) ledger.currentBalance = entry.dynamicBalance;
+        }
+
         return ledger;
     } catch (error) {
         console.error('Error fetching ledger:', error);
@@ -418,6 +659,9 @@ const getLedgerById = async (id, companyId) => {
 // Get Ledger Transactions
 const getLedgerTransactions = async (ledgerId, companyId) => {
     try {
+        // Auto-cleanup stale opening-stock transactions before reading
+        await cleanupStaleOpeningStockTransactions(companyId);
+
         const transactions = await prisma.transaction.findMany({
             where: {
                 companyId: companyId,
@@ -643,6 +887,9 @@ const deleteAccountSubGroup = async (id, companyId) => {
 // Get All Ledgers
 const getAllLedgers = async (companyId) => {
     try {
+        // Auto-cleanup stale opening-stock transactions before reading
+        await cleanupStaleOpeningStockTransactions(companyId);
+
         const ledgers = await prisma.ledger.findMany({
             where: { companyId },
             include: {
@@ -653,7 +900,14 @@ const getAllLedgers = async (companyId) => {
             orderBy: { name: 'asc' }
         });
 
-        return ledgers;
+        // Apply fully-dynamic balances using single-pass aggregate
+        const inventoryValue = await calculateInventoryValue(companyId);
+        const balanceMap = await calculateDynamicLedgerBalances(companyId, inventoryValue);
+
+        return ledgers.map(l => {
+            const entry = balanceMap.get(l.id);
+            return entry ? { ...l, currentBalance: entry.dynamicBalance } : l;
+        });
     } catch (error) {
         console.error('Error fetching ledgers:', error);
         throw error;

@@ -192,7 +192,8 @@ const updateCompany = async (req, res) => {
             terms,
             notes,
             inventoryConfig,
-            storageCapacity
+            storageCapacity,
+            invoiceTableHeaders
         } = req.body;
 
         // Fetch current company to get existing inventoryConfig
@@ -240,7 +241,8 @@ const updateCompany = async (req, res) => {
             ifsc,
             terms,
             notes,
-            inventoryConfig: finalInventoryConfig
+            inventoryConfig: finalInventoryConfig,
+            invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined
         };
 
         console.log('💾 Updating company with data:', updateData);

@@ -793,34 +793,36 @@ const getBalanceSheet = async (req, res) => {
         let totalIncome = 0;
         let totalExpense = 0;
 
+        // --- Dynamic Inventory Value (real-time: quantity × cost from stock table) ---
+        const currentInventoryValue = await calculateInventoryValue(companyId);
+
         ledgers.forEach(ledger => {
+            if (ledger.name.toLowerCase().includes('opening balance equity')) {
+                return;
+            }
             const groupType = ledger.accountgroup?.type;
             const opening = ledger.openingBalance || 0;
 
-            // Calculate Historical Balance
-            // Normal Balance behavior:
-            // ASSETS, EXPENSES: Debit increases (+), Credit decreases (-)
-            // LIABILITIES, EQUITY, INCOME: Credit increases (+), Debit decreases (-)
-
+            // Calculate Balance
+            // ASSETS, EXPENSES: Debit normal (Opening + Debits - Credits)
+            // LIABILITIES, EQUITY, INCOME: Credit normal (Opening + Credits - Debits)
             let balance = 0;
-            if (['ASSETS', 'EXPENSES'].includes(groupType)) {
-                // Balance = Opening + Debits - Credits
-                // Wait, Opening Balance is usually "Dr" for Assets.
-                // If opening balance stored as absolute, assume normal side.
+            if (groupType === 'ASSETS' && ledger.name.toLowerCase().includes('inventory asset')) {
+                // Always override Inventory Asset with live stock value
+                balance = currentInventoryValue;
+            } else if (['ASSETS', 'EXPENSES'].includes(groupType)) {
                 balance = opening + getDebit(ledger.id) - getCredit(ledger.id);
             } else {
-                // Balance = Opening + Credits - Debits
                 balance = opening + getCredit(ledger.id) - getDebit(ledger.id);
             }
 
-            // Only process non-zero balances (or significant ones)
-            if (Math.abs(balance) < 0.01 && !ledger.name.toLowerCase().includes('inventory')) return;
+            // Only process non-zero balances
+            if (Math.abs(balance) < 0.01 && !ledger.name.toLowerCase().includes('inventory asset')) return;
 
             const name = ledger.name;
 
             if (groupType === 'ASSETS') {
-                // Improved Grouping Logic
-                // Use broader keywords to catch Sundry Debtors, Bank Accounts, etc.
+                // Improved Grouping Logic - Robust classification
                 const groupName = ledger.accountgroup.name.toLowerCase();
                 const currentAssetKeywords = [
                     'current assets',
@@ -831,15 +833,16 @@ const getBalanceSheet = async (req, res) => {
                     'stock',
                     'inventory',
                     'advance',
-                    'deposit'
+                    'deposit',
+                    'prepaid'
                 ];
-                const isCurrent = currentAssetKeywords.some(s => groupName.includes(s));
+                // Force customer ledgers or ledgers with current keywords into Current Assets
+                const isCurrent = currentAssetKeywords.some(s => groupName.includes(s) || name.toLowerCase().includes(s)) || ledger.customerId !== null;
 
                 if (isCurrent) {
                     reportData.assets.current.push({ id: ledger.id, ledgerId: ledger.id, name, value: balance });
                 } else {
-                    // Default to Fixed if not explicitly Current
-                    // This catches Property, Equipment, Investments, etc.
+                    // Default to Fixed if not Current
                     reportData.assets.fixed.push({ id: ledger.id, ledgerId: ledger.id, name, value: balance });
                 }
                 reportData.assets.total += balance;
@@ -854,16 +857,17 @@ const getBalanceSheet = async (req, res) => {
                     'tax',
                     'provision',
                     'overdraft',
-                    'short-term'
+                    'short-term',
+                    'salary',
+                    'expense payable'
                 ];
-                const isCurrent = currentLiabilityKeywords.some(s => groupName.includes(s));
+                // Force vendor ledgers or current liability keywords into Current Liabilities
+                const isCurrent = currentLiabilityKeywords.some(s => groupName.includes(s) || name.toLowerCase().includes(s)) || ledger.vendorId !== null;
 
-                // Liabilities are usually Credits (+ve in our calculation above).
-                // Display as positive in report.
                 if (isCurrent) {
                     reportData.liabilities.current.push({ id: ledger.id, name, value: balance });
                 } else {
-                    // Long Term Debt, Loans, etc.
+                    // Long Term Liabilities
                     reportData.liabilities.longTerm.push({ id: ledger.id, name, value: balance });
                 }
                 reportData.liabilities.total += balance;
@@ -880,52 +884,31 @@ const getBalanceSheet = async (req, res) => {
         });
 
         // 2. Calculate Net Profit/Loss
-        // Standard Accounting: Net Profit = (Income - Expense)
-        // Note: Closing Stock adjustment is done below.
-        const netProfitAccrual = totalIncome - totalExpense;
-
-        // 3. Dynamic Inventory Adjustment (Closing Stock)
-        // Closing stock increases profit (reduces COGS) and is an asset.
-        const currentInventoryValue = await calculateInventoryValue(companyId);
-
-        // Find if any ledger already represents Inventory in Assets
-        const hasInventoryLedger = reportData.assets.current.some(a => a.name.toLowerCase().includes('inventory'));
-
-        if (!hasInventoryLedger && currentInventoryValue > 0) {
-            reportData.assets.current.push({
-                name: 'Closing Stock (Inventory)',
-                value: currentInventoryValue,
-                isClosingStock: true
-            });
-            reportData.assets.total += currentInventoryValue;
-        }
-
-        // The Real Net Profit = (Income - Expense) + Closing Stock (if purchases were expensed)
-        // In this system, purchases are usually recorded as expenses. 
-        // So Net Profit = Total Income - Total Expenses + Closing Stock Value
-        const finalNetProfit = netProfitAccrual + currentInventoryValue;
+        // Since COGS is already calculated on every invoice, P&L Net Profit is simply Income - Expense.
+        // We do NOT add currentInventoryValue here to avoid double counting stock as direct profit.
+        const finalNetProfit = totalIncome - totalExpense;
         reportData.netProfit = finalNetProfit;
 
         // Add Net Profit to Equity
         reportData.equity.items.push({
-            name: 'Net Profit / (Loss) for Period',
+            name: 'Current Year Earnings (Net Profit)',
             value: finalNetProfit,
             isProfitLoss: true
         });
         reportData.equity.total += finalNetProfit;
 
-        // 4. Final Balance Check & Adjustment
-        const totalAssets = reportData.assets.total;
-        const totalLiabEquity = reportData.liabilities.total + reportData.equity.total;
-        const bsDifference = totalAssets - totalLiabEquity;
+        // 4. Dynamic Opening Balance Equity Adjustment
+        // dynamicOBE is the exact value needed to balance the equation:
+        // Assets = Liabilities + OtherEquity + NetProfit + OBE
+        const totalLiabilities = reportData.liabilities.total;
+        const totalOtherEquity = reportData.equity.total - finalNetProfit; // subtract NP since it was already added
+        const dynamicOBE = reportData.assets.total - totalLiabilities - totalOtherEquity - finalNetProfit;
 
-        if (Math.abs(bsDifference) > 0.01) {
-            reportData.equity.items.push({
-                name: 'Opening Balance Equity / Difference',
-                value: bsDifference
-            });
-            reportData.equity.total += bsDifference;
-        }
+        reportData.equity.items.push({
+            name: 'Opening Balance Equity',
+            value: dynamicOBE
+        });
+        reportData.equity.total += dynamicOBE;
 
         res.status(200).json({ success: true, data: reportData });
 
@@ -1155,23 +1138,8 @@ const getProfitLoss = async (req, res) => {
         prevEnd.setFullYear(prevEnd.getFullYear() - 1);
         const prevData = await fetchLedgerData(prevStart, prevEnd);
 
-        // --- ACCOUNTING LOGIC: Closing Stock Adjustment ---
-        // P&L Net Profit = (Income - Expense) + Closing Stock
-        const closingStock = await calculateInventoryValue(companyId);
-
-        // Adjust current year data
-        currentData.netProfit += closingStock;
-
-        // If closing stock isn't in COGS yet, we should ideally show it as a deduction in COGS section
-        // But for simplicity in this report, we'll add it to "Other Income" or a specific "Closing Stock" row
-        if (closingStock > 0) {
-            currentData.statement.otherIncome.items.push({
-                id: 'closing-stock-adj',
-                name: 'Closing Stock (Inventory)',
-                value: closingStock
-            });
-            currentData.statement.otherIncome.total += closingStock;
-        }
+        // Net Profit = (Income - Expense) as COGS is already posted on sales invoices in real-time.
+        // Unsold inventory remains in Balance Sheet Current Assets, not added as a direct income in P&L.
 
         // Calculate Growth %
         const calcGrowth = (curr, prev) => {
@@ -1612,45 +1580,51 @@ const getTrialBalance = async (req, res) => {
             include: { accountgroup: true }
         });
 
+        // --- Single-pass transaction aggregates (avoids N+1 queries) ---
+        const [debitSums, creditSums] = await Promise.all([
+            prisma.transaction.groupBy({
+                by: ['debitLedgerId'],
+                where: { companyId: parseInt(companyId), date: { lte: endDate } },
+                _sum: { amount: true }
+            }),
+            prisma.transaction.groupBy({
+                by: ['creditLedgerId'],
+                where: { companyId: parseInt(companyId), date: { lte: endDate } },
+                _sum: { amount: true }
+            })
+        ]);
+
+        const debitMap = new Map(debitSums.map(d => [d.debitLedgerId, d._sum.amount || 0]));
+        const creditMap = new Map(creditSums.map(c => [c.creditLedgerId, c._sum.amount || 0]));
+
+        // Calculate dynamic inventory value once
+        const currentInventoryValue = await calculateInventoryValue(companyId);
+
         const trialBalance = [];
 
         for (const ledger of ledgers) {
-            // Fetch all Debit transactions for this ledger
-            const debits = await prisma.transaction.aggregate({
-                _sum: { amount: true },
-                where: {
-                    debitLedgerId: ledger.id,
-                    date: { lte: endDate }
-                }
-            });
-
-            // Fetch all Credit transactions for this ledger
-            const credits = await prisma.transaction.aggregate({
-                _sum: { amount: true },
-                where: {
-                    creditLedgerId: ledger.id,
-                    date: { lte: endDate }
-                }
-            });
-
-            const totalDebitTransactions = parseFloat(debits._sum.amount || 0);
-            const totalCreditTransactions = parseFloat(credits._sum.amount || 0);
-
-            let openingDebit = 0;
-            let openingCredit = 0;
-            const openingBalance = parseFloat(ledger.openingBalance || 0);
+            const isOBE = ledger.name.toLowerCase().includes('opening balance equity');
             const groupType = ledger.accountgroup?.type;
 
-            // Assets and Expenses have a natural Debit balance
-            if (groupType === 'ASSETS' || groupType === 'EXPENSES') {
-                openingDebit = openingBalance;
-            } else {
-                // Liabilities, Income, and Equity have a natural Credit balance
-                openingCredit = openingBalance;
-            }
+            // Skip transaction aggregation for OBE — it will be set dynamically below
+            let totalDebit = 0;
+            let totalCredit = 0;
 
-            const totalDebit = totalDebitTransactions + openingDebit;
-            const totalCredit = totalCreditTransactions + openingCredit;
+            if (!isOBE) {
+                const txnDebit = debitMap.get(ledger.id) || 0;
+                const txnCredit = creditMap.get(ledger.id) || 0;
+                const openingBalance = parseFloat(ledger.openingBalance || 0);
+
+                // Assets and Expenses: Debit-normal
+                if (groupType === 'ASSETS' || groupType === 'EXPENSES') {
+                    totalDebit = openingBalance + txnDebit;
+                    totalCredit = txnCredit;
+                } else {
+                    // Liabilities, Income, Equity: Credit-normal
+                    totalCredit = openingBalance + txnCredit;
+                    totalDebit = txnDebit;
+                }
+            }
 
             // Determine Net Balance
             let netDebit = 0;
@@ -1661,10 +1635,15 @@ const getTrialBalance = async (req, res) => {
             } else if (totalCredit > totalDebit) {
                 netCredit = totalCredit - totalDebit;
             }
-            // If equal, both 0.
 
-            // Only add if there is a balance (or do we want to show zeros? usually non-zero)
-            if (netDebit !== 0 || netCredit !== 0) {
+            // Override Inventory Asset with live dynamic stock value
+            if (!isOBE && groupType === 'ASSETS' && ledger.name.toLowerCase().includes('inventory asset')) {
+                netDebit = currentInventoryValue;
+                netCredit = 0;
+            }
+
+            // Always include OBE (even with 0 balance — the adjustment below will populate it)
+            if (netDebit !== 0 || netCredit !== 0 || isOBE) {
                 trialBalance.push({
                     id: ledger.id,
                     name: ledger.name,
@@ -1675,23 +1654,19 @@ const getTrialBalance = async (req, res) => {
             }
         }
 
-        // Sort by Name or Type
+        // Sort by Name
         trialBalance.sort((a, b) => a.name.localeCompare(b.name));
 
-        // 4. Calculate and add Opening Balance Adjustment if TB is out of balance
+        // Dynamic OBE adjustment — absorb any imbalance so TB always balances
         const totalDebitTB = trialBalance.reduce((sum, item) => sum + item.debit, 0);
         const totalCreditTB = trialBalance.reduce((sum, item) => sum + item.credit, 0);
         const tbDifference = totalDebitTB - totalCreditTB;
 
         if (Math.abs(tbDifference) > 0.01) {
-            // Check if we already have Opening Balance Equity in the list
             const obeIndex = trialBalance.findIndex(item => item.name.toLowerCase().includes('opening balance equity'));
 
             if (obeIndex !== -1) {
                 // Adjust existing OBE to absorb the difference
-                // TB needs: TotalDebit == TotalCredit
-                // Currently: TotalDebit - TotalCredit = tbDifference
-                // So we add tbDifference to the Credit side of OBE (if positive) or Debit side (if negative)
                 if (tbDifference > 0) {
                     trialBalance[obeIndex].credit += tbDifference;
                 } else {
@@ -1703,7 +1678,7 @@ const getTrialBalance = async (req, res) => {
                 trialBalance[obeIndex].debit = net > 0 ? net : 0;
                 trialBalance[obeIndex].credit = net < 0 ? Math.abs(net) : 0;
             } else {
-                // Add new OBE adjustment entry
+                // Add a new OBE adjustment entry if not present
                 trialBalance.push({
                     id: 999997,
                     name: 'Opening Balance Adjustment',
@@ -1714,29 +1689,6 @@ const getTrialBalance = async (req, res) => {
             }
         }
 
-        // 5. Dynamic Inventory for TB (Calculated separately as it's not in ledgers)
-        const currentInventoryValue = await calculateInventoryValue(companyId);
-        const hasInventory = trialBalance.some(b => b.name.toLowerCase().includes('inventory'));
-
-        if (!hasInventory && currentInventoryValue > 0) {
-            trialBalance.push({
-                id: 999999, // Virtual ID
-                name: 'Inventory Asset (Closing)',
-                type: 'Current Assets',
-                debit: currentInventoryValue,
-                credit: 0
-            });
-            // To balance TB, we'd need an offsetting entry, but typically TB shows ledger balances.
-            // If inventory isn't in a ledger, TB will be unbalanced by this amount unless we add a virtual Equity.
-            trialBalance.push({
-                id: 999998,
-                name: 'Closing Stock (P&L)',
-                type: 'Equity',
-                debit: 0,
-                credit: currentInventoryValue
-            });
-        }
-
         res.status(200).json({ success: true, data: trialBalance });
 
     } catch (error) {
@@ -1744,6 +1696,7 @@ const getTrialBalance = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 // Get All Transactions
 const getAllTransactions = async (req, res) => {

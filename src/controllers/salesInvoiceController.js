@@ -1,11 +1,19 @@
 const prisma = require('../config/prisma');
+const {
+    getInventoryConfig,
+    consumeStock,
+    reverseStockOut
+} = require('../services/inventoryValuationService');
 
 // Create Sales Invoice
 const createInvoice = async (req, res) => {
     try {
-        const { invoiceNumber, date, dueDate, customerId, salesOrderId, deliveryChallanId, items, notes, taxAmount, overallDiscount, overallDiscountType, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry } = req.body;
+        const { invoiceNumber, date, dueDate, customerId, salesOrderId, deliveryChallanId, items, notes, taxAmount, overallDiscount, overallDiscountType, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, currency, exchangeRate } = req.body;
         // Fallback to req.body.companyId if req.user is missing (custom frontend case)
         const companyId = req.user?.companyId || req.body.companyId;
+
+        const docCurrency = currency || 'USD';
+        const docExchangeRate = parseFloat(exchangeRate) || 1.0;
 
         if (!companyId) {
             return res.status(400).json({ success: false, message: 'Company ID is missing' });
@@ -112,6 +120,8 @@ const createInvoice = async (req, res) => {
                     taxAmount: finalTax,
                     totalAmount,
                     balanceAmount: totalAmount,
+                    currency: docCurrency,
+                    exchangeRate: docExchangeRate,
                     notes,
                     overallDiscount: parseFloat(overallDiscount) || 0,
                     overallDiscountType: overallDiscountType || 'percentage',
@@ -255,6 +265,9 @@ const createInvoice = async (req, res) => {
             }
 
             // C. Accounting Entries (Double Entry)
+            const ledgerTotalAmount = totalAmount * docExchangeRate;
+            const ledgerSubtotal = subtotal * docExchangeRate;
+            const ledgerTax = finalTax * docExchangeRate;
 
             // 1. DR Customer, CR Sales Income
             const journal = await tx.journalentry.create({
@@ -273,7 +286,7 @@ const createInvoice = async (req, res) => {
                     voucherNumber: invoiceNumber,
                     debitLedgerId: customer.ledgerId,
                     creditLedgerId: salesLedger.id,
-                    amount: totalAmount,
+                    amount: ledgerTotalAmount,
                     narration: `Sales to ${customer.name}`,
                     companyId: parseInt(companyId),
                     journalEntryId: journal.id,
@@ -284,36 +297,46 @@ const createInvoice = async (req, res) => {
             // Update Customer Ledger (Asset Increases with Debit)
             await tx.ledger.update({
                 where: { id: customer.ledgerId },
-                data: { currentBalance: { increment: totalAmount } }
+                data: { currentBalance: { increment: ledgerTotalAmount } }
             });
 
             // Update Sales Ledger (Income Increases with Credit)
             await tx.ledger.update({
                 where: { id: salesLedger.id },
-                data: { currentBalance: { increment: subtotal } }
+                data: { currentBalance: { increment: ledgerSubtotal } }
             });
 
             // 2. Handle Tax (CR Tax Payable)
             if (finalTax > 0 && taxLedger) {
                 await tx.ledger.update({
                     where: { id: taxLedger.id },
-                    data: { currentBalance: { increment: finalTax } }
+                    data: { currentBalance: { increment: ledgerTax } }
                 });
             }
 
-            // 3. COGS and Inventory Accounting (DR COGS, CR Inventory)
+            // 3. COGS using Inventory Valuation Method (FIFO or WAC)
+            const invConfig = await getInventoryConfig(companyId);
+            const valuationMethod = invConfig.valuationMethod || 'WAC';
+            const autoCogsEntry = invConfig.autoCogsEntry !== false; // default ON
+            const negativeStockAllow = invConfig.negativeStockAllow !== false; // default ON
+
             let totalCOGS = 0;
             for (const item of invoiceItems) {
-                if (item.productId) {
-                    const product = await tx.product.findUnique({ where: { id: item.productId } });
-                    if (product) {
-                        const unitCost = product.purchasePrice || product.initialCost || 0;
-                        totalCOGS += (unitCost * item.quantity);
-                    }
+                if (item.productId && item.warehouseId) {
+                    const itemCOGS = await consumeStock(tx, {
+                        companyId,
+                        productId: item.productId,
+                        warehouseId: item.warehouseId,
+                        quantity: item.quantity,
+                        invoiceId: invoice.id,
+                        method: valuationMethod,
+                        negativeStockAllow
+                    });
+                    totalCOGS += itemCOGS;
                 }
             }
 
-            if (totalCOGS > 0 && cogsLedger && inventoryLedger) {
+            if (autoCogsEntry && totalCOGS > 0 && cogsLedger && inventoryLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(date),
@@ -329,17 +352,8 @@ const createInvoice = async (req, res) => {
                     }
                 });
 
-                // Update COGS Ledger (Expense Increases with Debit)
-                await tx.ledger.update({
-                    where: { id: cogsLedger.id },
-                    data: { currentBalance: { increment: totalCOGS } }
-                });
-
-                // Update Inventory Ledger (Asset Decreases with Credit)
-                await tx.ledger.update({
-                    where: { id: inventoryLedger.id },
-                    data: { currentBalance: { decrement: totalCOGS } }
-                });
+                await tx.ledger.update({ where: { id: cogsLedger.id }, data: { currentBalance: { increment: totalCOGS } } });
+                await tx.ledger.update({ where: { id: inventoryLedger.id }, data: { currentBalance: { decrement: totalCOGS } } });
             }
 
 
@@ -459,7 +473,7 @@ const getInvoiceById = async (req, res) => {
 const updateInvoice = async (req, res) => {
     try {
         const { id } = req.params;
-        const { items, overallDiscount, overallDiscountType, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, ...data } = req.body;
+        const { items, overallDiscount, overallDiscountType, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, currency, exchangeRate, ...data } = req.body;
         const companyId = req.user?.companyId || req.body.companyId;
 
         if (!companyId) {
@@ -582,6 +596,8 @@ const updateInvoice = async (req, res) => {
                     taxAmount,
                     totalAmount,
                     balanceAmount: totalAmount - (existingInvoice.paidAmount || 0),
+                    currency: currency !== undefined ? currency : undefined,
+                    exchangeRate: exchangeRate !== undefined ? parseFloat(exchangeRate) : undefined,
                     overallDiscount: parseFloat(overallDiscount) || 0,
                     overallDiscountType: overallDiscountType || 'percentage',
                     billingName: billingName,
@@ -633,6 +649,9 @@ const updateInvoice = async (req, res) => {
             });
 
             if (customer && customer.ledgerId && salesLedger) {
+                const docExchangeRate = updatedInvoice.exchangeRate || 1.0;
+                const ledgerTotalAmount = totalAmount * docExchangeRate;
+
                 // Create new journal entry for the updated invoice
                 const journal = await tx.journalentry.create({
                     data: {
@@ -650,7 +669,7 @@ const updateInvoice = async (req, res) => {
                         voucherNumber: updatedInvoice.invoiceNumber,
                         debitLedgerId: customer.ledgerId,
                         creditLedgerId: salesLedger.id,
-                        amount: totalAmount,
+                        amount: ledgerTotalAmount,
                         narration: `Updated Sales to ${customer.name}`,
                         companyId: parseInt(companyId),
                         invoiceId: updatedInvoice.id,
@@ -661,11 +680,11 @@ const updateInvoice = async (req, res) => {
                 // Update ledger balances with new amounts
                 await tx.ledger.update({
                     where: { id: customer.ledgerId },
-                    data: { currentBalance: { increment: totalAmount } }
+                    data: { currentBalance: { increment: ledgerTotalAmount } }
                 });
                 await tx.ledger.update({
                     where: { id: salesLedger.id },
-                    data: { currentBalance: { increment: totalAmount } }
+                    data: { currentBalance: { increment: ledgerTotalAmount } }
                 });
             }
 

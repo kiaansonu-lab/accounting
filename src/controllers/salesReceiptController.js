@@ -41,32 +41,39 @@ const createReceipt = async (req, res) => {
                 }
             });
 
+            let ledgerAmount = parseFloat(amount);
             // 2. Update Invoice Balance if applicable
             if (invoiceId) {
                 const invoice = await tx.invoice.findUnique({ where: { id: parseInt(invoiceId) } });
-                const newPaid = (invoice.paidAmount || 0) + parseFloat(amount);
-                const newBalance = (invoice.totalAmount || 0) - newPaid;
+                if (invoice) {
+                    const newPaid = (invoice.paidAmount || 0) + parseFloat(amount);
+                    const newBalance = (invoice.totalAmount || 0) - newPaid;
 
-                await tx.invoice.update({
-                    where: { id: parseInt(invoiceId) },
-                    data: {
-                        paidAmount: newPaid,
-                        balanceAmount: newBalance,
-                        status: newBalance <= 0 ? 'PAID' : 'PARTIAL'
+                    await tx.invoice.update({
+                        where: { id: parseInt(invoiceId) },
+                        data: {
+                            paidAmount: newPaid,
+                            balanceAmount: newBalance,
+                            status: newBalance <= 0 ? 'PAID' : 'PARTIAL'
+                        }
+                    });
+
+                    if (invoice.exchangeRate) {
+                        ledgerAmount = parseFloat(amount) * invoice.exchangeRate;
                     }
-                });
+                }
             }
 
             // 3. Accounting Entries
             // DR Cash/Bank, CR Customer
             await tx.ledger.update({
                 where: { id: bankLedger.id },
-                data: { currentBalance: { increment: parseFloat(amount) } }
+                data: { currentBalance: { increment: ledgerAmount } }
             });
 
             await tx.ledger.update({
                 where: { id: customer.ledgerId },
-                data: { currentBalance: { decrement: parseFloat(amount) } }
+                data: { currentBalance: { decrement: ledgerAmount } }
             });
 
             // Log Transaction
@@ -77,7 +84,7 @@ const createReceipt = async (req, res) => {
                     voucherNumber: receiptNumber,
                     debitLedgerId: bankLedger.id,
                     creditLedgerId: customer.ledgerId,
-                    amount: parseFloat(amount),
+                    amount: ledgerAmount,
                     narration: `Payment received from ${customer.name}${invoiceId ? ' for Invoice ' + invoiceId : ''}`,
                     companyId: parseInt(companyId),
                     receiptId: receipt.id,
@@ -115,6 +122,7 @@ const updateReceipt = async (req, res) => {
 
         const result = await prisma.$transaction(async (tx) => {
             // 1. Reverse previous effects
+            let revertAmount = existingReceipt.amount;
             if (existingReceipt.invoiceId) {
                 const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
                 if (invoice) {
@@ -124,6 +132,9 @@ const updateReceipt = async (req, res) => {
                         where: { id: existingReceipt.invoiceId },
                         data: { paidAmount: revPaid, balanceAmount: revBalance, status: revBalance <= 0 ? 'PAID' : revPaid > 0 ? 'PARTIAL' : 'UNPAID' }
                     });
+                    if (invoice.exchangeRate) {
+                        revertAmount = existingReceipt.amount * invoice.exchangeRate;
+                    }
                 }
             }
 
@@ -133,7 +144,7 @@ const updateReceipt = async (req, res) => {
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.cashBankAccountId },
-                        data: { currentBalance: { decrement: existingReceipt.amount } }
+                        data: { currentBalance: { decrement: revertAmount } }
                     });
                 }
             }
@@ -143,7 +154,7 @@ const updateReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { increment: existingReceipt.amount } }
+                        data: { currentBalance: { increment: revertAmount } }
                     });
                 }
             }
@@ -167,6 +178,7 @@ const updateReceipt = async (req, res) => {
             const finalAmount = amount ? parseFloat(amount) : existingReceipt.amount;
             const finalBankId = cashBankAccountId ? parseInt(cashBankAccountId) : existingReceipt.cashBankAccountId;
 
+            let finalLedgerAmount = finalAmount;
             if (existingReceipt.invoiceId) {
                 const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
                 if (invoice) {
@@ -176,6 +188,9 @@ const updateReceipt = async (req, res) => {
                         where: { id: existingReceipt.invoiceId },
                         data: { paidAmount: newPaid, balanceAmount: newBalance, status: newBalance <= 0 ? 'PAID' : 'PARTIAL' }
                     });
+                    if (invoice.exchangeRate) {
+                        finalLedgerAmount = finalAmount * invoice.exchangeRate;
+                    }
                 }
             }
 
@@ -184,7 +199,7 @@ const updateReceipt = async (req, res) => {
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: finalBankId },
-                        data: { currentBalance: { increment: finalAmount } }
+                        data: { currentBalance: { increment: finalLedgerAmount } }
                     });
                 }
             }
@@ -194,7 +209,7 @@ const updateReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { decrement: finalAmount } }
+                        data: { currentBalance: { decrement: finalLedgerAmount } }
                     });
                 }
             }
@@ -207,7 +222,7 @@ const updateReceipt = async (req, res) => {
                     voucherNumber: existingReceipt.receiptNumber,
                     debitLedgerId: finalBankId,
                     creditLedgerId: existingReceipt.customer.ledgerId,
-                    amount: finalAmount,
+                    amount: finalLedgerAmount,
                     narration: `Updated Payment from ${existingReceipt.customer.name}`,
                     companyId: parseInt(companyId),
                     receiptId: parseInt(id),
@@ -244,6 +259,7 @@ const deleteReceipt = async (req, res) => {
 
         await prisma.$transaction(async (tx) => {
             // Reverse effects
+            let revertAmount = existingReceipt.amount;
             if (existingReceipt.invoiceId) {
                 const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
                 if (invoice) {
@@ -253,6 +269,9 @@ const deleteReceipt = async (req, res) => {
                         where: { id: existingReceipt.invoiceId },
                         data: { paidAmount: revPaid, balanceAmount: revBalance, status: revBalance <= 0 ? 'PAID' : revPaid > 0 ? 'PARTIAL' : 'UNPAID' }
                     });
+                    if (invoice.exchangeRate) {
+                        revertAmount = existingReceipt.amount * invoice.exchangeRate;
+                    }
                 }
             }
 
@@ -261,7 +280,7 @@ const deleteReceipt = async (req, res) => {
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.cashBankAccountId },
-                        data: { currentBalance: { decrement: existingReceipt.amount } }
+                        data: { currentBalance: { decrement: revertAmount } }
                     });
                 }
             }
@@ -271,7 +290,7 @@ const deleteReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { increment: existingReceipt.amount } }
+                        data: { currentBalance: { increment: revertAmount } }
                     });
                 }
             }

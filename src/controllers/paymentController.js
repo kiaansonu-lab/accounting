@@ -60,6 +60,7 @@ const createPayment = async (req, res) => {
                 }
             });
 
+            let ledgerAmount = parseFloat(amount);
             // 1. Update Bill Balance
             if (purchaseBillId) {
                 const bill = await tx.purchasebill.findUnique({
@@ -79,6 +80,10 @@ const createPayment = async (req, res) => {
                             status: newStatus
                         }
                     });
+
+                    if (bill.exchangeRate) {
+                        ledgerAmount = parseFloat(amount) * bill.exchangeRate;
+                    }
                 }
             }
 
@@ -86,18 +91,18 @@ const createPayment = async (req, res) => {
             // DR Vendor (Liability Decreases), CR Cash/Bank (Asset Decreases)
             await tx.ledger.update({
                 where: { id: vendor.ledgerId },
-                data: { currentBalance: { decrement: parseFloat(amount) } }
+                data: { currentBalance: { decrement: ledgerAmount } }
             });
 
             // Update vendor table balance for consistency
             await tx.vendor.update({
                 where: { id: parseInt(vendorId) },
-                data: { accountBalance: { decrement: parseFloat(amount) } }
+                data: { accountBalance: { decrement: ledgerAmount } }
             });
 
             await tx.ledger.update({
                 where: { id: bankLedger.id },
-                data: { currentBalance: { decrement: parseFloat(amount) } }
+                data: { currentBalance: { decrement: ledgerAmount } }
             });
 
             // Log Transaction
@@ -108,7 +113,7 @@ const createPayment = async (req, res) => {
                     voucherNumber: paymentNumber || payment.paymentNumber,
                     debitLedgerId: vendor.ledgerId,
                     creditLedgerId: bankLedger.id,
-                    amount: parseFloat(amount),
+                    amount: ledgerAmount,
                     narration: `Payment to ${vendor.name}${purchaseBillId ? ' for Bill ' + purchaseBillId : ''}`,
                     companyId: parseInt(companyId),
                     paymentId: payment.id,

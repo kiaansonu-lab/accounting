@@ -123,6 +123,7 @@ model company {
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @default(now()) @updatedAt
   inventoryConfig      String?                @db.LongText
+  invoiceTableHeaders  String?                @db.LongText
   accountgroup         accountgroup[]
   accountsubgroup      accountsubgroup[]
   bankaccount          bankaccount[]
@@ -425,6 +426,8 @@ model invoice {
   totalAmount       Float
   paidAmount        Float            @default(0)
   balanceAmount     Float
+  currency          String?          @default("USD")
+  exchangeRate      Float?           @default(1.0)
   status            invoice_status   @default(UNPAID)
   salesOrderId      Int?
   notes             String?          @db.Text
@@ -453,6 +456,7 @@ model invoice {
   receipt           receipt[]
   salesreturn       salesreturn[]
   transaction       transaction[]
+  inventory_consumption inventory_consumption[]
 
   @@unique([companyId, invoiceNumber], map: "Invoice_companyId_invoiceNumber_key")
   @@index([customerId], map: "Invoice_customerId_fkey")
@@ -714,6 +718,11 @@ model product {
   stocktransferitem       stocktransferitem[]
   voucheritem             voucheritem[]
   purchasebillitem        purchasebillitem[]
+  totalQty                Float                     @default(0)
+  totalInventoryValue     Float                     @default(0)
+  averageCost             Float                     @default(0)
+  inventory_batch         inventory_batch[]
+  inventory_consumption   inventory_consumption[]
 
   @@unique([companyId, name], map: "Product_companyId_name_key")
   @@index([categoryId], map: "Product_categoryId_fkey")
@@ -735,6 +744,8 @@ model purchasebill {
   totalAmount      Float
   paidAmount       Float               @default(0)
   balanceAmount    Float
+  currency         String?             @default("USD")
+  exchangeRate     Float?              @default(1.0)
   status           purchasebill_status @default(UNPAID)
   notes            String?             @db.Text
   createdAt        DateTime            @default(now())
@@ -761,6 +772,7 @@ model purchasebill {
   purchasebillitem purchasebillitem[]
   purchasereturn   purchasereturn[]
   transaction      transaction[]
+  inventory_batch  inventory_batch[]
 
   @@unique([companyId, billNumber], map: "PurchaseBill_companyId_billNumber_key")
   @@index([grnId], map: "PurchaseBill_grnId_fkey")
@@ -1379,6 +1391,7 @@ model warehouse {
   stocktransfer                                                        stocktransfer[]
   stocktransferitem                                                    stocktransferitem[]
   company                                                              company                   @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "Warehouse_companyId_fkey")
+  inventory_batch                                                      inventory_batch[]
 
   @@unique([companyId, name], map: "Warehouse_companyId_name_key")
 }
@@ -1650,4 +1663,44 @@ model shippingaddress {
 
   @@index([customerId])
   @@index([vendorId])
+}
+
+model inventory_batch {
+  id             Int                    @id @default(autoincrement())
+  productId      Int
+  warehouseId    Int
+  purchaseBillId Int?
+  qtyReceived    Float
+  qtyRemaining   Float
+  rate           Float
+  batchNumber    String?
+  expiryDate     DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @default(now()) @updatedAt
+  product        product                @relation(fields: [productId], references: [id], onDelete: Cascade)
+  warehouse      warehouse              @relation(fields: [warehouseId], references: [id], onDelete: Cascade)
+  purchasebill   purchasebill?          @relation(fields: [purchaseBillId], references: [id], onDelete: Cascade)
+  consumptions   inventory_consumption[]
+
+  @@index([productId])
+  @@index([warehouseId])
+  @@index([purchaseBillId])
+}
+
+model inventory_consumption {
+  id          Int             @id @default(autoincrement())
+  invoiceId   Int
+  productId   Int
+  batchId     Int
+  qtyUsed     Float
+  rateUsed    Float
+  totalCost   Float
+  createdAt   DateTime        @default(now())
+  batch       inventory_batch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  invoice     invoice         @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  product     product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([invoiceId])
+  @@index([productId])
+  @@index([batchId])
 }

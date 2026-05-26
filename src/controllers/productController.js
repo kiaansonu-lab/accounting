@@ -278,9 +278,6 @@ const updateProduct = async (req, res) => {
             newImageUrl = image;
         }
 
-        // Delete old stocks
-        await prisma.stock.deleteMany({ where: { productId: parseInt(id) } });
-
         let parsedWarehouseInfo = [];
         if (warehouseInfo) {
             try {
@@ -291,6 +288,71 @@ const updateProduct = async (req, res) => {
                 console.warn('Invalid warehouseInfo format');
             }
         }
+
+        // Validate quantities - Mandatory number validation
+        if (Array.isArray(parsedWarehouseInfo)) {
+            for (const w of parsedWarehouseInfo) {
+                const qty = parseFloat(w.quantity !== undefined ? w.quantity : (w.initialQty !== undefined ? w.initialQty : 0));
+                if (isNaN(qty) || qty < 0) {
+                    return res.status(400).json({ success: false, message: 'Quantity must be a valid positive number' });
+                }
+            }
+        }
+
+        // --- ACCOUNTING INTEGRATION: Revert and Clean Up Old Opening Stock Entries ---
+        try {
+            // Find old transactions based on existing product name (prior to name change)
+            const oldOpeningTxns = await prisma.transaction.findMany({
+                where: {
+                    companyId: parseInt(companyId),
+                    narration: `Opening Stock for Product: ${existingProduct.name}`
+                }
+            });
+
+            if (oldOpeningTxns.length > 0) {
+                const totalAmount = oldOpeningTxns.reduce((sum, t) => sum + t.amount, 0);
+
+                // Find ledgers
+                const inventoryAsset = await prisma.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: 'Inventory Asset' }
+                });
+                const openingEquity = await prisma.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: 'Opening Balance Equity' }
+                });
+
+                // Delete old transactions
+                await prisma.transaction.deleteMany({
+                    where: { id: { in: oldOpeningTxns.map(t => t.id) } }
+                });
+
+                // Update ledger balances back (Revert)
+                if (inventoryAsset) {
+                    await prisma.ledger.update({
+                        where: { id: inventoryAsset.id },
+                        data: { currentBalance: { decrement: totalAmount } }
+                    });
+                }
+                if (openingEquity) {
+                    await prisma.ledger.update({
+                        where: { id: openingEquity.id },
+                        data: { currentBalance: { increment: totalAmount } }
+                    });
+                }
+            }
+
+            // Delete old physical OPENING_STOCK transactions
+            await prisma.inventorytransaction.deleteMany({
+                where: {
+                    productId: parseInt(id),
+                    type: 'OPENING_STOCK'
+                }
+            });
+        } catch (accError) {
+            console.error('Accounting Integration Cleanup Error (Opening Stock Update):', accError);
+        }
+
+        // Delete old stocks
+        await prisma.stock.deleteMany({ where: { productId: parseInt(id) } });
 
         const updateData = {
             name: name || existingProduct.name,
@@ -320,6 +382,66 @@ const updateProduct = async (req, res) => {
                     initialQty: w.initialQty ? parseFloat(w.initialQty) : 0
                 }))
             };
+
+            // Re-create new physical transactions for opening stock if quantity > 0
+            const openingTransactions = parsedWarehouseInfo
+                .filter(w => (w.quantity && parseFloat(w.quantity) > 0) || (w.initialQty && parseFloat(w.initialQty) > 0))
+                .map(w => ({
+                    type: 'OPENING_STOCK',
+                    toWarehouseId: parseInt(w.warehouseId),
+                    quantity: w.quantity ? parseFloat(w.quantity) : parseFloat(w.initialQty),
+                    companyId: parseInt(companyId),
+                    reason: 'Opening Stock'
+                }));
+
+            if (openingTransactions.length > 0) {
+                updateData.inventorytransaction = {
+                    create: openingTransactions
+                };
+
+                // Re-post new Accounting Entries for updated opening stock
+                try {
+                    const totalOpeningValue = parsedWarehouseInfo.reduce((sum, w) => {
+                        const qty = w.quantity ? parseFloat(w.quantity) : parseFloat(w.initialQty);
+                        return sum + (qty * (parseFloat(initialCost || existingProduct.initialCost) || 0));
+                    }, 0);
+
+                    if (totalOpeningValue > 0) {
+                        const inventoryAsset = await prisma.ledger.findFirst({
+                            where: { companyId: parseInt(companyId), name: 'Inventory Asset' }
+                        });
+                        const openingEquity = await prisma.ledger.findFirst({
+                            where: { companyId: parseInt(companyId), name: 'Opening Balance Equity' }
+                        });
+
+                        if (inventoryAsset && openingEquity) {
+                            await prisma.transaction.create({
+                                data: {
+                                    date: asOfDate ? new Date(asOfDate) : (existingProduct.asOfDate ? new Date(existingProduct.asOfDate) : new Date()),
+                                    debitLedgerId: inventoryAsset.id,
+                                    creditLedgerId: openingEquity.id,
+                                    amount: totalOpeningValue,
+                                    narration: `Opening Stock for Product: ${name || existingProduct.name}`,
+                                    voucherType: 'JOURNAL',
+                                    companyId: parseInt(companyId)
+                                }
+                            });
+
+                            // Update Ledger Balances with new values
+                            await prisma.ledger.update({
+                                where: { id: inventoryAsset.id },
+                                data: { currentBalance: { increment: totalOpeningValue } }
+                            });
+                            await prisma.ledger.update({
+                                where: { id: openingEquity.id },
+                                data: { currentBalance: { decrement: totalOpeningValue } }
+                            });
+                        }
+                    }
+                } catch (accError) {
+                    console.error('Accounting Integration Error (Opening Stock Re-post):', accError);
+                }
+            }
         }
 
         const product = await prisma.product.update({
@@ -469,6 +591,62 @@ const deleteProduct = async (req, res) => {
     try {
         const { id } = req.params;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
+
+        const product = await prisma.product.findFirst({
+            where: {
+                id: parseInt(id),
+                companyId: parseInt(companyId)
+            }
+        });
+
+        if (!product) {
+            return res.status(404).json({ success: false, message: 'Product not found' });
+        }
+
+        // Clean up Opening Stock transactions for this product
+        try {
+            const openingStockTxns = await prisma.transaction.findMany({
+                where: {
+                    companyId: parseInt(companyId),
+                    narration: `Opening Stock for Product: ${product.name}`
+                }
+            });
+
+            if (openingStockTxns.length > 0) {
+                const totalAmount = openingStockTxns.reduce((sum, t) => sum + t.amount, 0);
+
+                // Find ledgers
+                const inventoryAsset = await prisma.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: 'Inventory Asset' }
+                });
+                const openingEquity = await prisma.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: 'Opening Balance Equity' }
+                });
+
+                // Delete those transactions
+                await prisma.transaction.deleteMany({
+                    where: {
+                        id: { in: openingStockTxns.map(t => t.id) }
+                    }
+                });
+
+                // Update ledger balances back
+                if (inventoryAsset) {
+                    await prisma.ledger.update({
+                        where: { id: inventoryAsset.id },
+                        data: { currentBalance: { decrement: totalAmount } }
+                    });
+                }
+                if (openingEquity) {
+                    await prisma.ledger.update({
+                        where: { id: openingEquity.id },
+                        data: { currentBalance: { increment: totalAmount } }
+                    });
+                }
+            }
+        } catch (accError) {
+            console.error('Accounting Integration Cleanup Error (Opening Stock):', accError);
+        }
 
         await prisma.product.delete({
             where: {
