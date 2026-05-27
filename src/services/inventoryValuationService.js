@@ -106,9 +106,20 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
     const qty = parseFloat(quantity);
     if (isNaN(qty) || qty <= 0) return 0;
 
-    // --- 1. FIFO logic ---
+    // ✅ AUTHORITATIVE STOCK CHECK: Always use physical stock table for quantity validation
+    // FIFO batches / WAC totalQty can be out of sync for legacy products
+    const stockRecord = await tx.stock.findFirst({
+        where: { productId: parseInt(productId), warehouseId: parseInt(warehouseId) },
+        select: { quantity: true }
+    });
+    const physicalStock = parseFloat(stockRecord?.quantity || 0);
+
+    if (!negativeStockAllow && physicalStock < qty) {
+        throw new Error(`Insufficient stock for product ID ${productId}. Available: ${physicalStock}, Required: ${qty}`);
+    }
+
+    // --- 1. FIFO logic (for COST only, not quantity gating) ---
     let fifoCOGS = 0;
-    // Get all available batches ordered by oldest first (FIFO)
     const batches = await tx.inventory_batch.findMany({
         where: {
             productId: parseInt(productId),
@@ -117,13 +128,6 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
         },
         orderBy: { createdAt: 'asc' }
     });
-
-    // Check total available quantity
-    const totalAvailable = batches.reduce((sum, b) => sum + b.qtyRemaining, 0);
-
-    if (!negativeStockAllow && totalAvailable < qty) {
-        throw new Error(`Insufficient stock for product ID ${productId}. Available: ${totalAvailable}, Required: ${qty}`);
-    }
 
     let remaining = qty;
     for (const batch of batches) {
@@ -163,19 +167,14 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
     const currentQty = parseFloat(currentProduct?.totalQty || 0);
     let averageCost = parseFloat(currentProduct?.averageCost || 0);
 
-    // ✅ FALLBACK: If averageCost is 0 (no purchase bill recorded yet),
-    // use purchasePrice or initialCost as the cost basis so COGS is never 0
+    // ✅ FALLBACK: If averageCost is 0, use purchasePrice or initialCost so COGS is never 0
     if (averageCost === 0) {
         averageCost = parseFloat(currentProduct?.purchasePrice || currentProduct?.initialCost || 0);
     }
 
-    if (!negativeStockAllow && currentQty < qty) {
-        throw new Error(`Insufficient stock for product ID ${productId}. Available: ${currentQty}, Required: ${qty}`);
-    }
-
     const wacCOGS = qty * averageCost;
 
-    // Deduct from WAC tracking
+    // Deduct from WAC tracking fields
     const newTotalQty = Math.max(0, currentQty - qty);
     const newTotalValue = Math.max(0, parseFloat(currentProduct?.totalInventoryValue || 0) - wacCOGS);
 
@@ -188,14 +187,15 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
         }
     });
 
-    // ✅ FIFO FALLBACK: If no batches existed, use purchasePrice for FIFO too
+    // ✅ FIFO FALLBACK: If no batches existed (legacy product), use purchasePrice for FIFO too
     if (method === 'FIFO' && fifoCOGS === 0 && averageCost > 0) {
         fifoCOGS = qty * averageCost;
     }
 
-    // Return the COGS cost based on active setting
+    // Return the COGS cost based on active valuation setting
     return method === 'FIFO' ? fifoCOGS : wacCOGS;
 };
+
 
 /**
  * Reverse Stock In - called when a purchase bill is deleted or updated (reversion)
