@@ -167,7 +167,7 @@ const getSalesByItemReport = async (req, res) => {
         const grouped = invoiceItems.reduce((acc, item) => {
             const productId = item.productId || 'service-' + (item.serviceId || 'unknown');
             const productName = item.product?.name || item.description || 'Unknown';
-            
+
             if (!acc[productId]) {
                 acc[productId] = {
                     productId,
@@ -228,7 +228,7 @@ const getSalesByCustomerReport = async (req, res) => {
         const grouped = allInvoices.reduce((acc, inv) => {
             const customerId = inv.customerId || 'walk-in';
             const customerName = inv.customer?.name || 'Walk-in Customer';
-            
+
             if (!acc[customerId]) {
                 acc[customerId] = {
                     customerId,
@@ -401,7 +401,7 @@ const getPurchaseByItemReport = async (req, res) => {
         const grouped = billItems.reduce((acc, item) => {
             const productId = item.productId || 'unknown';
             const productName = item.product?.name || item.description || 'Unknown';
-            
+
             if (!acc[productId]) {
                 acc[productId] = {
                     productId,
@@ -455,7 +455,7 @@ const getPurchaseByVendorReport = async (req, res) => {
         const grouped = bills.reduce((acc, bill) => {
             const vendorId = bill.vendorId || 'unknown';
             const vendorName = bill.vendor?.name || 'Unknown Vendor';
-            
+
             if (!acc[vendorId]) {
                 acc[vendorId] = {
                     vendorId,

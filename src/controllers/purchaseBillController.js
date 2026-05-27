@@ -20,6 +20,36 @@ const createBill = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide all required fields' });
         }
 
+        // Check if Purchase Bill with this number already exists
+        const existingBill = await prisma.purchasebill.findFirst({
+            where: {
+                companyId: parseInt(companyId),
+                billNumber: billNumber
+            }
+        });
+
+        if (existingBill) {
+            return res.status(400).json({
+                success: false,
+                message: `Purchase Bill with number '${billNumber}' already exists. Please use a unique bill number.`
+            });
+        }
+
+        // Check if Journal Entry / Voucher Number is already in use
+        const existingJournal = await prisma.journalentry.findFirst({
+            where: {
+                companyId: parseInt(companyId),
+                voucherNumber: billNumber
+            }
+        });
+
+        if (existingJournal) {
+            return res.status(400).json({
+                success: false,
+                message: `Voucher Number '${billNumber}' is already in use by another transaction (e.g. Sales Invoice or POS Invoice). Please use a unique bill number.`
+            });
+        }
+
         const billItems = items.map(item => ({
             productId: item.productId ? parseInt(item.productId) : null,
             warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
@@ -422,6 +452,15 @@ const deleteBill = async (req, res) => {
             await tx.transaction.deleteMany({ where: { purchaseBillId: bill.id } });
             await tx.journalentry.deleteMany({ where: { id: { in: journalEntryIds } } });
 
+            // Also delete any orphaned journal entries with same voucherNumber (permanent delete guarantee)
+            await tx.journalentry.deleteMany({
+                where: {
+                    companyId: parseInt(companyId),
+                    voucherNumber: bill.billNumber,
+                    transactions: { none: {} } // only truly orphaned entries (no transactions left)
+                }
+            });
+
             // 4. Reverse Inventory Valuation Layers
             const invConfig = await getInventoryConfig(companyId);
             const valuationMethod = invConfig.valuationMethod || 'WAC';
@@ -774,23 +813,77 @@ const getNextNumber = async (req, res) => {
         const companyId = req.user?.companyId || req.query.companyId;
         if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
 
-        const lastBill = await prisma.purchasebill.findFirst({
-            where: { companyId: parseInt(companyId) },
-            orderBy: { id: 'desc' }
+        const cid = parseInt(companyId);
+
+        // Scan ALL existing purchase bills with PB- prefix
+        const allBills = await prisma.purchasebill.findMany({
+            where: { companyId: cid, billNumber: { startsWith: 'PB-' } },
+            select: { billNumber: true }
         });
 
-        let nextNumber = 'PB-101'; // Default start
-        if (lastBill && lastBill.billNumber) {
-            // Try to extract number
-            const lastNumStr = lastBill.billNumber.replace(/\D/g, '');
-            if (lastNumStr) {
-                const lastNum = parseInt(lastNumStr);
-                nextNumber = `PB-${lastNum + 1}`;
-            }
+        // Scan ALL journal entries with PB- prefix voucher numbers (catches soft-deleted bills)
+        const allJournals = await prisma.journalentry.findMany({
+            where: { companyId: cid, voucherNumber: { startsWith: 'PB-' } },
+            select: { voucherNumber: true }
+        });
+
+        // Extract max numeric suffix from both sources
+        let maxNum = 100; // Start from PB-101
+        for (const b of allBills) {
+            const numStr = (b.billNumber || '').replace(/^PB-/, '');
+            const num = parseInt(numStr);
+            if (!isNaN(num) && num > maxNum) maxNum = num;
+        }
+        for (const j of allJournals) {
+            const numStr = (j.voucherNumber || '').replace(/^PB-/, '');
+            const num = parseInt(numStr);
+            if (!isNaN(num) && num > maxNum) maxNum = num;
         }
 
+        const nextNumber = `PB-${maxNum + 1}`;
         res.status(200).json({ success: true, nextNumber });
     } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// One-time cleanup: remove orphaned journal entries (no linked transactions)
+// These are left behind from bills that were deleted before the fix was applied
+const cleanupOrphanedJournals = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId;
+        const whereClause = {
+            transactions: { none: {} }
+        };
+        if (companyId) {
+            whereClause.companyId = parseInt(companyId);
+        }
+
+        // Find orphaned journal entries first (for reporting)
+        const orphaned = await prisma.journalentry.findMany({
+            where: whereClause,
+            select: { id: true, voucherNumber: true, narration: true }
+        });
+
+        if (orphaned.length === 0) {
+            return res.status(200).json({
+                success: true,
+                message: 'No orphaned journal entries found. Database is already clean!',
+                deletedCount: 0
+            });
+        }
+
+        // Delete them all
+        const result = await prisma.journalentry.deleteMany({ where: whereClause });
+
+        return res.status(200).json({
+            success: true,
+            message: `Cleaned up ${result.count} orphaned journal entries. You can now create bills without voucher number conflicts.`,
+            deletedCount: result.count,
+            deleted: orphaned.map(j => ({ id: j.id, voucherNumber: j.voucherNumber }))
+        });
+    } catch (error) {
+        console.error('Cleanup Error:', error);
         res.status(500).json({ success: false, message: error.message });
     }
 };
@@ -801,5 +894,6 @@ module.exports = {
     getBillById,
     updateBill,
     deleteBill,
-    getNextNumber
+    getNextNumber,
+    cleanupOrphanedJournals
 };

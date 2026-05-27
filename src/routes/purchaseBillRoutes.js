@@ -5,6 +5,7 @@ const { authenticateToken } = require('../middlewares/authMiddleware');
 
 router.use(authenticateToken);
 
+router.post('/cleanup-orphaned-journals', purchaseBillController.cleanupOrphanedJournals);
 router.post('/', purchaseBillController.createBill);
 router.get('/', purchaseBillController.getBills);
 router.get('/next-number', purchaseBillController.getNextNumber);

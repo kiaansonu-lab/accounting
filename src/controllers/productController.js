@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const { cloudinary } = require('../utils/cloudinaryConfig');
+const { getInventoryConfig, recordStockIn } = require('../services/inventoryValuationService');
 
 // Helper: Upload buffer to Cloudinary
 const uploadImageToCloudinary = async (fileBuffer, filename) => {
@@ -191,6 +192,27 @@ const createProduct = async (req, res) => {
             }
         });
 
+        // Populate WAC / FIFO layers for Opening Stock
+        const invConfig = await getInventoryConfig(companyId);
+        const valuationMethod = invConfig.valuationMethod || 'WAC';
+
+        if (Array.isArray(parsedWarehouseInfo) && parsedWarehouseInfo.length > 0) {
+            for (const w of parsedWarehouseInfo) {
+                const qty = w.quantity ? parseFloat(w.quantity) : (w.initialQty ? parseFloat(w.initialQty) : 0);
+                if (qty > 0) {
+                    await recordStockIn(prisma, {
+                        companyId: parseInt(companyId),
+                        productId: product.id,
+                        warehouseId: parseInt(w.warehouseId),
+                        quantity: qty,
+                        rate: parseFloat(initialCost) || 0,
+                        method: valuationMethod,
+                        isOpeningStock: true
+                    });
+                }
+            }
+        }
+
         res.status(201).json({
             success: true,
             message: 'Product created successfully',
@@ -247,7 +269,8 @@ const updateProduct = async (req, res) => {
             where: {
                 id: parseInt(id),
                 companyId: parseInt(companyId)
-            }
+            },
+            include: { stock: true }
         });
 
         if (!existingProduct) {
@@ -346,6 +369,29 @@ const updateProduct = async (req, res) => {
                     productId: parseInt(id),
                     type: 'OPENING_STOCK'
                 }
+            });
+
+            // Revert old WAC and FIFO opening stock records from DB
+            const oldOpeningQty = existingProduct.stock ? existingProduct.stock.reduce((sum, s) => sum + s.quantity, 0) : 0;
+            const oldOpeningValue = oldOpeningQty * (existingProduct.initialCost || 0);
+
+            const currentQty = parseFloat(existingProduct.totalQty || 0);
+            const currentValue = parseFloat(existingProduct.totalInventoryValue || 0);
+            const newTotalQty = Math.max(0, currentQty - oldOpeningQty);
+            const newTotalValue = Math.max(0, currentValue - oldOpeningValue);
+            const newAverageCost = newTotalQty > 0 ? newTotalValue / newTotalQty : 0;
+
+            await prisma.product.update({
+                where: { id: parseInt(id) },
+                data: {
+                    totalQty: newTotalQty,
+                    totalInventoryValue: newTotalValue,
+                    averageCost: newAverageCost
+                }
+            });
+
+            await prisma.inventory_batch.deleteMany({
+                where: { productId: parseInt(id), purchaseBillId: null }
             });
         } catch (accError) {
             console.error('Accounting Integration Cleanup Error (Opening Stock Update):', accError);
@@ -456,6 +502,27 @@ const updateProduct = async (req, res) => {
                 uom: true
             }
         });
+
+        // Populate WAC / FIFO layers for Opening Stock
+        const invConfig = await getInventoryConfig(companyId);
+        const valuationMethod = invConfig.valuationMethod || 'WAC';
+
+        if (Array.isArray(parsedWarehouseInfo) && parsedWarehouseInfo.length > 0) {
+            for (const w of parsedWarehouseInfo) {
+                const qty = w.quantity ? parseFloat(w.quantity) : (w.initialQty ? parseFloat(w.initialQty) : 0);
+                if (qty > 0) {
+                    await recordStockIn(prisma, {
+                        companyId: parseInt(companyId),
+                        productId: product.id,
+                        warehouseId: parseInt(w.warehouseId),
+                        quantity: qty,
+                        rate: parseFloat(initialCost || existingProduct.initialCost) || 0,
+                        method: valuationMethod,
+                        isOpeningStock: true
+                    });
+                }
+            }
+        }
 
         // ✅ Clean up old image if replaced
         if (newImageUrl && oldImageUrl && oldImageUrl.includes('cloudinary')) {

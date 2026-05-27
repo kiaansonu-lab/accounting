@@ -23,6 +23,27 @@ const createInvoice = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide all required fields' });
         }
 
+        // Pre-flight: Check if this invoice number / voucher number is already in use
+        const existingInvoice = await prisma.invoice.findFirst({
+            where: { companyId: parseInt(companyId), invoiceNumber }
+        });
+        if (existingInvoice) {
+            return res.status(400).json({
+                success: false,
+                message: `Invoice number '${invoiceNumber}' already exists. Please use a unique invoice number.`
+            });
+        }
+
+        const existingJournal = await prisma.journalentry.findFirst({
+            where: { companyId: parseInt(companyId), voucherNumber: invoiceNumber }
+        });
+        if (existingJournal) {
+            return res.status(400).json({
+                success: false,
+                message: `Voucher number '${invoiceNumber}' is already used by another entry. Please use a unique invoice number.`
+            });
+        }
+
         // 1. Get Customer and its Ledger
         const customer = await prisma.customer.findUnique({
             where: { id: parseInt(customerId) },
@@ -155,7 +176,12 @@ const createInvoice = async (req, res) => {
 
             // B. Inventory OUT Logic
             const company = await tx.company.findUnique({ where: { id: parseInt(companyId) } });
-            const config = company.inventoryConfig || {};
+            let config = {};
+            try {
+                config = company?.inventoryConfig
+                    ? (typeof company.inventoryConfig === 'string' ? JSON.parse(company.inventoryConfig) : company.inventoryConfig)
+                    : {};
+            } catch (e) { config = {}; }
 
             if (deliveryChallanId) {
                 // Invoiced from Challan
@@ -322,17 +348,59 @@ const createInvoice = async (req, res) => {
 
             let totalCOGS = 0;
             for (const item of invoiceItems) {
-                if (item.productId && item.warehouseId) {
-                    const itemCOGS = await consumeStock(tx, {
-                        companyId,
-                        productId: item.productId,
-                        warehouseId: item.warehouseId,
-                        quantity: item.quantity,
-                        invoiceId: invoice.id,
-                        method: valuationMethod,
-                        negativeStockAllow
-                    });
-                    totalCOGS += itemCOGS;
+                if (item.productId) {
+                    // Auto-resolve warehouse if not provided: find first warehouse with stock/batch for this product
+                    let resolvedWarehouseId = item.warehouseId;
+                    if (!resolvedWarehouseId) {
+                        // Try FIFO batch first
+                        const firstBatch = await tx.inventory_batch.findFirst({
+                            where: { productId: parseInt(item.productId), qtyRemaining: { gt: 0 } },
+                            orderBy: { createdAt: 'asc' },
+                            select: { warehouseId: true }
+                        });
+                        if (firstBatch) {
+                            resolvedWarehouseId = firstBatch.warehouseId;
+                        } else {
+                            // Fallback: try stock table
+                            const firstStock = await tx.stock.findFirst({
+                                where: { productId: parseInt(item.productId), quantity: { gt: 0 } },
+                                orderBy: { quantity: 'desc' },
+                                select: { warehouseId: true }
+                            });
+                            if (firstStock) {
+                                resolvedWarehouseId = firstStock.warehouseId;
+                            }
+                        }
+                    }
+
+                    if (resolvedWarehouseId) {
+                        // Also update stock deduction if original warehouseId was missing
+                        if (!item.warehouseId) {
+                            await tx.stock.updateMany({
+                                where: { productId: parseInt(item.productId), warehouseId: resolvedWarehouseId },
+                                data: { quantity: { decrement: item.quantity } }
+                            });
+                        }
+
+                        const itemCOGS = await consumeStock(tx, {
+                            companyId,
+                            productId: item.productId,
+                            warehouseId: resolvedWarehouseId,
+                            quantity: item.quantity,
+                            invoiceId: invoice.id,
+                            method: valuationMethod,
+                            negativeStockAllow
+                        });
+                        totalCOGS += itemCOGS;
+                    } else {
+                        // No warehouse at all: still calculate WAC COGS from product averageCost
+                        const prod = await tx.product.findUnique({
+                            where: { id: parseInt(item.productId) },
+                            select: { averageCost: true, purchasePrice: true, initialCost: true }
+                        });
+                        const cost = parseFloat(prod?.averageCost || prod?.purchasePrice || prod?.initialCost || 0);
+                        totalCOGS += cost * item.quantity;
+                    }
                 }
             }
 
@@ -749,13 +817,22 @@ const deleteInvoice = async (req, res) => {
             }
 
             // 3. Delete Transactions, Journal Entries, and Invoice
-            const journalEntryIds = invoice.transaction.map(t => t.journalEntryId).filter(Boolean);
+            const journalEntryIds = [...new Set(invoice.transaction.map(t => t.journalEntryId).filter(Boolean))];
 
             await tx.transaction.deleteMany({ where: { invoiceId: invoice.id } });
 
             if (journalEntryIds.length > 0) {
                 await tx.journalentry.deleteMany({ where: { id: { in: journalEntryIds } } });
             }
+
+            // Also delete any orphaned journal entries with same voucherNumber (permanent delete guarantee)
+            await tx.journalentry.deleteMany({
+                where: {
+                    companyId: invoice.companyId,
+                    voucherNumber: invoice.invoiceNumber,
+                    transactions: { none: {} }
+                }
+            });
 
             await tx.invoice.delete({ where: { id: invoice.id } });
         }, { timeout: 30000 });
@@ -773,21 +850,34 @@ const getNextNumber = async (req, res) => {
         const companyId = req.user?.companyId || req.query.companyId;
         if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
 
-        const lastInvoice = await prisma.invoice.findFirst({
-            where: { companyId: parseInt(companyId) },
-            orderBy: { id: 'desc' }
+        const cid = parseInt(companyId);
+
+        // Scan ALL existing invoices to find max number used
+        const allInvoices = await prisma.invoice.findMany({
+            where: { companyId: cid },
+            select: { invoiceNumber: true }
         });
 
-        let nextNumber = '101'; // Default start
-        if (lastInvoice && lastInvoice.invoiceNumber) {
-            // Try to extract number
-            const lastNumStr = lastInvoice.invoiceNumber.replace(/\D/g, '');
-            if (lastNumStr) {
-                const lastNum = parseInt(lastNumStr);
-                nextNumber = (lastNum + 1).toString();
-            }
+        // Scan ALL journal entries to find max number used (catches soft-deleted invoices)
+        const allJournals = await prisma.journalentry.findMany({
+            where: { companyId: cid },
+            select: { voucherNumber: true }
+        });
+
+        // Extract max numeric suffix from both sources
+        let maxNum = 100; // Start from 101
+        for (const inv of allInvoices) {
+            const numStr = (inv.invoiceNumber || '').replace(/\D/g, '');
+            const num = parseInt(numStr);
+            if (!isNaN(num) && num > maxNum) maxNum = num;
+        }
+        for (const j of allJournals) {
+            const numStr = (j.voucherNumber || '').replace(/\D/g, '');
+            const num = parseInt(numStr);
+            if (!isNaN(num) && num > maxNum) maxNum = num;
         }
 
+        const nextNumber = (maxNum + 1).toString();
         res.status(200).json({ success: true, nextNumber });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -820,6 +910,40 @@ const getPublicInvoiceById = async (req, res) => {
     }
 };
 
+// One-time cleanup: remove orphaned journal entries (no linked transactions)
+const cleanupOrphanedJournals = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId;
+        const whereClause = { transactions: { none: {} } };
+        if (companyId) whereClause.companyId = parseInt(companyId);
+
+        const orphaned = await prisma.journalentry.findMany({
+            where: whereClause,
+            select: { id: true, voucherNumber: true, narration: true }
+        });
+
+        if (orphaned.length === 0) {
+            return res.status(200).json({
+                success: true,
+                message: 'No orphaned journal entries found. Database is already clean!',
+                deletedCount: 0
+            });
+        }
+
+        const result = await prisma.journalentry.deleteMany({ where: whereClause });
+
+        return res.status(200).json({
+            success: true,
+            message: `Cleaned up ${result.count} orphaned journal entries.`,
+            deletedCount: result.count,
+            deleted: orphaned.map(j => ({ id: j.id, voucherNumber: j.voucherNumber }))
+        });
+    } catch (error) {
+        console.error('Cleanup Error:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createInvoice,
     getInvoices,
@@ -827,5 +951,6 @@ module.exports = {
     updateInvoice,
     deleteInvoice,
     getNextNumber,
-    getPublicInvoiceById
+    getPublicInvoiceById,
+    cleanupOrphanedJournals
 };

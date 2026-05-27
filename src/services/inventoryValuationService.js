@@ -52,41 +52,39 @@ const recordStockIn = async (tx, { companyId, productId, warehouseId, quantity, 
 
     if (isNaN(qty) || qty <= 0 || isNaN(unitRate)) return;
 
-    if (method === 'FIFO') {
-        // Create a new inventory batch layer
-        await tx.inventory_batch.create({
-            data: {
-                productId: parseInt(productId),
-                warehouseId: parseInt(warehouseId),
-                purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null,
-                qtyReceived: qty,
-                qtyRemaining: qty,
-                rate: unitRate,
-            }
-        });
-    } else {
-        // WAC: Update the weighted average cost on the product
-        const currentProduct = await tx.product.findUnique({
-            where: { id: parseInt(productId) },
-            select: { totalQty: true, totalInventoryValue: true, averageCost: true }
-        });
+    // 1. FIFO: Always create a new inventory batch layer
+    await tx.inventory_batch.create({
+        data: {
+            productId: parseInt(productId),
+            warehouseId: parseInt(warehouseId),
+            purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null,
+            qtyReceived: qty,
+            qtyRemaining: qty,
+            rate: unitRate,
+        }
+    });
 
-        const currentQty = parseFloat(currentProduct?.totalQty || 0);
-        const currentValue = parseFloat(currentProduct?.totalInventoryValue || 0);
+    // 2. WAC: Always update the weighted average cost on the product
+    const currentProduct = await tx.product.findUnique({
+        where: { id: parseInt(productId) },
+        select: { totalQty: true, totalInventoryValue: true, averageCost: true }
+    });
 
-        const newTotalQty = currentQty + qty;
-        const newTotalValue = currentValue + (qty * unitRate);
-        const newAverageCost = newTotalQty > 0 ? newTotalValue / newTotalQty : 0;
+    const currentQty = parseFloat(currentProduct?.totalQty || 0);
+    const currentValue = parseFloat(currentProduct?.totalInventoryValue || 0);
 
-        await tx.product.update({
-            where: { id: parseInt(productId) },
-            data: {
-                totalQty: newTotalQty,
-                totalInventoryValue: newTotalValue,
-                averageCost: newAverageCost,
-            }
-        });
-    }
+    const newTotalQty = currentQty + qty;
+    const newTotalValue = currentValue + (qty * unitRate);
+    const newAverageCost = newTotalQty > 0 ? newTotalValue / newTotalQty : 0;
+
+    await tx.product.update({
+        where: { id: parseInt(productId) },
+        data: {
+            totalQty: newTotalQty,
+            totalInventoryValue: newTotalValue,
+            averageCost: newAverageCost,
+        }
+    });
 };
 
 /**
@@ -108,94 +106,95 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
     const qty = parseFloat(quantity);
     if (isNaN(qty) || qty <= 0) return 0;
 
-    let totalCOGS = 0;
+    // --- 1. FIFO logic ---
+    let fifoCOGS = 0;
+    // Get all available batches ordered by oldest first (FIFO)
+    const batches = await tx.inventory_batch.findMany({
+        where: {
+            productId: parseInt(productId),
+            warehouseId: parseInt(warehouseId),
+            qtyRemaining: { gt: 0 }
+        },
+        orderBy: { createdAt: 'asc' }
+    });
 
-    if (method === 'FIFO') {
-        // Get all available batches ordered by oldest first (FIFO)
-        const batches = await tx.inventory_batch.findMany({
-            where: {
-                productId: parseInt(productId),
-                warehouseId: parseInt(warehouseId),
-                qtyRemaining: { gt: 0 }
-            },
-            orderBy: { createdAt: 'asc' }
-        });
+    // Check total available quantity
+    const totalAvailable = batches.reduce((sum, b) => sum + b.qtyRemaining, 0);
 
-        // Check total available quantity
-        const totalAvailable = batches.reduce((sum, b) => sum + b.qtyRemaining, 0);
-
-        if (!negativeStockAllow && totalAvailable < qty) {
-            throw new Error(`Insufficient stock for product ID ${productId}. Available: ${totalAvailable}, Required: ${qty}`);
-        }
-
-        let remaining = qty;
-        for (const batch of batches) {
-            if (remaining <= 0) break;
-
-            const consumeQty = Math.min(batch.qtyRemaining, remaining);
-            const consumeCost = consumeQty * batch.rate;
-
-            // Log consumption
-            await tx.inventory_consumption.create({
-                data: {
-                    invoiceId: parseInt(invoiceId),
-                    productId: parseInt(productId),
-                    batchId: batch.id,
-                    qtyUsed: consumeQty,
-                    rateUsed: batch.rate,
-                    totalCost: consumeCost
-                }
-            });
-
-            // Decrement batch remaining quantity
-            await tx.inventory_batch.update({
-                where: { id: batch.id },
-                data: { qtyRemaining: { decrement: consumeQty } }
-            });
-
-            totalCOGS += consumeCost;
-            remaining -= consumeQty;
-        }
-
-        // If still remaining (negative stock allowed), we don't create more batches
-        // The stock will go negative in the stock table, which is allowed
-        if (remaining > 0 && negativeStockAllow) {
-            // COGS at 0 cost for the remaining (no batch available)
-            // Optionally, use 0 or the last known rate
-        }
-
-    } else {
-        // WAC: Use the current average cost
-        const currentProduct = await tx.product.findUnique({
-            where: { id: parseInt(productId) },
-            select: { totalQty: true, totalInventoryValue: true, averageCost: true }
-        });
-
-        const currentQty = parseFloat(currentProduct?.totalQty || 0);
-        const averageCost = parseFloat(currentProduct?.averageCost || 0);
-
-        if (!negativeStockAllow && currentQty < qty) {
-            throw new Error(`Insufficient stock for product ID ${productId}. Available: ${currentQty}, Required: ${qty}`);
-        }
-
-        totalCOGS = qty * averageCost;
-
-        // Deduct from WAC tracking
-        const newTotalQty = Math.max(0, currentQty - qty);
-        const newTotalValue = Math.max(0, parseFloat(currentProduct?.totalInventoryValue || 0) - totalCOGS);
-
-        await tx.product.update({
-            where: { id: parseInt(productId) },
-            data: {
-                totalQty: newTotalQty,
-                totalInventoryValue: newTotalValue,
-                // Average cost stays the same unless qty goes to 0
-                averageCost: newTotalQty > 0 ? newTotalValue / newTotalQty : averageCost,
-            }
-        });
+    if (!negativeStockAllow && totalAvailable < qty) {
+        throw new Error(`Insufficient stock for product ID ${productId}. Available: ${totalAvailable}, Required: ${qty}`);
     }
 
-    return totalCOGS;
+    let remaining = qty;
+    for (const batch of batches) {
+        if (remaining <= 0) break;
+
+        const consumeQty = Math.min(batch.qtyRemaining, remaining);
+        const consumeCost = consumeQty * batch.rate;
+
+        // Log consumption
+        await tx.inventory_consumption.create({
+            data: {
+                invoiceId: parseInt(invoiceId),
+                productId: parseInt(productId),
+                batchId: batch.id,
+                qtyUsed: consumeQty,
+                rateUsed: batch.rate,
+                totalCost: consumeCost
+            }
+        });
+
+        // Decrement batch remaining quantity
+        await tx.inventory_batch.update({
+            where: { id: batch.id },
+            data: { qtyRemaining: { decrement: consumeQty } }
+        });
+
+        fifoCOGS += consumeCost;
+        remaining -= consumeQty;
+    }
+
+    // --- 2. WAC logic ---
+    const currentProduct = await tx.product.findUnique({
+        where: { id: parseInt(productId) },
+        select: { totalQty: true, totalInventoryValue: true, averageCost: true, purchasePrice: true, initialCost: true }
+    });
+
+    const currentQty = parseFloat(currentProduct?.totalQty || 0);
+    let averageCost = parseFloat(currentProduct?.averageCost || 0);
+
+    // ✅ FALLBACK: If averageCost is 0 (no purchase bill recorded yet),
+    // use purchasePrice or initialCost as the cost basis so COGS is never 0
+    if (averageCost === 0) {
+        averageCost = parseFloat(currentProduct?.purchasePrice || currentProduct?.initialCost || 0);
+    }
+
+    if (!negativeStockAllow && currentQty < qty) {
+        throw new Error(`Insufficient stock for product ID ${productId}. Available: ${currentQty}, Required: ${qty}`);
+    }
+
+    const wacCOGS = qty * averageCost;
+
+    // Deduct from WAC tracking
+    const newTotalQty = Math.max(0, currentQty - qty);
+    const newTotalValue = Math.max(0, parseFloat(currentProduct?.totalInventoryValue || 0) - wacCOGS);
+
+    await tx.product.update({
+        where: { id: parseInt(productId) },
+        data: {
+            totalQty: newTotalQty,
+            totalInventoryValue: newTotalValue,
+            averageCost: newTotalQty > 0 ? newTotalValue / newTotalQty : averageCost,
+        }
+    });
+
+    // ✅ FIFO FALLBACK: If no batches existed, use purchasePrice for FIFO too
+    if (method === 'FIFO' && fifoCOGS === 0 && averageCost > 0) {
+        fifoCOGS = qty * averageCost;
+    }
+
+    // Return the COGS cost based on active setting
+    return method === 'FIFO' ? fifoCOGS : wacCOGS;
 };
 
 /**
@@ -208,38 +207,36 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
  * @param {string} params.method - 'FIFO' or 'WAC'
  */
 const reverseStockIn = async (tx, { purchaseBillId, billItems = [], method = 'WAC' }) => {
-    if (method === 'FIFO') {
-        // Delete FIFO batch layers created for this purchase bill
-        await tx.inventory_batch.deleteMany({
-            where: { purchaseBillId: parseInt(purchaseBillId) }
+    // 1. FIFO: Delete FIFO batch layers created for this purchase bill
+    await tx.inventory_batch.deleteMany({
+        where: { purchaseBillId: parseInt(purchaseBillId) }
+    });
+
+    // 2. WAC: Reverse the average cost calculation for each item
+    for (const item of billItems) {
+        if (!item.productId || !item.quantity || !item.rate) continue;
+
+        const qty = parseFloat(item.quantity);
+        const rate = parseFloat(item.rate);
+        const reversalValue = qty * rate;
+
+        const currentProduct = await tx.product.findUnique({
+            where: { id: parseInt(item.productId) },
+            select: { totalQty: true, totalInventoryValue: true }
         });
-    } else {
-        // WAC: Reverse the average cost calculation for each item
-        for (const item of billItems) {
-            if (!item.productId || !item.quantity || !item.rate) continue;
 
-            const qty = parseFloat(item.quantity);
-            const rate = parseFloat(item.rate);
-            const reversalValue = qty * rate;
+        const newTotalQty = Math.max(0, parseFloat(currentProduct?.totalQty || 0) - qty);
+        const newTotalValue = Math.max(0, parseFloat(currentProduct?.totalInventoryValue || 0) - reversalValue);
+        const newAverageCost = newTotalQty > 0 ? newTotalValue / newTotalQty : 0;
 
-            const currentProduct = await tx.product.findUnique({
-                where: { id: parseInt(item.productId) },
-                select: { totalQty: true, totalInventoryValue: true }
-            });
-
-            const newTotalQty = Math.max(0, parseFloat(currentProduct?.totalQty || 0) - qty);
-            const newTotalValue = Math.max(0, parseFloat(currentProduct?.totalInventoryValue || 0) - reversalValue);
-            const newAverageCost = newTotalQty > 0 ? newTotalValue / newTotalQty : 0;
-
-            await tx.product.update({
-                where: { id: parseInt(item.productId) },
-                data: {
-                    totalQty: newTotalQty,
-                    totalInventoryValue: newTotalValue,
-                    averageCost: newAverageCost,
-                }
-            });
-        }
+        await tx.product.update({
+            where: { id: parseInt(item.productId) },
+            data: {
+                totalQty: newTotalQty,
+                totalInventoryValue: newTotalValue,
+                averageCost: newAverageCost,
+            }
+        });
     }
 };
 
@@ -254,51 +251,48 @@ const reverseStockIn = async (tx, { purchaseBillId, billItems = [], method = 'WA
  * @param {string} params.method - 'FIFO' or 'WAC'
  */
 const reverseStockOut = async (tx, { invoiceId, invoiceItems = [], method = 'WAC' }) => {
-    if (method === 'FIFO') {
-        // Get all consumption records for this invoice
-        const consumptions = await tx.inventory_consumption.findMany({
-            where: { invoiceId: parseInt(invoiceId) }
+    // 1. FIFO: Restore each batch's qtyRemaining
+    const consumptions = await tx.inventory_consumption.findMany({
+        where: { invoiceId: parseInt(invoiceId) }
+    });
+
+    for (const c of consumptions) {
+        await tx.inventory_batch.update({
+            where: { id: c.batchId },
+            data: { qtyRemaining: { increment: c.qtyUsed } }
+        });
+    }
+
+    // Delete consumption logs
+    await tx.inventory_consumption.deleteMany({
+        where: { invoiceId: parseInt(invoiceId) }
+    });
+
+    // 2. WAC: Restore the average cost for each product
+    for (const item of invoiceItems) {
+        if (!item.productId || !item.quantity) continue;
+
+        const qty = parseFloat(item.quantity);
+
+        const currentProduct = await tx.product.findUnique({
+            where: { id: parseInt(item.productId) },
+            select: { totalQty: true, totalInventoryValue: true, averageCost: true }
         });
 
-        // Restore each batch's qtyRemaining
-        for (const c of consumptions) {
-            await tx.inventory_batch.update({
-                where: { id: c.batchId },
-                data: { qtyRemaining: { increment: c.qtyUsed } }
-            });
-        }
+        const averageCost = parseFloat(currentProduct?.averageCost || 0);
+        const restorationValue = qty * averageCost;
 
-        // Delete consumption logs
-        await tx.inventory_consumption.deleteMany({
-            where: { invoiceId: parseInt(invoiceId) }
+        const newTotalQty = parseFloat(currentProduct?.totalQty || 0) + qty;
+        const newTotalValue = parseFloat(currentProduct?.totalInventoryValue || 0) + restorationValue;
+
+        await tx.product.update({
+            where: { id: parseInt(item.productId) },
+            data: {
+                totalQty: newTotalQty,
+                totalInventoryValue: newTotalValue,
+                averageCost: newTotalQty > 0 ? newTotalValue / newTotalQty : averageCost,
+            }
         });
-    } else {
-        // WAC: Restore the average cost for each product
-        for (const item of invoiceItems) {
-            if (!item.productId || !item.quantity) continue;
-
-            const qty = parseFloat(item.quantity);
-
-            const currentProduct = await tx.product.findUnique({
-                where: { id: parseInt(item.productId) },
-                select: { totalQty: true, totalInventoryValue: true, averageCost: true }
-            });
-
-            const averageCost = parseFloat(currentProduct?.averageCost || 0);
-            const restorationValue = qty * averageCost;
-
-            const newTotalQty = parseFloat(currentProduct?.totalQty || 0) + qty;
-            const newTotalValue = parseFloat(currentProduct?.totalInventoryValue || 0) + restorationValue;
-
-            await tx.product.update({
-                where: { id: parseInt(item.productId) },
-                data: {
-                    totalQty: newTotalQty,
-                    totalInventoryValue: newTotalValue,
-                    averageCost: newTotalQty > 0 ? newTotalValue / newTotalQty : averageCost,
-                }
-            });
-        }
     }
 };
 

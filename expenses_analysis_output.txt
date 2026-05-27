@@ -1,0 +1,19 @@
+=== EXPENSES ANALYSIS ===
+Ledger: Cost of Goods Sold (ID: 8, Group: Expenses, Subgroup: Direct Expenses)
+  Opening Balance: 0
+  CREDIT: 4.99 (Tx ID: 21, Desc: none, Date: Tue May 12 2026 05:30:00 GMT+0530 (India Standard Time))
+  Final Net Balance: -4.99
+
+Ledger: Purchases (ID: 16, Group: Expenses, Subgroup: Purchase Accounts)
+  Opening Balance: 0
+  DEBIT: 17850 (Tx ID: 2, Desc: none, Date: Sat May 02 2026 05:30:00 GMT+0530 (India Standard Time))
+  DEBIT: 1 (Tx ID: 15, Desc: none, Date: Tue May 12 2026 05:30:00 GMT+0530 (India Standard Time))
+  DEBIT: 4 (Tx ID: 16, Desc: none, Date: Tue May 12 2026 05:30:00 GMT+0530 (India Standard Time))
+  CREDIT: 4 (Tx ID: 19, Desc: none, Date: Tue May 12 2026 05:30:00 GMT+0530 (India Standard Time))
+  Final Net Balance: 17851
+
+Ledger: Cost of Goods Sold (ID: 25, Group: Expenses, Subgroup: Direct Expenses)
+  Opening Balance: 0
+  DEBIT: 10000 (Tx ID: 38, Desc: none, Date: Tue May 26 2026 05:30:00 GMT+0530 (India Standard Time))
+  Final Net Balance: 10000
+
