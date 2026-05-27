@@ -638,14 +638,28 @@ const updateInvoice = async (req, res) => {
                 });
             }
 
-            // B. Revert old stock if items changed
+            // B. Revert old stock + FIFO/WAC if items changed
             if (items) {
+                // Also reverse old COGS inventory valuation (FIFO batches + WAC)
+                await reverseStockOut(tx, {
+                    invoiceId: parseInt(id),
+                    invoiceItems: existingInvoice.invoiceitem.map(i => ({
+                        productId: i.productId,
+                        warehouseId: i.warehouseId,
+                        quantity: i.quantity
+                    }))
+                });
+
                 for (const item of existingInvoice.invoiceitem) {
-                    if (item.productId && item.warehouseId) {
-                        await tx.stock.updateMany({
-                            where: { productId: item.productId, warehouseId: item.warehouseId },
-                            data: { quantity: { increment: item.quantity } }
-                        });
+                    if (item.productId) {
+                        // Find which warehouse was used (warehouseId may be in item or resolved earlier)
+                        const wId = item.warehouseId;
+                        if (wId) {
+                            await tx.stock.updateMany({
+                                where: { productId: item.productId, warehouseId: wId },
+                                data: { quantity: { increment: item.quantity } }
+                            });
+                        }
                     }
                 }
             }
@@ -691,11 +705,32 @@ const updateInvoice = async (req, res) => {
             // D. Apply new stock if items changed
             if (items) {
                 for (const item of (invoiceItemsData || [])) {
-                    if (item.productId && item.warehouseId) {
-                        await tx.stock.updateMany({
-                            where: { productId: item.productId, warehouseId: item.warehouseId },
-                            data: { quantity: { decrement: item.quantity } }
-                        });
+                    if (item.productId) {
+                        // Auto-resolve warehouse if not provided
+                        let resolvedWId = item.warehouseId;
+                        if (!resolvedWId) {
+                            const firstBatch = await tx.inventory_batch.findFirst({
+                                where: { productId: parseInt(item.productId), qtyRemaining: { gt: 0 } },
+                                orderBy: { createdAt: 'asc' },
+                                select: { warehouseId: true }
+                            });
+                            if (firstBatch) {
+                                resolvedWId = firstBatch.warehouseId;
+                            } else {
+                                const firstStock = await tx.stock.findFirst({
+                                    where: { productId: parseInt(item.productId), quantity: { gt: 0 } },
+                                    orderBy: { quantity: 'desc' },
+                                    select: { warehouseId: true }
+                                });
+                                if (firstStock) resolvedWId = firstStock.warehouseId;
+                            }
+                        }
+                        if (resolvedWId) {
+                            await tx.stock.updateMany({
+                                where: { productId: parseInt(item.productId), warehouseId: resolvedWId },
+                                data: { quantity: { decrement: item.quantity } }
+                            });
+                        }
                     }
                 }
             }
@@ -754,6 +789,96 @@ const updateInvoice = async (req, res) => {
                     where: { id: salesLedger.id },
                     data: { currentBalance: { increment: ledgerTotalAmount } }
                 });
+            }
+
+            // F. Re-post COGS entry (was completely missing from update flow!)
+            if (items && invoiceItemsData) {
+                const invConfig = await getInventoryConfig(companyId);
+                const valuationMethod = invConfig.valuationMethod || 'WAC';
+                const autoCogsEntry = invConfig.autoCogsEntry !== false;
+                const negativeStockAllow = invConfig.negativeStockAllow !== false;
+
+                // Resolve ledgers
+                const cogsLedger = await tx.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: { contains: 'Cost of Goods Sold' } }
+                }) || await tx.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: { contains: 'COGS' } }
+                });
+                const inventoryLedger = await tx.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: { contains: 'Inventory Asset' } }
+                }) || await tx.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: { contains: 'Inventory' } }
+                });
+
+                let totalCOGS = 0;
+                for (const item of invoiceItemsData) {
+                    if (item.productId) {
+                        let resolvedWarehouseId = item.warehouseId;
+                        if (!resolvedWarehouseId) {
+                            const firstBatch = await tx.inventory_batch.findFirst({
+                                where: { productId: parseInt(item.productId), qtyRemaining: { gt: 0 } },
+                                orderBy: { createdAt: 'asc' },
+                                select: { warehouseId: true }
+                            });
+                            if (firstBatch) {
+                                resolvedWarehouseId = firstBatch.warehouseId;
+                            } else {
+                                const firstStock = await tx.stock.findFirst({
+                                    where: { productId: parseInt(item.productId), quantity: { gt: 0 } },
+                                    orderBy: { quantity: 'desc' },
+                                    select: { warehouseId: true }
+                                });
+                                if (firstStock) resolvedWarehouseId = firstStock.warehouseId;
+                            }
+                        }
+
+                        if (resolvedWarehouseId) {
+                            const itemCOGS = await consumeStock(tx, {
+                                companyId,
+                                productId: item.productId,
+                                warehouseId: resolvedWarehouseId,
+                                quantity: item.quantity,
+                                invoiceId: updatedInvoice.id,
+                                method: valuationMethod,
+                                negativeStockAllow
+                            });
+                            totalCOGS += itemCOGS;
+                        } else {
+                            // No warehouse: fallback to product cost
+                            const prod = await tx.product.findUnique({
+                                where: { id: parseInt(item.productId) },
+                                select: { averageCost: true, purchasePrice: true, initialCost: true }
+                            });
+                            const cost = parseFloat(prod?.averageCost || prod?.purchasePrice || prod?.initialCost || 0);
+                            totalCOGS += cost * item.quantity;
+                        }
+                    }
+                }
+
+                if (autoCogsEntry && totalCOGS > 0 && cogsLedger && inventoryLedger) {
+                    // Find the journal entry we just created for this invoice
+                    const journalForCOGS = await tx.journalentry.findFirst({
+                        where: { companyId: parseInt(companyId), voucherNumber: updatedInvoice.invoiceNumber }
+                    });
+
+                    await tx.transaction.create({
+                        data: {
+                            date: updatedInvoice.date,
+                            voucherType: 'JOURNAL',
+                            voucherNumber: `COGS-${updatedInvoice.invoiceNumber}`,
+                            debitLedgerId: cogsLedger.id,
+                            creditLedgerId: inventoryLedger.id,
+                            amount: totalCOGS,
+                            narration: `COGS for Updated Invoice: ${updatedInvoice.invoiceNumber}`,
+                            companyId: parseInt(companyId),
+                            invoiceId: updatedInvoice.id,
+                            journalEntryId: journalForCOGS?.id || null
+                        }
+                    });
+
+                    await tx.ledger.update({ where: { id: cogsLedger.id }, data: { currentBalance: { increment: totalCOGS } } });
+                    await tx.ledger.update({ where: { id: inventoryLedger.id }, data: { currentBalance: { decrement: totalCOGS } } });
+                }
             }
 
             return updatedInvoice;
