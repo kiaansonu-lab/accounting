@@ -102,7 +102,7 @@ const recordStockIn = async (tx, { companyId, productId, warehouseId, quantity, 
  * @param {boolean} params.negativeStockAllow
  * @returns {number} totalCOGS
  */
-const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, invoiceId, method = 'WAC', negativeStockAllow = true }) => {
+const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, invoiceId, method = 'WAC', negativeStockAllow = true, isPOS = false }) => {
     const qty = parseFloat(quantity);
     if (isNaN(qty) || qty <= 0) return 0;
 
@@ -136,17 +136,19 @@ const consumeStock = async (tx, { companyId, productId, warehouseId, quantity, i
         const consumeQty = Math.min(batch.qtyRemaining, remaining);
         const consumeCost = consumeQty * batch.rate;
 
-        // Log consumption
-        await tx.inventory_consumption.create({
-            data: {
-                invoiceId: parseInt(invoiceId),
-                productId: parseInt(productId),
-                batchId: batch.id,
-                qtyUsed: consumeQty,
-                rateUsed: batch.rate,
-                totalCost: consumeCost
-            }
-        });
+        // Log consumption only for standard invoices (since POS invoices don't use this table)
+        if (invoiceId && !isPOS) {
+            await tx.inventory_consumption.create({
+                data: {
+                    invoiceId: parseInt(invoiceId),
+                    productId: parseInt(productId),
+                    batchId: batch.id,
+                    qtyUsed: consumeQty,
+                    rateUsed: batch.rate,
+                    totalCost: consumeCost
+                }
+            });
+        }
 
         // Decrement batch remaining quantity
         await tx.inventory_batch.update({

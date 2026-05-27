@@ -435,7 +435,7 @@ const createInvoice = async (req, res) => {
 
             return invoice;
         }, {
-            timeout: 30000 // 30 seconds timeout
+            timeout: 90000 // 90 seconds timeout
         });
 
         res.status(201).json({ success: true, data: result });
@@ -882,7 +882,7 @@ const updateInvoice = async (req, res) => {
             }
 
             return updatedInvoice;
-        }, { timeout: 30000 });
+        }, { timeout: 90000 });
 
         res.status(200).json({ success: true, data: result });
     } catch (error) {

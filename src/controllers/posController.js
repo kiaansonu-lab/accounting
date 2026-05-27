@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const { getInventoryConfig, consumeStock } = require('../services/inventoryValuationService');
 
 // Create POS Invoice
 const createPOSInvoice = async (req, res) => {
@@ -140,7 +141,13 @@ const createPOSInvoice = async (req, res) => {
                 }
             });
 
-            // D. Inventory Update
+            // D. Inventory Update & COGS Calculation
+            let totalCOGS = 0;
+            const invConfig = await getInventoryConfig(currentCompanyId);
+            const valuationMethod = invConfig.valuationMethod || 'WAC';
+            const autoCogsEntry = invConfig.autoCogsEntry !== false; // default ON
+            const negativeStockAllow = invConfig.negativeStockAllow !== false; // default ON
+
             for (const item of processedItems) {
                 const wId = parseInt(item.warehouseId);
                 const pId = parseInt(item.productId);
@@ -181,6 +188,19 @@ const createPOSInvoice = async (req, res) => {
                         updatedAt: new Date()
                     }
                 });
+
+                // Calculate and consume stock valuation for COGS
+                const itemCOGS = await consumeStock(tx, {
+                    companyId: currentCompanyId,
+                    productId: pId,
+                    warehouseId: wId,
+                    quantity: item.qty,
+                    invoiceId: null, // No standard invoiceId
+                    method: valuationMethod,
+                    negativeStockAllow,
+                    isPOS: true // Bypass inventory_consumption table due to foreign key constraints
+                });
+                totalCOGS += itemCOGS;
             }
 
             // E. Accounting Entries
@@ -242,10 +262,56 @@ const createPOSInvoice = async (req, res) => {
                 await tx.ledger.update({ where: { id: debitLedgerId }, data: { currentBalance: { decrement: finalReceived } } });
             }
 
+            // 3. Post COGS journal entry (Debit COGS / Credit Inventory Asset)
+            if (autoCogsEntry && totalCOGS > 0) {
+                const resolveLedger = async (namePattern, type) => {
+                    let ledger = await tx.ledger.findFirst({
+                        where: { companyId: parseInt(currentCompanyId), name: { contains: namePattern } }
+                    });
+                    if (!ledger) {
+                        const group = await tx.accountgroup.findFirst({ where: { companyId: parseInt(currentCompanyId), type: type } });
+                        if (group) {
+                            ledger = await tx.ledger.create({
+                                data: {
+                                    name: namePattern,
+                                    groupId: group.id,
+                                    companyId: parseInt(currentCompanyId),
+                                    isControlAccount: true
+                                }
+                            });
+                        }
+                    }
+                    return ledger;
+                };
+
+                const cogsLedger = await resolveLedger('Point Of Sale', 'EXPENSES');
+                const inventoryAssetLedger = await resolveLedger('Inventory Asset', 'ASSETS') || await resolveLedger('Inventory', 'ASSETS');
+
+                if (cogsLedger && inventoryAssetLedger) {
+                    await tx.transaction.create({
+                        data: {
+                            date: new Date(),
+                            voucherType: 'JOURNAL',
+                            voucherNumber: `COGS-${invoiceNumber}`,
+                            debitLedgerId: cogsLedger.id,
+                            creditLedgerId: inventoryAssetLedger.id,
+                            amount: totalCOGS,
+                            narration: `COGS for POS Sale: ${invoiceNumber}`,
+                            companyId: parseInt(currentCompanyId),
+                            posInvoiceId: posInvoice.id,
+                            updatedAt: new Date()
+                        }
+                    });
+
+                    await tx.ledger.update({ where: { id: cogsLedger.id }, data: { currentBalance: { increment: totalCOGS } } });
+                    await tx.ledger.update({ where: { id: inventoryAssetLedger.id }, data: { currentBalance: { decrement: totalCOGS } } });
+                }
+            }
+
             return posInvoice;
         }, {
-            maxWait: 5000,
-            timeout: 30000
+            maxWait: 15000,
+            timeout: 90000
         });
 
         res.status(201).json({ success: true, data: result });
@@ -340,31 +406,59 @@ const deletePOSInvoice = async (req, res) => {
                 await tx.transaction.delete({ where: { id: t.id } });
             }
 
-            // 2. Reverse Stock
+            // 2. Reverse Stock & Product WAC Valuation
             for (const item of invoice.posinvoiceitem) {
-                await tx.stock.update({
-                    where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
-                    data: { quantity: { increment: item.quantity } }
-                });
+                if (item.productId && item.warehouseId) {
+                    // Restore physical stock
+                    await tx.stock.update({
+                        where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                        data: { quantity: { increment: item.quantity } }
+                    });
 
-                await tx.inventorytransaction.create({
-                    data: {
-                        date: new Date(),
-                        type: 'RETURN', // Internal Return
-                        productId: item.productId,
-                        toWarehouseId: item.warehouseId,
-                        quantity: item.quantity,
-                        reason: `Void POS: ${invoice.invoiceNumber}`,
-                        companyId: parseInt(companyId || invoice.companyId)
+                    // Log return transaction
+                    await tx.inventorytransaction.create({
+                        data: {
+                            date: new Date(),
+                            type: 'RETURN', // Internal Return
+                            productId: item.productId,
+                            toWarehouseId: item.warehouseId,
+                            quantity: item.quantity,
+                            reason: `Void POS: ${invoice.invoiceNumber}`,
+                            companyId: parseInt(companyId || invoice.companyId)
+                        }
+                    });
+
+                    // Restore WAC inventory tracking
+                    const currentProduct = await tx.product.findUnique({
+                        where: { id: parseInt(item.productId) },
+                        select: { totalQty: true, totalInventoryValue: true, averageCost: true }
+                    });
+
+                    if (currentProduct) {
+                        const qty = parseFloat(item.quantity);
+                        const averageCost = parseFloat(currentProduct.averageCost || 0);
+                        const restorationValue = qty * averageCost;
+
+                        const newTotalQty = parseFloat(currentProduct.totalQty || 0) + qty;
+                        const newTotalValue = parseFloat(currentProduct.totalInventoryValue || 0) + restorationValue;
+
+                        await tx.product.update({
+                            where: { id: parseInt(item.productId) },
+                            data: {
+                                totalQty: newTotalQty,
+                                totalInventoryValue: newTotalValue,
+                                averageCost: newTotalQty > 0 ? newTotalValue / newTotalQty : averageCost
+                            }
+                        });
                     }
-                });
+                }
             }
 
             // 3. Delete Invoice
             await tx.posinvoice.delete({ where: { id: parseInt(id) } });
         }, {
-            maxWait: 5000,
-            timeout: 30000
+            maxWait: 15000,
+            timeout: 90000
         });
 
         res.status(200).json({ success: true, message: 'POS Invoice deleted successfully' });
