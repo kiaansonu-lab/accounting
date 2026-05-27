@@ -390,7 +390,7 @@ const deleteBill = async (req, res) => {
         const bill = await prisma.purchasebill.findFirst({
             where: { id: parseInt(id), companyId: parseInt(companyId) },
             include: {
-                transactions: true,
+                transaction: true,
                 vendor: { include: { ledger: true } }
             }
         });
@@ -400,7 +400,7 @@ const deleteBill = async (req, res) => {
         await prisma.$transaction(async (tx) => {
             // 1. Revert Ledger Balances using transactions
             const vendorLedgerId = bill.vendor?.ledger?.id;
-            for (const trans of bill.transactions) {
+            for (const trans of bill.transaction) {
                 if (vendorLedgerId && trans.debitLedgerId === vendorLedgerId) {
                     // Discount received transaction: Dr Vendor (decreased Vendor liability), Cr Discount (increased Discount income)
                     // Reversion: Cr Vendor (increment Vendor ledger), Dr Discount (decrement Discount ledger)
@@ -427,7 +427,7 @@ const deleteBill = async (req, res) => {
             }
 
             // Retroactive tax balance decrement for older bills
-            const hasTaxTrans = bill.transactions.some(t => t.narration === 'Tax on Purchase');
+            const hasTaxTrans = bill.transaction.some(t => t.narration === 'Tax on Purchase');
             if (!hasTaxTrans && parseFloat(bill.taxAmount) > 0) {
                 const taxInputLedger = await tx.ledger.findFirst({
                     where: { companyId: parseInt(companyId), name: { contains: 'Tax' } }
@@ -447,7 +447,7 @@ const deleteBill = async (req, res) => {
             });
 
             // 3. Delete related transactions and journal entries
-            const journalEntryIds = [...new Set(bill.transactions.map(t => t.journalEntryId).filter(Boolean))];
+            const journalEntryIds = [...new Set(bill.transaction.map(t => t.journalEntryId).filter(Boolean))];
 
             await tx.transaction.deleteMany({ where: { purchaseBillId: bill.id } });
             await tx.journalentry.deleteMany({ where: { id: { in: journalEntryIds } } });
@@ -485,7 +485,7 @@ const deleteBill = async (req, res) => {
             await tx.purchasebillitem.deleteMany({ where: { purchaseBillId: bill.id } });
             await tx.purchasebill.delete({ where: { id: bill.id } });
         }, {
-            timeout: 30000
+            timeout: 90000
         });
 
         res.status(200).json({ success: true, message: 'Bill deleted successfully' });
