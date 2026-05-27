@@ -955,12 +955,12 @@ const deleteInvoice = async (req, res) => {
                 where: {
                     companyId: invoice.companyId,
                     voucherNumber: invoice.invoiceNumber,
-                    transactions: { none: {} }
+                    transaction: { none: {} }
                 }
             });
 
             await tx.invoice.delete({ where: { id: invoice.id } });
-        }, { timeout: 30000 });
+        }, { timeout: 90000 });
 
         res.status(200).json({ success: true, message: 'Invoice deleted successfully' });
     } catch (error) {
@@ -1039,7 +1039,7 @@ const getPublicInvoiceById = async (req, res) => {
 const cleanupOrphanedJournals = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.query.companyId;
-        const whereClause = { transactions: { none: {} } };
+        const whereClause = { transaction: { none: {} } };
         if (companyId) whereClause.companyId = parseInt(companyId);
 
         const orphaned = await prisma.journalentry.findMany({

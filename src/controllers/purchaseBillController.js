@@ -457,7 +457,7 @@ const deleteBill = async (req, res) => {
                 where: {
                     companyId: parseInt(companyId),
                     voucherNumber: bill.billNumber,
-                    transactions: { none: {} } // only truly orphaned entries (no transactions left)
+                    transaction: { none: {} } // only truly orphaned entries (no transactions left)
                 }
             });
 
@@ -853,7 +853,7 @@ const cleanupOrphanedJournals = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.query.companyId;
         const whereClause = {
-            transactions: { none: {} }
+            transaction: { none: {} }
         };
         if (companyId) {
             whereClause.companyId = parseInt(companyId);
