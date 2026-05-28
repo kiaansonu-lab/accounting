@@ -42,6 +42,7 @@ const voucherRoutes = require('./src/routes/voucherRoutes');
 const roleRoutes = require('./src/routes/roleRoutes');
 const userRoutes = require('./src/routes/userRoutes');
 const reportRoutes = require('./src/routes/reportRoutes');
+const uploadRoutes = require('./src/routes/uploadRoutes');
 
 const prisma = require('./src/config/prisma');
 
@@ -137,6 +138,7 @@ app.use('/api/vouchers', voucherRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Health Check
 app.get('/', (req, res) => {

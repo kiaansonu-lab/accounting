@@ -364,14 +364,17 @@ const updateCustomer = async (req, res) => {
                 }
             });
 
-            // Update Ledger name if customer name changed
+            // Update Ledger name and balance if customer is edited
             if (existingCustomer.ledgerId) {
                 const newLedgerName = customerData.name;
+                const newBalance = parseFloat(customerData.accountBalance) || 0;
                 await tx.ledger.update({
                     where: { id: existingCustomer.ledgerId },
                     data: {
                         name: newLedgerName,
-                        description: `Customer Ledger for ${newLedgerName}`
+                        description: `Customer Ledger for ${newLedgerName}`,
+                        openingBalance: newBalance,
+                        currentBalance: newBalance
                     }
                 });
             }
