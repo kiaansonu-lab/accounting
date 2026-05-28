@@ -49,7 +49,7 @@ const createProduct = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.body.companyId;
         const {
-            name, sku, hsn, barcode, categoryId, uomId, unit, description,
+            name, sku, hsn, barcode, categoryId, uomId, purchaseUomId, salesUomId, unit, description,
             asOfDate, taxAccount, initialCost, salePrice, purchasePrice,
             discount, remarks, warehouseInfo, image
         } = req.body;
@@ -99,6 +99,8 @@ const createProduct = async (req, res) => {
             image: imageUrl,
             categoryId: categoryId ? parseInt(categoryId) : null,
             uomId: uomId ? parseInt(uomId) : null,
+            purchaseUomId: purchaseUomId ? parseInt(purchaseUomId) : null,
+            salesUomId: salesUomId ? parseInt(salesUomId) : null,
             unit: unit || null,
             description: description || null,
             asOfDate: asOfDate ? new Date(asOfDate) : null,
@@ -188,7 +190,9 @@ const createProduct = async (req, res) => {
             include: {
                 stock: { include: { warehouse: true } },
                 category: true,
-                uom: true
+                uom: { include: { baseUnit: true } },
+                purchaseUom: { include: { baseUnit: true } },
+                salesUom: { include: { baseUnit: true } }
             }
         });
 
@@ -260,7 +264,7 @@ const updateProduct = async (req, res) => {
         const { id } = req.params;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
         const {
-            name, sku, hsn, barcode, categoryId, uomId, unit, description,
+            name, sku, hsn, barcode, categoryId, uomId, purchaseUomId, salesUomId, unit, description,
             asOfDate, taxAccount, initialCost, salePrice, purchasePrice,
             discount, remarks, warehouseInfo, image
         } = req.body;
@@ -408,6 +412,8 @@ const updateProduct = async (req, res) => {
             image: newImageUrl !== null ? newImageUrl : oldImageUrl, // Keep old if no new
             categoryId: categoryId ? parseInt(categoryId) : null,
             uomId: uomId ? parseInt(uomId) : null,
+            purchaseUomId: purchaseUomId ? parseInt(purchaseUomId) : null,
+            salesUomId: salesUomId ? parseInt(salesUomId) : null,
             unit: unit || null,
             description: description || null,
             asOfDate: asOfDate ? new Date(asOfDate) : null,
@@ -499,7 +505,9 @@ const updateProduct = async (req, res) => {
             include: {
                 stock: { include: { warehouse: true } },
                 category: true,
-                uom: true
+                uom: { include: { baseUnit: true } },
+                purchaseUom: { include: { baseUnit: true } },
+                salesUom: { include: { baseUnit: true } }
             }
         });
 
@@ -585,7 +593,9 @@ const getProducts = async (req, res) => {
             where: { companyId: parseInt(companyId) },
             include: {
                 category: true,
-                uom: true,
+                uom: { include: { baseUnit: true } },
+                purchaseUom: { include: { baseUnit: true } },
+                salesUom: { include: { baseUnit: true } },
                 stock: {
                     include: {
                         warehouse: true
@@ -628,7 +638,9 @@ const getProductById = async (req, res) => {
             },
             include: {
                 category: true,
-                uom: true,
+                uom: { include: { baseUnit: true } },
+                purchaseUom: { include: { baseUnit: true } },
+                salesUom: { include: { baseUnit: true } },
                 stock: {
                     include: {
                         warehouse: true

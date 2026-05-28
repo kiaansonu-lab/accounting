@@ -434,7 +434,8 @@ exports.Prisma.InvoiceitemScalarFieldEnum = {
   taxRate: 'taxRate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  warehouseId: 'warehouseId'
+  warehouseId: 'warehouseId',
+  uomId: 'uomId'
 };
 
 exports.Prisma.JournalentryScalarFieldEnum = {
@@ -566,7 +567,8 @@ exports.Prisma.PosinvoiceitemScalarFieldEnum = {
   amount: 'amount',
   taxRate: 'taxRate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  uomId: 'uomId'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
@@ -590,6 +592,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   companyId: 'companyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  purchaseUomId: 'purchaseUomId',
+  salesUomId: 'salesUomId',
   totalQty: 'totalQty',
   totalInventoryValue: 'totalInventoryValue',
   averageCost: 'averageCost'
@@ -644,7 +648,8 @@ exports.Prisma.PurchasebillitemScalarFieldEnum = {
   amount: 'amount',
   taxRate: 'taxRate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  uomId: 'uomId'
 };
 
 exports.Prisma.PurchaseorderScalarFieldEnum = {
@@ -973,7 +978,11 @@ exports.Prisma.UomScalarFieldEnum = {
   id: 'id',
   category: 'category',
   unitName: 'unitName',
+  symbol: 'symbol',
   weightPerUnit: 'weightPerUnit',
+  uomType: 'uomType',
+  baseUnitId: 'baseUnitId',
+  conversionRate: 'conversionRate',
   companyId: 'companyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

@@ -478,15 +478,18 @@ model invoiceitem {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
   warehouseId Int?
+  uomId       Int?
   invoice     invoice    @relation(fields: [invoiceId], references: [id], onDelete: Cascade, map: "InvoiceItem_invoiceId_fkey")
   product     product?   @relation(fields: [productId], references: [id], map: "InvoiceItem_productId_fkey")
   service     service?   @relation(fields: [serviceId], references: [id], map: "InvoiceItem_serviceId_fkey")
   warehouse   warehouse? @relation(fields: [warehouseId], references: [id], map: "InvoiceItem_warehouseId_fkey")
+  uom         uom?       @relation(fields: [uomId], references: [id], onDelete: Restrict, map: "InvoiceItem_uomId_fkey")
 
   @@index([invoiceId], map: "InvoiceItem_invoiceId_fkey")
   @@index([productId], map: "InvoiceItem_productId_fkey")
   @@index([serviceId], map: "InvoiceItem_serviceId_fkey")
   @@index([warehouseId], map: "InvoiceItem_warehouseId_fkey")
+  @@index([uomId], map: "InvoiceItem_uomId_fkey")
 }
 
 model journalentry {
@@ -669,13 +672,16 @@ model posinvoiceitem {
   taxRate      Float      @default(0)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @default(now()) @updatedAt
+  uomId        Int?
   posinvoice   posinvoice @relation(fields: [posInvoiceId], references: [id], onDelete: Cascade, map: "PosInvoiceItem_posInvoiceId_fkey")
   product      product?   @relation(fields: [productId], references: [id], map: "PosInvoiceItem_productId_fkey")
   warehouse    warehouse? @relation(fields: [warehouseId], references: [id], map: "PosInvoiceItem_warehouseId_fkey")
+  uom          uom?       @relation(fields: [uomId], references: [id], onDelete: Restrict, map: "PosInvoiceItem_uomId_fkey")
 
   @@index([posInvoiceId], map: "PosInvoiceItem_posInvoiceId_fkey")
   @@index([productId], map: "PosInvoiceItem_productId_fkey")
   @@index([warehouseId], map: "PosInvoiceItem_warehouseId_fkey")
+  @@index([uomId], map: "PosInvoiceItem_uomId_fkey")
 }
 
 model product {
@@ -705,9 +711,13 @@ model product {
   inventorytransaction    inventorytransaction[]
   invoiceitem             invoiceitem[]
   posinvoiceitem          posinvoiceitem[]
+  purchaseUomId           Int?
+  salesUomId              Int?
   category                category?                 @relation(fields: [categoryId], references: [id], onDelete: Cascade, map: "Product_categoryId_fkey")
   company                 company                   @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "Product_companyId_fkey")
-  uom                     uom?                      @relation(fields: [uomId], references: [id], onDelete: Cascade, map: "Product_uomId_fkey")
+  uom                     uom?                      @relation("product_base_uom", fields: [uomId], references: [id], onDelete: Cascade, map: "Product_uomId_fkey")
+  purchaseUom             uom?                      @relation("product_purchase_uom", fields: [purchaseUomId], references: [id], onDelete: Restrict, map: "Product_purchaseUomId_fkey")
+  salesUom                uom?                      @relation("product_sales_uom", fields: [salesUomId], references: [id], onDelete: Restrict, map: "Product_salesUomId_fkey")
   purchaseorderitem       purchaseorderitem[]
   purchasequotationitem   purchasequotationitem[]
   purchasereturnitem      purchasereturnitem[]
@@ -727,6 +737,8 @@ model product {
   @@unique([companyId, name], map: "Product_companyId_name_key")
   @@index([categoryId], map: "Product_categoryId_fkey")
   @@index([uomId], map: "Product_uomId_fkey")
+  @@index([purchaseUomId], map: "Product_purchaseUomId_fkey")
+  @@index([salesUomId], map: "Product_salesUomId_fkey")
 }
 
 model purchasebill {
@@ -793,13 +805,16 @@ model purchasebillitem {
   taxRate        Float        @default(0)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @default(now()) @updatedAt
+  uomId          Int?
   purchasebill   purchasebill @relation(fields: [purchaseBillId], references: [id], onDelete: Cascade, map: "PurchaseBillItem_purchaseBillId_fkey")
   product        product?     @relation(fields: [productId], references: [id], map: "PurchaseBillItem_productId_fkey")
   warehouse      warehouse?   @relation(fields: [warehouseId], references: [id], map: "PurchaseBillItem_warehouseId_fkey")
+  uom            uom?         @relation(fields: [uomId], references: [id], onDelete: Restrict, map: "PurchaseBillItem_uomId_fkey")
 
   @@index([purchaseBillId], map: "PurchaseBillItem_purchaseBillId_fkey")
   @@index([productId], map: "PurchaseBillItem_productId_fkey")
   @@index([warehouseId], map: "PurchaseBillItem_warehouseId_fkey")
+  @@index([uomId], map: "PurchaseBillItem_uomId_fkey")
 }
 
 model purchaseorder {
@@ -1273,18 +1288,36 @@ model transaction {
 }
 
 model uom {
-  id            Int       @id @default(autoincrement())
-  category      String
-  unitName      String
-  weightPerUnit String?
-  companyId     Int
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now()) @updatedAt
-  product       product[]
-  service       service[]
-  company       company   @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "UOM_companyId_fkey")
+  id              Int               @id @default(autoincrement())
+  category        String
+  unitName        String
+  symbol          String?
+  weightPerUnit   String?
+  uomType         String            @default("Simple") // "Simple" or "Compound"
+  
+  // Compound Unit relation (Self-referential)
+  baseUnitId      Int?
+  conversionRate  Float?            // Multiplier, e.g. 24
+  
+  companyId       Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  
+  company         company           @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "UOM_companyId_fkey")
+  baseUnit        uom?              @relation("uom_conversions", fields: [baseUnitId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "UOM_baseUnitId_fkey")
+  childUnits      uom[]             @relation("uom_conversions")
+  
+  // Product relations
+  product          product[]        @relation("product_base_uom")
+  product_purchase product[]        @relation("product_purchase_uom")
+  product_sales    product[]        @relation("product_sales_uom")
+  service          service[]
+  purchasebillitem purchasebillitem[]
+  invoiceitem      invoiceitem[]
+  posinvoiceitem   posinvoiceitem[]
 
   @@unique([companyId, category, unitName], map: "UOM_companyId_category_unitName_key")
+  @@index([baseUnitId], map: "UOM_baseUnitId_fkey")
 }
 
 model user {

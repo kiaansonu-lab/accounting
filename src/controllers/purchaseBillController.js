@@ -53,6 +53,7 @@ const createBill = async (req, res) => {
         const billItems = items.map(item => ({
             productId: item.productId ? parseInt(item.productId) : null,
             warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
+            uomId: item.uomId ? parseInt(item.uomId) : null,
             description: item.description,
             quantity: parseFloat(item.quantity),
             rate: parseFloat(item.rate),
@@ -210,10 +211,31 @@ const createBill = async (req, res) => {
 
                     for (const item of billItems) {
                         if (item.productId && item.warehouseId) {
+                            // Fetch Product with Base UoM
+                            const prod = await tx.product.findUnique({
+                                where: { id: item.productId },
+                                include: { uom: true }
+                            });
+
+                            // Fetch Selected Transaction UoM
+                            let transUom = null;
+                            if (item.uomId) {
+                                transUom = await tx.uom.findUnique({
+                                    where: { id: item.uomId }
+                                });
+                            }
+                            const baseUom = prod?.uom;
+
+                            // Convert quantity and rate to base UoM
+                            const { convertToBaseQuantity, convertTransRateToBaseRate } = require('../services/uomConversionService');
+                            const baseQty = convertToBaseQuantity(item.quantity, transUom, baseUom);
+                            const netRate = calculateNetRate(item.rate, item.quantity, item.discount * item.quantity);
+                            const baseNetRate = convertTransRateToBaseRate(netRate, transUom, baseUom);
+
                             await tx.stock.upsert({
                                 where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
-                                update: { quantity: { increment: item.quantity } },
-                                create: { warehouseId: item.warehouseId, productId: item.productId, quantity: item.quantity }
+                                update: { quantity: { increment: baseQty } },
+                                create: { warehouseId: item.warehouseId, productId: item.productId, quantity: baseQty }
                             });
 
                             await tx.inventorytransaction.create({
@@ -222,22 +244,19 @@ const createBill = async (req, res) => {
                                     type: 'PURCHASE',
                                     productId: item.productId,
                                     toWarehouseId: item.warehouseId,
-                                    quantity: item.quantity,
+                                    quantity: baseQty,
                                     reason: `Direct Purchase Bill: ${billNumber}`,
                                     companyId: parseInt(companyId)
                                 }
                             });
-
-                            // Calculate net rate after line discount
-                            const netRate = calculateNetRate(item.rate, item.quantity, item.discount * item.quantity);
 
                             // Record inventory valuation layer (FIFO or WAC)
                             await recordStockIn(tx, {
                                 companyId,
                                 productId: item.productId,
                                 warehouseId: item.warehouseId,
-                                quantity: item.quantity,
-                                rate: netRate,
+                                quantity: baseQty,
+                                rate: baseNetRate,
                                 purchaseBillId: bill.id,
                                 method: valuationMethod
                             });
@@ -461,23 +480,55 @@ const deleteBill = async (req, res) => {
                 }
             });
 
-            // 4. Reverse Inventory Valuation Layers
+            // 4. Reverse Physical Stock & Valuation Layers
             const invConfig = await getInventoryConfig(companyId);
             const valuationMethod = invConfig.valuationMethod || 'WAC';
 
             // Get bill items for WAC reversal
             const billItemsForReversal = await tx.purchasebillitem.findMany({
-                where: { purchaseBillId: bill.id }
+                where: { purchaseBillId: bill.id },
+                include: { product: { include: { uom: true } }, uom: true }
             });
+
+            const { convertToBaseQuantity, convertTransRateToBaseRate } = require('../services/uomConversionService');
+
+            for (const item of billItemsForReversal) {
+                if (item.productId && item.warehouseId) {
+                    const baseQty = convertToBaseQuantity(item.quantity, item.uom, item.product?.uom);
+
+                    // Revert physical stock
+                    await tx.stock.updateMany({
+                        where: { warehouseId: item.warehouseId, productId: item.productId },
+                        data: { quantity: { decrement: baseQty } }
+                    });
+
+                    // Log inventory transaction for return/reversal
+                    await tx.inventorytransaction.create({
+                        data: {
+                            date: new Date(),
+                            type: 'RETURN',
+                            productId: item.productId,
+                            fromWarehouseId: item.warehouseId,
+                            quantity: baseQty,
+                            reason: `Purchase Bill Deleted: ${bill.billNumber}`,
+                            companyId: parseInt(companyId)
+                        }
+                    });
+                }
+            }
 
             await reverseStockIn(tx, {
                 purchaseBillId: bill.id,
-                billItems: billItemsForReversal.map(i => ({
-                    productId: i.productId,
-                    warehouseId: i.warehouseId,
-                    quantity: i.quantity,
-                    rate: i.rate
-                })),
+                billItems: billItemsForReversal.map(i => {
+                    const baseQty = convertToBaseQuantity(i.quantity, i.uom, i.product?.uom);
+                    const baseRate = convertTransRateToBaseRate(i.rate, i.uom, i.product?.uom);
+                    return {
+                        productId: i.productId,
+                        warehouseId: i.warehouseId,
+                        quantity: baseQty,
+                        rate: baseRate
+                    };
+                }),
                 method: valuationMethod
             });
 

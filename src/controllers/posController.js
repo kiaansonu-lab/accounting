@@ -42,7 +42,8 @@ const createPOSInvoice = async (req, res) => {
 
             return {
                 ...item,
-                qty, rate, disc, tax, taxAmt, total, taxable
+                qty, rate, disc, tax, taxAmt, total, taxable,
+                uomId: item.uomId ? parseInt(item.uomId) : null
             };
         });
 
@@ -135,6 +136,7 @@ const createPOSInvoice = async (req, res) => {
                             rate: i.rate,
                             amount: parseFloat(i.total),
                             taxRate: parseFloat(i.tax),
+                            uomId: i.uomId ? parseInt(i.uomId) : null,
                             updatedAt: new Date()
                         }))
                     }
@@ -156,6 +158,17 @@ const createPOSInvoice = async (req, res) => {
                     throw new Error(`Invalid warehouseId (${item.warehouseId}) or productId (${item.productId}) for item ${item.description || 'unknown'}`);
                 }
 
+                // Fetch Product with Base UoM
+                const prod = await tx.product.findUnique({
+                    where: { id: pId },
+                    include: { uom: true }
+                });
+                const transUom = item.uomId ? await tx.uom.findUnique({ where: { id: item.uomId } }) : null;
+                const baseUom = prod?.uom;
+
+                const { convertToBaseQuantity } = require('../services/uomConversionService');
+                const baseQty = convertToBaseQuantity(item.qty, transUom, baseUom);
+
                 const stock = await tx.stock.findUnique({
                     where: { warehouseId_productId: { warehouseId: wId, productId: pId } }
                 });
@@ -163,14 +176,14 @@ const createPOSInvoice = async (req, res) => {
                 if (stock) {
                     await tx.stock.update({
                         where: { id: stock.id },
-                        data: { quantity: { decrement: item.qty } }
+                        data: { quantity: { decrement: baseQty } }
                     });
                 } else {
                     await tx.stock.create({
                         data: {
                             warehouseId: wId,
                             productId: pId,
-                            quantity: -item.qty,
+                            quantity: -baseQty,
                             updatedAt: new Date()
                         }
                     });
@@ -182,19 +195,19 @@ const createPOSInvoice = async (req, res) => {
                         type: 'SALE',
                         productId: pId,
                         fromWarehouseId: wId,
-                        quantity: item.qty,
+                        quantity: baseQty,
                         reason: `POS Sale: ${invoiceNumber}`,
                         companyId: parseInt(currentCompanyId),
                         updatedAt: new Date()
                     }
                 });
 
-                // Calculate and consume stock valuation for COGS
+                // Calculate and consume stock valuation for COGS using baseQty
                 const itemCOGS = await consumeStock(tx, {
                     companyId: currentCompanyId,
                     productId: pId,
                     warehouseId: wId,
-                    quantity: item.qty,
+                    quantity: baseQty,
                     invoiceId: null, // No standard invoiceId
                     method: valuationMethod,
                     negativeStockAllow,
@@ -407,12 +420,21 @@ const deletePOSInvoice = async (req, res) => {
             }
 
             // 2. Reverse Stock & Product WAC Valuation
+            const { convertToBaseQuantity } = require('../services/uomConversionService');
+
             for (const item of invoice.posinvoiceitem) {
                 if (item.productId && item.warehouseId) {
+                    const prod = await tx.product.findUnique({
+                        where: { id: item.productId },
+                        include: { uom: true }
+                    });
+                    const transUom = item.uomId ? await tx.uom.findUnique({ where: { id: item.uomId } }) : null;
+                    const baseQty = convertToBaseQuantity(item.quantity, transUom, prod?.uom);
+
                     // Restore physical stock
                     await tx.stock.update({
                         where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
-                        data: { quantity: { increment: item.quantity } }
+                        data: { quantity: { increment: baseQty } }
                     });
 
                     // Log return transaction
@@ -422,7 +444,7 @@ const deletePOSInvoice = async (req, res) => {
                             type: 'RETURN', // Internal Return
                             productId: item.productId,
                             toWarehouseId: item.warehouseId,
-                            quantity: item.quantity,
+                            quantity: baseQty,
                             reason: `Void POS: ${invoice.invoiceNumber}`,
                             companyId: parseInt(companyId || invoice.companyId)
                         }
@@ -435,11 +457,10 @@ const deletePOSInvoice = async (req, res) => {
                     });
 
                     if (currentProduct) {
-                        const qty = parseFloat(item.quantity);
                         const averageCost = parseFloat(currentProduct.averageCost || 0);
-                        const restorationValue = qty * averageCost;
+                        const restorationValue = baseQty * averageCost;
 
-                        const newTotalQty = parseFloat(currentProduct.totalQty || 0) + qty;
+                        const newTotalQty = parseFloat(currentProduct.totalQty || 0) + baseQty;
                         const newTotalValue = parseFloat(currentProduct.totalInventoryValue || 0) + restorationValue;
 
                         await tx.product.update({
