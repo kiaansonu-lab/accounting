@@ -373,14 +373,17 @@ const updateVendor = async (req, res) => {
                 }
             });
 
-            // Update Ledger name if vendor name changed
+            // Update Ledger: sync name AND balance when vendor is edited
             if (existingVendor.ledgerId) {
                 const newLedgerName = vendorData.name;
+                const newBalance = parseFloat(vendorData.accountBalance) || 0;
                 await tx.ledger.update({
                     where: { id: existingVendor.ledgerId },
                     data: {
                         name: newLedgerName,
-                        description: `Vendor Ledger for ${newLedgerName}`
+                        description: `Vendor Ledger for ${newLedgerName}`,
+                        openingBalance: newBalance,
+                        currentBalance: newBalance
                     }
                 });
             }
