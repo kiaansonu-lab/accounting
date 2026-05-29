@@ -91,71 +91,56 @@ const getCompanyDashboardStats = async (req, res) => {
 
         const compId = parseInt(companyId);
 
-        // 1. Calculate Total Revenue (Invoices + POS Invoices + Income Vouchers - Sales Returns)
-        const invoices = await prisma.invoice.findMany({
+        // 1. Fetch INCOME and EXPENSES Ledgers
+        const ledgers = await prisma.ledger.findMany({
             where: {
                 companyId: compId,
-                NOT: { status: 'CANCELLED' }
+                accountgroup: {
+                    type: { in: ['INCOME', 'EXPENSES'] }
+                }
             },
-            select: { totalAmount: true }
+            include: {
+                accountgroup: true
+            }
         });
-        const invoiceRevenue = invoices.reduce((sum, inv) => sum + inv.totalAmount, 0);
 
-        const posInvoices = await prisma.posinvoice.findMany({
+        // 2. Fetch All Transactions for lifetime total
+        const allTransactions = await prisma.transaction.findMany({
             where: {
                 companyId: compId
-            },
-            select: { totalAmount: true }
+            }
         });
-        const posInvoiceRevenue = posInvoices.reduce((sum, inv) => sum + inv.totalAmount, 0);
 
-        const incomeTx = await prisma.transaction.findMany({
-            where: {
-                companyId: compId,
-                voucherType: 'INCOME'
-            },
-            select: { amount: true }
+        let totalRevenue = 0;
+        let totalExpenses = 0;
+
+        ledgers.forEach(l => {
+            const openBal = parseFloat(l.openingBalance || 0);
+            if (l.accountgroup.type === 'INCOME') totalRevenue += openBal;
+            if (l.accountgroup.type === 'EXPENSES') totalExpenses += openBal;
         });
-        const incomeRevenue = incomeTx.reduce((sum, tx) => sum + tx.amount, 0);
 
-        const salesReturns = await prisma.salesreturn.findMany({
-            where: {
-                companyId: compId
-            },
-            select: { totalAmount: true }
+        allTransactions.forEach(txn => {
+            const amount = txn.amount || 0;
+            const debitLedger = ledgers.find(l => l.id === txn.debitLedgerId);
+            const creditLedger = ledgers.find(l => l.id === txn.creditLedgerId);
+
+            if (debitLedger) {
+                if (debitLedger.accountgroup.type === 'EXPENSES') {
+                    totalExpenses += amount;
+                } else if (debitLedger.accountgroup.type === 'INCOME') {
+                    totalRevenue -= amount;
+                }
+            }
+
+            if (creditLedger) {
+                if (creditLedger.accountgroup.type === 'INCOME') {
+                    totalRevenue += amount;
+                } else if (creditLedger.accountgroup.type === 'EXPENSES') {
+                    totalExpenses -= amount;
+                }
+            }
         });
-        const salesReturnAmount = salesReturns.reduce((sum, ret) => sum + ret.totalAmount, 0);
-
-        const totalRevenue = invoiceRevenue + posInvoiceRevenue + incomeRevenue - salesReturnAmount;
-
-        // 2. Calculate Total Expenses (Purchase Bills + Expense Vouchers - Purchase Returns)
-        const bills = await prisma.purchasebill.findMany({
-            where: {
-                companyId: compId,
-                NOT: { status: 'CANCELLED' }
-            },
-            select: { totalAmount: true }
-        });
-        const billExpenses = bills.reduce((sum, bill) => sum + bill.totalAmount, 0);
-
-        const expenseTx = await prisma.transaction.findMany({
-            where: {
-                companyId: compId,
-                voucherType: 'EXPENSE'
-            },
-            select: { amount: true }
-        });
-        const voucherExpenses = expenseTx.reduce((sum, tx) => sum + tx.amount, 0);
-
-        const purchaseReturns = await prisma.purchasereturn.findMany({
-            where: {
-                companyId: compId
-            },
-            select: { totalAmount: true }
-        });
-        const purchaseReturnAmount = purchaseReturns.reduce((sum, ret) => sum + ret.totalAmount, 0);
-
-        const totalExpenses = billExpenses + voucherExpenses - purchaseReturnAmount;
 
         // 3. Calculate Net Profit
         const netProfit = totalRevenue - totalExpenses;
@@ -164,9 +149,17 @@ const getCompanyDashboardStats = async (req, res) => {
         const customerCount = await prisma.customer.count({ where: { companyId: compId } });
         const vendorCount = await prisma.vendor.count({ where: { companyId: compId } });
         const productCount = await prisma.product.count({ where: { companyId: compId } });
-        const posInvoiceCount = posInvoices.length;
-        const saleInvoiceCount = invoices.length + posInvoiceCount;
-        const purchaseBillCount = bills.length;
+        
+        // Count for standard invoices & POS invoices
+        const saleInvoiceCount = await prisma.invoice.count({
+            where: { companyId: compId, NOT: { status: 'CANCELLED' } }
+        }) + await prisma.posinvoice.count({
+            where: { companyId: compId }
+        });
+
+        const purchaseBillCount = await prisma.purchasebill.count({
+            where: { companyId: compId, NOT: { status: 'CANCELLED' } }
+        });
 
         // 4. Recent Transactions (Limit 5)
         const recentTransactions = await prisma.transaction.findMany({
@@ -188,84 +181,49 @@ const getCompanyDashboardStats = async (req, res) => {
             status: 'Completed'
         }));
 
-        // 5. Monthly Data for Charts
+        // 5. Monthly Data for Charts (Based on Current Year's Transactions)
         const monthsList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const currentYear = new Date().getFullYear();
+        const startOfYear = new Date(currentYear, 0, 1);
+        const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59, 999);
 
-        const yearInvoices = await prisma.invoice.findMany({
+        const yearTransactions = await prisma.transaction.findMany({
             where: {
                 companyId: compId,
-                date: { gte: new Date(currentYear, 0, 1) },
-                NOT: { status: 'CANCELLED' }
-            },
-            select: { date: true, totalAmount: true }
+                date: { gte: startOfYear, lte: endOfYear }
+            }
         });
 
-        const yearPosInvoices = await prisma.posinvoice.findMany({
-            where: {
-                companyId: compId,
-                date: { gte: new Date(currentYear, 0, 1) }
-            },
-            select: { date: true, totalAmount: true }
-        });
+        const monthlyRevenue = Array(12).fill(0);
+        const monthlyExpense = Array(12).fill(0);
 
-        const yearBills = await prisma.purchasebill.findMany({
-            where: {
-                companyId: compId,
-                date: { gte: new Date(currentYear, 0, 1) },
-                NOT: { status: 'CANCELLED' }
-            },
-            select: { date: true, totalAmount: true }
-        });
+        yearTransactions.forEach(txn => {
+            const m = new Date(txn.date).getMonth();
+            const amount = txn.amount || 0;
+            const debitLedger = ledgers.find(l => l.id === txn.debitLedgerId);
+            const creditLedger = ledgers.find(l => l.id === txn.creditLedgerId);
 
-        const yearSalesReturns = await prisma.salesreturn.findMany({
-            where: {
-                companyId: compId,
-                date: { gte: new Date(currentYear, 0, 1) }
-            },
-            select: { date: true, totalAmount: true }
-        });
+            if (debitLedger) {
+                if (debitLedger.accountgroup.type === 'EXPENSES') {
+                    monthlyExpense[m] += amount;
+                } else if (debitLedger.accountgroup.type === 'INCOME') {
+                    monthlyRevenue[m] -= amount;
+                }
+            }
 
-        const yearPurchaseReturns = await prisma.purchasereturn.findMany({
-            where: {
-                companyId: compId,
-                date: { gte: new Date(currentYear, 0, 1) }
-            },
-            select: { date: true, totalAmount: true }
-        });
-
-        const revenueArr = Array(12).fill(0);
-        const expenseArr = Array(12).fill(0);
-
-        yearInvoices.forEach(item => {
-            const m = new Date(item.date).getMonth();
-            revenueArr[m] += item.totalAmount || 0;
-        });
-
-        yearPosInvoices.forEach(item => {
-            const m = new Date(item.date).getMonth();
-            revenueArr[m] += item.totalAmount || 0;
-        });
-
-        yearSalesReturns.forEach(item => {
-            const m = new Date(item.date).getMonth();
-            revenueArr[m] -= item.totalAmount || 0;
-        });
-
-        yearBills.forEach(item => {
-            const m = new Date(item.date).getMonth();
-            expenseArr[m] += item.totalAmount || 0;
-        });
-
-        yearPurchaseReturns.forEach(item => {
-            const m = new Date(item.date).getMonth();
-            expenseArr[m] -= item.totalAmount || 0;
+            if (creditLedger) {
+                if (creditLedger.accountgroup.type === 'INCOME') {
+                    monthlyRevenue[m] += amount;
+                } else if (creditLedger.accountgroup.type === 'EXPENSES') {
+                    monthlyExpense[m] -= amount;
+                }
+            }
         });
 
         const chartData = monthsList.map((m, i) => ({
             name: m,
-            revenue: Math.max(0, revenueArr[i]),
-            expense: Math.max(0, expenseArr[i])
+            revenue: Math.max(0, monthlyRevenue[i]),
+            expense: Math.max(0, monthlyExpense[i])
         }));
 
         // 6. Top Selling Products (Calculated from Invoice Items & POS Invoice Items)
