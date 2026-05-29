@@ -91,7 +91,7 @@ const getCompanyDashboardStats = async (req, res) => {
 
         const compId = parseInt(companyId);
 
-        // 1. Calculate Total Revenue (Invoices + Income Vouchers)
+        // 1. Calculate Total Revenue (Invoices + POS Invoices + Income Vouchers - Sales Returns)
         const invoices = await prisma.invoice.findMany({
             where: {
                 companyId: compId,
@@ -100,6 +100,14 @@ const getCompanyDashboardStats = async (req, res) => {
             select: { totalAmount: true }
         });
         const invoiceRevenue = invoices.reduce((sum, inv) => sum + inv.totalAmount, 0);
+
+        const posInvoices = await prisma.posinvoice.findMany({
+            where: {
+                companyId: compId
+            },
+            select: { totalAmount: true }
+        });
+        const posInvoiceRevenue = posInvoices.reduce((sum, inv) => sum + inv.totalAmount, 0);
 
         const incomeTx = await prisma.transaction.findMany({
             where: {
@@ -110,9 +118,17 @@ const getCompanyDashboardStats = async (req, res) => {
         });
         const incomeRevenue = incomeTx.reduce((sum, tx) => sum + tx.amount, 0);
 
-        const totalRevenue = invoiceRevenue + incomeRevenue;
+        const salesReturns = await prisma.salesreturn.findMany({
+            where: {
+                companyId: compId
+            },
+            select: { totalAmount: true }
+        });
+        const salesReturnAmount = salesReturns.reduce((sum, ret) => sum + ret.totalAmount, 0);
 
-        // 2. Calculate Total Expenses (Purchase Bills + Expense Vouchers)
+        const totalRevenue = invoiceRevenue + posInvoiceRevenue + incomeRevenue - salesReturnAmount;
+
+        // 2. Calculate Total Expenses (Purchase Bills + Expense Vouchers - Purchase Returns)
         const bills = await prisma.purchasebill.findMany({
             where: {
                 companyId: compId,
@@ -131,7 +147,15 @@ const getCompanyDashboardStats = async (req, res) => {
         });
         const voucherExpenses = expenseTx.reduce((sum, tx) => sum + tx.amount, 0);
 
-        const totalExpenses = billExpenses + voucherExpenses;
+        const purchaseReturns = await prisma.purchasereturn.findMany({
+            where: {
+                companyId: compId
+            },
+            select: { totalAmount: true }
+        });
+        const purchaseReturnAmount = purchaseReturns.reduce((sum, ret) => sum + ret.totalAmount, 0);
+
+        const totalExpenses = billExpenses + voucherExpenses - purchaseReturnAmount;
 
         // 3. Calculate Net Profit
         const netProfit = totalRevenue - totalExpenses;
@@ -140,7 +164,8 @@ const getCompanyDashboardStats = async (req, res) => {
         const customerCount = await prisma.customer.count({ where: { companyId: compId } });
         const vendorCount = await prisma.vendor.count({ where: { companyId: compId } });
         const productCount = await prisma.product.count({ where: { companyId: compId } });
-        const saleInvoiceCount = invoices.length;
+        const posInvoiceCount = posInvoices.length;
+        const saleInvoiceCount = invoices.length + posInvoiceCount;
         const purchaseBillCount = bills.length;
 
         // 4. Recent Transactions (Limit 5)
@@ -176,11 +201,35 @@ const getCompanyDashboardStats = async (req, res) => {
             select: { date: true, totalAmount: true }
         });
 
+        const yearPosInvoices = await prisma.posinvoice.findMany({
+            where: {
+                companyId: compId,
+                date: { gte: new Date(currentYear, 0, 1) }
+            },
+            select: { date: true, totalAmount: true }
+        });
+
         const yearBills = await prisma.purchasebill.findMany({
             where: {
                 companyId: compId,
                 date: { gte: new Date(currentYear, 0, 1) },
                 NOT: { status: 'CANCELLED' }
+            },
+            select: { date: true, totalAmount: true }
+        });
+
+        const yearSalesReturns = await prisma.salesreturn.findMany({
+            where: {
+                companyId: compId,
+                date: { gte: new Date(currentYear, 0, 1) }
+            },
+            select: { date: true, totalAmount: true }
+        });
+
+        const yearPurchaseReturns = await prisma.purchasereturn.findMany({
+            where: {
+                companyId: compId,
+                date: { gte: new Date(currentYear, 0, 1) }
             },
             select: { date: true, totalAmount: true }
         });
@@ -193,39 +242,76 @@ const getCompanyDashboardStats = async (req, res) => {
             revenueArr[m] += item.totalAmount || 0;
         });
 
+        yearPosInvoices.forEach(item => {
+            const m = new Date(item.date).getMonth();
+            revenueArr[m] += item.totalAmount || 0;
+        });
+
+        yearSalesReturns.forEach(item => {
+            const m = new Date(item.date).getMonth();
+            revenueArr[m] -= item.totalAmount || 0;
+        });
+
         yearBills.forEach(item => {
             const m = new Date(item.date).getMonth();
             expenseArr[m] += item.totalAmount || 0;
         });
 
+        yearPurchaseReturns.forEach(item => {
+            const m = new Date(item.date).getMonth();
+            expenseArr[m] -= item.totalAmount || 0;
+        });
+
         const chartData = monthsList.map((m, i) => ({
             name: m,
-            revenue: revenueArr[i],
-            expense: expenseArr[i]
+            revenue: Math.max(0, revenueArr[i]),
+            expense: Math.max(0, expenseArr[i])
         }));
 
-        // 6. Top Selling Products (Calculated from Invoice Items)
+        // 6. Top Selling Products (Calculated from Invoice Items & POS Invoice Items)
         const topProductItems = await prisma.invoiceitem.groupBy({
             by: ['productId'],
             where: {
                 invoice: { companyId: compId, NOT: { status: 'CANCELLED' } },
                 productId: { not: null }
             },
-            _sum: { quantity: true },
-            orderBy: { _sum: { quantity: 'desc' } },
-            take: 5
+            _sum: { quantity: true }
         });
 
-        const topProducts = await Promise.all(topProductItems.map(async (item) => {
+        const topPosProductItems = await prisma.posinvoiceitem.groupBy({
+            by: ['productId'],
+            where: {
+                posinvoice: { companyId: compId },
+                productId: { not: null }
+            },
+            _sum: { quantity: true }
+        });
+
+        const productQuantities = {};
+        topProductItems.forEach(item => {
+            productQuantities[item.productId] = (productQuantities[item.productId] || 0) + (item._sum.quantity || 0);
+        });
+        topPosProductItems.forEach(item => {
+            productQuantities[item.productId] = (productQuantities[item.productId] || 0) + (item._sum.quantity || 0);
+        });
+
+        const topProductIds = Object.keys(productQuantities)
+            .map(id => ({ productId: parseInt(id), quantity: productQuantities[id] }))
+            .sort((a, b) => b.quantity - a.quantity)
+            .slice(0, 5);
+
+        const topProductsRaw = await Promise.all(topProductIds.map(async (item) => {
             const product = await prisma.product.findUnique({
                 where: { id: item.productId },
                 select: { name: true, salePrice: true, image: true }
             });
+            if (!product) return null;
             return {
                 ...product,
-                quantity: item._sum.quantity
+                quantity: item.quantity
             };
         }));
+        const topProducts = topProductsRaw.filter(Boolean);
 
         // 7. Low Stock Products
         const lowStock = await prisma.stock.findMany({
@@ -244,25 +330,48 @@ const getCompanyDashboardStats = async (req, res) => {
             image: s.product.image
         }));
 
-        // 8. Top Customers (By Revenue)
+        // 8. Top Customers (By Revenue from Invoices & POS Invoices)
         const topCustomerInvoices = await prisma.invoice.groupBy({
             by: ['customerId'],
             where: { companyId: compId, NOT: { status: 'CANCELLED' } },
-            _sum: { totalAmount: true },
-            orderBy: { _sum: { totalAmount: 'desc' } },
-            take: 5
+            _sum: { totalAmount: true }
         });
 
-        const topCustomers = await Promise.all(topCustomerInvoices.map(async (item) => {
+        const topCustomerPosInvoices = await prisma.posinvoice.groupBy({
+            by: ['customerId'],
+            where: { companyId: compId, customerId: { not: null } },
+            _sum: { totalAmount: true }
+        });
+
+        const customerRevenues = {};
+        topCustomerInvoices.forEach(item => {
+            if (item.customerId) {
+                customerRevenues[item.customerId] = (customerRevenues[item.customerId] || 0) + (item._sum.totalAmount || 0);
+            }
+        });
+        topCustomerPosInvoices.forEach(item => {
+            if (item.customerId) {
+                customerRevenues[item.customerId] = (customerRevenues[item.customerId] || 0) + (item._sum.totalAmount || 0);
+            }
+        });
+
+        const topCustomerIds = Object.keys(customerRevenues)
+            .map(id => ({ customerId: parseInt(id), totalAmount: customerRevenues[id] }))
+            .sort((a, b) => b.totalAmount - a.totalAmount)
+            .slice(0, 5);
+
+        const topCustomersRaw = await Promise.all(topCustomerIds.map(async (item) => {
             const customer = await prisma.customer.findUnique({
                 where: { id: item.customerId },
                 select: { name: true, email: true, profileImage: true }
             });
+            if (!customer) return null;
             return {
                 ...customer,
-                totalSales: item._sum.totalAmount
+                totalSales: item.totalAmount
             };
         }));
+        const topCustomers = topCustomersRaw.filter(Boolean);
 
         res.json({
             success: true,
