@@ -1,6 +1,25 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const standardUnitsMap = {
+    // Weight
+    'microgram': 'Weight', 'milligram': 'Weight', 'gram': 'Weight', 'kilogram (kg)': 'Weight', 'metric ton (tonne)': 'Weight', 'quintal': 'Weight', 'pound (lb)': 'Weight', 'ounce (oz)': 'Weight', 'stone': 'Weight', 'carat': 'Weight',
+    // Area
+    'square millimeter': 'Area', 'square centimeter': 'Area', 'square meter': 'Area', 'square kilometer': 'Area', 'square inch': 'Area', 'square foot': 'Area', 'square yard': 'Area', 'acre': 'Area', 'hectare': 'Area', 'bigha': 'Area', 'kanal': 'Area', 'cent': 'Area',
+    // Volume
+    'millilitre (ml)': 'Volume', 'litre (l)': 'Volume', 'cubic centimeter (cc)': 'Volume', 'cubic meter': 'Volume', 'cubic inch': 'Volume', 'cubic foot': 'Volume', 'gallon': 'Volume', 'barrel': 'Volume', 'pint': 'Volume', 'quart': 'Volume', 'fluid ounce': 'Volume',
+    // Length
+    'nanometer': 'Length', 'micrometer': 'Length', 'millimeter': 'Length', 'centimeter': 'Length', 'meter': 'Length', 'kilometer': 'Length', 'inch': 'Length', 'foot': 'Length', 'yard': 'Length', 'mile': 'Length',
+    // Count
+    'piece': 'Count', 'unit': 'Count', 'dozen': 'Count', 'pair': 'Count', 'set': 'Count', 'box': 'Count', 'packet': 'Count', 'carton': 'Count', 'bundle': 'Count', 'roll': 'Count', 'strip': 'Count', 'bottle': 'Count', 'bag': 'Count', 'can': 'Count', 'jar': 'Count', 'tube': 'Count'
+};
+
+const getCategoryForUnitName = (name, defaultCategory) => {
+    if (!name) return defaultCategory;
+    const cleanName = String(name).trim().toLowerCase();
+    return standardUnitsMap[cleanName] || defaultCategory;
+};
+
 // Get all UOMs
 const getUOMs = async (req, res) => {
     try {
@@ -75,19 +94,46 @@ const createUOM = async (req, res) => {
                 return res.status(400).json({ success: false, message: 'A positive conversion rate is required for compound units' });
             }
 
-            parsedBaseUnitId = parseInt(baseUnitId);
             parsedConversionRate = parseFloat(conversionRate);
 
-            // Verify base unit exists, belongs to same company, and is a Simple unit
-            const baseUnit = await prisma.uom.findFirst({
-                where: { id: parsedBaseUnitId, companyId: parseInt(companyId) }
-            });
+            // If baseUnitId is a string (e.g. standard unit name like "Piece"), find or create it
+            if (isNaN(baseUnitId)) {
+                const baseUnitName = String(baseUnitId).trim();
+                let baseUom = await prisma.uom.findFirst({
+                    where: {
+                        companyId: parseInt(companyId),
+                        unitName: baseUnitName,
+                        uomType: 'Simple'
+                    }
+                });
 
-            if (!baseUnit) {
-                return res.status(400).json({ success: false, message: 'Select a valid base unit belonging to this company' });
-            }
-            if (baseUnit.uomType !== 'Simple') {
-                return res.status(400).json({ success: false, message: 'Compound units must convert directly to a Simple unit' });
+                if (!baseUom) {
+                    const baseUnitCategory = getCategoryForUnitName(baseUnitName, category);
+                    baseUom = await prisma.uom.create({
+                        data: {
+                            category: baseUnitCategory,
+                            unitName: baseUnitName,
+                            symbol: baseUnitName.slice(0, 3).toUpperCase(),
+                            uomType: 'Simple',
+                            companyId: parseInt(companyId)
+                        }
+                    });
+                }
+                parsedBaseUnitId = baseUom.id;
+            } else {
+                parsedBaseUnitId = parseInt(baseUnitId);
+
+                // Verify base unit exists, belongs to same company, and is a Simple unit
+                const baseUnit = await prisma.uom.findFirst({
+                    where: { id: parsedBaseUnitId, companyId: parseInt(companyId) }
+                });
+
+                if (!baseUnit) {
+                    return res.status(400).json({ success: false, message: 'Select a valid base unit belonging to this company' });
+                }
+                if (baseUnit.uomType !== 'Simple') {
+                    return res.status(400).json({ success: false, message: 'Compound units must convert directly to a Simple unit' });
+                }
             }
         }
 
@@ -151,26 +197,54 @@ const updateUOM = async (req, res) => {
             if (!baseUnitId) {
                 return res.status(400).json({ success: false, message: 'Base unit is required for compound units' });
             }
-            if (parseInt(baseUnitId) === parseInt(id)) {
-                return res.status(400).json({ success: false, message: 'A compound unit cannot convert to itself' });
-            }
             if (!conversionRate || parseFloat(conversionRate) <= 0) {
                 return res.status(400).json({ success: false, message: 'A positive conversion rate is required for compound units' });
             }
 
-            parsedBaseUnitId = parseInt(baseUnitId);
             parsedConversionRate = parseFloat(conversionRate);
 
-            // Verify base unit exists, belongs to same company, and is a Simple unit
-            const baseUnit = await prisma.uom.findFirst({
-                where: { id: parsedBaseUnitId, companyId: parseInt(companyId) }
-            });
+            // If baseUnitId is a string (e.g. standard unit name like "Piece"), find or create it
+            if (isNaN(baseUnitId)) {
+                const baseUnitName = String(baseUnitId).trim();
+                let baseUom = await prisma.uom.findFirst({
+                    where: {
+                        companyId: parseInt(companyId),
+                        unitName: baseUnitName,
+                        uomType: 'Simple'
+                    }
+                });
 
-            if (!baseUnit) {
-                return res.status(400).json({ success: false, message: 'Select a valid base unit belonging to this company' });
-            }
-            if (baseUnit.uomType !== 'Simple') {
-                return res.status(400).json({ success: false, message: 'Compound units must convert directly to a Simple unit' });
+                if (!baseUom) {
+                    const baseUnitCategory = getCategoryForUnitName(baseUnitName, category);
+                    baseUom = await prisma.uom.create({
+                        data: {
+                            category: baseUnitCategory,
+                            unitName: baseUnitName,
+                            symbol: baseUnitName.slice(0, 3).toUpperCase(),
+                            uomType: 'Simple',
+                            companyId: parseInt(companyId)
+                        }
+                    });
+                }
+                parsedBaseUnitId = baseUom.id;
+            } else {
+                parsedBaseUnitId = parseInt(baseUnitId);
+
+                if (parsedBaseUnitId === parseInt(id)) {
+                    return res.status(400).json({ success: false, message: 'A compound unit cannot convert to itself' });
+                }
+
+                // Verify base unit exists, belongs to same company, and is a Simple unit
+                const baseUnit = await prisma.uom.findFirst({
+                    where: { id: parsedBaseUnitId, companyId: parseInt(companyId) }
+                });
+
+                if (!baseUnit) {
+                    return res.status(400).json({ success: false, message: 'Select a valid base unit belonging to this company' });
+                }
+                if (baseUnit.uomType !== 'Simple') {
+                    return res.status(400).json({ success: false, message: 'Compound units must convert directly to a Simple unit' });
+                }
             }
         }
 
