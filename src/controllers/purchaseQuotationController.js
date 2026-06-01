@@ -11,6 +11,37 @@ const createQuotation = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide all required fields' });
         }
 
+        const vendor = await prisma.vendor.findUnique({
+            where: { id: parseInt(vendorId) }
+        });
+        if (!vendor) {
+            return res.status(404).json({ success: false, message: 'Vendor not found' });
+        }
+        if (vendor.creationDate) {
+            const getLocalDateString = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return null;
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const getFormattedDate = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return '';
+                return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+            };
+
+            const txDateStr = getLocalDateString(date);
+            const vendDateStr = getLocalDateString(vendor.creationDate);
+            if (txDateStr && vendDateStr && txDateStr < vendDateStr) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Transaction date (${getFormattedDate(date)}) cannot be before Vendor '${vendor.name}' creation date (${getFormattedDate(vendor.creationDate)})`
+                });
+            }
+        }
+
         let subtotal = 0;
         let taxAmount = 0;
         let totalDiscount = 0;
@@ -160,6 +191,37 @@ const updateQuotation = async (req, res) => {
 
         if (!existing) {
             return res.status(404).json({ success: false, message: 'Quotation not found' });
+        }
+
+        const vendor = await prisma.vendor.findUnique({
+            where: { id: parseInt(vendorId) }
+        });
+        if (!vendor) {
+            return res.status(404).json({ success: false, message: 'Vendor not found' });
+        }
+        if (vendor.creationDate) {
+            const getLocalDateString = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return null;
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const getFormattedDate = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return '';
+                return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+            };
+
+            const txDateStr = getLocalDateString(date);
+            const vendDateStr = getLocalDateString(vendor.creationDate);
+            if (txDateStr && vendDateStr && txDateStr < vendDateStr) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Transaction date (${getFormattedDate(date)}) cannot be before Vendor '${vendor.name}' creation date (${getFormattedDate(vendor.creationDate)})`
+                });
+            }
         }
 
         let subtotal = 0;

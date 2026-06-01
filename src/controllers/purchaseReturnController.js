@@ -72,7 +72,7 @@ const createReturn = async (req, res) => {
 
             const debitLedgerId = vendor.ledger.id;
             const creditLedgerId = inventoryLedger?.id || purchaseLedger?.id;
-            
+
             if (!creditLedgerId) throw new Error('Could not find appropriate ledger (Inventory or Purchase) for return');
 
 
@@ -284,7 +284,7 @@ const deleteReturn = async (req, res) => {
 
             // 2. Revert Ledger Balances and Vendor Balance
             const txs = await tx.transaction.findMany({
-                where: { 
+                where: {
                     companyId: parseInt(companyId),
                     voucherNumber: purchaseReturn.returnNumber,
                     voucherType: 'PURCHASE_RETURN'
@@ -309,9 +309,9 @@ const deleteReturn = async (req, res) => {
 
             // 3. Cleanup Accounting Records
             const journalEntryIds = [...new Set(txs.map(t => t.journalEntryId).filter(Boolean))];
-            
+
             await tx.transaction.deleteMany({
-                where: { 
+                where: {
                     companyId: parseInt(companyId),
                     voucherNumber: purchaseReturn.returnNumber,
                     voucherType: 'PURCHASE_RETURN'

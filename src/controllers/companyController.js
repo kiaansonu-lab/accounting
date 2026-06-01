@@ -245,6 +245,25 @@ const updateCompany = async (req, res) => {
             invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined
         };
 
+        if (req.files) {
+            if (req.files.logo && req.files.logo[0]) {
+                const logoFile = req.files.logo[0];
+                if (isCloudinaryConfigured) {
+                    updateData.logo = logoFile.path;
+                } else if (logoFile.buffer) {
+                    updateData.logo = `data:${logoFile.mimetype};base64,${logoFile.buffer.toString('base64')}`;
+                }
+            }
+            if (req.files.invoiceLogo && req.files.invoiceLogo[0]) {
+                const invoiceLogoFile = req.files.invoiceLogo[0];
+                if (isCloudinaryConfigured) {
+                    updateData.invoiceLogo = invoiceLogoFile.path;
+                } else if (invoiceLogoFile.buffer) {
+                    updateData.invoiceLogo = `data:${invoiceLogoFile.mimetype};base64,${invoiceLogoFile.buffer.toString('base64')}`;
+                }
+            }
+        }
+
         console.log('💾 Updating company with data:', updateData);
 
         const company = await prisma.company.update({

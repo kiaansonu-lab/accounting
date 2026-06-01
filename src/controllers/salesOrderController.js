@@ -15,6 +15,37 @@ const createOrder = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide all required fields' });
         }
 
+        const customer = await prisma.customer.findUnique({
+            where: { id: parseInt(customerId) }
+        });
+        if (!customer) {
+            return res.status(404).json({ success: false, message: 'Customer not found' });
+        }
+        if (customer.creationDate) {
+            const getLocalDateString = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return null;
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const getFormattedDate = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return '';
+                return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+            };
+
+            const txDateStr = getLocalDateString(date);
+            const custDateStr = getLocalDateString(customer.creationDate);
+            if (txDateStr && custDateStr && txDateStr < custDateStr) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Transaction date (${getFormattedDate(date)}) cannot be before Customer '${customer.name}' creation date (${getFormattedDate(customer.creationDate)})`
+                });
+            }
+        }
+
         let subtotal = 0;
         let taxAmount = 0;
         let totalDiscount = 0;
@@ -230,6 +261,37 @@ const updateOrder = async (req, res) => {
 
         if (!companyId) {
             return res.status(400).json({ success: false, message: 'Company ID is required' });
+        }
+
+        const customer = await prisma.customer.findUnique({
+            where: { id: parseInt(customerId) }
+        });
+        if (!customer) {
+            return res.status(404).json({ success: false, message: 'Customer not found' });
+        }
+        if (customer.creationDate) {
+            const getLocalDateString = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return null;
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const getFormattedDate = (dateObj) => {
+                const d = new Date(dateObj);
+                if (isNaN(d.getTime())) return '';
+                return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+            };
+
+            const txDateStr = getLocalDateString(date);
+            const custDateStr = getLocalDateString(customer.creationDate);
+            if (txDateStr && custDateStr && txDateStr < custDateStr) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Transaction date (${getFormattedDate(date)}) cannot be before Customer '${customer.name}' creation date (${getFormattedDate(customer.creationDate)})`
+                });
+            }
         }
 
         const existing = await prisma.salesorder.findFirst({

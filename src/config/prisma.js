@@ -24,8 +24,8 @@ const getFormattedDate = (dateObj) => {
 // Global Prisma middleware to validate transaction dates
 prisma.$use(async (params, next) => {
     if (params.model === 'transaction' && (params.action === 'create' || params.action === 'createMany')) {
-        const transactions = params.action === 'create' 
-            ? [params.args.data] 
+        const transactions = params.action === 'create'
+            ? [params.args.data]
             : (Array.isArray(params.args.data) ? params.args.data : [params.args.data]);
 
         for (const txData of transactions) {

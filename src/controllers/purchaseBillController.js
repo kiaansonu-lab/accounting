@@ -178,11 +178,11 @@ const createBill = async (req, res) => {
 
             // 5. DR Inventory / Purchases, CR Vendor
             const creditLedgerId = vendor.ledger.id;
-            
+
             const ledgerProductAmount = totalProductAmount * docExchangeRate;
             const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
             const ledgerTaxAmount = parseFloat(taxAmount || 0) * docExchangeRate;
-            
+
             // Calculate base total and overall discount amount
             let calculatedSubtotal = 0;
             let calculatedItemDiscount = 0;
@@ -192,19 +192,19 @@ const createBill = async (req, res) => {
                 const rate = item.rate || 0;
                 const itemDisc = item.discount || 0;
                 const taxRate = item.taxRate || 0;
-                
+
                 const lineGross = qty * rate;
                 const lineTaxable = lineGross - itemDisc;
                 const lineTax = (lineTaxable * taxRate) / 100;
-                
+
                 calculatedSubtotal += lineGross;
                 calculatedItemDiscount += itemDisc;
                 calculatedTaxSum += lineTax;
             });
             const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + (parseFloat(taxAmount) || calculatedTaxSum);
             const ovVal = parseFloat(overallDiscount) || 0;
-            const overallDiscountAmt = overallDiscountType === 'percentage' 
-                ? (baseTotal * ovVal / 100) 
+            const overallDiscountAmt = overallDiscountType === 'percentage'
+                ? (baseTotal * ovVal / 100)
                 : ovVal;
             const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
             const ledgerTotalAmount = parseFloat(totalAmount || 0) * docExchangeRate;
@@ -226,7 +226,7 @@ const createBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: inventoryLedger.id }, data: { currentBalance: { increment: ledgerProductAmount } } });
-                
+
                 // Update Physical Stock AND Inventory Valuation Layers
                 if (!grnId) {
                     // Get inventory valuation method
@@ -747,7 +747,7 @@ const updateBill = async (req, res) => {
             const ledgerProductAmount = totalProductAmount * docExchangeRate;
             const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
             const ledgerTaxAmount = parseFloat(finalTaxAmount || 0) * docExchangeRate;
-            
+
             // Calculate base total and overall discount amount
             let calculatedSubtotal = 0;
             let calculatedItemDiscount = 0;
@@ -757,11 +757,11 @@ const updateBill = async (req, res) => {
                 const rate = item.rate || 0;
                 const itemDisc = item.discount || 0;
                 const taxRate = item.taxRate || 0;
-                
+
                 const lineGross = qty * rate;
                 const lineTaxable = lineGross - itemDisc;
                 const lineTax = (lineTaxable * taxRate) / 100;
-                
+
                 calculatedSubtotal += lineGross;
                 calculatedItemDiscount += itemDisc;
                 calculatedTaxSum += lineTax;
@@ -770,8 +770,8 @@ const updateBill = async (req, res) => {
             const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : oldBill.overallDiscount;
             const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : oldBill.overallDiscountType;
             const ovVal = parseFloat(currentOverallDiscount) || 0;
-            const overallDiscountAmt = currentOverallDiscountType === 'percentage' 
-                ? (baseTotal * ovVal / 100) 
+            const overallDiscountAmt = currentOverallDiscountType === 'percentage'
+                ? (baseTotal * ovVal / 100)
                 : ovVal;
             const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
             const ledgerTotalAmount = parseFloat(finalTotalAmount || 0) * docExchangeRate;
