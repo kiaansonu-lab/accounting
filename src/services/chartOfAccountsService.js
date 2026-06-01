@@ -340,6 +340,10 @@ const initializeChartOfAccounts = async (companyId) => {
             const otherIncomeSub = await prisma.accountsubgroup.create({
                 data: { name: 'Other Income', groupId: incomeGroup.id, companyId }
             });
+            // Discount Received on Purchase → INCOME (vendor gives us discount)
+            await prisma.ledger.create({
+                data: { name: 'Discount Received on Purchase', groupId: incomeGroup.id, subGroupId: otherIncomeSub.id, companyId, openingBalance: 0, currentBalance: 0 }
+            });
 
             // 5. EXPENSES
             const expensesGroup = await prisma.accountgroup.create({
@@ -367,6 +371,10 @@ const initializeChartOfAccounts = async (companyId) => {
             });
             await prisma.ledger.create({
                 data: { name: 'Inventory Adjustment Expense', groupId: expensesGroup.id, subGroupId: operatingSub.id, companyId, openingBalance: 0, currentBalance: 0 }
+            });
+            // Discount Allowed on Sale → EXPENSES (we give customer a discount)
+            await prisma.ledger.create({
+                data: { name: 'Discount Allowed on Sale', groupId: expensesGroup.id, subGroupId: operatingSub.id, companyId, openingBalance: 0, currentBalance: 0 }
             });
         };
 
@@ -958,6 +966,18 @@ const deleteLedger = async (id, companyId) => {
     try {
         const ledgerId = parseInt(id);
 
+        // Fetch the ledger first to see if it is linked to a customer or vendor
+        const ledger = await prisma.ledger.findFirst({
+            where: {
+                id: ledgerId,
+                companyId: companyId
+            }
+        });
+
+        if (!ledger) {
+            throw new Error('Ledger not found');
+        }
+
         // 1. Check for associated transactions
         const transactionCount = await prisma.transaction.count({
             where: {
@@ -973,6 +993,36 @@ const deleteLedger = async (id, companyId) => {
             throw new Error('Cannot delete account because it has associated transactions. Please delete the transactions first.');
         }
 
+        // 2. Cascade delete linked customer or vendor if applicable
+        if (ledger.customerId) {
+            // Check for customer invoices
+            const invoiceCount = await prisma.invoice.count({
+                where: { customerId: ledger.customerId }
+            });
+            if (invoiceCount > 0) {
+                throw new Error('Cannot delete customer account because this customer has associated invoices.');
+            }
+            await prisma.customer.delete({
+                where: { id: ledger.customerId }
+            });
+            return true;
+        }
+
+        if (ledger.vendorId) {
+            // Check for vendor purchase bills
+            const billCount = await prisma.purchaseBill.count({
+                where: { vendorId: ledger.vendorId }
+            });
+            if (billCount > 0) {
+                throw new Error('Cannot delete vendor account because this vendor has associated purchase bills.');
+            }
+            await prisma.vendor.delete({
+                where: { id: ledger.vendorId }
+            });
+            return true;
+        }
+
+        // 3. Fallback to normal ledger deletion
         const result = await prisma.ledger.deleteMany({
             where: {
                 id: ledgerId,

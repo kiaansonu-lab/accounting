@@ -816,8 +816,8 @@ const getBalanceSheet = async (req, res) => {
                 balance = opening + getCredit(ledger.id) - getDebit(ledger.id);
             }
 
-            // Only process non-zero balances
-            if (Math.abs(balance) < 0.01 && !ledger.name.toLowerCase().includes('inventory asset')) return;
+            // Only process non-zero balances (Equity accounts should always show in Balance Sheet)
+            if (Math.abs(balance) < 0.01 && !ledger.name.toLowerCase().includes('inventory asset') && groupType !== 'EQUITY') return;
 
             const name = ledger.name;
 
@@ -1087,8 +1087,7 @@ const getProfitLoss = async (req, res) => {
 
             // Populate Statement Structure
             ledgers.forEach(ledger => {
-                const val = ledgerValues[ledger.id];
-                if (Math.abs(val) < 0.01) return;
+                const val = ledgerValues[ledger.id] !== undefined ? ledgerValues[ledger.id] : 0;
 
                 const item = { id: ledger.id, name: ledger.name, value: val };
                 const groupType = ledger.accountgroup.type;

@@ -182,7 +182,31 @@ const createBill = async (req, res) => {
             const ledgerProductAmount = totalProductAmount * docExchangeRate;
             const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
             const ledgerTaxAmount = parseFloat(taxAmount || 0) * docExchangeRate;
-            const ledgerDiscountAmount = parseFloat(discountAmount || 0) * docExchangeRate;
+            
+            // Calculate base total and overall discount amount
+            let calculatedSubtotal = 0;
+            let calculatedItemDiscount = 0;
+            let calculatedTaxSum = 0;
+            billItems.forEach(item => {
+                const qty = item.quantity || 0;
+                const rate = item.rate || 0;
+                const itemDisc = item.discount || 0;
+                const taxRate = item.taxRate || 0;
+                
+                const lineGross = qty * rate;
+                const lineTaxable = lineGross - itemDisc;
+                const lineTax = (lineTaxable * taxRate) / 100;
+                
+                calculatedSubtotal += lineGross;
+                calculatedItemDiscount += itemDisc;
+                calculatedTaxSum += lineTax;
+            });
+            const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + (parseFloat(taxAmount) || calculatedTaxSum);
+            const ovVal = parseFloat(overallDiscount) || 0;
+            const overallDiscountAmt = overallDiscountType === 'percentage' 
+                ? (baseTotal * ovVal / 100) 
+                : ovVal;
+            const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
             const ledgerTotalAmount = parseFloat(totalAmount || 0) * docExchangeRate;
 
             // Entry for Products (Debit Inventory)
@@ -723,7 +747,33 @@ const updateBill = async (req, res) => {
             const ledgerProductAmount = totalProductAmount * docExchangeRate;
             const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
             const ledgerTaxAmount = parseFloat(finalTaxAmount || 0) * docExchangeRate;
-            const ledgerDiscountAmount = parseFloat(finalDiscountAmount || 0) * docExchangeRate;
+            
+            // Calculate base total and overall discount amount
+            let calculatedSubtotal = 0;
+            let calculatedItemDiscount = 0;
+            let calculatedTaxSum = 0;
+            finalBillItems.forEach(item => {
+                const qty = item.quantity || 0;
+                const rate = item.rate || 0;
+                const itemDisc = item.discount || 0;
+                const taxRate = item.taxRate || 0;
+                
+                const lineGross = qty * rate;
+                const lineTaxable = lineGross - itemDisc;
+                const lineTax = (lineTaxable * taxRate) / 100;
+                
+                calculatedSubtotal += lineGross;
+                calculatedItemDiscount += itemDisc;
+                calculatedTaxSum += lineTax;
+            });
+            const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + (parseFloat(finalTaxAmount) || calculatedTaxSum);
+            const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : oldBill.overallDiscount;
+            const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : oldBill.overallDiscountType;
+            const ovVal = parseFloat(currentOverallDiscount) || 0;
+            const overallDiscountAmt = currentOverallDiscountType === 'percentage' 
+                ? (baseTotal * ovVal / 100) 
+                : ovVal;
+            const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
             const ledgerTotalAmount = parseFloat(finalTotalAmount || 0) * docExchangeRate;
 
             if (totalProductAmount > 0 && inventoryLedger) {

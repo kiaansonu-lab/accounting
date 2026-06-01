@@ -544,8 +544,18 @@ const deleteCustomer = async (req, res) => {
 
         // Delete in transaction
         await prisma.$transaction(async (tx) => {
-            // 1. Nullify references to avoid FK constraints during deletion
+            let ledgerExists = false;
             if (customer.ledgerId) {
+                const ledger = await tx.ledger.findUnique({
+                    where: { id: customer.ledgerId }
+                });
+                if (ledger) {
+                    ledgerExists = true;
+                }
+            }
+
+            // 1. Nullify references to avoid FK constraints during deletion
+            if (ledgerExists) {
                 // Update customer to remove ledger reference
                 await tx.customer.update({
                     where: { id: customer.id },
@@ -565,7 +575,7 @@ const deleteCustomer = async (req, res) => {
             });
 
             // 3. Delete associated Ledger if exists
-            if (customer.ledgerId) {
+            if (ledgerExists) {
                 await tx.ledger.delete({
                     where: { id: customer.ledgerId }
                 });

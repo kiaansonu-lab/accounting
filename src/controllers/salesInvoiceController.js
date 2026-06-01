@@ -50,38 +50,14 @@ const createInvoice = async (req, res) => {
             include: { ledger: true }
         });
 
-        if (!customer || !customer.ledgerId) {
-            return res.status(400).json({ success: false, message: 'Customer ledger not found' });
+        if (!customer) {
+            return res.status(400).json({ success: false, message: 'Customer not found' });
         }
+        // customer.ledger will be null if the referenced ledger was deleted (orphaned ledgerId)
+        // We'll auto-repair this inside the transaction if needed.
 
-        // 2. Resolve Standard Ledgers (Auto-create if missing)
-        const resolveLedger = async (txOrPrisma, namePattern, type) => {
-            let ledger = await txOrPrisma.ledger.findFirst({
-                where: { companyId: parseInt(companyId), name: { contains: namePattern } }
-            });
-            if (!ledger) {
-                const group = await txOrPrisma.accountgroup.findFirst({ where: { companyId: parseInt(companyId), type: type } });
-                if (group) {
-                    ledger = await txOrPrisma.ledger.create({
-                        data: {
-                            name: namePattern,
-                            groupId: group.id,
-                            companyId: parseInt(companyId),
-                            isControlAccount: true
-                        }
-                    });
-                }
-            }
-            return ledger;
-        };
 
-        const salesLedger = await resolveLedger(prisma, 'Sales Income', 'INCOME');
-        const cogsLedger = await resolveLedger(prisma, 'Cost of Goods Sold', 'EXPENSES');
-        const inventoryLedger = await resolveLedger(prisma, 'Inventory Asset', 'ASSETS');
-        const taxLedger = await resolveLedger(prisma, 'Tax', 'LIABILITIES');
-
-        if (!salesLedger) throw new Error('Could not resolve or create Sales Income ledger');
-
+        // Ledger resolution happens INSIDE the transaction (see below) to avoid snapshot isolation FK violations
 
 
         let subtotal = 0;
@@ -127,6 +103,36 @@ const createInvoice = async (req, res) => {
         }
 
         const result = await prisma.$transaction(async (tx) => {
+
+            // Resolve Standard Ledgers inside tx to avoid snapshot isolation FK issues
+            const resolveLedger = async (namePattern, type) => {
+                let ledger = await tx.ledger.findFirst({
+                    where: { companyId: parseInt(companyId), name: { contains: namePattern } }
+                });
+                if (!ledger) {
+                    const group = await tx.accountgroup.findFirst({ where: { companyId: parseInt(companyId), type: type } });
+                    if (group) {
+                        ledger = await tx.ledger.create({
+                            data: {
+                                name: namePattern,
+                                groupId: group.id,
+                                companyId: parseInt(companyId),
+                                isControlAccount: true
+                            }
+                        });
+                    }
+                }
+                return ledger;
+            };
+
+            const salesLedger = await resolveLedger('Sales Income', 'INCOME');
+            const cogsLedger = await resolveLedger('Cost of Goods Sold', 'EXPENSES');
+            const inventoryLedger = await resolveLedger('Inventory Asset', 'ASSETS');
+            const taxLedger = await resolveLedger('Tax', 'LIABILITIES');
+            const discountAllowedLedger = await resolveLedger('Discount Allowed on Sale', 'EXPENSES');
+
+            if (!salesLedger) throw new Error('Could not resolve or create Sales Income ledger');
+
             // A. Create Invoice
             const invoice = await tx.invoice.create({
                 data: {
@@ -317,10 +323,61 @@ const createInvoice = async (req, res) => {
 
             // C. Accounting Entries (Double Entry)
             const ledgerTotalAmount = totalAmount * docExchangeRate;
-            const ledgerSubtotal = subtotal * docExchangeRate;
+            const ledgerSubtotal = subtotal * docExchangeRate;  // Gross before discount
             const ledgerTax = finalTax * docExchangeRate;
+            const currentBaseTotal = (subtotal - totalDiscount) + finalTax;
+            const overallDiscountAmt = overallDiscountType === 'percentage'
+                ? (currentBaseTotal * (parseFloat(overallDiscount) || 0) / 100)
+                : (parseFloat(overallDiscount) || 0);
+            const ledgerDiscountAmount = (totalDiscount + overallDiscountAmt) * docExchangeRate;
 
-            // 1. DR Customer, CR Sales Income
+            // Resolve customer's actual ledger ID inside the transaction
+            // This self-heals orphaned ledgerId (ledger was deleted but customer still references old ID)
+            let customerLedgerId = customer.ledgerId;
+            if (customerLedgerId) {
+                const existingLedger = await tx.ledger.findUnique({ where: { id: customerLedgerId } });
+                if (!existingLedger) {
+                    // Ledger was deleted — create a new one and re-link customer
+                    const arGroup = await tx.accountgroup.findFirst({ where: { companyId: parseInt(companyId), type: 'ASSETS' } });
+                    if (!arGroup) throw new Error('No ASSETS account group found. Please initialize Chart of Accounts first.');
+                    const newLedger = await tx.ledger.create({
+                        data: {
+                            name: `${customer.name} (Receivable)`,
+                            groupId: arGroup.id,
+                            companyId: parseInt(companyId),
+                            isControlAccount: false
+                        }
+                    });
+                    customerLedgerId = newLedger.id;
+                    await tx.customer.update({
+                        where: { id: customer.id },
+                        data: { ledgerId: customerLedgerId }
+                    });
+                }
+            } else {
+                // No ledgerId at all — create one now
+                const arGroup = await tx.accountgroup.findFirst({ where: { companyId: parseInt(companyId), type: 'ASSETS' } });
+                if (!arGroup) throw new Error('No ASSETS account group found. Please initialize Chart of Accounts first.');
+                const newLedger = await tx.ledger.create({
+                    data: {
+                        name: `${customer.name} (Receivable)`,
+                        groupId: arGroup.id,
+                        companyId: parseInt(companyId),
+                        isControlAccount: false
+                    }
+                });
+                customerLedgerId = newLedger.id;
+                await tx.customer.update({
+                    where: { id: customer.id },
+                    data: { ledgerId: customerLedgerId }
+                });
+            }
+
+            // 1. DR Customer (Gross = subtotal + tax), CR Sales Income (gross subtotal)
+            //    Then: DR Discount Allowed on Sale, CR Customer (net the discount)
+            //    Net Customer Balance = totalAmount = subtotal - discount + tax
+            const ledgerGrossCustomer = (subtotal + finalTax) * docExchangeRate; // full gross before discount
+
             const journal = await tx.journalentry.create({
                 data: {
                     voucherNumber: invoiceNumber,
@@ -330,14 +387,15 @@ const createInvoice = async (req, res) => {
                 }
             });
 
+            // Entry 1: DR Customer (gross), CR Sales Income (gross subtotal)
             await tx.transaction.create({
                 data: {
                     date: new Date(date),
                     voucherType: 'SALES',
                     voucherNumber: invoiceNumber,
-                    debitLedgerId: customer.ledgerId,
+                    debitLedgerId: customerLedgerId,
                     creditLedgerId: salesLedger.id,
-                    amount: ledgerTotalAmount,
+                    amount: ledgerGrossCustomer,
                     narration: `Sales to ${customer.name}`,
                     companyId: parseInt(companyId),
                     journalEntryId: journal.id,
@@ -345,13 +403,14 @@ const createInvoice = async (req, res) => {
                 }
             });
 
-            // Update Customer Ledger (Asset Increases with Debit)
+
+            // Update Customer Ledger (Asset Increases with Debit - gross amount)
             await tx.ledger.update({
-                where: { id: customer.ledgerId },
-                data: { currentBalance: { increment: ledgerTotalAmount } }
+                where: { id: customerLedgerId },
+                data: { currentBalance: { increment: ledgerGrossCustomer } }
             });
 
-            // Update Sales Ledger (Income Increases with Credit)
+            // Update Sales Ledger (Income Increases with Credit - gross subtotal)
             await tx.ledger.update({
                 where: { id: salesLedger.id },
                 data: { currentBalance: { increment: ledgerSubtotal } }
@@ -362,6 +421,37 @@ const createInvoice = async (req, res) => {
                 await tx.ledger.update({
                     where: { id: taxLedger.id },
                     data: { currentBalance: { increment: ledgerTax } }
+                });
+            }
+
+            // 3. Handle Discount Allowed on Sale
+            //    DR Discount Allowed on Sale (Expense), CR Customer (reduces receivable)
+            if (ledgerDiscountAmount > 0 && discountAllowedLedger) {
+                await tx.transaction.create({
+                    data: {
+                        date: new Date(date),
+                        voucherType: 'SALES',
+                        voucherNumber: invoiceNumber,
+                        debitLedgerId: discountAllowedLedger.id,   // Expense increases with Debit
+                        creditLedgerId: customerLedgerId,           // Customer (receivable decreases with Credit)
+                        amount: ledgerDiscountAmount,
+                        narration: `Discount Allowed on Sale: ${invoiceNumber}`,
+                        companyId: parseInt(companyId),
+                        journalEntryId: journal.id,
+                        invoiceId: invoice.id
+                    }
+                });
+
+                // Discount Allowed Expense increases (Debit)
+                await tx.ledger.update({
+                    where: { id: discountAllowedLedger.id },
+                    data: { currentBalance: { increment: ledgerDiscountAmount } }
+                });
+
+                // Customer receivable decreases (Credit reduces the gross debit)
+                await tx.ledger.update({
+                    where: { id: customerLedgerId },
+                    data: { currentBalance: { decrement: ledgerDiscountAmount } }
                 });
             }
 
@@ -781,7 +871,17 @@ const updateInvoice = async (req, res) => {
 
             if (customer && customer.ledgerId && salesLedger) {
                 const docExchangeRate = updatedInvoice.exchangeRate || 1.0;
-                const ledgerTotalAmount = totalAmount * docExchangeRate;
+                const ledgerSubtotal = subtotal * docExchangeRate;
+                const ledgerTaxAmount = (parseFloat(taxAmount) || 0) * docExchangeRate;
+                const currentBaseTotal = (subtotal - totalDiscount) + (parseFloat(taxAmount) || 0);
+                const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : existingInvoice.overallDiscount;
+                const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : existingInvoice.overallDiscountType;
+                const overallDiscountAmt = currentOverallDiscountType === 'percentage'
+                    ? (currentBaseTotal * (parseFloat(currentOverallDiscount) || 0) / 100)
+                    : (parseFloat(currentOverallDiscount) || 0);
+                const ledgerDiscountAmount = (totalDiscount + overallDiscountAmt) * docExchangeRate;
+                // Gross = subtotal + tax (before discount)
+                const ledgerGrossCustomer = ledgerSubtotal + ledgerTaxAmount;
 
                 // Create new journal entry for the updated invoice
                 const journal = await tx.journalentry.create({
@@ -793,6 +893,7 @@ const updateInvoice = async (req, res) => {
                     }
                 });
 
+                // Entry 1: DR Customer (gross), CR Sales Income (gross subtotal)
                 await tx.transaction.create({
                     data: {
                         date: updatedInvoice.date,
@@ -800,7 +901,7 @@ const updateInvoice = async (req, res) => {
                         voucherNumber: updatedInvoice.invoiceNumber,
                         debitLedgerId: customer.ledgerId,
                         creditLedgerId: salesLedger.id,
-                        amount: ledgerTotalAmount,
+                        amount: ledgerGrossCustomer,
                         narration: `Updated Sales to ${customer.name}`,
                         companyId: parseInt(companyId),
                         invoiceId: updatedInvoice.id,
@@ -808,15 +909,47 @@ const updateInvoice = async (req, res) => {
                     }
                 });
 
-                // Update ledger balances with new amounts
+                // Update Customer Ledger (gross debit)
                 await tx.ledger.update({
                     where: { id: customer.ledgerId },
-                    data: { currentBalance: { increment: ledgerTotalAmount } }
+                    data: { currentBalance: { increment: ledgerGrossCustomer } }
                 });
+                // Update Sales Ledger (gross subtotal credit)
                 await tx.ledger.update({
                     where: { id: salesLedger.id },
-                    data: { currentBalance: { increment: ledgerTotalAmount } }
+                    data: { currentBalance: { increment: ledgerSubtotal } }
                 });
+
+                // Entry 2: DR Discount Allowed on Sale (Expense), CR Customer (reduces receivable)
+                if (ledgerDiscountAmount > 0) {
+                    const discountAllowedLedger = await tx.ledger.findFirst({
+                        where: { companyId: parseInt(companyId), name: { contains: 'Discount Allowed on Sale' } }
+                    });
+                    if (discountAllowedLedger) {
+                        await tx.transaction.create({
+                            data: {
+                                date: updatedInvoice.date,
+                                voucherType: 'SALES',
+                                voucherNumber: updatedInvoice.invoiceNumber,
+                                debitLedgerId: discountAllowedLedger.id,
+                                creditLedgerId: customer.ledgerId,
+                                amount: ledgerDiscountAmount,
+                                narration: `Discount Allowed on Sale: ${updatedInvoice.invoiceNumber}`,
+                                companyId: parseInt(companyId),
+                                invoiceId: updatedInvoice.id,
+                                journalEntryId: journal.id
+                            }
+                        });
+                        await tx.ledger.update({
+                            where: { id: discountAllowedLedger.id },
+                            data: { currentBalance: { increment: ledgerDiscountAmount } }
+                        });
+                        await tx.ledger.update({
+                            where: { id: customer.ledgerId },
+                            data: { currentBalance: { decrement: ledgerDiscountAmount } }
+                        });
+                    }
+                }
             }
 
             // F. Re-post COGS entry (was completely missing from update flow!)
