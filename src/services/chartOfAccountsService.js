@@ -1010,7 +1010,7 @@ const deleteLedger = async (id, companyId) => {
 
         if (ledger.vendorId) {
             // Check for vendor purchase bills
-            const billCount = await prisma.purchaseBill.count({
+            const billCount = await prisma.purchasebill.count({
                 where: { vendorId: ledger.vendorId }
             });
             if (billCount > 0) {
