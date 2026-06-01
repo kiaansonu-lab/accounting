@@ -59,6 +59,13 @@ const ensureInventoryLedgers = async (companyId) => {
     }
 };
 
+// Helper: set time to end of day (23:59:59.999) for inclusive date filtering
+const toEndOfDay = (dateStr) => {
+    const d = new Date(dateStr);
+    d.setHours(23, 59, 59, 999);
+    return d;
+};
+
 const getSalesReport = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.query.companyId;
@@ -76,7 +83,7 @@ const getSalesReport = async (req, res) => {
         if (startDate && endDate) {
             whereClause.date = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -150,7 +157,7 @@ const getSalesByItemReport = async (req, res) => {
         if (startDate && endDate) {
             dateFilter = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -186,9 +193,9 @@ const getSalesByItemReport = async (req, res) => {
             return acc;
         }, {});
 
-        const result = Object.values(grouped).map(item => ({
+        const result = Object.values(grouped).map(({ invoiceIds, ...item }) => ({
             ...item,
-            invoiceCount: item.invoiceIds.size,
+            invoiceCount: invoiceIds.size,
             avgRate: item.totalQty > 0 ? (item.totalAmount / item.totalQty).toFixed(2) : 0
         }));
 
@@ -209,7 +216,7 @@ const getSalesByCustomerReport = async (req, res) => {
         if (startDate && endDate) {
             dateFilter = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -260,7 +267,7 @@ const getSalesBySalesmanReport = async (req, res) => {
 
         let dateFilter = {};
         if (startDate && endDate) {
-            dateFilter = { gte: new Date(startDate), lte: new Date(endDate) };
+            dateFilter = { gte: new Date(startDate), lte: toEndOfDay(endDate) };
         }
 
         const invoices = await prisma.invoice.findMany({
@@ -271,15 +278,11 @@ const getSalesBySalesmanReport = async (req, res) => {
             where: { companyId: parseInt(companyId), date: dateFilter }
         });
 
-        const users = await prisma.user.findMany({
-            where: { companyId: parseInt(companyId) },
-            select: { id: true, name: true }
-        });
-        const userMap = users.reduce((acc, u) => ({ ...acc, [u.id]: u.name }), {});
-
         const allInvoices = [...invoices, ...posInvoices];
         const grouped = allInvoices.reduce((acc, inv) => {
-            const salesman = userMap[inv.createdBy] || 'Administrator';
+            // Note: salesman tracking requires a 'createdBy' field on the invoice model.
+            // Not currently in schema — grouped under 'Administrator' until field is added.
+            const salesman = 'Administrator';
             if (!acc[salesman]) {
                 acc[salesman] = { salesman, totalInvoices: 0, totalSales: 0, totalPaid: 0, totalPending: 0 };
             }
@@ -313,7 +316,7 @@ const getPurchaseReport = async (req, res) => {
         if (startDate && endDate) {
             whereClause.date = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -384,7 +387,7 @@ const getPurchaseByItemReport = async (req, res) => {
         if (startDate && endDate) {
             dateFilter = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -420,9 +423,9 @@ const getPurchaseByItemReport = async (req, res) => {
             return acc;
         }, {});
 
-        const result = Object.values(grouped).map(item => ({
+        const result = Object.values(grouped).map(({ billIds, ...item }) => ({
             ...item,
-            billCount: item.billIds.size,
+            billCount: billIds.size,
             avgRate: item.totalQty > 0 ? (item.totalAmount / item.totalQty).toFixed(2) : 0
         }));
 
@@ -443,7 +446,7 @@ const getPurchaseByVendorReport = async (req, res) => {
         if (startDate && endDate) {
             dateFilter = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -490,7 +493,7 @@ const getPosReport = async (req, res) => {
         if (startDate && endDate) {
             whereClause.createdAt = {
                 gte: new Date(startDate),
-                lte: new Date(endDate)
+                lte: toEndOfDay(endDate)
             };
         }
 
@@ -563,7 +566,7 @@ const getTaxReport = async (req, res) => {
                 companyId: parseInt(companyId),
                 createdAt: {
                     gte: new Date(`${year}-01-01`),
-                    lte: new Date(`${year}-12-31`)
+                    lte: toEndOfDay(`${year}-12-31`)
                 }
             },
             include: { customer: { select: { billingState: true } } }
@@ -606,7 +609,7 @@ const getTaxReport = async (req, res) => {
                 companyId: parseInt(companyId),
                 date: {
                     gte: new Date(`${year}-01-01`),
-                    lte: new Date(`${year}-12-31`)
+                    lte: toEndOfDay(`${year}-12-31`)
                 }
             },
             include: { vendor: { select: { billingState: true } } }
@@ -934,7 +937,7 @@ const getCashFlowStatement = async (req, res) => {
                     companyId: parseInt(companyId),
                     [dateField]: {
                         gte: new Date(`${year}-01-01`),
-                        lte: new Date(`${year}-12-31`)
+                        lte: toEndOfDay(`${year}-12-31`)
                     }
                 },
                 _sum: { [sumField]: true }
@@ -1306,7 +1309,11 @@ const getDayBook = async (req, res) => {
         // Date Range Logic
         let dateFilter = {};
         if (startDate && endDate) {
-            dateFilter = { gte: new Date(startDate), lte: new Date(endDate) };
+            const start = new Date(startDate);
+            start.setHours(0, 0, 0, 0);
+            const end = new Date(endDate);
+            end.setHours(23, 59, 59, 999); // include full end day
+            dateFilter = { gte: start, lte: end };
         } else {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -1395,15 +1402,15 @@ const getDayBook = async (req, res) => {
                 where: {
                     companyId: companyIdInt,
                     date: dateFilter,
-                    ...(lId ? { OR: [{ customer: { ledgerId: lId } }, { ledgerId: lId }] } : {})
+                    ...(lId ? { OR: [{ customer: { ledgerId: lId } }, { cashBankAccountId: lId }] } : {})
                 },
-                include: { customer: true, ledger: true }
+                include: { customer: true, cashBankAccount: true }
             }).then(items => items.map(rec => ({
                 id: `REC-${rec.id}`,
                 date: rec.date,
                 voucherType: 'Receipt',
                 voucherNo: rec.receiptNumber,
-                ledger: rec.customer?.name || rec.ledger?.name || 'Unknown',
+                ledger: rec.customer?.name || rec.cashBankAccount?.name || 'Unknown',
                 description: 'Payment Received',
                 debit: 0,
                 credit: rec.amount,
@@ -1417,15 +1424,15 @@ const getDayBook = async (req, res) => {
                 where: {
                     companyId: companyIdInt,
                     date: dateFilter,
-                    ...(lId ? { OR: [{ vendor: { ledgerId: lId } }, { ledgerId: lId }] } : {})
+                    ...(lId ? { OR: [{ vendor: { ledgerId: lId } }, { cashBankAccountId: lId }] } : {})
                 },
-                include: { vendor: true, ledger: true }
+                include: { vendor: true, bankLedger: true }
             }).then(items => items.map(pay => ({
                 id: `PAY-${pay.id}`,
                 date: pay.date,
                 voucherType: 'Payment',
                 voucherNo: pay.paymentNumber,
-                ledger: pay.vendor?.name || pay.ledger?.name || 'Unknown',
+                ledger: pay.vendor?.name || pay.bankLedger?.name || 'Unknown',
                 description: 'Payment Made',
                 debit: pay.amount,
                 credit: 0,

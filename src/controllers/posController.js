@@ -55,6 +55,27 @@ const createPOSInvoice = async (req, res) => {
         // 2. Start Transaction
         const result = await prisma.$transaction(async (tx) => {
 
+            // Helper to resolve or create ledgers inside tx
+            const resolveLedger = async (namePattern, type) => {
+                let ledger = await tx.ledger.findFirst({
+                    where: { companyId: parseInt(currentCompanyId), name: { contains: namePattern } }
+                });
+                if (!ledger) {
+                    const group = await tx.accountgroup.findFirst({ where: { companyId: parseInt(currentCompanyId), type: type } });
+                    if (group) {
+                        ledger = await tx.ledger.create({
+                            data: {
+                                name: namePattern,
+                                groupId: group.id,
+                                companyId: parseInt(currentCompanyId),
+                                isControlAccount: true
+                            }
+                        });
+                    }
+                }
+                return ledger;
+            };
+
             // A. Generate Invoice Number
             const count = await tx.posinvoice.count({ where: { companyId: parseInt(currentCompanyId) } });
             const invoiceNumber = `POS-${String(count + 1).padStart(6, '0')}`;
@@ -219,6 +240,7 @@ const createPOSInvoice = async (req, res) => {
             // E. Accounting Entries
 
             // 1. Initial Sale (Dr Customer/Walk-in, Cr Sales)
+            const saleAmount = parseFloat((invoiceTotal - totalTax).toFixed(2));
             await tx.transaction.create({
                 data: {
                     date: new Date(),
@@ -227,15 +249,38 @@ const createPOSInvoice = async (req, res) => {
                     companyId: parseInt(currentCompanyId),
                     debitLedgerId: debitLedgerId,
                     creditLedgerId: salesLedger.id,
-                    amount: invoiceTotal,
+                    amount: saleAmount,
                     narration: `POS Sale generated - ${invoiceNumber}`,
                     posInvoiceId: posInvoice.id,
                     updatedAt: new Date()
                 }
             });
 
-            await tx.ledger.update({ where: { id: debitLedgerId }, data: { currentBalance: { increment: invoiceTotal } } });
-            await tx.ledger.update({ where: { id: salesLedger.id }, data: { currentBalance: { increment: invoiceTotal } } });
+            await tx.ledger.update({ where: { id: debitLedgerId }, data: { currentBalance: { increment: saleAmount } } });
+            await tx.ledger.update({ where: { id: salesLedger.id }, data: { currentBalance: { increment: saleAmount } } });
+
+            // 2. Tax Entry (Dr Customer/Walk-in, Cr Tax Payable)
+            if (totalTax > 0) {
+                const taxLedger = await resolveLedger('Tax', 'LIABILITIES');
+                if (taxLedger) {
+                    await tx.transaction.create({
+                        data: {
+                            date: new Date(),
+                            voucherType: 'POS_INVOICE',
+                            voucherNumber: invoiceNumber,
+                            companyId: parseInt(currentCompanyId),
+                            debitLedgerId: debitLedgerId,
+                            creditLedgerId: taxLedger.id,
+                            amount: totalTax,
+                            narration: `Tax on POS Sale - ${invoiceNumber}`,
+                            posInvoiceId: posInvoice.id,
+                            updatedAt: new Date()
+                        }
+                    });
+                    await tx.ledger.update({ where: { id: debitLedgerId }, data: { currentBalance: { increment: totalTax } } });
+                    await tx.ledger.update({ where: { id: taxLedger.id }, data: { currentBalance: { increment: totalTax } } });
+                }
+            }
 
             // 2. Receipt Entry (Recording actual payment)
             if (finalReceived > 0) {
@@ -277,26 +322,6 @@ const createPOSInvoice = async (req, res) => {
 
             // 3. Post COGS journal entry (Debit COGS / Credit Inventory Asset)
             if (autoCogsEntry && totalCOGS > 0) {
-                const resolveLedger = async (namePattern, type) => {
-                    let ledger = await tx.ledger.findFirst({
-                        where: { companyId: parseInt(currentCompanyId), name: { contains: namePattern } }
-                    });
-                    if (!ledger) {
-                        const group = await tx.accountgroup.findFirst({ where: { companyId: parseInt(currentCompanyId), type: type } });
-                        if (group) {
-                            ledger = await tx.ledger.create({
-                                data: {
-                                    name: namePattern,
-                                    groupId: group.id,
-                                    companyId: parseInt(currentCompanyId),
-                                    isControlAccount: true
-                                }
-                            });
-                        }
-                    }
-                    return ledger;
-                };
-
                 const cogsLedger = await resolveLedger('Point Of Sale', 'EXPENSES');
                 const inventoryAssetLedger = await resolveLedger('Inventory Asset', 'ASSETS') || await resolveLedger('Inventory', 'ASSETS');
 

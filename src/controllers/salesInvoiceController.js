@@ -387,7 +387,7 @@ const createInvoice = async (req, res) => {
                 }
             });
 
-            // Entry 1: DR Customer (gross), CR Sales Income (gross subtotal)
+            // Entry 1: DR Customer, CR Sales Income (Revenue portion)
             await tx.transaction.create({
                 data: {
                     date: new Date(date),
@@ -395,7 +395,7 @@ const createInvoice = async (req, res) => {
                     voucherNumber: invoiceNumber,
                     debitLedgerId: customerLedgerId,
                     creditLedgerId: salesLedger.id,
-                    amount: ledgerGrossCustomer,
+                    amount: ledgerSubtotal,
                     narration: `Sales to ${customer.name}`,
                     companyId: parseInt(companyId),
                     journalEntryId: journal.id,
@@ -403,21 +403,42 @@ const createInvoice = async (req, res) => {
                 }
             });
 
-
-            // Update Customer Ledger (Asset Increases with Debit - gross amount)
+            // Update Customer Ledger (Asset Increases with Debit - revenue portion)
             await tx.ledger.update({
                 where: { id: customerLedgerId },
-                data: { currentBalance: { increment: ledgerGrossCustomer } }
+                data: { currentBalance: { increment: ledgerSubtotal } }
             });
 
-            // Update Sales Ledger (Income Increases with Credit - gross subtotal)
+            // Update Sales Ledger (Income Increases with Credit - revenue portion)
             await tx.ledger.update({
                 where: { id: salesLedger.id },
                 data: { currentBalance: { increment: ledgerSubtotal } }
             });
 
-            // 2. Handle Tax (CR Tax Payable)
+            // 2. Handle Tax (DR Customer, CR Tax Payable)
             if (finalTax > 0 && taxLedger) {
+                await tx.transaction.create({
+                    data: {
+                        date: new Date(date),
+                        voucherType: 'SALES',
+                        voucherNumber: invoiceNumber,
+                        debitLedgerId: customerLedgerId,
+                        creditLedgerId: taxLedger.id,
+                        amount: ledgerTax,
+                        narration: `Tax on Sale: ${invoiceNumber}`,
+                        companyId: parseInt(companyId),
+                        journalEntryId: journal.id,
+                        invoiceId: invoice.id
+                    }
+                });
+
+                // Customer receivable increases by tax amount
+                await tx.ledger.update({
+                    where: { id: customerLedgerId },
+                    data: { currentBalance: { increment: ledgerTax } }
+                });
+
+                // Tax Liability increases by tax amount
                 await tx.ledger.update({
                     where: { id: taxLedger.id },
                     data: { currentBalance: { increment: ledgerTax } }
@@ -893,7 +914,7 @@ const updateInvoice = async (req, res) => {
                     }
                 });
 
-                // Entry 1: DR Customer (gross), CR Sales Income (gross subtotal)
+                // Entry 1: DR Customer, CR Sales Income (Revenue portion)
                 await tx.transaction.create({
                     data: {
                         date: updatedInvoice.date,
@@ -901,7 +922,7 @@ const updateInvoice = async (req, res) => {
                         voucherNumber: updatedInvoice.invoiceNumber,
                         debitLedgerId: customer.ledgerId,
                         creditLedgerId: salesLedger.id,
-                        amount: ledgerGrossCustomer,
+                        amount: ledgerSubtotal,
                         narration: `Updated Sales to ${customer.name}`,
                         companyId: parseInt(companyId),
                         invoiceId: updatedInvoice.id,
@@ -909,16 +930,60 @@ const updateInvoice = async (req, res) => {
                     }
                 });
 
-                // Update Customer Ledger (gross debit)
+                // Update Customer Ledger (Revenue portion)
                 await tx.ledger.update({
                     where: { id: customer.ledgerId },
-                    data: { currentBalance: { increment: ledgerGrossCustomer } }
+                    data: { currentBalance: { increment: ledgerSubtotal } }
                 });
-                // Update Sales Ledger (gross subtotal credit)
+                // Update Sales Ledger (Revenue portion)
                 await tx.ledger.update({
                     where: { id: salesLedger.id },
                     data: { currentBalance: { increment: ledgerSubtotal } }
                 });
+
+                // Entry 2: DR Customer, CR Tax (Tax portion)
+                if (ledgerTaxAmount > 0) {
+                    let taxLedger = await tx.ledger.findFirst({
+                        where: { companyId: parseInt(companyId), name: { contains: 'Tax' } }
+                    });
+                    if (!taxLedger) {
+                        const group = await tx.accountgroup.findFirst({ where: { companyId: parseInt(companyId), type: 'LIABILITIES' } });
+                        if (group) {
+                            taxLedger = await tx.ledger.create({
+                                data: {
+                                    name: 'Tax',
+                                    groupId: group.id,
+                                    companyId: parseInt(companyId),
+                                    isControlAccount: true
+                                }
+                            });
+                        }
+                    }
+                    if (taxLedger) {
+                        await tx.transaction.create({
+                            data: {
+                                date: updatedInvoice.date,
+                                voucherType: 'SALES',
+                                voucherNumber: updatedInvoice.invoiceNumber,
+                                debitLedgerId: customer.ledgerId,
+                                creditLedgerId: taxLedger.id,
+                                amount: ledgerTaxAmount,
+                                narration: `Tax on Sale: ${updatedInvoice.invoiceNumber}`,
+                                companyId: parseInt(companyId),
+                                invoiceId: updatedInvoice.id,
+                                journalEntryId: journal.id
+                            }
+                        });
+                        await tx.ledger.update({
+                            where: { id: customer.ledgerId },
+                            data: { currentBalance: { increment: ledgerTaxAmount } }
+                        });
+                        await tx.ledger.update({
+                            where: { id: taxLedger.id },
+                            data: { currentBalance: { increment: ledgerTaxAmount } }
+                        });
+                    }
+                }
 
                 // Entry 2: DR Discount Allowed on Sale (Expense), CR Customer (reduces receivable)
                 if (ledgerDiscountAmount > 0) {
