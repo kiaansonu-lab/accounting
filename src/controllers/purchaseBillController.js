@@ -50,17 +50,52 @@ const createBill = async (req, res) => {
             });
         }
 
-        const billItems = items.map(item => ({
-            productId: item.productId ? parseInt(item.productId) : null,
-            warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
-            uomId: item.uomId ? parseInt(item.uomId) : null,
-            description: item.description,
-            quantity: parseFloat(item.quantity),
-            rate: parseFloat(item.rate),
-            discount: parseFloat(item.discount || 0),
-            taxRate: parseFloat(item.taxRate || 0),
-            amount: parseFloat(item.amount)
-        }));
+        let calculatedSubtotal = 0;
+        let calculatedItemDiscount = 0;
+        let calculatedTaxSum = 0;
+
+        const billItems = items.map(item => {
+            const qty = parseFloat(item.quantity) || 0;
+            const rate = parseFloat(item.rate) || 0;
+            const discount = parseFloat(item.discount || 0);
+            const taxRate = parseFloat(item.taxRate || 0);
+
+            const lineGross = qty * rate;
+            const lineTaxable = lineGross - discount;
+            const lineTax = (lineTaxable * taxRate) / 100;
+            const lineTotal = lineTaxable + lineTax;
+
+            calculatedSubtotal += lineGross;
+            calculatedItemDiscount += discount;
+            calculatedTaxSum += lineTax;
+
+            return {
+                productId: item.productId ? parseInt(item.productId) : null,
+                warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
+                uomId: item.uomId ? parseInt(item.uomId) : null,
+                description: item.description,
+                quantity: qty,
+                rate: rate,
+                discount: discount,
+                taxRate: taxRate,
+                amount: lineTotal
+            };
+        });
+
+        const finalTax = parseFloat(taxAmount) || calculatedTaxSum;
+        const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + finalTax;
+        let totalAmountValue = baseTotal;
+        const ovVal = parseFloat(overallDiscount) || 0;
+        let overallDiscountAmt = 0;
+        if (overallDiscount && overallDiscountType === 'percentage') {
+            overallDiscountAmt = baseTotal * ovVal / 100;
+            totalAmountValue = baseTotal - overallDiscountAmt;
+        } else if (overallDiscount) {
+            overallDiscountAmt = ovVal;
+            totalAmountValue = baseTotal - overallDiscountAmt;
+        }
+
+        const totalDiscount = calculatedItemDiscount + overallDiscountAmt;
 
         const result = await prisma.$transaction(async (tx) => {
             // 1. Create Purchase Bill
@@ -73,11 +108,11 @@ const createBill = async (req, res) => {
                     purchaseOrderId: purchaseOrderId ? parseInt(purchaseOrderId) : null,
                     grnId: grnId ? parseInt(grnId) : null,
                     companyId: parseInt(companyId),
-                    subtotal: parseFloat(totalAmount) - parseFloat(taxAmount) + parseFloat(discountAmount), // Approx
-                    discountAmount: parseFloat(discountAmount),
-                    taxAmount: parseFloat(taxAmount),
-                    totalAmount: parseFloat(totalAmount),
-                    balanceAmount: parseFloat(totalAmount),
+                    subtotal: calculatedSubtotal,
+                    discountAmount: totalDiscount,
+                    taxAmount: finalTax,
+                    totalAmount: totalAmountValue,
+                    balanceAmount: totalAmountValue,
                     currency: docCurrency,
                     exchangeRate: docExchangeRate,
                     status: 'UNPAID',
@@ -97,7 +132,17 @@ const createBill = async (req, res) => {
                     overallDiscount: overallDiscount ? parseFloat(overallDiscount) : 0,
                     overallDiscountType: overallDiscountType || 'percentage',
                     purchasebillitem: {
-                        create: billItems
+                        create: billItems.map(i => ({
+                            productId: i.productId,
+                            warehouseId: i.warehouseId,
+                            uomId: i.uomId,
+                            description: i.description,
+                            quantity: i.quantity,
+                            rate: i.rate,
+                            discount: i.discount,
+                            taxRate: i.taxRate,
+                            amount: i.amount
+                        }))
                     }
                 },
                 include: { purchasebillitem: true }
@@ -160,57 +205,34 @@ const createBill = async (req, res) => {
             });
 
             // 4. Process Items for Accounting and Price Updates
-            let totalProductAmount = 0;
-            let totalServiceAmount = 0;
+            let totalProductGross = 0;
+            let totalServiceGross = 0;
 
             for (const item of billItems) {
+                const lineGross = item.quantity * item.rate;
                 if (item.productId) {
-                    totalProductAmount += item.amount;
+                    totalProductGross += lineGross;
                     // Update Product Purchase Price
                     await tx.product.update({
                         where: { id: item.productId },
                         data: { purchasePrice: item.rate }
                     });
                 } else {
-                    totalServiceAmount += item.amount;
+                    totalServiceGross += lineGross;
                 }
             }
 
             // 5. DR Inventory / Purchases, CR Vendor
             const creditLedgerId = vendor.ledger.id;
 
-            const ledgerProductAmount = totalProductAmount * docExchangeRate;
-            const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
-            const ledgerTaxAmount = parseFloat(taxAmount || 0) * docExchangeRate;
-
-            // Calculate base total and overall discount amount
-            let calculatedSubtotal = 0;
-            let calculatedItemDiscount = 0;
-            let calculatedTaxSum = 0;
-            billItems.forEach(item => {
-                const qty = item.quantity || 0;
-                const rate = item.rate || 0;
-                const itemDisc = item.discount || 0;
-                const taxRate = item.taxRate || 0;
-
-                const lineGross = qty * rate;
-                const lineTaxable = lineGross - itemDisc;
-                const lineTax = (lineTaxable * taxRate) / 100;
-
-                calculatedSubtotal += lineGross;
-                calculatedItemDiscount += itemDisc;
-                calculatedTaxSum += lineTax;
-            });
-            const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + (parseFloat(taxAmount) || calculatedTaxSum);
-            const ovVal = parseFloat(overallDiscount) || 0;
-            const overallDiscountAmt = overallDiscountType === 'percentage'
-                ? (baseTotal * ovVal / 100)
-                : ovVal;
-            const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
-            const ledgerTotalAmount = parseFloat(totalAmount || 0) * docExchangeRate;
+            const ledgerProductAmount = totalProductGross * docExchangeRate;
+            const ledgerServiceAmount = totalServiceGross * docExchangeRate;
+            const ledgerTaxAmount = finalTax * docExchangeRate;
+            const ledgerDiscountAmount = totalDiscount * docExchangeRate;
+            const ledgerTotalAmount = totalAmountValue * docExchangeRate;
 
             // Entry for Products (Debit Inventory)
-            if (totalProductAmount > 0 && inventoryLedger) {
+            if (totalProductGross > 0 && inventoryLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(date),
@@ -226,6 +248,7 @@ const createBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: inventoryLedger.id }, data: { currentBalance: { increment: ledgerProductAmount } } });
+                await tx.ledger.update({ where: { id: creditLedgerId }, data: { currentBalance: { increment: ledgerProductAmount } } });
 
                 // Update Physical Stock AND Inventory Valuation Layers
                 if (!grnId) {
@@ -253,7 +276,7 @@ const createBill = async (req, res) => {
                             // Convert quantity and rate to base UoM
                             const { convertToBaseQuantity, convertTransRateToBaseRate } = require('../services/uomConversionService');
                             const baseQty = convertToBaseQuantity(item.quantity, transUom, baseUom);
-                            const netRate = calculateNetRate(item.rate, item.quantity, item.discount * item.quantity);
+                            const netRate = calculateNetRate(item.rate, item.quantity, item.discount);
                             const baseNetRate = convertTransRateToBaseRate(netRate, transUom, baseUom);
 
                             await tx.stock.upsert({
@@ -292,7 +315,7 @@ const createBill = async (req, res) => {
 
             // Entry for Services/Others (Debit Purchases Expense)
             const finalPurchaseLedger = purchaseLedger || inventoryLedger; // Fallback
-            if (totalServiceAmount > 0 && finalPurchaseLedger) {
+            if (totalServiceGross > 0 && finalPurchaseLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(date),
@@ -308,10 +331,11 @@ const createBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: finalPurchaseLedger.id }, data: { currentBalance: { increment: ledgerServiceAmount } } });
+                await tx.ledger.update({ where: { id: creditLedgerId }, data: { currentBalance: { increment: ledgerServiceAmount } } });
             }
 
             // Handle Tax if applicable (Debit Tax Input, Credit Vendor)
-            if (parseFloat(taxAmount) > 0) {
+            if (parseFloat(finalTax) > 0) {
                 const taxInputLedger = await resolveLedger('Tax', 'ASSETS') || await resolveLedger('Tax', 'LIABILITIES');
                 if (taxInputLedger) {
                     await tx.transaction.create({
@@ -329,11 +353,12 @@ const createBill = async (req, res) => {
                         }
                     });
                     await tx.ledger.update({ where: { id: taxInputLedger.id }, data: { currentBalance: { increment: ledgerTaxAmount } } });
+                    await tx.ledger.update({ where: { id: creditLedgerId }, data: { currentBalance: { increment: ledgerTaxAmount } } });
                 }
             }
 
             // Handle Discount Received if applicable (Debit Vendor, Credit Discount Received)
-            if (parseFloat(discountAmount) > 0 && discountReceivedLedger) {
+            if (ledgerDiscountAmount > 0 && discountReceivedLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(date),
@@ -349,6 +374,7 @@ const createBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: discountReceivedLedger.id }, data: { currentBalance: { increment: ledgerDiscountAmount } } });
+                await tx.ledger.update({ where: { id: creditLedgerId }, data: { currentBalance: { decrement: ledgerDiscountAmount } } });
             }
 
             // Update Vendor Balance (Credit increases Liability)
@@ -356,11 +382,6 @@ const createBill = async (req, res) => {
                 where: { id: parseInt(vendorId) },
                 data: { accountBalance: { increment: ledgerTotalAmount } }
             });
-            await tx.ledger.update({
-                where: { id: creditLedgerId },
-                data: { currentBalance: { increment: ledgerTotalAmount } }
-            });
-
 
             return bill;
         }, {
@@ -580,7 +601,7 @@ const updateBill = async (req, res) => {
             const oldBill = await tx.purchasebill.findFirst({
                 where: { id: parseInt(id), companyId: parseInt(companyId) },
                 include: {
-                    transactions: true,
+                    transaction: true,
                     vendor: { include: { ledger: true } }
                 }
             });
@@ -594,7 +615,7 @@ const updateBill = async (req, res) => {
 
             // 2. Revert Old Ledger Balances using old transactions
             const vendorLedgerId = oldBill.vendor?.ledger?.id;
-            for (const trans of oldBill.transactions) {
+            for (const trans of oldBill.transaction) {
                 if (vendorLedgerId && trans.debitLedgerId === vendorLedgerId) {
                     await tx.ledger.update({
                         where: { id: trans.debitLedgerId },
@@ -617,7 +638,7 @@ const updateBill = async (req, res) => {
             }
 
             // Retroactive tax balance decrement for older bills
-            const oldHasTaxTrans = oldBill.transactions.some(t => t.narration === 'Tax on Purchase');
+            const oldHasTaxTrans = oldBill.transaction.some(t => t.narration === 'Tax on Purchase');
             if (!oldHasTaxTrans && parseFloat(oldBill.taxAmount) > 0) {
                 const taxInputLedger = await tx.ledger.findFirst({
                     where: { companyId: parseInt(companyId), name: { contains: 'Tax' } }
@@ -631,9 +652,9 @@ const updateBill = async (req, res) => {
             }
 
             // Revert direct Vendor ledger balance for legacy bills that did not have correct transaction tracking
-            const oldHasDiscountTrans = oldBill.transactions.some(t => t.narration === 'Discount Received on Purchase');
+            const oldHasDiscountTrans = oldBill.transaction.some(t => t.narration === 'Discount Received on Purchase');
             if (!oldHasDiscountTrans || !oldHasTaxTrans) {
-                const diff = parseFloat(oldBill.totalAmount) - (oldBill.transactions.reduce((sum, t) => sum + (t.creditLedgerId === vendorLedgerId ? t.amount : 0), 0) - oldBill.transactions.reduce((sum, t) => sum + (t.debitLedgerId === vendorLedgerId ? t.amount : 0), 0));
+                const diff = parseFloat(oldBill.totalAmount) - (oldBill.transaction.reduce((sum, t) => sum + (t.creditLedgerId === vendorLedgerId ? t.amount : 0), 0) - oldBill.transaction.reduce((sum, t) => sum + (t.debitLedgerId === vendorLedgerId ? t.amount : 0), 0));
                 if (vendorLedgerId && Math.abs(diff) > 0.01) {
                     await tx.ledger.update({
                         where: { id: vendorLedgerId },
@@ -646,44 +667,93 @@ const updateBill = async (req, res) => {
             await tx.transaction.deleteMany({ where: { purchaseBillId: oldBill.id } });
 
             // 4. Delete old items and write new ones
+            let calculatedSubtotal = 0;
+            let calculatedItemDiscount = 0;
+            let calculatedTaxSum = 0;
+
+            const finalBillItems = [];
             if (items && items.length > 0) {
                 await tx.purchasebillitem.deleteMany({
                     where: { purchaseBillId: parseInt(id) }
                 });
 
-                // Create new items
-                const billItems = items.map(item => ({
-                    productId: item.productId ? parseInt(item.productId) : null,
-                    warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
-                    description: item.description,
-                    quantity: parseFloat(item.quantity),
-                    rate: parseFloat(item.rate),
-                    discount: parseFloat(item.discount || 0),
-                    taxRate: parseFloat(item.taxRate || 0),
-                    amount: parseFloat(item.amount),
-                    purchaseBillId: parseInt(id)
-                }));
+                for (const item of items) {
+                    const qty = parseFloat(item.quantity) || 0;
+                    const rate = parseFloat(item.rate) || 0;
+                    const discount = parseFloat(item.discount || 0);
+                    const taxRate = parseFloat(item.taxRate || 0);
+
+                    const lineGross = qty * rate;
+                    const lineTaxable = lineGross - discount;
+                    const lineTax = (lineTaxable * taxRate) / 100;
+                    const lineTotal = lineTaxable + lineTax;
+
+                    calculatedSubtotal += lineGross;
+                    calculatedItemDiscount += discount;
+                    calculatedTaxSum += lineTax;
+
+                    const newItem = {
+                        productId: item.productId ? parseInt(item.productId) : null,
+                        warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
+                        description: item.description,
+                        quantity: qty,
+                        rate: rate,
+                        discount: discount,
+                        taxRate: taxRate,
+                        amount: lineTotal,
+                        purchaseBillId: parseInt(id)
+                    };
+                    finalBillItems.push(newItem);
+                }
 
                 await tx.purchasebillitem.createMany({
-                    data: billItems
+                    data: finalBillItems.map(i => ({
+                        productId: i.productId,
+                        warehouseId: i.warehouseId,
+                        description: i.description,
+                        quantity: i.quantity,
+                        rate: i.rate,
+                        discount: i.discount,
+                        taxRate: i.taxRate,
+                        amount: i.amount,
+                        purchaseBillId: i.purchaseBillId
+                    }))
                 });
+            } else {
+                // If items are not updated, pull from DB and recalculate
+                const existingItems = await tx.purchasebillitem.findMany({ where: { purchaseBillId: parseInt(id) } });
+                for (const item of existingItems) {
+                    const qty = parseFloat(item.quantity) || 0;
+                    const rate = parseFloat(item.rate) || 0;
+                    const discount = parseFloat(item.discount || 0);
+                    const taxRate = parseFloat(item.taxRate || 0);
+
+                    const lineGross = qty * rate;
+                    calculatedSubtotal += lineGross;
+                    calculatedItemDiscount += discount;
+                    calculatedTaxSum += (lineGross - discount) * taxRate / 100;
+
+                    finalBillItems.push(item);
+                }
             }
 
-            const finalTotalAmount = totalAmount !== undefined ? parseFloat(totalAmount) : oldBill.totalAmount;
-            const finalTaxAmount = taxAmount !== undefined ? parseFloat(taxAmount) : oldBill.taxAmount;
-            const finalDiscountAmount = discountAmount !== undefined ? parseFloat(discountAmount) : oldBill.discountAmount;
+            const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : oldBill.overallDiscount;
+            const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : oldBill.overallDiscountType;
+            
+            const finalTax = taxAmount !== undefined ? parseFloat(taxAmount) : calculatedTaxSum;
+            const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + finalTax;
+            let totalAmountValue = baseTotal;
+            const ovVal = parseFloat(currentOverallDiscount) || 0;
+            let overallDiscountAmt = 0;
+            if (currentOverallDiscount && currentOverallDiscountType === 'percentage') {
+                overallDiscountAmt = baseTotal * ovVal / 100;
+                totalAmountValue = baseTotal - overallDiscountAmt;
+            } else if (currentOverallDiscount) {
+                overallDiscountAmt = ovVal;
+                totalAmountValue = baseTotal - overallDiscountAmt;
+            }
 
-            // Fetch final items (either new ones or old ones if items were not provided in req.body)
-            const finalBillItems = items && items.length > 0 ? items.map(item => ({
-                productId: item.productId ? parseInt(item.productId) : null,
-                warehouseId: item.warehouseId ? parseInt(item.warehouseId) : null,
-                description: item.description,
-                quantity: parseFloat(item.quantity),
-                rate: parseFloat(item.rate),
-                discount: parseFloat(item.discount || 0),
-                taxRate: parseFloat(item.taxRate || 0),
-                amount: parseFloat(item.amount)
-            })) : await tx.purchasebillitem.findMany({ where: { purchaseBillId: parseInt(id) } });
+            const totalDiscount = calculatedItemDiscount + overallDiscountAmt;
 
             // Resolve standard accounts
             const resolveLedger = async (namePattern, type) => {
@@ -725,18 +795,19 @@ const updateBill = async (req, res) => {
                 });
             }
 
-            let totalProductAmount = 0;
-            let totalServiceAmount = 0;
+            let totalProductGross = 0;
+            let totalServiceGross = 0;
 
             for (const item of finalBillItems) {
+                const lineGross = item.quantity * item.rate;
                 if (item.productId) {
-                    totalProductAmount += item.amount;
+                    totalProductGross += lineGross;
                     await tx.product.update({
                         where: { id: item.productId },
                         data: { purchasePrice: item.rate }
                     });
                 } else {
-                    totalServiceAmount += item.amount;
+                    totalServiceGross += lineGross;
                 }
             }
 
@@ -744,39 +815,13 @@ const updateBill = async (req, res) => {
             const docCurrency = currency !== undefined ? currency : oldBill.currency;
             const docExchangeRate = exchangeRate !== undefined ? parseFloat(exchangeRate) : (oldBill.exchangeRate || 1.0);
 
-            const ledgerProductAmount = totalProductAmount * docExchangeRate;
-            const ledgerServiceAmount = totalServiceAmount * docExchangeRate;
-            const ledgerTaxAmount = parseFloat(finalTaxAmount || 0) * docExchangeRate;
+            const ledgerProductAmount = totalProductGross * docExchangeRate;
+            const ledgerServiceAmount = totalServiceGross * docExchangeRate;
+            const ledgerTaxAmount = finalTax * docExchangeRate;
+            const ledgerDiscountAmount = totalDiscount * docExchangeRate;
+            const ledgerTotalAmount = totalAmountValue * docExchangeRate;
 
-            // Calculate base total and overall discount amount
-            let calculatedSubtotal = 0;
-            let calculatedItemDiscount = 0;
-            let calculatedTaxSum = 0;
-            finalBillItems.forEach(item => {
-                const qty = item.quantity || 0;
-                const rate = item.rate || 0;
-                const itemDisc = item.discount || 0;
-                const taxRate = item.taxRate || 0;
-
-                const lineGross = qty * rate;
-                const lineTaxable = lineGross - itemDisc;
-                const lineTax = (lineTaxable * taxRate) / 100;
-
-                calculatedSubtotal += lineGross;
-                calculatedItemDiscount += itemDisc;
-                calculatedTaxSum += lineTax;
-            });
-            const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + (parseFloat(finalTaxAmount) || calculatedTaxSum);
-            const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : oldBill.overallDiscount;
-            const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : oldBill.overallDiscountType;
-            const ovVal = parseFloat(currentOverallDiscount) || 0;
-            const overallDiscountAmt = currentOverallDiscountType === 'percentage'
-                ? (baseTotal * ovVal / 100)
-                : ovVal;
-            const ledgerDiscountAmount = (calculatedItemDiscount + overallDiscountAmt) * docExchangeRate;
-            const ledgerTotalAmount = parseFloat(finalTotalAmount || 0) * docExchangeRate;
-
-            if (totalProductAmount > 0 && inventoryLedger) {
+            if (totalProductGross > 0 && inventoryLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(oldBill.date),
@@ -792,10 +837,11 @@ const updateBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: inventoryLedger.id }, data: { currentBalance: { increment: ledgerProductAmount } } });
+                await tx.ledger.update({ where: { id: vendorLedgerId }, data: { currentBalance: { increment: ledgerProductAmount } } });
             }
 
             const finalPurchaseLedger = purchaseLedger || inventoryLedger;
-            if (totalServiceAmount > 0 && finalPurchaseLedger) {
+            if (totalServiceGross > 0 && finalPurchaseLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(oldBill.date),
@@ -811,9 +857,10 @@ const updateBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: finalPurchaseLedger.id }, data: { currentBalance: { increment: ledgerServiceAmount } } });
+                await tx.ledger.update({ where: { id: vendorLedgerId }, data: { currentBalance: { increment: ledgerServiceAmount } } });
             }
 
-            if (parseFloat(finalTaxAmount) > 0) {
+            if (parseFloat(finalTax) > 0) {
                 const taxInputLedger = await resolveLedger('Tax', 'ASSETS') || await resolveLedger('Tax', 'LIABILITIES');
                 if (taxInputLedger) {
                     await tx.transaction.create({
@@ -831,10 +878,11 @@ const updateBill = async (req, res) => {
                         }
                     });
                     await tx.ledger.update({ where: { id: taxInputLedger.id }, data: { currentBalance: { increment: ledgerTaxAmount } } });
+                    await tx.ledger.update({ where: { id: vendorLedgerId }, data: { currentBalance: { increment: ledgerTaxAmount } } });
                 }
             }
 
-            if (parseFloat(finalDiscountAmount) > 0 && discountReceivedLedger) {
+            if (ledgerDiscountAmount > 0 && discountReceivedLedger) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(oldBill.date),
@@ -850,16 +898,13 @@ const updateBill = async (req, res) => {
                     }
                 });
                 await tx.ledger.update({ where: { id: discountReceivedLedger.id }, data: { currentBalance: { increment: ledgerDiscountAmount } } });
+                await tx.ledger.update({ where: { id: vendorLedgerId }, data: { currentBalance: { decrement: ledgerDiscountAmount } } });
             }
 
             // Update Vendor Balance (Credit increases Liability)
             await tx.vendor.update({
                 where: { id: oldBill.vendorId },
                 data: { accountBalance: { increment: ledgerTotalAmount } }
-            });
-            await tx.ledger.update({
-                where: { id: vendorLedgerId },
-                data: { currentBalance: { increment: ledgerTotalAmount } }
             });
 
             // Finally update the purchasebill itself
@@ -868,10 +913,11 @@ const updateBill = async (req, res) => {
                 data: {
                     notes,
                     dueDate: dueDate ? new Date(dueDate) : undefined,
-                    totalAmount: totalAmount ? parseFloat(totalAmount) : undefined,
-                    taxAmount: taxAmount ? parseFloat(taxAmount) : undefined,
-                    discountAmount: discountAmount ? parseFloat(discountAmount) : undefined,
-                    balanceAmount: totalAmount ? parseFloat(totalAmount) : undefined,
+                    subtotal: calculatedSubtotal,
+                    totalAmount: totalAmountValue,
+                    taxAmount: finalTax,
+                    discountAmount: totalDiscount,
+                    balanceAmount: totalAmountValue,
                     currency: currency !== undefined ? currency : undefined,
                     exchangeRate: exchangeRate !== undefined ? parseFloat(exchangeRate) : undefined,
                     billingName,
