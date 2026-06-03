@@ -488,7 +488,9 @@ exports.Prisma.PaymentScalarFieldEnum = {
   cashBankAccountId: 'cashBankAccountId',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  discountAmount: 'discountAmount',
+  discountLedgerId: 'discountLedgerId'
 };
 
 exports.Prisma.PaymentrecordScalarFieldEnum = {
@@ -775,7 +777,9 @@ exports.Prisma.ReceiptScalarFieldEnum = {
   cashBankAccountId: 'cashBankAccountId',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  discountAmount: 'discountAmount',
+  discountLedgerId: 'discountLedgerId'
 };
 
 exports.Prisma.SalesorderScalarFieldEnum = {

@@ -12,7 +12,9 @@ const createPayment = async (req, res) => {
             paymentMode,
             referenceNumber,
             cashBankAccountId,
-            notes
+            notes,
+            discountAmount,
+            discountLedgerId
         } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -56,11 +58,14 @@ const createPayment = async (req, res) => {
                     referenceNumber,
                     cashBankAccountId: parseInt(cashBankAccountId),
                     companyId: parseInt(companyId),
-                    notes
+                    notes,
+                    discountAmount: parseFloat(discountAmount || 0),
+                    discountLedgerId: discountLedgerId ? parseInt(discountLedgerId) : null
                 }
             });
 
             let ledgerAmount = parseFloat(amount);
+            let ledgerDiscountAmount = parseFloat(discountAmount || 0);
             // 1. Update Bill Balance
             if (purchaseBillId) {
                 const bill = await tx.purchasebill.findUnique({
@@ -68,7 +73,7 @@ const createPayment = async (req, res) => {
                 });
 
                 if (bill) {
-                    const newPaidAmount = (bill.paidAmount || 0) + parseFloat(amount);
+                    const newPaidAmount = (bill.paidAmount || 0) + parseFloat(amount) + parseFloat(discountAmount || 0);
                     const newBalanceAmount = bill.totalAmount - newPaidAmount;
                     const newStatus = newBalanceAmount <= 0 ? 'PAID' : 'PARTIAL';
 
@@ -83,29 +88,39 @@ const createPayment = async (req, res) => {
 
                     if (bill.exchangeRate) {
                         ledgerAmount = parseFloat(amount) * bill.exchangeRate;
+                        ledgerDiscountAmount = parseFloat(discountAmount || 0) * bill.exchangeRate;
                     }
                 }
             }
 
             // 2. Accounting Entries
-            // DR Vendor (Liability Decreases), CR Cash/Bank (Asset Decreases)
+            // DR Vendor (Liability Decreases)
             await tx.ledger.update({
                 where: { id: vendor.ledgerId },
-                data: { currentBalance: { decrement: ledgerAmount } }
+                data: { currentBalance: { decrement: ledgerAmount + ledgerDiscountAmount } }
             });
 
             // Update vendor table balance for consistency
             await tx.vendor.update({
                 where: { id: parseInt(vendorId) },
-                data: { accountBalance: { decrement: ledgerAmount } }
+                data: { accountBalance: { decrement: ledgerAmount + ledgerDiscountAmount } }
             });
 
+            // CR Cash/Bank (Asset Decreases)
             await tx.ledger.update({
                 where: { id: bankLedger.id },
                 data: { currentBalance: { decrement: ledgerAmount } }
             });
 
-            // Log Transaction
+            // CR Discount Received Ledger (Income increases)
+            if (discountLedgerId && ledgerDiscountAmount > 0) {
+                await tx.ledger.update({
+                    where: { id: parseInt(discountLedgerId) },
+                    data: { currentBalance: { increment: ledgerDiscountAmount } }
+                });
+            }
+
+            // Log Cash/Bank Transaction
             await tx.transaction.create({
                 data: {
                     date: date ? new Date(date) : new Date(),
@@ -120,6 +135,24 @@ const createPayment = async (req, res) => {
                     purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null
                 }
             });
+
+            // Log Discount Received Transaction
+            if (discountLedgerId && ledgerDiscountAmount > 0) {
+                await tx.transaction.create({
+                    data: {
+                        date: date ? new Date(date) : new Date(),
+                        voucherType: 'PAYMENT',
+                        voucherNumber: paymentNumber || payment.paymentNumber,
+                        debitLedgerId: vendor.ledgerId,
+                        creditLedgerId: parseInt(discountLedgerId),
+                        amount: ledgerDiscountAmount,
+                        narration: `Discount received from ${vendor.name}${purchaseBillId ? ' for Bill ' + purchaseBillId : ''}`,
+                        companyId: parseInt(companyId),
+                        paymentId: payment.id,
+                        purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null
+                    }
+                });
+            }
 
             return payment;
         }, {
@@ -159,7 +192,8 @@ const getPayments = async (req, res) => {
             include: {
                 vendor: true,
                 purchasebill: true,
-                bankLedger: { select: { id: true, name: true } }
+                bankLedger: { select: { id: true, name: true } },
+                discountLedger: { select: { id: true, name: true } }
             },
             orderBy: {
                 date: 'desc'
@@ -184,7 +218,8 @@ const getPaymentById = async (req, res) => {
                 vendor: { include: { ledger: true } },
                 purchasebill: true,
                 company: true,
-                bankLedger: true
+                bankLedger: true,
+                discountLedger: true
             }
         });
         if (!payment) return res.status(404).json({ message: 'Payment not found' });
@@ -195,6 +230,7 @@ const getPaymentById = async (req, res) => {
     }
 };
 
+// Update Payment
 const updatePayment = async (req, res) => {
     try {
         const { id } = req.params;
@@ -207,7 +243,9 @@ const updatePayment = async (req, res) => {
             paymentMode,
             referenceNumber,
             cashBankAccountId,
-            notes
+            notes,
+            discountAmount,
+            discountLedgerId
         } = req.body;
         const currentCompanyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -236,7 +274,7 @@ const updatePayment = async (req, res) => {
             if (existingPayment.purchaseBillId) {
                 const oldBill = await tx.purchasebill.findUnique({ where: { id: existingPayment.purchaseBillId } });
                 if (oldBill) {
-                    const revPaid = Math.max(0, (oldBill.paidAmount || 0) - existingPayment.amount);
+                    const revPaid = Math.max(0, (oldBill.paidAmount || 0) - existingPayment.amount - (existingPayment.discountAmount || 0));
                     await tx.purchasebill.update({
                         where: { id: existingPayment.purchaseBillId },
                         data: {
@@ -249,17 +287,18 @@ const updatePayment = async (req, res) => {
             }
 
             // Reverse Ledger & Vendor
+            const oldDiscountAmt = existingPayment.discountAmount || 0;
             if (existingPayment.vendor?.ledgerId) {
                 const vendorLedger = await tx.ledger.findUnique({ where: { id: existingPayment.vendor.ledgerId } });
                 if (vendorLedger) {
                     await tx.ledger.update({
                         where: { id: existingPayment.vendor.ledgerId },
-                        data: { currentBalance: { increment: existingPayment.amount } }
+                        data: { currentBalance: { increment: existingPayment.amount + oldDiscountAmt } }
                     });
                 }
                 await tx.vendor.update({
                     where: { id: existingPayment.vendorId },
-                    data: { accountBalance: { increment: existingPayment.amount } }
+                    data: { accountBalance: { increment: existingPayment.amount + oldDiscountAmt } }
                 });
             }
 
@@ -269,6 +308,16 @@ const updatePayment = async (req, res) => {
                     await tx.ledger.update({
                         where: { id: existingPayment.cashBankAccountId },
                         data: { currentBalance: { increment: existingPayment.amount } }
+                    });
+                }
+            }
+
+            if (existingPayment.discountLedgerId && oldDiscountAmt > 0) {
+                const discountLedger = await tx.ledger.findUnique({ where: { id: existingPayment.discountLedgerId } });
+                if (discountLedger) {
+                    await tx.ledger.update({
+                        where: { id: existingPayment.discountLedgerId },
+                        data: { currentBalance: { decrement: oldDiscountAmt } }
                     });
                 }
             }
@@ -288,16 +337,21 @@ const updatePayment = async (req, res) => {
                     paymentMode: normalizedMode,
                     referenceNumber,
                     cashBankAccountId: cashBankAccountId ? parseInt(cashBankAccountId) : undefined,
-                    notes
+                    notes,
+                    discountAmount: discountAmount !== undefined ? parseFloat(discountAmount || 0) : undefined,
+                    discountLedgerId: discountLedgerId !== undefined ? (discountLedgerId ? parseInt(discountLedgerId) : null) : undefined
                 },
                 include: { vendor: { include: { ledger: true } } }
             });
 
             // Apply to new Bill
+            const finalAmount = amount ? parseFloat(amount) : existingPayment.amount;
+            const finalDiscount = discountAmount !== undefined ? parseFloat(discountAmount || 0) : (existingPayment.discountAmount || 0);
+
             if (purchaseBillId) {
                 const newBill = await tx.purchasebill.findUnique({ where: { id: parseInt(purchaseBillId) } });
                 if (newBill) {
-                    const newPaid = (newBill.paidAmount || 0) + parseFloat(amount);
+                    const newPaid = (newBill.paidAmount || 0) + finalAmount + finalDiscount;
                     await tx.purchasebill.update({
                         where: { id: parseInt(purchaseBillId) },
                         data: {
@@ -312,18 +366,19 @@ const updatePayment = async (req, res) => {
             // Apply to new Ledger & Vendor
             const newVendor = updatedPayment.vendor;
             const newBankId = cashBankAccountId ? parseInt(cashBankAccountId) : updatedPayment.cashBankAccountId;
+            const finalDiscountLedgerId = discountLedgerId !== undefined ? (discountLedgerId ? parseInt(discountLedgerId) : null) : updatedPayment.discountLedgerId;
 
             if (newVendor?.ledgerId) {
                 const vendorLedger = await tx.ledger.findUnique({ where: { id: newVendor.ledgerId } });
                 if (vendorLedger) {
                     await tx.ledger.update({
                         where: { id: newVendor.ledgerId },
-                        data: { currentBalance: { decrement: parseFloat(amount) } }
+                        data: { currentBalance: { decrement: finalAmount + finalDiscount } }
                     });
                 }
                 await tx.vendor.update({
                     where: { id: newVendor.id },
-                    data: { accountBalance: { decrement: parseFloat(amount) } }
+                    data: { accountBalance: { decrement: finalAmount + finalDiscount } }
                 });
             }
 
@@ -332,7 +387,17 @@ const updatePayment = async (req, res) => {
                 if (newBankLedger) {
                     await tx.ledger.update({
                         where: { id: newBankId },
-                        data: { currentBalance: { decrement: parseFloat(amount) } }
+                        data: { currentBalance: { decrement: finalAmount } }
+                    });
+                }
+            }
+
+            if (finalDiscountLedgerId && finalDiscount > 0) {
+                const discountLedger = await tx.ledger.findUnique({ where: { id: finalDiscountLedgerId } });
+                if (discountLedger) {
+                    await tx.ledger.update({
+                        where: { id: finalDiscountLedgerId },
+                        data: { currentBalance: { increment: finalDiscount } }
                     });
                 }
             }
@@ -345,13 +410,30 @@ const updatePayment = async (req, res) => {
                     voucherNumber: paymentNumber || updatedPayment.paymentNumber,
                     debitLedgerId: newVendor.ledgerId,
                     creditLedgerId: newBankId,
-                    amount: parseFloat(amount),
+                    amount: finalAmount,
                     narration: `Updated Payment to ${newVendor.name}`,
                     companyId: parseInt(currentCompanyId),
                     paymentId: updatedPayment.id,
                     purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null
                 }
             });
+
+            if (finalDiscountLedgerId && finalDiscount > 0) {
+                await tx.transaction.create({
+                    data: {
+                        date: date ? new Date(date) : updatedPayment.date,
+                        voucherType: 'PAYMENT',
+                        voucherNumber: paymentNumber || updatedPayment.paymentNumber,
+                        debitLedgerId: newVendor.ledgerId,
+                        creditLedgerId: finalDiscountLedgerId,
+                        amount: finalDiscount,
+                        narration: `Updated Discount received from ${newVendor.name}`,
+                        companyId: parseInt(currentCompanyId),
+                        paymentId: updatedPayment.id,
+                        purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : null
+                    }
+                });
+            }
 
             return updatedPayment;
         }, {
@@ -385,7 +467,7 @@ const deletePayment = async (req, res) => {
                 });
 
                 if (bill) {
-                    const newPaidAmount = Math.max(0, (bill.paidAmount || 0) - payment.amount);
+                    const newPaidAmount = Math.max(0, (bill.paidAmount || 0) - payment.amount - (payment.discountAmount || 0));
                     const newBalanceAmount = bill.totalAmount - newPaidAmount;
                     const newStatus = newBalanceAmount >= bill.totalAmount ? 'UNPAID' : (newBalanceAmount > 0 ? 'PARTIAL' : 'PAID');
 
@@ -402,17 +484,18 @@ const deletePayment = async (req, res) => {
 
             // 2. Reverse Accounting Entries
             // CR Vendor (Liability Increases), DR Cash/Bank (Asset Increases)
+            const oldDiscountAmt = payment.discountAmount || 0;
             if (payment.vendor?.ledgerId) {
                 const vendorLedger = await tx.ledger.findUnique({ where: { id: payment.vendor.ledgerId } });
                 if (vendorLedger) {
                     await tx.ledger.update({
                         where: { id: payment.vendor.ledgerId },
-                        data: { currentBalance: { increment: payment.amount } }
+                        data: { currentBalance: { increment: payment.amount + oldDiscountAmt } }
                     });
                 }
                 await tx.vendor.update({
                     where: { id: payment.vendorId },
-                    data: { accountBalance: { increment: payment.amount } }
+                    data: { accountBalance: { increment: payment.amount + oldDiscountAmt } }
                 });
             }
 
@@ -422,6 +505,16 @@ const deletePayment = async (req, res) => {
                     await tx.ledger.update({
                         where: { id: payment.cashBankAccountId },
                         data: { currentBalance: { increment: payment.amount } }
+                    });
+                }
+            }
+
+            if (payment.discountLedgerId && oldDiscountAmt > 0) {
+                const discountLedger = await tx.ledger.findUnique({ where: { id: payment.discountLedgerId } });
+                if (discountLedger) {
+                    await tx.ledger.update({
+                        where: { id: payment.discountLedgerId },
+                        data: { currentBalance: { decrement: oldDiscountAmt } }
                     });
                 }
             }

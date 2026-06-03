@@ -6715,6 +6715,8 @@ export namespace Prisma {
     voucher_paidToLedger: number
     receipt_CashBankAccount: number
     payment_CashBankAccount: number
+    receipt_DiscountLedger: number
+    payment_DiscountLedger: number
     voucheritem: number
   }
 
@@ -6726,6 +6728,8 @@ export namespace Prisma {
     voucher_paidToLedger?: boolean | LedgerCountOutputTypeCountVoucher_paidToLedgerArgs
     receipt_CashBankAccount?: boolean | LedgerCountOutputTypeCountReceipt_CashBankAccountArgs
     payment_CashBankAccount?: boolean | LedgerCountOutputTypeCountPayment_CashBankAccountArgs
+    receipt_DiscountLedger?: boolean | LedgerCountOutputTypeCountReceipt_DiscountLedgerArgs
+    payment_DiscountLedger?: boolean | LedgerCountOutputTypeCountPayment_DiscountLedgerArgs
     voucheritem?: boolean | LedgerCountOutputTypeCountVoucheritemArgs
   }
 
@@ -6786,6 +6790,20 @@ export namespace Prisma {
    * LedgerCountOutputType without action
    */
   export type LedgerCountOutputTypeCountPayment_CashBankAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: paymentWhereInput
+  }
+
+  /**
+   * LedgerCountOutputType without action
+   */
+  export type LedgerCountOutputTypeCountReceipt_DiscountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: receiptWhereInput
+  }
+
+  /**
+   * LedgerCountOutputType without action
+   */
+  export type LedgerCountOutputTypeCountPayment_DiscountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: paymentWhereInput
   }
 
@@ -30374,6 +30392,8 @@ export namespace Prisma {
     voucher_paidToLedger?: boolean | ledger$voucher_paidToLedgerArgs<ExtArgs>
     receipt_CashBankAccount?: boolean | ledger$receipt_CashBankAccountArgs<ExtArgs>
     payment_CashBankAccount?: boolean | ledger$payment_CashBankAccountArgs<ExtArgs>
+    receipt_DiscountLedger?: boolean | ledger$receipt_DiscountLedgerArgs<ExtArgs>
+    payment_DiscountLedger?: boolean | ledger$payment_DiscountLedgerArgs<ExtArgs>
     voucheritem?: boolean | ledger$voucheritemArgs<ExtArgs>
     _count?: boolean | LedgerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ledger"]>
@@ -30411,6 +30431,8 @@ export namespace Prisma {
     voucher_paidToLedger?: boolean | ledger$voucher_paidToLedgerArgs<ExtArgs>
     receipt_CashBankAccount?: boolean | ledger$receipt_CashBankAccountArgs<ExtArgs>
     payment_CashBankAccount?: boolean | ledger$payment_CashBankAccountArgs<ExtArgs>
+    receipt_DiscountLedger?: boolean | ledger$receipt_DiscountLedgerArgs<ExtArgs>
+    payment_DiscountLedger?: boolean | ledger$payment_DiscountLedgerArgs<ExtArgs>
     voucheritem?: boolean | ledger$voucheritemArgs<ExtArgs>
     _count?: boolean | LedgerCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -30431,6 +30453,8 @@ export namespace Prisma {
       voucher_paidToLedger: Prisma.$voucherPayload<ExtArgs>[]
       receipt_CashBankAccount: Prisma.$receiptPayload<ExtArgs>[]
       payment_CashBankAccount: Prisma.$paymentPayload<ExtArgs>[]
+      receipt_DiscountLedger: Prisma.$receiptPayload<ExtArgs>[]
+      payment_DiscountLedger: Prisma.$paymentPayload<ExtArgs>[]
       voucheritem: Prisma.$voucheritemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -30802,6 +30826,8 @@ export namespace Prisma {
     voucher_paidToLedger<T extends ledger$voucher_paidToLedgerArgs<ExtArgs> = {}>(args?: Subset<T, ledger$voucher_paidToLedgerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$voucherPayload<ExtArgs>, T, "findMany"> | Null>
     receipt_CashBankAccount<T extends ledger$receipt_CashBankAccountArgs<ExtArgs> = {}>(args?: Subset<T, ledger$receipt_CashBankAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$receiptPayload<ExtArgs>, T, "findMany"> | Null>
     payment_CashBankAccount<T extends ledger$payment_CashBankAccountArgs<ExtArgs> = {}>(args?: Subset<T, ledger$payment_CashBankAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentPayload<ExtArgs>, T, "findMany"> | Null>
+    receipt_DiscountLedger<T extends ledger$receipt_DiscountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, ledger$receipt_DiscountLedgerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$receiptPayload<ExtArgs>, T, "findMany"> | Null>
+    payment_DiscountLedger<T extends ledger$payment_DiscountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, ledger$payment_DiscountLedgerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentPayload<ExtArgs>, T, "findMany"> | Null>
     voucheritem<T extends ledger$voucheritemArgs<ExtArgs> = {}>(args?: Subset<T, ledger$voucheritemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$voucheritemPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -31329,6 +31355,46 @@ export namespace Prisma {
    * ledger.payment_CashBankAccount
    */
   export type ledger$payment_CashBankAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the payment
+     */
+    select?: paymentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentInclude<ExtArgs> | null
+    where?: paymentWhereInput
+    orderBy?: paymentOrderByWithRelationInput | paymentOrderByWithRelationInput[]
+    cursor?: paymentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * ledger.receipt_DiscountLedger
+   */
+  export type ledger$receipt_DiscountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receipt
+     */
+    select?: receiptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptInclude<ExtArgs> | null
+    where?: receiptWhereInput
+    orderBy?: receiptOrderByWithRelationInput | receiptOrderByWithRelationInput[]
+    cursor?: receiptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptScalarFieldEnum | ReceiptScalarFieldEnum[]
+  }
+
+  /**
+   * ledger.payment_DiscountLedger
+   */
+  export type ledger$payment_DiscountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the payment
      */
@@ -32335,6 +32401,8 @@ export namespace Prisma {
     amount: number | null
     companyId: number | null
     cashBankAccountId: number | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type PaymentSumAggregateOutputType = {
@@ -32344,6 +32412,8 @@ export namespace Prisma {
     amount: number | null
     companyId: number | null
     cashBankAccountId: number | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type PaymentMinAggregateOutputType = {
@@ -32360,6 +32430,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type PaymentMaxAggregateOutputType = {
@@ -32376,6 +32448,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type PaymentCountAggregateOutputType = {
@@ -32392,6 +32466,8 @@ export namespace Prisma {
     notes: number
     createdAt: number
     updatedAt: number
+    discountAmount: number
+    discountLedgerId: number
     _all: number
   }
 
@@ -32403,6 +32479,8 @@ export namespace Prisma {
     amount?: true
     companyId?: true
     cashBankAccountId?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type PaymentSumAggregateInputType = {
@@ -32412,6 +32490,8 @@ export namespace Prisma {
     amount?: true
     companyId?: true
     cashBankAccountId?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type PaymentMinAggregateInputType = {
@@ -32428,6 +32508,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type PaymentMaxAggregateInputType = {
@@ -32444,6 +32526,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type PaymentCountAggregateInputType = {
@@ -32460,6 +32544,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
     _all?: true
   }
 
@@ -32563,6 +32649,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date
     updatedAt: Date
+    discountAmount: number
+    discountLedgerId: number | null
     _count: PaymentCountAggregateOutputType | null
     _avg: PaymentAvgAggregateOutputType | null
     _sum: PaymentSumAggregateOutputType | null
@@ -32598,10 +32686,13 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    discountAmount?: boolean
+    discountLedgerId?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     purchasebill?: boolean | payment$purchasebillArgs<ExtArgs>
     vendor?: boolean | vendorDefaultArgs<ExtArgs>
     bankLedger?: boolean | payment$bankLedgerArgs<ExtArgs>
+    discountLedger?: boolean | payment$discountLedgerArgs<ExtArgs>
     transaction?: boolean | payment$transactionArgs<ExtArgs>
     _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -32621,6 +32712,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    discountAmount?: boolean
+    discountLedgerId?: boolean
   }
 
   export type paymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -32628,6 +32721,7 @@ export namespace Prisma {
     purchasebill?: boolean | payment$purchasebillArgs<ExtArgs>
     vendor?: boolean | vendorDefaultArgs<ExtArgs>
     bankLedger?: boolean | payment$bankLedgerArgs<ExtArgs>
+    discountLedger?: boolean | payment$discountLedgerArgs<ExtArgs>
     transaction?: boolean | payment$transactionArgs<ExtArgs>
     _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -32639,6 +32733,7 @@ export namespace Prisma {
       purchasebill: Prisma.$purchasebillPayload<ExtArgs> | null
       vendor: Prisma.$vendorPayload<ExtArgs>
       bankLedger: Prisma.$ledgerPayload<ExtArgs> | null
+      discountLedger: Prisma.$ledgerPayload<ExtArgs> | null
       transaction: Prisma.$transactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -32655,6 +32750,8 @@ export namespace Prisma {
       notes: string | null
       createdAt: Date
       updatedAt: Date
+      discountAmount: number
+      discountLedgerId: number | null
     }, ExtArgs["result"]["payment"]>
     composites: {}
   }
@@ -32999,6 +33096,7 @@ export namespace Prisma {
     purchasebill<T extends payment$purchasebillArgs<ExtArgs> = {}>(args?: Subset<T, payment$purchasebillArgs<ExtArgs>>): Prisma__purchasebillClient<$Result.GetResult<Prisma.$purchasebillPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     vendor<T extends vendorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, vendorDefaultArgs<ExtArgs>>): Prisma__vendorClient<$Result.GetResult<Prisma.$vendorPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     bankLedger<T extends payment$bankLedgerArgs<ExtArgs> = {}>(args?: Subset<T, payment$bankLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    discountLedger<T extends payment$discountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, payment$discountLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     transaction<T extends payment$transactionArgs<ExtArgs> = {}>(args?: Subset<T, payment$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -33042,6 +33140,8 @@ export namespace Prisma {
     readonly notes: FieldRef<"payment", 'String'>
     readonly createdAt: FieldRef<"payment", 'DateTime'>
     readonly updatedAt: FieldRef<"payment", 'DateTime'>
+    readonly discountAmount: FieldRef<"payment", 'Float'>
+    readonly discountLedgerId: FieldRef<"payment", 'Int'>
   }
     
 
@@ -33359,6 +33459,21 @@ export namespace Prisma {
    * payment.bankLedger
    */
   export type payment$bankLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ledger
+     */
+    select?: ledgerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ledgerInclude<ExtArgs> | null
+    where?: ledgerWhereInput
+  }
+
+  /**
+   * payment.discountLedger
+   */
+  export type payment$discountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ledger
      */
@@ -49485,6 +49600,8 @@ export namespace Prisma {
     amount: number | null
     companyId: number | null
     cashBankAccountId: number | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type ReceiptSumAggregateOutputType = {
@@ -49494,6 +49611,8 @@ export namespace Prisma {
     amount: number | null
     companyId: number | null
     cashBankAccountId: number | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type ReceiptMinAggregateOutputType = {
@@ -49510,6 +49629,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type ReceiptMaxAggregateOutputType = {
@@ -49526,6 +49647,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    discountAmount: number | null
+    discountLedgerId: number | null
   }
 
   export type ReceiptCountAggregateOutputType = {
@@ -49542,6 +49665,8 @@ export namespace Prisma {
     notes: number
     createdAt: number
     updatedAt: number
+    discountAmount: number
+    discountLedgerId: number
     _all: number
   }
 
@@ -49553,6 +49678,8 @@ export namespace Prisma {
     amount?: true
     companyId?: true
     cashBankAccountId?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type ReceiptSumAggregateInputType = {
@@ -49562,6 +49689,8 @@ export namespace Prisma {
     amount?: true
     companyId?: true
     cashBankAccountId?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type ReceiptMinAggregateInputType = {
@@ -49578,6 +49707,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type ReceiptMaxAggregateInputType = {
@@ -49594,6 +49725,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
   }
 
   export type ReceiptCountAggregateInputType = {
@@ -49610,6 +49743,8 @@ export namespace Prisma {
     notes?: true
     createdAt?: true
     updatedAt?: true
+    discountAmount?: true
+    discountLedgerId?: true
     _all?: true
   }
 
@@ -49713,6 +49848,8 @@ export namespace Prisma {
     notes: string | null
     createdAt: Date
     updatedAt: Date
+    discountAmount: number
+    discountLedgerId: number | null
     _count: ReceiptCountAggregateOutputType | null
     _avg: ReceiptAvgAggregateOutputType | null
     _sum: ReceiptSumAggregateOutputType | null
@@ -49748,10 +49885,13 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    discountAmount?: boolean
+    discountLedgerId?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
     invoice?: boolean | receipt$invoiceArgs<ExtArgs>
     cashBankAccount?: boolean | receipt$cashBankAccountArgs<ExtArgs>
+    discountLedger?: boolean | receipt$discountLedgerArgs<ExtArgs>
     transaction?: boolean | receipt$transactionArgs<ExtArgs>
     _count?: boolean | ReceiptCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["receipt"]>
@@ -49771,6 +49911,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    discountAmount?: boolean
+    discountLedgerId?: boolean
   }
 
   export type receiptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -49778,6 +49920,7 @@ export namespace Prisma {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     invoice?: boolean | receipt$invoiceArgs<ExtArgs>
     cashBankAccount?: boolean | receipt$cashBankAccountArgs<ExtArgs>
+    discountLedger?: boolean | receipt$discountLedgerArgs<ExtArgs>
     transaction?: boolean | receipt$transactionArgs<ExtArgs>
     _count?: boolean | ReceiptCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -49789,6 +49932,7 @@ export namespace Prisma {
       customer: Prisma.$customerPayload<ExtArgs>
       invoice: Prisma.$invoicePayload<ExtArgs> | null
       cashBankAccount: Prisma.$ledgerPayload<ExtArgs> | null
+      discountLedger: Prisma.$ledgerPayload<ExtArgs> | null
       transaction: Prisma.$transactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -49805,6 +49949,8 @@ export namespace Prisma {
       notes: string | null
       createdAt: Date
       updatedAt: Date
+      discountAmount: number
+      discountLedgerId: number | null
     }, ExtArgs["result"]["receipt"]>
     composites: {}
   }
@@ -50149,6 +50295,7 @@ export namespace Prisma {
     customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     invoice<T extends receipt$invoiceArgs<ExtArgs> = {}>(args?: Subset<T, receipt$invoiceArgs<ExtArgs>>): Prisma__invoiceClient<$Result.GetResult<Prisma.$invoicePayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     cashBankAccount<T extends receipt$cashBankAccountArgs<ExtArgs> = {}>(args?: Subset<T, receipt$cashBankAccountArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    discountLedger<T extends receipt$discountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, receipt$discountLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     transaction<T extends receipt$transactionArgs<ExtArgs> = {}>(args?: Subset<T, receipt$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -50192,6 +50339,8 @@ export namespace Prisma {
     readonly notes: FieldRef<"receipt", 'String'>
     readonly createdAt: FieldRef<"receipt", 'DateTime'>
     readonly updatedAt: FieldRef<"receipt", 'DateTime'>
+    readonly discountAmount: FieldRef<"receipt", 'Float'>
+    readonly discountLedgerId: FieldRef<"receipt", 'Int'>
   }
     
 
@@ -50509,6 +50658,21 @@ export namespace Prisma {
    * receipt.cashBankAccount
    */
   export type receipt$cashBankAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ledger
+     */
+    select?: ledgerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ledgerInclude<ExtArgs> | null
+    where?: ledgerWhereInput
+  }
+
+  /**
+   * receipt.discountLedger
+   */
+  export type receipt$discountLedgerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ledger
      */
@@ -74570,7 +74734,9 @@ export namespace Prisma {
     cashBankAccountId: 'cashBankAccountId',
     notes: 'notes',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    discountAmount: 'discountAmount',
+    discountLedgerId: 'discountLedgerId'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -74902,7 +75068,9 @@ export namespace Prisma {
     cashBankAccountId: 'cashBankAccountId',
     notes: 'notes',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    discountAmount: 'discountAmount',
+    discountLedgerId: 'discountLedgerId'
   };
 
   export type ReceiptScalarFieldEnum = (typeof ReceiptScalarFieldEnum)[keyof typeof ReceiptScalarFieldEnum]
@@ -77812,6 +77980,8 @@ export namespace Prisma {
     voucher_paidToLedger?: VoucherListRelationFilter
     receipt_CashBankAccount?: ReceiptListRelationFilter
     payment_CashBankAccount?: PaymentListRelationFilter
+    receipt_DiscountLedger?: ReceiptListRelationFilter
+    payment_DiscountLedger?: PaymentListRelationFilter
     voucheritem?: VoucheritemListRelationFilter
   }
 
@@ -77844,6 +78014,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherOrderByRelationAggregateInput
     receipt_CashBankAccount?: receiptOrderByRelationAggregateInput
     payment_CashBankAccount?: paymentOrderByRelationAggregateInput
+    receipt_DiscountLedger?: receiptOrderByRelationAggregateInput
+    payment_DiscountLedger?: paymentOrderByRelationAggregateInput
     voucheritem?: voucheritemOrderByRelationAggregateInput
   }
 
@@ -77880,6 +78052,8 @@ export namespace Prisma {
     voucher_paidToLedger?: VoucherListRelationFilter
     receipt_CashBankAccount?: ReceiptListRelationFilter
     payment_CashBankAccount?: PaymentListRelationFilter
+    receipt_DiscountLedger?: ReceiptListRelationFilter
+    payment_DiscountLedger?: PaymentListRelationFilter
     voucheritem?: VoucheritemListRelationFilter
   }, "id" | "customerId" | "vendorId" | "companyId_name">
 
@@ -78009,10 +78183,13 @@ export namespace Prisma {
     notes?: StringNullableFilter<"payment"> | string | null
     createdAt?: DateTimeFilter<"payment"> | Date | string
     updatedAt?: DateTimeFilter<"payment"> | Date | string
+    discountAmount?: FloatFilter<"payment"> | number
+    discountLedgerId?: IntNullableFilter<"payment"> | number | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     purchasebill?: XOR<PurchasebillNullableRelationFilter, purchasebillWhereInput> | null
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
     bankLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
+    discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
   }
 
@@ -78030,10 +78207,13 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     purchasebill?: purchasebillOrderByWithRelationInput
     vendor?: vendorOrderByWithRelationInput
     bankLedger?: ledgerOrderByWithRelationInput
+    discountLedger?: ledgerOrderByWithRelationInput
     transaction?: transactionOrderByRelationAggregateInput
   }
 
@@ -78055,10 +78235,13 @@ export namespace Prisma {
     notes?: StringNullableFilter<"payment"> | string | null
     createdAt?: DateTimeFilter<"payment"> | Date | string
     updatedAt?: DateTimeFilter<"payment"> | Date | string
+    discountAmount?: FloatFilter<"payment"> | number
+    discountLedgerId?: IntNullableFilter<"payment"> | number | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     purchasebill?: XOR<PurchasebillNullableRelationFilter, purchasebillWhereInput> | null
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
     bankLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
+    discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
   }, "id" | "companyId_paymentNumber">
 
@@ -78076,6 +78259,8 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrderInput | SortOrder
     _count?: paymentCountOrderByAggregateInput
     _avg?: paymentAvgOrderByAggregateInput
     _max?: paymentMaxOrderByAggregateInput
@@ -78100,6 +78285,8 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"payment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"payment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"payment"> | Date | string
+    discountAmount?: FloatWithAggregatesFilter<"payment"> | number
+    discountLedgerId?: IntNullableWithAggregatesFilter<"payment"> | number | null
   }
 
   export type paymentrecordWhereInput = {
@@ -79886,10 +80073,13 @@ export namespace Prisma {
     notes?: StringNullableFilter<"receipt"> | string | null
     createdAt?: DateTimeFilter<"receipt"> | Date | string
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
+    discountAmount?: FloatFilter<"receipt"> | number
+    discountLedgerId?: IntNullableFilter<"receipt"> | number | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
     cashBankAccount?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
+    discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
   }
 
@@ -79907,10 +80097,13 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
     invoice?: invoiceOrderByWithRelationInput
     cashBankAccount?: ledgerOrderByWithRelationInput
+    discountLedger?: ledgerOrderByWithRelationInput
     transaction?: transactionOrderByRelationAggregateInput
   }
 
@@ -79932,10 +80125,13 @@ export namespace Prisma {
     notes?: StringNullableFilter<"receipt"> | string | null
     createdAt?: DateTimeFilter<"receipt"> | Date | string
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
+    discountAmount?: FloatFilter<"receipt"> | number
+    discountLedgerId?: IntNullableFilter<"receipt"> | number | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
     cashBankAccount?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
+    discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
   }, "id" | "companyId_receiptNumber">
 
@@ -79953,6 +80149,8 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrderInput | SortOrder
     _count?: receiptCountOrderByAggregateInput
     _avg?: receiptAvgOrderByAggregateInput
     _max?: receiptMaxOrderByAggregateInput
@@ -79977,6 +80175,8 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"receipt"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"receipt"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"receipt"> | Date | string
+    discountAmount?: FloatWithAggregatesFilter<"receipt"> | number
+    discountLedgerId?: IntNullableWithAggregatesFilter<"receipt"> | number | null
   }
 
   export type salesorderWhereInput = {
@@ -84913,6 +85113,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -84939,6 +85141,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -84964,6 +85168,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -84990,6 +85196,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -85107,10 +85315,12 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
   }
 
@@ -85128,6 +85338,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -85140,10 +85352,12 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
   }
 
@@ -85161,6 +85375,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -85178,6 +85394,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type paymentUpdateManyMutationInput = {
@@ -85189,6 +85407,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type paymentUncheckedUpdateManyInput = {
@@ -85205,6 +85424,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type paymentrecordCreateInput = {
@@ -87166,10 +87387,12 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
   }
 
@@ -87187,6 +87410,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -87199,10 +87424,12 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
   }
 
@@ -87220,6 +87447,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -87237,6 +87466,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type receiptUpdateManyMutationInput = {
@@ -87248,6 +87479,7 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type receiptUncheckedUpdateManyInput = {
@@ -87264,6 +87496,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type salesorderCreateInput = {
@@ -92377,6 +92611,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type paymentAvgOrderByAggregateInput = {
@@ -92386,6 +92622,8 @@ export namespace Prisma {
     amount?: SortOrder
     companyId?: SortOrder
     cashBankAccountId?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type paymentMaxOrderByAggregateInput = {
@@ -92402,6 +92640,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type paymentMinOrderByAggregateInput = {
@@ -92418,6 +92658,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type paymentSumOrderByAggregateInput = {
@@ -92427,6 +92669,8 @@ export namespace Prisma {
     amount?: SortOrder
     companyId?: SortOrder
     cashBankAccountId?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type Enumpayment_paymentModeWithAggregatesFilter<$PrismaModel = never> = {
@@ -93853,6 +94097,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type receiptAvgOrderByAggregateInput = {
@@ -93862,6 +94108,8 @@ export namespace Prisma {
     amount?: SortOrder
     companyId?: SortOrder
     cashBankAccountId?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type receiptMaxOrderByAggregateInput = {
@@ -93878,6 +94126,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type receiptMinOrderByAggregateInput = {
@@ -93894,6 +94144,8 @@ export namespace Prisma {
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type receiptSumOrderByAggregateInput = {
@@ -93903,6 +94155,8 @@ export namespace Prisma {
     amount?: SortOrder
     companyId?: SortOrder
     cashBankAccountId?: SortOrder
+    discountAmount?: SortOrder
+    discountLedgerId?: SortOrder
   }
 
   export type Enumreceipt_paymentModeWithAggregatesFilter<$PrismaModel = never> = {
@@ -99012,6 +99266,20 @@ export namespace Prisma {
     connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
   }
 
+  export type receiptCreateNestedManyWithoutDiscountLedgerInput = {
+    create?: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput> | receiptCreateWithoutDiscountLedgerInput[] | receiptUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: receiptCreateOrConnectWithoutDiscountLedgerInput | receiptCreateOrConnectWithoutDiscountLedgerInput[]
+    createMany?: receiptCreateManyDiscountLedgerInputEnvelope
+    connect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+  }
+
+  export type paymentCreateNestedManyWithoutDiscountLedgerInput = {
+    create?: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput> | paymentCreateWithoutDiscountLedgerInput[] | paymentUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: paymentCreateOrConnectWithoutDiscountLedgerInput | paymentCreateOrConnectWithoutDiscountLedgerInput[]
+    createMany?: paymentCreateManyDiscountLedgerInputEnvelope
+    connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+  }
+
   export type voucheritemCreateNestedManyWithoutLedgerInput = {
     create?: XOR<voucheritemCreateWithoutLedgerInput, voucheritemUncheckedCreateWithoutLedgerInput> | voucheritemCreateWithoutLedgerInput[] | voucheritemUncheckedCreateWithoutLedgerInput[]
     connectOrCreate?: voucheritemCreateOrConnectWithoutLedgerInput | voucheritemCreateOrConnectWithoutLedgerInput[]
@@ -99065,6 +99333,20 @@ export namespace Prisma {
     create?: XOR<paymentCreateWithoutBankLedgerInput, paymentUncheckedCreateWithoutBankLedgerInput> | paymentCreateWithoutBankLedgerInput[] | paymentUncheckedCreateWithoutBankLedgerInput[]
     connectOrCreate?: paymentCreateOrConnectWithoutBankLedgerInput | paymentCreateOrConnectWithoutBankLedgerInput[]
     createMany?: paymentCreateManyBankLedgerInputEnvelope
+    connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+  }
+
+  export type receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput = {
+    create?: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput> | receiptCreateWithoutDiscountLedgerInput[] | receiptUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: receiptCreateOrConnectWithoutDiscountLedgerInput | receiptCreateOrConnectWithoutDiscountLedgerInput[]
+    createMany?: receiptCreateManyDiscountLedgerInputEnvelope
+    connect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+  }
+
+  export type paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput = {
+    create?: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput> | paymentCreateWithoutDiscountLedgerInput[] | paymentUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: paymentCreateOrConnectWithoutDiscountLedgerInput | paymentCreateOrConnectWithoutDiscountLedgerInput[]
+    createMany?: paymentCreateManyDiscountLedgerInputEnvelope
     connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
   }
 
@@ -99229,6 +99511,34 @@ export namespace Prisma {
     deleteMany?: paymentScalarWhereInput | paymentScalarWhereInput[]
   }
 
+  export type receiptUpdateManyWithoutDiscountLedgerNestedInput = {
+    create?: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput> | receiptCreateWithoutDiscountLedgerInput[] | receiptUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: receiptCreateOrConnectWithoutDiscountLedgerInput | receiptCreateOrConnectWithoutDiscountLedgerInput[]
+    upsert?: receiptUpsertWithWhereUniqueWithoutDiscountLedgerInput | receiptUpsertWithWhereUniqueWithoutDiscountLedgerInput[]
+    createMany?: receiptCreateManyDiscountLedgerInputEnvelope
+    set?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    disconnect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    delete?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    connect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    update?: receiptUpdateWithWhereUniqueWithoutDiscountLedgerInput | receiptUpdateWithWhereUniqueWithoutDiscountLedgerInput[]
+    updateMany?: receiptUpdateManyWithWhereWithoutDiscountLedgerInput | receiptUpdateManyWithWhereWithoutDiscountLedgerInput[]
+    deleteMany?: receiptScalarWhereInput | receiptScalarWhereInput[]
+  }
+
+  export type paymentUpdateManyWithoutDiscountLedgerNestedInput = {
+    create?: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput> | paymentCreateWithoutDiscountLedgerInput[] | paymentUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: paymentCreateOrConnectWithoutDiscountLedgerInput | paymentCreateOrConnectWithoutDiscountLedgerInput[]
+    upsert?: paymentUpsertWithWhereUniqueWithoutDiscountLedgerInput | paymentUpsertWithWhereUniqueWithoutDiscountLedgerInput[]
+    createMany?: paymentCreateManyDiscountLedgerInputEnvelope
+    set?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    disconnect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    delete?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    update?: paymentUpdateWithWhereUniqueWithoutDiscountLedgerInput | paymentUpdateWithWhereUniqueWithoutDiscountLedgerInput[]
+    updateMany?: paymentUpdateManyWithWhereWithoutDiscountLedgerInput | paymentUpdateManyWithWhereWithoutDiscountLedgerInput[]
+    deleteMany?: paymentScalarWhereInput | paymentScalarWhereInput[]
+  }
+
   export type voucheritemUpdateManyWithoutLedgerNestedInput = {
     create?: XOR<voucheritemCreateWithoutLedgerInput, voucheritemUncheckedCreateWithoutLedgerInput> | voucheritemCreateWithoutLedgerInput[] | voucheritemUncheckedCreateWithoutLedgerInput[]
     connectOrCreate?: voucheritemCreateOrConnectWithoutLedgerInput | voucheritemCreateOrConnectWithoutLedgerInput[]
@@ -99341,6 +99651,34 @@ export namespace Prisma {
     deleteMany?: paymentScalarWhereInput | paymentScalarWhereInput[]
   }
 
+  export type receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput = {
+    create?: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput> | receiptCreateWithoutDiscountLedgerInput[] | receiptUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: receiptCreateOrConnectWithoutDiscountLedgerInput | receiptCreateOrConnectWithoutDiscountLedgerInput[]
+    upsert?: receiptUpsertWithWhereUniqueWithoutDiscountLedgerInput | receiptUpsertWithWhereUniqueWithoutDiscountLedgerInput[]
+    createMany?: receiptCreateManyDiscountLedgerInputEnvelope
+    set?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    disconnect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    delete?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    connect?: receiptWhereUniqueInput | receiptWhereUniqueInput[]
+    update?: receiptUpdateWithWhereUniqueWithoutDiscountLedgerInput | receiptUpdateWithWhereUniqueWithoutDiscountLedgerInput[]
+    updateMany?: receiptUpdateManyWithWhereWithoutDiscountLedgerInput | receiptUpdateManyWithWhereWithoutDiscountLedgerInput[]
+    deleteMany?: receiptScalarWhereInput | receiptScalarWhereInput[]
+  }
+
+  export type paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput = {
+    create?: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput> | paymentCreateWithoutDiscountLedgerInput[] | paymentUncheckedCreateWithoutDiscountLedgerInput[]
+    connectOrCreate?: paymentCreateOrConnectWithoutDiscountLedgerInput | paymentCreateOrConnectWithoutDiscountLedgerInput[]
+    upsert?: paymentUpsertWithWhereUniqueWithoutDiscountLedgerInput | paymentUpsertWithWhereUniqueWithoutDiscountLedgerInput[]
+    createMany?: paymentCreateManyDiscountLedgerInputEnvelope
+    set?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    disconnect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    delete?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    connect?: paymentWhereUniqueInput | paymentWhereUniqueInput[]
+    update?: paymentUpdateWithWhereUniqueWithoutDiscountLedgerInput | paymentUpdateWithWhereUniqueWithoutDiscountLedgerInput[]
+    updateMany?: paymentUpdateManyWithWhereWithoutDiscountLedgerInput | paymentUpdateManyWithWhereWithoutDiscountLedgerInput[]
+    deleteMany?: paymentScalarWhereInput | paymentScalarWhereInput[]
+  }
+
   export type voucheritemUncheckedUpdateManyWithoutLedgerNestedInput = {
     create?: XOR<voucheritemCreateWithoutLedgerInput, voucheritemUncheckedCreateWithoutLedgerInput> | voucheritemCreateWithoutLedgerInput[] | voucheritemUncheckedCreateWithoutLedgerInput[]
     connectOrCreate?: voucheritemCreateOrConnectWithoutLedgerInput | voucheritemCreateOrConnectWithoutLedgerInput[]
@@ -99407,6 +99745,12 @@ export namespace Prisma {
     connect?: ledgerWhereUniqueInput
   }
 
+  export type ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput = {
+    create?: XOR<ledgerCreateWithoutPayment_DiscountLedgerInput, ledgerUncheckedCreateWithoutPayment_DiscountLedgerInput>
+    connectOrCreate?: ledgerCreateOrConnectWithoutPayment_DiscountLedgerInput
+    connect?: ledgerWhereUniqueInput
+  }
+
   export type transactionCreateNestedManyWithoutPaymentInput = {
     create?: XOR<transactionCreateWithoutPaymentInput, transactionUncheckedCreateWithoutPaymentInput> | transactionCreateWithoutPaymentInput[] | transactionUncheckedCreateWithoutPaymentInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutPaymentInput | transactionCreateOrConnectWithoutPaymentInput[]
@@ -99459,6 +99803,16 @@ export namespace Prisma {
     delete?: ledgerWhereInput | boolean
     connect?: ledgerWhereUniqueInput
     update?: XOR<XOR<ledgerUpdateToOneWithWhereWithoutPayment_CashBankAccountInput, ledgerUpdateWithoutPayment_CashBankAccountInput>, ledgerUncheckedUpdateWithoutPayment_CashBankAccountInput>
+  }
+
+  export type ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput = {
+    create?: XOR<ledgerCreateWithoutPayment_DiscountLedgerInput, ledgerUncheckedCreateWithoutPayment_DiscountLedgerInput>
+    connectOrCreate?: ledgerCreateOrConnectWithoutPayment_DiscountLedgerInput
+    upsert?: ledgerUpsertWithoutPayment_DiscountLedgerInput
+    disconnect?: ledgerWhereInput | boolean
+    delete?: ledgerWhereInput | boolean
+    connect?: ledgerWhereUniqueInput
+    update?: XOR<XOR<ledgerUpdateToOneWithWhereWithoutPayment_DiscountLedgerInput, ledgerUpdateWithoutPayment_DiscountLedgerInput>, ledgerUncheckedUpdateWithoutPayment_DiscountLedgerInput>
   }
 
   export type transactionUpdateManyWithoutPaymentNestedInput = {
@@ -101463,6 +101817,12 @@ export namespace Prisma {
     connect?: ledgerWhereUniqueInput
   }
 
+  export type ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput = {
+    create?: XOR<ledgerCreateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedCreateWithoutReceipt_DiscountLedgerInput>
+    connectOrCreate?: ledgerCreateOrConnectWithoutReceipt_DiscountLedgerInput
+    connect?: ledgerWhereUniqueInput
+  }
+
   export type transactionCreateNestedManyWithoutReceiptInput = {
     create?: XOR<transactionCreateWithoutReceiptInput, transactionUncheckedCreateWithoutReceiptInput> | transactionCreateWithoutReceiptInput[] | transactionUncheckedCreateWithoutReceiptInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutReceiptInput | transactionCreateOrConnectWithoutReceiptInput[]
@@ -101515,6 +101875,16 @@ export namespace Prisma {
     delete?: ledgerWhereInput | boolean
     connect?: ledgerWhereUniqueInput
     update?: XOR<XOR<ledgerUpdateToOneWithWhereWithoutReceipt_CashBankAccountInput, ledgerUpdateWithoutReceipt_CashBankAccountInput>, ledgerUncheckedUpdateWithoutReceipt_CashBankAccountInput>
+  }
+
+  export type ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput = {
+    create?: XOR<ledgerCreateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedCreateWithoutReceipt_DiscountLedgerInput>
+    connectOrCreate?: ledgerCreateOrConnectWithoutReceipt_DiscountLedgerInput
+    upsert?: ledgerUpsertWithoutReceipt_DiscountLedgerInput
+    disconnect?: ledgerWhereInput | boolean
+    delete?: ledgerWhereInput | boolean
+    connect?: ledgerWhereUniqueInput
+    update?: XOR<XOR<ledgerUpdateToOneWithWhereWithoutReceipt_DiscountLedgerInput, ledgerUpdateWithoutReceipt_DiscountLedgerInput>, ledgerUncheckedUpdateWithoutReceipt_DiscountLedgerInput>
   }
 
   export type transactionUpdateManyWithoutReceiptNestedInput = {
@@ -105259,6 +105629,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -105284,6 +105656,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -105697,6 +106071,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -105722,6 +106098,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -107755,6 +108133,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -107780,6 +108160,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -107827,9 +108209,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
   }
 
@@ -107846,6 +108230,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -108276,9 +108662,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
   }
 
@@ -108295,6 +108683,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -109568,6 +109958,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"payment"> | string | null
     createdAt?: DateTimeFilter<"payment"> | Date | string
     updatedAt?: DateTimeFilter<"payment"> | Date | string
+    discountAmount?: FloatFilter<"payment"> | number
+    discountLedgerId?: IntNullableFilter<"payment"> | number | null
   }
 
   export type posinvoiceUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -109838,6 +110230,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"receipt"> | string | null
     createdAt?: DateTimeFilter<"receipt"> | Date | string
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
+    discountAmount?: FloatFilter<"receipt"> | number
+    discountLedgerId?: IntNullableFilter<"receipt"> | number | null
   }
 
   export type salesorderUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -110624,6 +111018,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -110649,6 +111045,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -110715,9 +111113,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
   }
 
@@ -110734,6 +111134,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -111238,6 +111640,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -111263,6 +111667,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -116596,9 +117002,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
   }
 
@@ -116615,6 +117023,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -118609,6 +119019,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -118634,6 +119046,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -118663,6 +119077,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -118688,6 +119104,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -119044,9 +119462,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
   }
 
@@ -119063,6 +119483,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -119085,9 +119507,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
   }
 
@@ -119104,6 +119528,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -119114,6 +119540,96 @@ export namespace Prisma {
 
   export type paymentCreateManyBankLedgerInputEnvelope = {
     data: paymentCreateManyBankLedgerInput | paymentCreateManyBankLedgerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type receiptCreateWithoutDiscountLedgerInput = {
+    receiptNumber: string
+    date?: Date | string
+    amount: number
+    paymentMode: $Enums.receipt_paymentMode
+    referenceNumber?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    company: companyCreateNestedOneWithoutReceiptInput
+    customer: customerCreateNestedOneWithoutReceiptInput
+    invoice?: invoiceCreateNestedOneWithoutReceiptInput
+    cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    transaction?: transactionCreateNestedManyWithoutReceiptInput
+  }
+
+  export type receiptUncheckedCreateWithoutDiscountLedgerInput = {
+    id?: number
+    receiptNumber: string
+    date?: Date | string
+    customerId: number
+    invoiceId?: number | null
+    amount: number
+    paymentMode: $Enums.receipt_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+  }
+
+  export type receiptCreateOrConnectWithoutDiscountLedgerInput = {
+    where: receiptWhereUniqueInput
+    create: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput>
+  }
+
+  export type receiptCreateManyDiscountLedgerInputEnvelope = {
+    data: receiptCreateManyDiscountLedgerInput | receiptCreateManyDiscountLedgerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type paymentCreateWithoutDiscountLedgerInput = {
+    paymentNumber: string
+    date?: Date | string
+    amount: number
+    paymentMode: $Enums.payment_paymentMode
+    referenceNumber?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    company: companyCreateNestedOneWithoutPaymentInput
+    purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
+    vendor: vendorCreateNestedOneWithoutPaymentInput
+    bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    transaction?: transactionCreateNestedManyWithoutPaymentInput
+  }
+
+  export type paymentUncheckedCreateWithoutDiscountLedgerInput = {
+    id?: number
+    paymentNumber: string
+    date?: Date | string
+    vendorId: number
+    purchaseBillId?: number | null
+    amount: number
+    paymentMode: $Enums.payment_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+  }
+
+  export type paymentCreateOrConnectWithoutDiscountLedgerInput = {
+    where: paymentWhereUniqueInput
+    create: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput>
+  }
+
+  export type paymentCreateManyDiscountLedgerInputEnvelope = {
+    data: paymentCreateManyDiscountLedgerInput | paymentCreateManyDiscountLedgerInput[]
     skipDuplicates?: boolean
   }
 
@@ -119482,6 +119998,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -119507,6 +120025,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -119758,6 +120278,38 @@ export namespace Prisma {
   export type paymentUpdateManyWithWhereWithoutBankLedgerInput = {
     where: paymentScalarWhereInput
     data: XOR<paymentUpdateManyMutationInput, paymentUncheckedUpdateManyWithoutBankLedgerInput>
+  }
+
+  export type receiptUpsertWithWhereUniqueWithoutDiscountLedgerInput = {
+    where: receiptWhereUniqueInput
+    update: XOR<receiptUpdateWithoutDiscountLedgerInput, receiptUncheckedUpdateWithoutDiscountLedgerInput>
+    create: XOR<receiptCreateWithoutDiscountLedgerInput, receiptUncheckedCreateWithoutDiscountLedgerInput>
+  }
+
+  export type receiptUpdateWithWhereUniqueWithoutDiscountLedgerInput = {
+    where: receiptWhereUniqueInput
+    data: XOR<receiptUpdateWithoutDiscountLedgerInput, receiptUncheckedUpdateWithoutDiscountLedgerInput>
+  }
+
+  export type receiptUpdateManyWithWhereWithoutDiscountLedgerInput = {
+    where: receiptScalarWhereInput
+    data: XOR<receiptUpdateManyMutationInput, receiptUncheckedUpdateManyWithoutDiscountLedgerInput>
+  }
+
+  export type paymentUpsertWithWhereUniqueWithoutDiscountLedgerInput = {
+    where: paymentWhereUniqueInput
+    update: XOR<paymentUpdateWithoutDiscountLedgerInput, paymentUncheckedUpdateWithoutDiscountLedgerInput>
+    create: XOR<paymentCreateWithoutDiscountLedgerInput, paymentUncheckedCreateWithoutDiscountLedgerInput>
+  }
+
+  export type paymentUpdateWithWhereUniqueWithoutDiscountLedgerInput = {
+    where: paymentWhereUniqueInput
+    data: XOR<paymentUpdateWithoutDiscountLedgerInput, paymentUncheckedUpdateWithoutDiscountLedgerInput>
+  }
+
+  export type paymentUpdateManyWithWhereWithoutDiscountLedgerInput = {
+    where: paymentScalarWhereInput
+    data: XOR<paymentUpdateManyMutationInput, paymentUncheckedUpdateManyWithoutDiscountLedgerInput>
   }
 
   export type voucheritemUpsertWithWhereUniqueWithoutLedgerInput = {
@@ -120510,6 +121062,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherCreateNestedManyWithoutPaidFromLedgerInput
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -120535,12 +121089,72 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedCreateNestedManyWithoutPaidFromLedgerInput
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
   export type ledgerCreateOrConnectWithoutPayment_CashBankAccountInput = {
     where: ledgerWhereUniqueInput
     create: XOR<ledgerCreateWithoutPayment_CashBankAccountInput, ledgerUncheckedCreateWithoutPayment_CashBankAccountInput>
+  }
+
+  export type ledgerCreateWithoutPayment_DiscountLedgerInput = {
+    name: string
+    openingBalance?: number
+    currentBalance?: number
+    isControlAccount?: boolean
+    isEnabled?: boolean
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    company: companyCreateNestedOneWithoutLedgerInput
+    customer?: customerCreateNestedOneWithoutLedgerInput
+    accountgroup: accountgroupCreateNestedOneWithoutLedgerInput
+    ledger?: ledgerCreateNestedOneWithoutOther_ledgerInput
+    other_ledger?: ledgerCreateNestedManyWithoutLedgerInput
+    accountsubgroup?: accountsubgroupCreateNestedOneWithoutLedgerInput
+    vendor?: vendorCreateNestedOneWithoutLedgerInput
+    transaction_transaction_creditLedgerIdToledger?: transactionCreateNestedManyWithoutLedger_transaction_creditLedgerIdToledgerInput
+    transaction_transaction_debitLedgerIdToledger?: transactionCreateNestedManyWithoutLedger_transaction_debitLedgerIdToledgerInput
+    voucher_paidFromLedger?: voucherCreateNestedManyWithoutPaidFromLedgerInput
+    voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
+    receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
+    payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
+  }
+
+  export type ledgerUncheckedCreateWithoutPayment_DiscountLedgerInput = {
+    id?: number
+    name: string
+    groupId: number
+    subGroupId?: number | null
+    companyId: number
+    openingBalance?: number
+    currentBalance?: number
+    isControlAccount?: boolean
+    isEnabled?: boolean
+    description?: string | null
+    parentLedgerId?: number | null
+    customerId?: number | null
+    vendorId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUncheckedCreateNestedManyWithoutLedger_transaction_creditLedgerIdToledgerInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUncheckedCreateNestedManyWithoutLedger_transaction_debitLedgerIdToledgerInput
+    voucher_paidFromLedger?: voucherUncheckedCreateNestedManyWithoutPaidFromLedgerInput
+    voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
+    receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
+    payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
+  }
+
+  export type ledgerCreateOrConnectWithoutPayment_DiscountLedgerInput = {
+    where: ledgerWhereUniqueInput
+    create: XOR<ledgerCreateWithoutPayment_DiscountLedgerInput, ledgerUncheckedCreateWithoutPayment_DiscountLedgerInput>
   }
 
   export type transactionCreateWithoutPaymentInput = {
@@ -120976,6 +121590,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUpdateManyWithoutPaidFromLedgerNestedInput
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -121001,6 +121617,72 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedUpdateManyWithoutPaidFromLedgerNestedInput
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
+  }
+
+  export type ledgerUpsertWithoutPayment_DiscountLedgerInput = {
+    update: XOR<ledgerUpdateWithoutPayment_DiscountLedgerInput, ledgerUncheckedUpdateWithoutPayment_DiscountLedgerInput>
+    create: XOR<ledgerCreateWithoutPayment_DiscountLedgerInput, ledgerUncheckedCreateWithoutPayment_DiscountLedgerInput>
+    where?: ledgerWhereInput
+  }
+
+  export type ledgerUpdateToOneWithWhereWithoutPayment_DiscountLedgerInput = {
+    where?: ledgerWhereInput
+    data: XOR<ledgerUpdateWithoutPayment_DiscountLedgerInput, ledgerUncheckedUpdateWithoutPayment_DiscountLedgerInput>
+  }
+
+  export type ledgerUpdateWithoutPayment_DiscountLedgerInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    openingBalance?: FloatFieldUpdateOperationsInput | number
+    currentBalance?: FloatFieldUpdateOperationsInput | number
+    isControlAccount?: BoolFieldUpdateOperationsInput | boolean
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: companyUpdateOneRequiredWithoutLedgerNestedInput
+    customer?: customerUpdateOneWithoutLedgerNestedInput
+    accountgroup?: accountgroupUpdateOneRequiredWithoutLedgerNestedInput
+    ledger?: ledgerUpdateOneWithoutOther_ledgerNestedInput
+    other_ledger?: ledgerUpdateManyWithoutLedgerNestedInput
+    accountsubgroup?: accountsubgroupUpdateOneWithoutLedgerNestedInput
+    vendor?: vendorUpdateOneWithoutLedgerNestedInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerNestedInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUpdateManyWithoutLedger_transaction_debitLedgerIdToledgerNestedInput
+    voucher_paidFromLedger?: voucherUpdateManyWithoutPaidFromLedgerNestedInput
+    voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
+    receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
+    payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
+  }
+
+  export type ledgerUncheckedUpdateWithoutPayment_DiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+    subGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    openingBalance?: FloatFieldUpdateOperationsInput | number
+    currentBalance?: FloatFieldUpdateOperationsInput | number
+    isControlAccount?: BoolFieldUpdateOperationsInput | boolean
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customerId?: NullableIntFieldUpdateOperationsInput | number | null
+    vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUncheckedUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerNestedInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUncheckedUpdateManyWithoutLedger_transaction_debitLedgerIdToledgerNestedInput
+    voucher_paidFromLedger?: voucherUncheckedUpdateManyWithoutPaidFromLedgerNestedInput
+    voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
+    receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
+    payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -124290,9 +124972,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
   }
 
@@ -124309,6 +124993,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -129866,6 +130552,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherCreateNestedManyWithoutPaidFromLedgerInput
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -129891,12 +130579,72 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedCreateNestedManyWithoutPaidFromLedgerInput
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
   export type ledgerCreateOrConnectWithoutReceipt_CashBankAccountInput = {
     where: ledgerWhereUniqueInput
     create: XOR<ledgerCreateWithoutReceipt_CashBankAccountInput, ledgerUncheckedCreateWithoutReceipt_CashBankAccountInput>
+  }
+
+  export type ledgerCreateWithoutReceipt_DiscountLedgerInput = {
+    name: string
+    openingBalance?: number
+    currentBalance?: number
+    isControlAccount?: boolean
+    isEnabled?: boolean
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    company: companyCreateNestedOneWithoutLedgerInput
+    customer?: customerCreateNestedOneWithoutLedgerInput
+    accountgroup: accountgroupCreateNestedOneWithoutLedgerInput
+    ledger?: ledgerCreateNestedOneWithoutOther_ledgerInput
+    other_ledger?: ledgerCreateNestedManyWithoutLedgerInput
+    accountsubgroup?: accountsubgroupCreateNestedOneWithoutLedgerInput
+    vendor?: vendorCreateNestedOneWithoutLedgerInput
+    transaction_transaction_creditLedgerIdToledger?: transactionCreateNestedManyWithoutLedger_transaction_creditLedgerIdToledgerInput
+    transaction_transaction_debitLedgerIdToledger?: transactionCreateNestedManyWithoutLedger_transaction_debitLedgerIdToledgerInput
+    voucher_paidFromLedger?: voucherCreateNestedManyWithoutPaidFromLedgerInput
+    voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
+    receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
+    payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
+    voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
+  }
+
+  export type ledgerUncheckedCreateWithoutReceipt_DiscountLedgerInput = {
+    id?: number
+    name: string
+    groupId: number
+    subGroupId?: number | null
+    companyId: number
+    openingBalance?: number
+    currentBalance?: number
+    isControlAccount?: boolean
+    isEnabled?: boolean
+    description?: string | null
+    parentLedgerId?: number | null
+    customerId?: number | null
+    vendorId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUncheckedCreateNestedManyWithoutLedger_transaction_creditLedgerIdToledgerInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUncheckedCreateNestedManyWithoutLedger_transaction_debitLedgerIdToledgerInput
+    voucher_paidFromLedger?: voucherUncheckedCreateNestedManyWithoutPaidFromLedgerInput
+    voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
+    receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
+    payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
+  }
+
+  export type ledgerCreateOrConnectWithoutReceipt_DiscountLedgerInput = {
+    where: ledgerWhereUniqueInput
+    create: XOR<ledgerCreateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedCreateWithoutReceipt_DiscountLedgerInput>
   }
 
   export type transactionCreateWithoutReceiptInput = {
@@ -130334,6 +131082,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUpdateManyWithoutPaidFromLedgerNestedInput
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -130359,6 +131109,72 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedUpdateManyWithoutPaidFromLedgerNestedInput
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
+  }
+
+  export type ledgerUpsertWithoutReceipt_DiscountLedgerInput = {
+    update: XOR<ledgerUpdateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedUpdateWithoutReceipt_DiscountLedgerInput>
+    create: XOR<ledgerCreateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedCreateWithoutReceipt_DiscountLedgerInput>
+    where?: ledgerWhereInput
+  }
+
+  export type ledgerUpdateToOneWithWhereWithoutReceipt_DiscountLedgerInput = {
+    where?: ledgerWhereInput
+    data: XOR<ledgerUpdateWithoutReceipt_DiscountLedgerInput, ledgerUncheckedUpdateWithoutReceipt_DiscountLedgerInput>
+  }
+
+  export type ledgerUpdateWithoutReceipt_DiscountLedgerInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    openingBalance?: FloatFieldUpdateOperationsInput | number
+    currentBalance?: FloatFieldUpdateOperationsInput | number
+    isControlAccount?: BoolFieldUpdateOperationsInput | boolean
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: companyUpdateOneRequiredWithoutLedgerNestedInput
+    customer?: customerUpdateOneWithoutLedgerNestedInput
+    accountgroup?: accountgroupUpdateOneRequiredWithoutLedgerNestedInput
+    ledger?: ledgerUpdateOneWithoutOther_ledgerNestedInput
+    other_ledger?: ledgerUpdateManyWithoutLedgerNestedInput
+    accountsubgroup?: accountsubgroupUpdateOneWithoutLedgerNestedInput
+    vendor?: vendorUpdateOneWithoutLedgerNestedInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerNestedInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUpdateManyWithoutLedger_transaction_debitLedgerIdToledgerNestedInput
+    voucher_paidFromLedger?: voucherUpdateManyWithoutPaidFromLedgerNestedInput
+    voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
+    receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
+    payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
+    voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
+  }
+
+  export type ledgerUncheckedUpdateWithoutReceipt_DiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    groupId?: IntFieldUpdateOperationsInput | number
+    subGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    openingBalance?: FloatFieldUpdateOperationsInput | number
+    currentBalance?: FloatFieldUpdateOperationsInput | number
+    isControlAccount?: BoolFieldUpdateOperationsInput | boolean
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customerId?: NullableIntFieldUpdateOperationsInput | number | null
+    vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
+    transaction_transaction_creditLedgerIdToledger?: transactionUncheckedUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerNestedInput
+    transaction_transaction_debitLedgerIdToledger?: transactionUncheckedUpdateManyWithoutLedger_transaction_debitLedgerIdToledgerNestedInput
+    voucher_paidFromLedger?: voucherUncheckedUpdateManyWithoutPaidFromLedgerNestedInput
+    voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
+    receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
+    payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -136198,6 +137014,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -136223,6 +137041,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -136252,6 +137072,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -136277,6 +137099,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -136404,10 +137228,12 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
   }
 
   export type paymentUncheckedCreateWithoutTransactionInput = {
@@ -136424,6 +137250,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type paymentCreateOrConnectWithoutTransactionInput = {
@@ -136570,10 +137398,12 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
   }
 
   export type receiptUncheckedCreateWithoutTransactionInput = {
@@ -136590,6 +137420,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type receiptCreateOrConnectWithoutTransactionInput = {
@@ -136777,6 +137609,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -136802,6 +137636,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -136837,6 +137673,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -136862,6 +137700,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -137007,10 +137847,12 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutTransactionInput = {
@@ -137027,6 +137869,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type posinvoiceUpsertWithoutTransactionInput = {
@@ -137191,10 +138035,12 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutTransactionInput = {
@@ -137211,6 +138057,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type companyCreateWithoutUomInput = {
@@ -138626,6 +139474,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -138651,6 +139501,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -138668,9 +139520,11 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
   }
 
@@ -138687,6 +139541,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -139242,6 +140098,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -139267,6 +140125,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -141162,6 +142022,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -141187,6 +142049,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -141216,6 +142080,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherCreateNestedManyWithoutPaidFromLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemCreateNestedManyWithoutLedgerInput
   }
 
@@ -141241,6 +142107,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedCreateNestedManyWithoutPaidFromLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutLedgerInput
   }
 
@@ -141694,6 +142562,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -141719,6 +142589,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -141754,6 +142626,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUpdateManyWithoutPaidFromLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -141779,6 +142653,8 @@ export namespace Prisma {
     voucher_paidFromLedger?: voucherUncheckedUpdateManyWithoutPaidFromLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -141962,6 +142838,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentCreateNestedManyWithoutDiscountLedgerInput
   }
 
   export type ledgerUncheckedCreateWithoutVoucheritemInput = {
@@ -141987,6 +142865,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedCreateNestedManyWithoutPaidToLedgerInput
     receipt_CashBankAccount?: receiptUncheckedCreateNestedManyWithoutCashBankAccountInput
     payment_CashBankAccount?: paymentUncheckedCreateNestedManyWithoutBankLedgerInput
+    receipt_DiscountLedger?: receiptUncheckedCreateNestedManyWithoutDiscountLedgerInput
+    payment_DiscountLedger?: paymentUncheckedCreateNestedManyWithoutDiscountLedgerInput
   }
 
   export type ledgerCreateOrConnectWithoutVoucheritemInput = {
@@ -142181,6 +143061,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
   }
 
   export type ledgerUncheckedUpdateWithoutVoucheritemInput = {
@@ -142206,6 +143088,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
   }
 
   export type companyCreateWithoutRoleInput = {
@@ -144006,6 +144890,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -144031,6 +144917,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -144089,6 +144977,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -144114,6 +145004,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -144579,6 +145471,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type posinvoiceCreateManyCompanyInput = {
@@ -144740,6 +145634,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type salesorderCreateManyCompanyInput = {
@@ -145683,6 +146579,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -145708,6 +146606,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -145760,9 +146660,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
   }
 
@@ -145779,6 +146681,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -145795,6 +146699,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type posinvoiceUpdateWithoutCompanyInput = {
@@ -146300,9 +147206,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
   }
 
@@ -146319,6 +147227,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -146335,6 +147245,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type salesorderUpdateWithoutCompanyInput = {
@@ -147204,6 +148116,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type salesorderCreateManyCustomerInput = {
@@ -147571,9 +148485,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
   }
 
@@ -147590,6 +148506,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -147606,6 +148524,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type salesorderUpdateWithoutCustomerInput = {
@@ -148407,6 +149327,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type salesreturnCreateManyInvoiceInput = {
@@ -148511,9 +149433,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
   }
 
@@ -148530,6 +149454,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -148546,6 +149472,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type salesreturnUpdateWithoutInvoiceInput = {
@@ -148882,6 +149810,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type paymentCreateManyBankLedgerInput = {
@@ -148897,6 +149827,42 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
+  }
+
+  export type receiptCreateManyDiscountLedgerInput = {
+    id?: number
+    receiptNumber: string
+    date?: Date | string
+    customerId: number
+    invoiceId?: number | null
+    amount: number
+    paymentMode: $Enums.receipt_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+  }
+
+  export type paymentCreateManyDiscountLedgerInput = {
+    id?: number
+    paymentNumber: string
+    date?: Date | string
+    vendorId: number
+    purchaseBillId?: number | null
+    amount: number
+    paymentMode: $Enums.payment_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
   }
 
   export type voucheritemCreateManyLedgerInput = {
@@ -148937,6 +149903,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUpdateManyWithoutLedgerNestedInput
   }
 
@@ -148962,6 +149930,8 @@ export namespace Prisma {
     voucher_paidToLedger?: voucherUncheckedUpdateManyWithoutPaidToLedgerNestedInput
     receipt_CashBankAccount?: receiptUncheckedUpdateManyWithoutCashBankAccountNestedInput
     payment_CashBankAccount?: paymentUncheckedUpdateManyWithoutBankLedgerNestedInput
+    receipt_DiscountLedger?: receiptUncheckedUpdateManyWithoutDiscountLedgerNestedInput
+    payment_DiscountLedger?: paymentUncheckedUpdateManyWithoutDiscountLedgerNestedInput
     voucheritem?: voucheritemUncheckedUpdateManyWithoutLedgerNestedInput
   }
 
@@ -149243,9 +150213,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
   }
 
@@ -149262,6 +150234,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -149278,6 +150252,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type paymentUpdateWithoutBankLedgerInput = {
@@ -149289,9 +150265,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
   }
 
@@ -149308,6 +150286,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -149324,6 +150304,112 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type receiptUpdateWithoutDiscountLedgerInput = {
+    receiptNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumreceipt_paymentModeFieldUpdateOperationsInput | $Enums.receipt_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    company?: companyUpdateOneRequiredWithoutReceiptNestedInput
+    customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
+    invoice?: invoiceUpdateOneWithoutReceiptNestedInput
+    cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    transaction?: transactionUpdateManyWithoutReceiptNestedInput
+  }
+
+  export type receiptUncheckedUpdateWithoutDiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: IntFieldUpdateOperationsInput | number
+    invoiceId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumreceipt_paymentModeFieldUpdateOperationsInput | $Enums.receipt_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+  }
+
+  export type receiptUncheckedUpdateManyWithoutDiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: IntFieldUpdateOperationsInput | number
+    invoiceId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumreceipt_paymentModeFieldUpdateOperationsInput | $Enums.receipt_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type paymentUpdateWithoutDiscountLedgerInput = {
+    paymentNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumpayment_paymentModeFieldUpdateOperationsInput | $Enums.payment_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    company?: companyUpdateOneRequiredWithoutPaymentNestedInput
+    purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
+    vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
+    bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    transaction?: transactionUpdateManyWithoutPaymentNestedInput
+  }
+
+  export type paymentUncheckedUpdateWithoutDiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorId?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumpayment_paymentModeFieldUpdateOperationsInput | $Enums.payment_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+  }
+
+  export type paymentUncheckedUpdateManyWithoutDiscountLedgerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorId?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumpayment_paymentModeFieldUpdateOperationsInput | $Enums.payment_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
   }
 
   export type voucheritemUpdateWithoutLedgerInput = {
@@ -150788,6 +151874,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type purchasebillitemCreateManyPurchasebillInput = {
@@ -150861,9 +151949,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
   }
 
@@ -150880,6 +151970,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -150896,6 +151988,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type purchasebillitemUpdateWithoutPurchasebillInput = {
@@ -152951,6 +154045,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
   }
 
   export type purchasebillCreateManyVendorInput = {
@@ -153138,9 +154234,11 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
   }
 
@@ -153157,6 +154255,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -153173,6 +154273,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type purchasebillUpdateWithoutVendorInput = {

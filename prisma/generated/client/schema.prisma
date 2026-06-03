@@ -534,6 +534,8 @@ model ledger {
   voucher_paidToLedger                           voucher[]        @relation("voucher_paidToLedger")
   receipt_CashBankAccount                        receipt[]        @relation("Receipt_CashBankAccount")
   payment_CashBankAccount                        payment[]        @relation("Payment_CashBankAccount")
+  receipt_DiscountLedger                         receipt[]        @relation("Receipt_DiscountLedger")
+  payment_DiscountLedger                         payment[]        @relation("Payment_DiscountLedger")
   voucheritem                                    voucheritem[]
 
   @@unique([companyId, name], map: "Ledger_companyId_name_key")
@@ -574,6 +576,9 @@ model payment {
   purchasebill      purchasebill?       @relation(fields: [purchaseBillId], references: [id], map: "Payment_purchaseBillId_fkey")
   vendor            vendor              @relation(fields: [vendorId], references: [id], map: "Payment_vendorId_fkey")
   bankLedger        ledger?             @relation("Payment_CashBankAccount", fields: [cashBankAccountId], references: [id], map: "Payment_cashBankAccountId_fkey")
+  discountAmount    Float               @default(0)
+  discountLedgerId  Int?
+  discountLedger    ledger?             @relation("Payment_DiscountLedger", fields: [discountLedgerId], references: [id], map: "Payment_discountLedgerId_fkey")
   transaction       transaction[]
 
   @@unique([companyId, paymentNumber], map: "Payment_companyId_paymentNumber_key")
@@ -989,6 +994,9 @@ model receipt {
   customer          customer            @relation(fields: [customerId], references: [id], map: "Receipt_customerId_fkey")
   invoice           invoice?            @relation(fields: [invoiceId], references: [id], map: "Receipt_invoiceId_fkey")
   cashBankAccount   ledger?             @relation("Receipt_CashBankAccount", fields: [cashBankAccountId], references: [id], map: "Receipt_cashBankAccountId_fkey")
+  discountAmount    Float               @default(0)
+  discountLedgerId  Int?
+  discountLedger    ledger?             @relation("Receipt_DiscountLedger", fields: [discountLedgerId], references: [id], map: "Receipt_discountLedgerId_fkey")
   transaction       transaction[]
 
   @@unique([companyId, receiptNumber], map: "Receipt_companyId_receiptNumber_key")
