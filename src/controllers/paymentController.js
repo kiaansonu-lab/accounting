@@ -158,7 +158,8 @@ const getPayments = async (req, res) => {
             where,
             include: {
                 vendor: true,
-                purchasebill: true
+                purchasebill: true,
+                bankLedger: { select: { id: true, name: true } }
             },
             orderBy: {
                 date: 'desc'
@@ -182,7 +183,8 @@ const getPaymentById = async (req, res) => {
             include: {
                 vendor: { include: { ledger: true } },
                 purchasebill: true,
-                company: true
+                company: true,
+                bankLedger: true
             }
         });
         if (!payment) return res.status(404).json({ message: 'Payment not found' });

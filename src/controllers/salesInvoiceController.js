@@ -608,6 +608,11 @@ const getInvoices = async (req, res) => {
                         include: {
                             salesreturnitem: true
                         }
+                    },
+                    receipt: {
+                        include: {
+                            cashBankAccount: { select: { id: true, name: true } }
+                        }
                     }
                 },
                 orderBy: { createdAt: 'desc' }
@@ -618,6 +623,11 @@ const getInvoices = async (req, res) => {
                     customer: { select: { id: true, name: true, email: true, ledgerId: true } },
                     posinvoiceitem: {
                         include: { product: true, warehouse: true }
+                    },
+                    transaction: {
+                        include: {
+                            ledger_transaction_debitLedgerIdToledger: { select: { id: true, name: true } }
+                        }
                     }
                 },
                 orderBy: { createdAt: 'desc' }
@@ -627,14 +637,29 @@ const getInvoices = async (req, res) => {
         // Merge POS invoices into the unified list
         const unifiedInvoices = [
             ...invoices.map(inv => ({ ...inv, type: 'TAX_INVOICE' })),
-            ...posInvoices.map(pos => ({
-                ...pos,
-                type: 'POS_INVOICE',
-                invoiceitem: pos.posinvoiceitem,
-                salesreturn: [],
-                dueDate: pos.date,
-                status: pos.balanceAmount > 0 ? 'PARTIAL' : 'PAID'
-            }))
+            ...posInvoices.map(pos => {
+                const receiptTransactions = pos.transaction?.filter(t => t.voucherType === 'RECEIPT') || [];
+                const mappedReceipts = receiptTransactions.map(t => ({
+                    id: t.id,
+                    receiptNumber: t.voucherNumber || '-',
+                    date: t.date,
+                    amount: t.amount,
+                    cashBankAccount: t.ledger_transaction_debitLedgerIdToledger ? {
+                        id: t.ledger_transaction_debitLedgerIdToledger.id,
+                        name: t.ledger_transaction_debitLedgerIdToledger.name
+                    } : null
+                }));
+
+                return {
+                    ...pos,
+                    type: 'POS_INVOICE',
+                    invoiceitem: pos.posinvoiceitem,
+                    salesreturn: [],
+                    dueDate: pos.date,
+                    status: pos.balanceAmount > 0 ? 'PARTIAL' : 'PAID',
+                    receipt: mappedReceipts
+                };
+            })
         ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         res.status(200).json({ success: true, data: unifiedInvoices });
@@ -664,7 +689,11 @@ const getInvoiceById = async (req, res) => {
                 },
                 customer: true,
                 salesorder: true,
-                receipt: true
+                receipt: {
+                    include: {
+                        cashBankAccount: true
+                    }
+                }
             }
         });
 
@@ -1256,7 +1285,6 @@ const getNextNumber = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
-
 const getPublicInvoiceById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -1272,7 +1300,12 @@ const getPublicInvoiceById = async (req, res) => {
                 },
                 customer: true,
                 salesorder: true,
-                company: true
+                company: true,
+                receipt: {
+                    include: {
+                        cashBankAccount: true
+                    }
+                }
             }
         });
 

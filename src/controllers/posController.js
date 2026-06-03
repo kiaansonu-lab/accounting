@@ -368,7 +368,12 @@ const getPOSInvoices = async (req, res) => {
             where: { companyId: parseInt(companyId) },
             include: {
                 customer: true,
-                posinvoiceitem: { include: { product: true, warehouse: true } }
+                posinvoiceitem: { include: { product: true, warehouse: true } },
+                transaction: {
+                    include: {
+                        ledger_transaction_debitLedgerIdToledger: { select: { id: true, name: true } }
+                    }
+                }
             },
             orderBy: { createdAt: 'desc' }
         });
@@ -389,14 +394,37 @@ const getPOSInvoiceById = async (req, res) => {
             include: {
                 customer: true,
                 posinvoiceitem: { include: { product: true, warehouse: true } },
-                transaction: true
+                transaction: {
+                    include: {
+                        ledger_transaction_debitLedgerIdToledger: { select: { id: true, name: true } }
+                    }
+                }
             }
         });
 
         if (!invoice || invoice.companyId !== parseInt(companyId)) {
             return res.status(404).json({ success: false, message: 'POS Invoice not found' });
         }
-        res.status(200).json({ success: true, data: invoice });
+
+        const receiptTransactions = invoice.transaction?.filter(t => t.voucherType === 'RECEIPT') || [];
+        const mappedReceipts = receiptTransactions.map(t => ({
+            id: t.id,
+            receiptNumber: t.voucherNumber || '-',
+            date: t.date,
+            amount: t.amount,
+            cashBankAccount: t.ledger_transaction_debitLedgerIdToledger ? {
+                id: t.ledger_transaction_debitLedgerIdToledger.id,
+                name: t.ledger_transaction_debitLedgerIdToledger.name
+            } : null
+        }));
+
+        res.status(200).json({
+            success: true,
+            data: {
+                ...invoice,
+                receipt: mappedReceipts
+            }
+        });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

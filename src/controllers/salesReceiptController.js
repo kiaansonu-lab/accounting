@@ -317,7 +317,8 @@ const getReceipts = async (req, res) => {
             where: { companyId: parseInt(companyId) },
             include: {
                 customer: { select: { id: true, name: true, ledgerId: true } },
-                invoice: { select: { id: true, invoiceNumber: true, balanceAmount: true, totalAmount: true, paidAmount: true, date: true, dueDate: true, status: true } }
+                invoice: { select: { id: true, invoiceNumber: true, balanceAmount: true, totalAmount: true, paidAmount: true, date: true, dueDate: true, status: true } },
+                cashBankAccount: { select: { id: true, name: true } }
             },
             orderBy: { createdAt: 'desc' }
         });
@@ -349,7 +350,8 @@ const getReceiptById = async (req, res) => {
                             }
                         }
                     }
-                }
+                },
+                cashBankAccount: true
             }
         });
 

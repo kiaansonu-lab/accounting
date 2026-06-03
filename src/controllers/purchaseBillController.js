@@ -410,7 +410,12 @@ const getBills = async (req, res) => {
                 },
                 purchaseorder: true,
                 goodsreceiptnote: true,
-                purchasereturn: true
+                purchasereturn: true,
+                payment: {
+                    include: {
+                        bankLedger: { select: { id: true, name: true } }
+                    }
+                }
             },
             orderBy: { createdAt: 'desc' }
         });
@@ -436,7 +441,11 @@ const getBillById = async (req, res) => {
                 },
                 purchaseorder: true,
                 goodsreceiptnote: true,
-                payment: true
+                payment: {
+                    include: {
+                        bankLedger: true
+                    }
+                }
             }
         });
         if (!bill) return res.status(404).json({ success: false, message: 'Bill not found' });
