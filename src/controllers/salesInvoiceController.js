@@ -182,6 +182,51 @@ const createInvoice = async (req, res) => {
                 }
             });
 
+            // Process Advance Adjustments if provided
+            let totalAdjustedAmount = 0;
+            if (req.body.adjustments && req.body.adjustments.length > 0) {
+                for (const adj of req.body.adjustments) {
+                    const receipt = await tx.receipt.findUnique({
+                        where: { id: parseInt(adj.receiptId) },
+                        include: { allocations: true }
+                    });
+                    if (receipt) {
+                        const allocatedSum = receipt.allocations.reduce((sum, a) => sum + a.amount, 0);
+                        const availableUnallocated = receipt.amount - allocatedSum;
+                        const adjustAmt = Math.min(parseFloat(adj.amount), availableUnallocated);
+                        
+                        if (adjustAmt > 0) {
+                            // Create allocation record
+                            await tx.receiptinvoiceallocation.create({
+                                data: {
+                                    receiptId: receipt.id,
+                                    invoiceId: invoice.id,
+                                    amount: adjustAmt,
+                                    companyId: parseInt(companyId)
+                                }
+                            });
+                            totalAdjustedAmount += adjustAmt;
+                        }
+                    }
+                }
+            }
+
+            if (totalAdjustedAmount > 0) {
+                const finalPaid = totalAdjustedAmount;
+                const finalBalance = totalAmount - finalPaid;
+                await tx.invoice.update({
+                    where: { id: invoice.id },
+                    data: {
+                        paidAmount: finalPaid,
+                        balanceAmount: finalBalance,
+                        status: finalBalance <= 0 ? 'PAID' : 'PARTIAL'
+                    }
+                });
+                invoice.paidAmount = finalPaid;
+                invoice.balanceAmount = finalBalance;
+                invoice.status = finalBalance <= 0 ? 'PAID' : 'PARTIAL';
+            }
+
             // B. Inventory OUT Logic
             const company = await tx.company.findUnique({ where: { id: parseInt(companyId) } });
             let config = {};
@@ -613,6 +658,15 @@ const getInvoices = async (req, res) => {
                         include: {
                             cashBankAccount: { select: { id: true, name: true } }
                         }
+                    },
+                    allocations: {
+                        include: {
+                            receipt: {
+                                include: {
+                                    cashBankAccount: { select: { id: true, name: true } }
+                                }
+                            }
+                        }
                     }
                 },
                 orderBy: { createdAt: 'desc' }
@@ -636,7 +690,37 @@ const getInvoices = async (req, res) => {
 
         // Merge POS invoices into the unified list
         const unifiedInvoices = [
-            ...invoices.map(inv => ({ ...inv, type: 'TAX_INVOICE' })),
+            ...invoices.map(inv => {
+                // Map allocations to receipt list to maintain compatibility and show correct allocated amount
+                const mappedReceipts = [
+                    ...inv.receipt.map(r => ({ ...r })),
+                    ...inv.allocations.map(alloc => ({
+                        id: alloc.receipt.id,
+                        receiptNumber: alloc.receipt.receiptNumber,
+                        date: alloc.receipt.date,
+                        amount: alloc.amount, // Only the allocated amount
+                        paymentMode: alloc.receipt.paymentMode,
+                        referenceNumber: alloc.receipt.referenceNumber,
+                        cashBankAccount: alloc.receipt.cashBankAccount,
+                        notes: alloc.receipt.notes
+                    }))
+                ];
+
+                const seenIds = new Set();
+                const deduplicatedReceipts = [];
+                for (const r of mappedReceipts) {
+                    if (!seenIds.has(r.id)) {
+                        seenIds.add(r.id);
+                        deduplicatedReceipts.push(r);
+                    }
+                }
+
+                return {
+                    ...inv,
+                    type: 'TAX_INVOICE',
+                    receipt: deduplicatedReceipts
+                };
+            }),
             ...posInvoices.map(pos => {
                 const receiptTransactions = pos.transaction?.filter(t => t.voucherType === 'RECEIPT') || [];
                 const mappedReceipts = receiptTransactions.map(t => ({
@@ -673,7 +757,6 @@ const getInvoiceById = async (req, res) => {
     try {
         const { id } = req.params;
         const companyId = req.user?.companyId || req.query.companyId;
-        // Note: req.query.companyId might not be passed for getById standardly, but consistent with getAll
 
         if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
 
@@ -693,13 +776,51 @@ const getInvoiceById = async (req, res) => {
                     include: {
                         cashBankAccount: true
                     }
+                },
+                allocations: {
+                    include: {
+                        receipt: {
+                            include: {
+                                cashBankAccount: true
+                            }
+                        }
+                    }
                 }
             }
         });
 
         if (!invoice) return res.status(404).json({ success: false, message: 'Invoice not found' });
 
-        res.status(200).json({ success: true, data: invoice });
+        // Map allocations to receipt list to maintain compatibility and show correct allocated amount
+        const mappedReceipts = [
+            ...invoice.receipt.map(r => ({ ...r })),
+            ...invoice.allocations.map(alloc => ({
+                id: alloc.receipt.id,
+                receiptNumber: alloc.receipt.receiptNumber,
+                date: alloc.receipt.date,
+                amount: alloc.amount, // Only the allocated amount
+                paymentMode: alloc.receipt.paymentMode,
+                referenceNumber: alloc.receipt.referenceNumber,
+                cashBankAccount: alloc.receipt.cashBankAccount,
+                notes: alloc.receipt.notes
+            }))
+        ];
+
+        const seenIds = new Set();
+        const deduplicatedReceipts = [];
+        for (const r of mappedReceipts) {
+            if (!seenIds.has(r.id)) {
+                seenIds.add(r.id);
+                deduplicatedReceipts.push(r);
+            }
+        }
+
+        const mappedInvoice = {
+            ...invoice,
+            receipt: deduplicatedReceipts
+        };
+
+        res.status(200).json({ success: true, data: mappedInvoice });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -833,6 +954,39 @@ const updateInvoice = async (req, res) => {
             }
 
             // C. Update Invoice record
+            // Clear old allocations for this invoice
+            await tx.receiptinvoiceallocation.deleteMany({
+                where: { invoiceId: parseInt(id) }
+            });
+
+            // Process new adjustments
+            let totalAdjustedAmount = 0;
+            if (req.body.adjustments && req.body.adjustments.length > 0) {
+                for (const adj of req.body.adjustments) {
+                    const receipt = await tx.receipt.findUnique({
+                        where: { id: parseInt(adj.receiptId) },
+                        include: { allocations: true }
+                    });
+                    if (receipt) {
+                        const allocatedSum = receipt.allocations.reduce((sum, a) => sum + a.amount, 0);
+                        const availableUnallocated = receipt.amount - allocatedSum;
+                        const adjustAmt = Math.min(parseFloat(adj.amount), availableUnallocated);
+                        
+                        if (adjustAmt > 0) {
+                            await tx.receiptinvoiceallocation.create({
+                                data: {
+                                    receiptId: receipt.id,
+                                    invoiceId: parseInt(id),
+                                    amount: adjustAmt,
+                                    companyId: parseInt(companyId)
+                                }
+                            });
+                            totalAdjustedAmount += adjustAmt;
+                        }
+                    }
+                }
+            }
+
             const updatedInvoice = await tx.invoice.update({
                 where: { id: parseInt(id) },
                 data: {
@@ -845,7 +999,9 @@ const updateInvoice = async (req, res) => {
                     discountAmount: totalDiscount,
                     taxAmount,
                     totalAmount,
-                    balanceAmount: totalAmount - (existingInvoice.paidAmount || 0),
+                    paidAmount: totalAdjustedAmount,
+                    balanceAmount: totalAmount - totalAdjustedAmount,
+                    status: (totalAmount - totalAdjustedAmount) <= 0 ? 'PAID' : (totalAdjustedAmount > 0 ? 'PARTIAL' : 'UNPAID'),
                     currency: currency !== undefined ? currency : undefined,
                     exchangeRate: exchangeRate !== undefined ? parseFloat(exchangeRate) : undefined,
                     overallDiscount: parseFloat(overallDiscount) || 0,
@@ -1162,6 +1318,12 @@ const deleteInvoice = async (req, res) => {
         }
 
         await prisma.$transaction(async (tx) => {
+            // Unlink any receipts pointing to this invoice to prevent FK Restrict errors
+            await tx.receipt.updateMany({
+                where: { invoiceId: invoice.id },
+                data: { invoiceId: null }
+            });
+
             // 1. Revert Ledger Balances
             for (const t of invoice.transaction) {
                 await tx.ledger.update({

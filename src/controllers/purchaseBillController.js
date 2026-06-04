@@ -148,6 +148,51 @@ const createBill = async (req, res) => {
                 include: { purchasebillitem: true }
             });
 
+            // Process Advance Adjustments if provided
+            let totalAdjustedAmount = 0;
+            if (req.body.adjustments && req.body.adjustments.length > 0) {
+                for (const adj of req.body.adjustments) {
+                    const payment = await tx.payment.findUnique({
+                        where: { id: parseInt(adj.paymentId) },
+                        include: { allocations: true }
+                    });
+                    if (payment) {
+                        const allocatedSum = payment.allocations.reduce((sum, a) => sum + a.amount, 0);
+                        const availableUnallocated = payment.amount - allocatedSum;
+                        const adjustAmt = Math.min(parseFloat(adj.amount), availableUnallocated);
+                        
+                        if (adjustAmt > 0) {
+                            // Create allocation record
+                            await tx.paymentbillallocation.create({
+                                data: {
+                                    paymentId: payment.id,
+                                    purchaseBillId: bill.id,
+                                    amount: adjustAmt,
+                                    companyId: parseInt(companyId)
+                                }
+                            });
+                            totalAdjustedAmount += adjustAmt;
+                        }
+                    }
+                }
+            }
+
+            if (totalAdjustedAmount > 0) {
+                const finalPaid = totalAdjustedAmount;
+                const finalBalance = totalAmountValue - finalPaid;
+                await tx.purchasebill.update({
+                    where: { id: bill.id },
+                    data: {
+                        paidAmount: finalPaid,
+                        balanceAmount: finalBalance,
+                        status: finalBalance <= 0 ? 'PAID' : 'PARTIAL'
+                    }
+                });
+                bill.paidAmount = finalPaid;
+                bill.balanceAmount = finalBalance;
+                bill.status = finalBalance <= 0 ? 'PAID' : 'PARTIAL';
+            }
+
             // Update linked PO status if exists
             if (purchaseOrderId) {
                 await tx.purchaseorder.update({
@@ -415,11 +460,52 @@ const getBills = async (req, res) => {
                     include: {
                         bankLedger: { select: { id: true, name: true } }
                     }
+                },
+                allocations: {
+                    include: {
+                        payment: {
+                            include: {
+                                bankLedger: { select: { id: true, name: true } }
+                            }
+                        }
+                    }
                 }
             },
             orderBy: { createdAt: 'desc' }
         });
-        res.status(200).json({ success: true, data: bills });
+
+        // Map allocations to payment list to maintain compatibility and show correct allocated amount
+        const mappedBills = bills.map(bill => {
+            const mappedPayments = [
+                ...bill.payment.map(p => ({ ...p })),
+                ...bill.allocations.map(alloc => ({
+                    id: alloc.payment.id,
+                    paymentNumber: alloc.payment.paymentNumber,
+                    date: alloc.payment.date,
+                    amount: alloc.amount, // Only the allocated amount
+                    paymentMode: alloc.payment.paymentMode,
+                    referenceNumber: alloc.payment.referenceNumber,
+                    bankLedger: alloc.payment.bankLedger,
+                    notes: alloc.payment.notes
+                }))
+            ];
+
+            const seenIds = new Set();
+            const deduplicatedPayments = [];
+            for (const p of mappedPayments) {
+                if (!seenIds.has(p.id)) {
+                    seenIds.add(p.id);
+                    deduplicatedPayments.push(p);
+                }
+            }
+
+            return {
+                ...bill,
+                payment: deduplicatedPayments
+            };
+        });
+
+        res.status(200).json({ success: true, data: mappedBills });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -445,11 +531,50 @@ const getBillById = async (req, res) => {
                     include: {
                         bankLedger: true
                     }
+                },
+                allocations: {
+                    include: {
+                        payment: {
+                            include: {
+                                bankLedger: true
+                            }
+                        }
+                    }
                 }
             }
         });
         if (!bill) return res.status(404).json({ success: false, message: 'Bill not found' });
-        res.status(200).json({ success: true, data: bill });
+
+        // Map allocations to payment list to maintain compatibility and show correct allocated amount
+        const mappedPayments = [
+            ...bill.payment.map(p => ({ ...p })),
+            ...bill.allocations.map(alloc => ({
+                id: alloc.payment.id,
+                paymentNumber: alloc.payment.paymentNumber,
+                date: alloc.payment.date,
+                amount: alloc.amount, // Only the allocated amount
+                paymentMode: alloc.payment.paymentMode,
+                referenceNumber: alloc.payment.referenceNumber,
+                bankLedger: alloc.payment.bankLedger,
+                notes: alloc.payment.notes
+            }))
+        ];
+
+        const seenIds = new Set();
+        const deduplicatedPayments = [];
+        for (const p of mappedPayments) {
+            if (!seenIds.has(p.id)) {
+                seenIds.add(p.id);
+                deduplicatedPayments.push(p);
+            }
+        }
+
+        const mappedBill = {
+            ...bill,
+            payment: deduplicatedPayments
+        };
+
+        res.status(200).json({ success: true, data: mappedBill });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -471,6 +596,12 @@ const deleteBill = async (req, res) => {
         if (!bill) return res.status(404).json({ success: false, message: 'Bill not found' });
 
         await prisma.$transaction(async (tx) => {
+            // Unlink any payments pointing to this purchase bill to prevent FK Restrict errors
+            await tx.payment.updateMany({
+                where: { purchaseBillId: bill.id },
+                data: { purchaseBillId: null }
+            });
+
             // 1. Revert Ledger Balances using transactions
             const vendorLedgerId = bill.vendor?.ledger?.id;
             for (const trans of bill.transaction) {
@@ -675,6 +806,39 @@ const updateBill = async (req, res) => {
             // 3. Delete old transactions associated with the bill
             await tx.transaction.deleteMany({ where: { purchaseBillId: oldBill.id } });
 
+            // Clear old allocations for this bill
+            await tx.paymentbillallocation.deleteMany({
+                where: { purchaseBillId: parseInt(id) }
+            });
+
+            // Process new adjustments
+            let totalAdjustedAmount = 0;
+            if (req.body.adjustments && req.body.adjustments.length > 0) {
+                for (const adj of req.body.adjustments) {
+                    const payment = await tx.payment.findUnique({
+                        where: { id: parseInt(adj.paymentId) },
+                        include: { allocations: true }
+                    });
+                    if (payment) {
+                        const allocatedSum = payment.allocations.reduce((sum, a) => sum + a.amount, 0);
+                        const availableUnallocated = payment.amount - allocatedSum;
+                        const adjustAmt = Math.min(parseFloat(adj.amount), availableUnallocated);
+                        
+                        if (adjustAmt > 0) {
+                            await tx.paymentbillallocation.create({
+                                data: {
+                                    paymentId: payment.id,
+                                    purchaseBillId: parseInt(id),
+                                    amount: adjustAmt,
+                                    companyId: parseInt(companyId)
+                                }
+                            });
+                            totalAdjustedAmount += adjustAmt;
+                        }
+                    }
+                }
+            }
+
             // 4. Delete old items and write new ones
             let calculatedSubtotal = 0;
             let calculatedItemDiscount = 0;
@@ -748,7 +912,7 @@ const updateBill = async (req, res) => {
 
             const currentOverallDiscount = overallDiscount !== undefined ? overallDiscount : oldBill.overallDiscount;
             const currentOverallDiscountType = overallDiscountType !== undefined ? overallDiscountType : oldBill.overallDiscountType;
-            
+
             const finalTax = taxAmount !== undefined ? parseFloat(taxAmount) : calculatedTaxSum;
             const baseTotal = (calculatedSubtotal - calculatedItemDiscount) + finalTax;
             let totalAmountValue = baseTotal;
@@ -926,7 +1090,9 @@ const updateBill = async (req, res) => {
                     totalAmount: totalAmountValue,
                     taxAmount: finalTax,
                     discountAmount: totalDiscount,
-                    balanceAmount: totalAmountValue,
+                    paidAmount: totalAdjustedAmount,
+                    balanceAmount: totalAmountValue - totalAdjustedAmount,
+                    status: (totalAmountValue - totalAdjustedAmount) <= 0 ? 'PAID' : (totalAdjustedAmount > 0 ? 'PARTIAL' : 'UNPAID'),
                     currency: currency !== undefined ? currency : undefined,
                     exchangeRate: exchangeRate !== undefined ? parseFloat(exchangeRate) : undefined,
                     billingName,

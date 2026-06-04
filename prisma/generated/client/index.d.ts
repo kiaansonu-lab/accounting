@@ -308,6 +308,16 @@ export type inventory_batch = $Result.DefaultSelection<Prisma.$inventory_batchPa
  * 
  */
 export type inventory_consumption = $Result.DefaultSelection<Prisma.$inventory_consumptionPayload>
+/**
+ * Model receiptinvoiceallocation
+ * 
+ */
+export type receiptinvoiceallocation = $Result.DefaultSelection<Prisma.$receiptinvoiceallocationPayload>
+/**
+ * Model paymentbillallocation
+ * 
+ */
+export type paymentbillallocation = $Result.DefaultSelection<Prisma.$paymentbillallocationPayload>
 
 /**
  * Enums
@@ -1343,6 +1353,26 @@ export class PrismaClient<
     * ```
     */
   get inventory_consumption(): Prisma.inventory_consumptionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.receiptinvoiceallocation`: Exposes CRUD operations for the **receiptinvoiceallocation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Receiptinvoiceallocations
+    * const receiptinvoiceallocations = await prisma.receiptinvoiceallocation.findMany()
+    * ```
+    */
+  get receiptinvoiceallocation(): Prisma.receiptinvoiceallocationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.paymentbillallocation`: Exposes CRUD operations for the **paymentbillallocation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Paymentbillallocations
+    * const paymentbillallocations = await prisma.paymentbillallocation.findMany()
+    * ```
+    */
+  get paymentbillallocation(): Prisma.paymentbillallocationDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1842,7 +1872,9 @@ export namespace Prisma {
     role: 'role',
     shippingaddress: 'shippingaddress',
     inventory_batch: 'inventory_batch',
-    inventory_consumption: 'inventory_consumption'
+    inventory_consumption: 'inventory_consumption',
+    receiptinvoiceallocation: 'receiptinvoiceallocation',
+    paymentbillallocation: 'paymentbillallocation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1858,7 +1890,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "accountgroup" | "accountsubgroup" | "bankaccount" | "banktransaction" | "category" | "company" | "customer" | "dashboardannouncement" | "deliverychallan" | "deliverychallanitem" | "expenseentry" | "goodsreceiptnote" | "goodsreceiptnoteitem" | "incomeentry" | "inventoryadjustment" | "inventoryadjustmentitem" | "inventorytransaction" | "invoice" | "invoiceitem" | "journalentry" | "ledger" | "passwordrequest" | "payment" | "paymentrecord" | "plan" | "planrequest" | "posinvoice" | "posinvoiceitem" | "product" | "purchasebill" | "purchasebillitem" | "purchaseorder" | "purchaseorderitem" | "purchasequotation" | "purchasequotationitem" | "purchasereturn" | "purchasereturnitem" | "receipt" | "salesorder" | "salesorderitem" | "salesquotation" | "salesquotationitem" | "salesreturn" | "salesreturnitem" | "service" | "stock" | "stocktransfer" | "stocktransferitem" | "transaction" | "uom" | "user" | "vendor" | "warehouse" | "voucher" | "voucheritem" | "role" | "shippingaddress" | "inventory_batch" | "inventory_consumption"
+      modelProps: "accountgroup" | "accountsubgroup" | "bankaccount" | "banktransaction" | "category" | "company" | "customer" | "dashboardannouncement" | "deliverychallan" | "deliverychallanitem" | "expenseentry" | "goodsreceiptnote" | "goodsreceiptnoteitem" | "incomeentry" | "inventoryadjustment" | "inventoryadjustmentitem" | "inventorytransaction" | "invoice" | "invoiceitem" | "journalentry" | "ledger" | "passwordrequest" | "payment" | "paymentrecord" | "plan" | "planrequest" | "posinvoice" | "posinvoiceitem" | "product" | "purchasebill" | "purchasebillitem" | "purchaseorder" | "purchaseorderitem" | "purchasequotation" | "purchasequotationitem" | "purchasereturn" | "purchasereturnitem" | "receipt" | "salesorder" | "salesorderitem" | "salesquotation" | "salesquotationitem" | "salesreturn" | "salesreturnitem" | "service" | "stock" | "stocktransfer" | "stocktransferitem" | "transaction" | "uom" | "user" | "vendor" | "warehouse" | "voucher" | "voucheritem" | "role" | "shippingaddress" | "inventory_batch" | "inventory_consumption" | "receiptinvoiceallocation" | "paymentbillallocation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5756,6 +5788,138 @@ export namespace Prisma {
           }
         }
       }
+      receiptinvoiceallocation: {
+        payload: Prisma.$receiptinvoiceallocationPayload<ExtArgs>
+        fields: Prisma.receiptinvoiceallocationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.receiptinvoiceallocationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.receiptinvoiceallocationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          findFirst: {
+            args: Prisma.receiptinvoiceallocationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.receiptinvoiceallocationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          findMany: {
+            args: Prisma.receiptinvoiceallocationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>[]
+          }
+          create: {
+            args: Prisma.receiptinvoiceallocationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          createMany: {
+            args: Prisma.receiptinvoiceallocationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.receiptinvoiceallocationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          update: {
+            args: Prisma.receiptinvoiceallocationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          deleteMany: {
+            args: Prisma.receiptinvoiceallocationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.receiptinvoiceallocationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.receiptinvoiceallocationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$receiptinvoiceallocationPayload>
+          }
+          aggregate: {
+            args: Prisma.ReceiptinvoiceallocationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReceiptinvoiceallocation>
+          }
+          groupBy: {
+            args: Prisma.receiptinvoiceallocationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReceiptinvoiceallocationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.receiptinvoiceallocationCountArgs<ExtArgs>
+            result: $Utils.Optional<ReceiptinvoiceallocationCountAggregateOutputType> | number
+          }
+        }
+      }
+      paymentbillallocation: {
+        payload: Prisma.$paymentbillallocationPayload<ExtArgs>
+        fields: Prisma.paymentbillallocationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.paymentbillallocationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.paymentbillallocationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          findFirst: {
+            args: Prisma.paymentbillallocationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.paymentbillallocationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          findMany: {
+            args: Prisma.paymentbillallocationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>[]
+          }
+          create: {
+            args: Prisma.paymentbillallocationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          createMany: {
+            args: Prisma.paymentbillallocationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.paymentbillallocationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          update: {
+            args: Prisma.paymentbillallocationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          deleteMany: {
+            args: Prisma.paymentbillallocationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.paymentbillallocationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.paymentbillallocationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$paymentbillallocationPayload>
+          }
+          aggregate: {
+            args: Prisma.PaymentbillallocationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaymentbillallocation>
+          }
+          groupBy: {
+            args: Prisma.paymentbillallocationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentbillallocationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.paymentbillallocationCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentbillallocationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -6615,6 +6779,7 @@ export namespace Prisma {
     salesreturn: number
     transaction: number
     inventory_consumption: number
+    allocations: number
   }
 
   export type InvoiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6623,6 +6788,7 @@ export namespace Prisma {
     salesreturn?: boolean | InvoiceCountOutputTypeCountSalesreturnArgs
     transaction?: boolean | InvoiceCountOutputTypeCountTransactionArgs
     inventory_consumption?: boolean | InvoiceCountOutputTypeCountInventory_consumptionArgs
+    allocations?: boolean | InvoiceCountOutputTypeCountAllocationsArgs
   }
 
   // Custom InputTypes
@@ -6669,6 +6835,13 @@ export namespace Prisma {
    */
   export type InvoiceCountOutputTypeCountInventory_consumptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: inventory_consumptionWhereInput
+  }
+
+  /**
+   * InvoiceCountOutputType without action
+   */
+  export type InvoiceCountOutputTypeCountAllocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: receiptinvoiceallocationWhereInput
   }
 
 
@@ -6821,10 +6994,12 @@ export namespace Prisma {
 
   export type PaymentCountOutputType = {
     transaction: number
+    allocations: number
   }
 
   export type PaymentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transaction?: boolean | PaymentCountOutputTypeCountTransactionArgs
+    allocations?: boolean | PaymentCountOutputTypeCountAllocationsArgs
   }
 
   // Custom InputTypes
@@ -6843,6 +7018,13 @@ export namespace Prisma {
    */
   export type PaymentCountOutputTypeCountTransactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: transactionWhereInput
+  }
+
+  /**
+   * PaymentCountOutputType without action
+   */
+  export type PaymentCountOutputTypeCountAllocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: paymentbillallocationWhereInput
   }
 
 
@@ -7120,6 +7302,7 @@ export namespace Prisma {
     purchasereturn: number
     transaction: number
     inventory_batch: number
+    allocations: number
   }
 
   export type PurchasebillCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7128,6 +7311,7 @@ export namespace Prisma {
     purchasereturn?: boolean | PurchasebillCountOutputTypeCountPurchasereturnArgs
     transaction?: boolean | PurchasebillCountOutputTypeCountTransactionArgs
     inventory_batch?: boolean | PurchasebillCountOutputTypeCountInventory_batchArgs
+    allocations?: boolean | PurchasebillCountOutputTypeCountAllocationsArgs
   }
 
   // Custom InputTypes
@@ -7174,6 +7358,13 @@ export namespace Prisma {
    */
   export type PurchasebillCountOutputTypeCountInventory_batchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: inventory_batchWhereInput
+  }
+
+  /**
+   * PurchasebillCountOutputType without action
+   */
+  export type PurchasebillCountOutputTypeCountAllocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: paymentbillallocationWhereInput
   }
 
 
@@ -7294,10 +7485,12 @@ export namespace Prisma {
 
   export type ReceiptCountOutputType = {
     transaction: number
+    allocations: number
   }
 
   export type ReceiptCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transaction?: boolean | ReceiptCountOutputTypeCountTransactionArgs
+    allocations?: boolean | ReceiptCountOutputTypeCountAllocationsArgs
   }
 
   // Custom InputTypes
@@ -7316,6 +7509,13 @@ export namespace Prisma {
    */
   export type ReceiptCountOutputTypeCountTransactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: transactionWhereInput
+  }
+
+  /**
+   * ReceiptCountOutputType without action
+   */
+  export type ReceiptCountOutputTypeCountAllocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: receiptinvoiceallocationWhereInput
   }
 
 
@@ -12926,6 +13126,7 @@ export namespace Prisma {
     updatedAt: Date | null
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
+    invoiceLabels: string | null
   }
 
   export type CompanyMaxAggregateOutputType = {
@@ -12960,6 +13161,7 @@ export namespace Prisma {
     updatedAt: Date | null
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
+    invoiceLabels: string | null
   }
 
   export type CompanyCountAggregateOutputType = {
@@ -12994,6 +13196,7 @@ export namespace Prisma {
     updatedAt: number
     inventoryConfig: number
     invoiceTableHeaders: number
+    invoiceLabels: number
     _all: number
   }
 
@@ -13040,6 +13243,7 @@ export namespace Prisma {
     updatedAt?: true
     inventoryConfig?: true
     invoiceTableHeaders?: true
+    invoiceLabels?: true
   }
 
   export type CompanyMaxAggregateInputType = {
@@ -13074,6 +13278,7 @@ export namespace Prisma {
     updatedAt?: true
     inventoryConfig?: true
     invoiceTableHeaders?: true
+    invoiceLabels?: true
   }
 
   export type CompanyCountAggregateInputType = {
@@ -13108,6 +13313,7 @@ export namespace Prisma {
     updatedAt?: true
     inventoryConfig?: true
     invoiceTableHeaders?: true
+    invoiceLabels?: true
     _all?: true
   }
 
@@ -13229,6 +13435,7 @@ export namespace Prisma {
     updatedAt: Date
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
+    invoiceLabels: string | null
     _count: CompanyCountAggregateOutputType | null
     _avg: CompanyAvgAggregateOutputType | null
     _sum: CompanySumAggregateOutputType | null
@@ -13282,6 +13489,7 @@ export namespace Prisma {
     updatedAt?: boolean
     inventoryConfig?: boolean
     invoiceTableHeaders?: boolean
+    invoiceLabels?: boolean
     accountgroup?: boolean | company$accountgroupArgs<ExtArgs>
     accountsubgroup?: boolean | company$accountsubgroupArgs<ExtArgs>
     bankaccount?: boolean | company$bankaccountArgs<ExtArgs>
@@ -13355,6 +13563,7 @@ export namespace Prisma {
     updatedAt?: boolean
     inventoryConfig?: boolean
     invoiceTableHeaders?: boolean
+    invoiceLabels?: boolean
   }
 
   export type companyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13471,6 +13680,7 @@ export namespace Prisma {
       updatedAt: Date
       inventoryConfig: string | null
       invoiceTableHeaders: string | null
+      invoiceLabels: string | null
     }, ExtArgs["result"]["company"]>
     composites: {}
   }
@@ -13908,6 +14118,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"company", 'DateTime'>
     readonly inventoryConfig: FieldRef<"company", 'String'>
     readonly invoiceTableHeaders: FieldRef<"company", 'String'>
+    readonly invoiceLabels: FieldRef<"company", 'String'>
   }
     
 
@@ -27019,6 +27230,7 @@ export namespace Prisma {
     salesreturn?: boolean | invoice$salesreturnArgs<ExtArgs>
     transaction?: boolean | invoice$transactionArgs<ExtArgs>
     inventory_consumption?: boolean | invoice$inventory_consumptionArgs<ExtArgs>
+    allocations?: boolean | invoice$allocationsArgs<ExtArgs>
     _count?: boolean | InvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
@@ -27070,6 +27282,7 @@ export namespace Prisma {
     salesreturn?: boolean | invoice$salesreturnArgs<ExtArgs>
     transaction?: boolean | invoice$transactionArgs<ExtArgs>
     inventory_consumption?: boolean | invoice$inventory_consumptionArgs<ExtArgs>
+    allocations?: boolean | invoice$allocationsArgs<ExtArgs>
     _count?: boolean | InvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -27085,6 +27298,7 @@ export namespace Prisma {
       salesreturn: Prisma.$salesreturnPayload<ExtArgs>[]
       transaction: Prisma.$transactionPayload<ExtArgs>[]
       inventory_consumption: Prisma.$inventory_consumptionPayload<ExtArgs>[]
+      allocations: Prisma.$receiptinvoiceallocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -27470,6 +27684,7 @@ export namespace Prisma {
     salesreturn<T extends invoice$salesreturnArgs<ExtArgs> = {}>(args?: Subset<T, invoice$salesreturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$salesreturnPayload<ExtArgs>, T, "findMany"> | Null>
     transaction<T extends invoice$transactionArgs<ExtArgs> = {}>(args?: Subset<T, invoice$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
     inventory_consumption<T extends invoice$inventory_consumptionArgs<ExtArgs> = {}>(args?: Subset<T, invoice$inventory_consumptionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventory_consumptionPayload<ExtArgs>, T, "findMany"> | Null>
+    allocations<T extends invoice$allocationsArgs<ExtArgs> = {}>(args?: Subset<T, invoice$allocationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27959,6 +28174,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Inventory_consumptionScalarFieldEnum | Inventory_consumptionScalarFieldEnum[]
+  }
+
+  /**
+   * invoice.allocations
+   */
+  export type invoice$allocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    where?: receiptinvoiceallocationWhereInput
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptinvoiceallocationScalarFieldEnum | ReceiptinvoiceallocationScalarFieldEnum[]
   }
 
   /**
@@ -32694,6 +32929,7 @@ export namespace Prisma {
     bankLedger?: boolean | payment$bankLedgerArgs<ExtArgs>
     discountLedger?: boolean | payment$discountLedgerArgs<ExtArgs>
     transaction?: boolean | payment$transactionArgs<ExtArgs>
+    allocations?: boolean | payment$allocationsArgs<ExtArgs>
     _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
@@ -32723,6 +32959,7 @@ export namespace Prisma {
     bankLedger?: boolean | payment$bankLedgerArgs<ExtArgs>
     discountLedger?: boolean | payment$discountLedgerArgs<ExtArgs>
     transaction?: boolean | payment$transactionArgs<ExtArgs>
+    allocations?: boolean | payment$allocationsArgs<ExtArgs>
     _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -32735,6 +32972,7 @@ export namespace Prisma {
       bankLedger: Prisma.$ledgerPayload<ExtArgs> | null
       discountLedger: Prisma.$ledgerPayload<ExtArgs> | null
       transaction: Prisma.$transactionPayload<ExtArgs>[]
+      allocations: Prisma.$paymentbillallocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -33098,6 +33336,7 @@ export namespace Prisma {
     bankLedger<T extends payment$bankLedgerArgs<ExtArgs> = {}>(args?: Subset<T, payment$bankLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     discountLedger<T extends payment$discountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, payment$discountLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     transaction<T extends payment$transactionArgs<ExtArgs> = {}>(args?: Subset<T, payment$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
+    allocations<T extends payment$allocationsArgs<ExtArgs> = {}>(args?: Subset<T, payment$allocationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -33503,6 +33742,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * payment.allocations
+   */
+  export type payment$allocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    where?: paymentbillallocationWhereInput
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    cursor?: paymentbillallocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentbillallocationScalarFieldEnum | PaymentbillallocationScalarFieldEnum[]
   }
 
   /**
@@ -40927,6 +41186,7 @@ export namespace Prisma {
     purchasereturn?: boolean | purchasebill$purchasereturnArgs<ExtArgs>
     transaction?: boolean | purchasebill$transactionArgs<ExtArgs>
     inventory_batch?: boolean | purchasebill$inventory_batchArgs<ExtArgs>
+    allocations?: boolean | purchasebill$allocationsArgs<ExtArgs>
     _count?: boolean | PurchasebillCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["purchasebill"]>
 
@@ -40978,6 +41238,7 @@ export namespace Prisma {
     purchasereturn?: boolean | purchasebill$purchasereturnArgs<ExtArgs>
     transaction?: boolean | purchasebill$transactionArgs<ExtArgs>
     inventory_batch?: boolean | purchasebill$inventory_batchArgs<ExtArgs>
+    allocations?: boolean | purchasebill$allocationsArgs<ExtArgs>
     _count?: boolean | PurchasebillCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -40993,6 +41254,7 @@ export namespace Prisma {
       purchasereturn: Prisma.$purchasereturnPayload<ExtArgs>[]
       transaction: Prisma.$transactionPayload<ExtArgs>[]
       inventory_batch: Prisma.$inventory_batchPayload<ExtArgs>[]
+      allocations: Prisma.$paymentbillallocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -41378,6 +41640,7 @@ export namespace Prisma {
     purchasereturn<T extends purchasebill$purchasereturnArgs<ExtArgs> = {}>(args?: Subset<T, purchasebill$purchasereturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$purchasereturnPayload<ExtArgs>, T, "findMany"> | Null>
     transaction<T extends purchasebill$transactionArgs<ExtArgs> = {}>(args?: Subset<T, purchasebill$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
     inventory_batch<T extends purchasebill$inventory_batchArgs<ExtArgs> = {}>(args?: Subset<T, purchasebill$inventory_batchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventory_batchPayload<ExtArgs>, T, "findMany"> | Null>
+    allocations<T extends purchasebill$allocationsArgs<ExtArgs> = {}>(args?: Subset<T, purchasebill$allocationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -41867,6 +42130,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Inventory_batchScalarFieldEnum | Inventory_batchScalarFieldEnum[]
+  }
+
+  /**
+   * purchasebill.allocations
+   */
+  export type purchasebill$allocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    where?: paymentbillallocationWhereInput
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    cursor?: paymentbillallocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentbillallocationScalarFieldEnum | PaymentbillallocationScalarFieldEnum[]
   }
 
   /**
@@ -49893,6 +50176,7 @@ export namespace Prisma {
     cashBankAccount?: boolean | receipt$cashBankAccountArgs<ExtArgs>
     discountLedger?: boolean | receipt$discountLedgerArgs<ExtArgs>
     transaction?: boolean | receipt$transactionArgs<ExtArgs>
+    allocations?: boolean | receipt$allocationsArgs<ExtArgs>
     _count?: boolean | ReceiptCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["receipt"]>
 
@@ -49922,6 +50206,7 @@ export namespace Prisma {
     cashBankAccount?: boolean | receipt$cashBankAccountArgs<ExtArgs>
     discountLedger?: boolean | receipt$discountLedgerArgs<ExtArgs>
     transaction?: boolean | receipt$transactionArgs<ExtArgs>
+    allocations?: boolean | receipt$allocationsArgs<ExtArgs>
     _count?: boolean | ReceiptCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -49934,6 +50219,7 @@ export namespace Prisma {
       cashBankAccount: Prisma.$ledgerPayload<ExtArgs> | null
       discountLedger: Prisma.$ledgerPayload<ExtArgs> | null
       transaction: Prisma.$transactionPayload<ExtArgs>[]
+      allocations: Prisma.$receiptinvoiceallocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -50297,6 +50583,7 @@ export namespace Prisma {
     cashBankAccount<T extends receipt$cashBankAccountArgs<ExtArgs> = {}>(args?: Subset<T, receipt$cashBankAccountArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     discountLedger<T extends receipt$discountLedgerArgs<ExtArgs> = {}>(args?: Subset<T, receipt$discountLedgerArgs<ExtArgs>>): Prisma__ledgerClient<$Result.GetResult<Prisma.$ledgerPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     transaction<T extends receipt$transactionArgs<ExtArgs> = {}>(args?: Subset<T, receipt$transactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transactionPayload<ExtArgs>, T, "findMany"> | Null>
+    allocations<T extends receipt$allocationsArgs<ExtArgs> = {}>(args?: Subset<T, receipt$allocationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -50702,6 +50989,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * receipt.allocations
+   */
+  export type receipt$allocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    where?: receiptinvoiceallocationWhereInput
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptinvoiceallocationScalarFieldEnum | ReceiptinvoiceallocationScalarFieldEnum[]
   }
 
   /**
@@ -74289,6 +74596,1916 @@ export namespace Prisma {
 
 
   /**
+   * Model receiptinvoiceallocation
+   */
+
+  export type AggregateReceiptinvoiceallocation = {
+    _count: ReceiptinvoiceallocationCountAggregateOutputType | null
+    _avg: ReceiptinvoiceallocationAvgAggregateOutputType | null
+    _sum: ReceiptinvoiceallocationSumAggregateOutputType | null
+    _min: ReceiptinvoiceallocationMinAggregateOutputType | null
+    _max: ReceiptinvoiceallocationMaxAggregateOutputType | null
+  }
+
+  export type ReceiptinvoiceallocationAvgAggregateOutputType = {
+    id: number | null
+    receiptId: number | null
+    invoiceId: number | null
+    amount: number | null
+    companyId: number | null
+  }
+
+  export type ReceiptinvoiceallocationSumAggregateOutputType = {
+    id: number | null
+    receiptId: number | null
+    invoiceId: number | null
+    amount: number | null
+    companyId: number | null
+  }
+
+  export type ReceiptinvoiceallocationMinAggregateOutputType = {
+    id: number | null
+    receiptId: number | null
+    invoiceId: number | null
+    amount: number | null
+    companyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReceiptinvoiceallocationMaxAggregateOutputType = {
+    id: number | null
+    receiptId: number | null
+    invoiceId: number | null
+    amount: number | null
+    companyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ReceiptinvoiceallocationCountAggregateOutputType = {
+    id: number
+    receiptId: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ReceiptinvoiceallocationAvgAggregateInputType = {
+    id?: true
+    receiptId?: true
+    invoiceId?: true
+    amount?: true
+    companyId?: true
+  }
+
+  export type ReceiptinvoiceallocationSumAggregateInputType = {
+    id?: true
+    receiptId?: true
+    invoiceId?: true
+    amount?: true
+    companyId?: true
+  }
+
+  export type ReceiptinvoiceallocationMinAggregateInputType = {
+    id?: true
+    receiptId?: true
+    invoiceId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReceiptinvoiceallocationMaxAggregateInputType = {
+    id?: true
+    receiptId?: true
+    invoiceId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ReceiptinvoiceallocationCountAggregateInputType = {
+    id?: true
+    receiptId?: true
+    invoiceId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ReceiptinvoiceallocationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which receiptinvoiceallocation to aggregate.
+     */
+    where?: receiptinvoiceallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of receiptinvoiceallocations to fetch.
+     */
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` receiptinvoiceallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` receiptinvoiceallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned receiptinvoiceallocations
+    **/
+    _count?: true | ReceiptinvoiceallocationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReceiptinvoiceallocationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReceiptinvoiceallocationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReceiptinvoiceallocationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReceiptinvoiceallocationMaxAggregateInputType
+  }
+
+  export type GetReceiptinvoiceallocationAggregateType<T extends ReceiptinvoiceallocationAggregateArgs> = {
+        [P in keyof T & keyof AggregateReceiptinvoiceallocation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReceiptinvoiceallocation[P]>
+      : GetScalarType<T[P], AggregateReceiptinvoiceallocation[P]>
+  }
+
+
+
+
+  export type receiptinvoiceallocationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: receiptinvoiceallocationWhereInput
+    orderBy?: receiptinvoiceallocationOrderByWithAggregationInput | receiptinvoiceallocationOrderByWithAggregationInput[]
+    by: ReceiptinvoiceallocationScalarFieldEnum[] | ReceiptinvoiceallocationScalarFieldEnum
+    having?: receiptinvoiceallocationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReceiptinvoiceallocationCountAggregateInputType | true
+    _avg?: ReceiptinvoiceallocationAvgAggregateInputType
+    _sum?: ReceiptinvoiceallocationSumAggregateInputType
+    _min?: ReceiptinvoiceallocationMinAggregateInputType
+    _max?: ReceiptinvoiceallocationMaxAggregateInputType
+  }
+
+  export type ReceiptinvoiceallocationGroupByOutputType = {
+    id: number
+    receiptId: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: ReceiptinvoiceallocationCountAggregateOutputType | null
+    _avg: ReceiptinvoiceallocationAvgAggregateOutputType | null
+    _sum: ReceiptinvoiceallocationSumAggregateOutputType | null
+    _min: ReceiptinvoiceallocationMinAggregateOutputType | null
+    _max: ReceiptinvoiceallocationMaxAggregateOutputType | null
+  }
+
+  type GetReceiptinvoiceallocationGroupByPayload<T extends receiptinvoiceallocationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReceiptinvoiceallocationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReceiptinvoiceallocationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReceiptinvoiceallocationGroupByOutputType[P]>
+            : GetScalarType<T[P], ReceiptinvoiceallocationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type receiptinvoiceallocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    receiptId?: boolean
+    invoiceId?: boolean
+    amount?: boolean
+    companyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    receipt?: boolean | receiptDefaultArgs<ExtArgs>
+    invoice?: boolean | invoiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["receiptinvoiceallocation"]>
+
+
+  export type receiptinvoiceallocationSelectScalar = {
+    id?: boolean
+    receiptId?: boolean
+    invoiceId?: boolean
+    amount?: boolean
+    companyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type receiptinvoiceallocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    receipt?: boolean | receiptDefaultArgs<ExtArgs>
+    invoice?: boolean | invoiceDefaultArgs<ExtArgs>
+  }
+
+  export type $receiptinvoiceallocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "receiptinvoiceallocation"
+    objects: {
+      receipt: Prisma.$receiptPayload<ExtArgs>
+      invoice: Prisma.$invoicePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      receiptId: number
+      invoiceId: number
+      amount: number
+      companyId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["receiptinvoiceallocation"]>
+    composites: {}
+  }
+
+  type receiptinvoiceallocationGetPayload<S extends boolean | null | undefined | receiptinvoiceallocationDefaultArgs> = $Result.GetResult<Prisma.$receiptinvoiceallocationPayload, S>
+
+  type receiptinvoiceallocationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<receiptinvoiceallocationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ReceiptinvoiceallocationCountAggregateInputType | true
+    }
+
+  export interface receiptinvoiceallocationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['receiptinvoiceallocation'], meta: { name: 'receiptinvoiceallocation' } }
+    /**
+     * Find zero or one Receiptinvoiceallocation that matches the filter.
+     * @param {receiptinvoiceallocationFindUniqueArgs} args - Arguments to find a Receiptinvoiceallocation
+     * @example
+     * // Get one Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends receiptinvoiceallocationFindUniqueArgs>(args: SelectSubset<T, receiptinvoiceallocationFindUniqueArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Receiptinvoiceallocation that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {receiptinvoiceallocationFindUniqueOrThrowArgs} args - Arguments to find a Receiptinvoiceallocation
+     * @example
+     * // Get one Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends receiptinvoiceallocationFindUniqueOrThrowArgs>(args: SelectSubset<T, receiptinvoiceallocationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Receiptinvoiceallocation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationFindFirstArgs} args - Arguments to find a Receiptinvoiceallocation
+     * @example
+     * // Get one Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends receiptinvoiceallocationFindFirstArgs>(args?: SelectSubset<T, receiptinvoiceallocationFindFirstArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Receiptinvoiceallocation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationFindFirstOrThrowArgs} args - Arguments to find a Receiptinvoiceallocation
+     * @example
+     * // Get one Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends receiptinvoiceallocationFindFirstOrThrowArgs>(args?: SelectSubset<T, receiptinvoiceallocationFindFirstOrThrowArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Receiptinvoiceallocations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Receiptinvoiceallocations
+     * const receiptinvoiceallocations = await prisma.receiptinvoiceallocation.findMany()
+     * 
+     * // Get first 10 Receiptinvoiceallocations
+     * const receiptinvoiceallocations = await prisma.receiptinvoiceallocation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const receiptinvoiceallocationWithIdOnly = await prisma.receiptinvoiceallocation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends receiptinvoiceallocationFindManyArgs>(args?: SelectSubset<T, receiptinvoiceallocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Receiptinvoiceallocation.
+     * @param {receiptinvoiceallocationCreateArgs} args - Arguments to create a Receiptinvoiceallocation.
+     * @example
+     * // Create one Receiptinvoiceallocation
+     * const Receiptinvoiceallocation = await prisma.receiptinvoiceallocation.create({
+     *   data: {
+     *     // ... data to create a Receiptinvoiceallocation
+     *   }
+     * })
+     * 
+     */
+    create<T extends receiptinvoiceallocationCreateArgs>(args: SelectSubset<T, receiptinvoiceallocationCreateArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Receiptinvoiceallocations.
+     * @param {receiptinvoiceallocationCreateManyArgs} args - Arguments to create many Receiptinvoiceallocations.
+     * @example
+     * // Create many Receiptinvoiceallocations
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends receiptinvoiceallocationCreateManyArgs>(args?: SelectSubset<T, receiptinvoiceallocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Receiptinvoiceallocation.
+     * @param {receiptinvoiceallocationDeleteArgs} args - Arguments to delete one Receiptinvoiceallocation.
+     * @example
+     * // Delete one Receiptinvoiceallocation
+     * const Receiptinvoiceallocation = await prisma.receiptinvoiceallocation.delete({
+     *   where: {
+     *     // ... filter to delete one Receiptinvoiceallocation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends receiptinvoiceallocationDeleteArgs>(args: SelectSubset<T, receiptinvoiceallocationDeleteArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Receiptinvoiceallocation.
+     * @param {receiptinvoiceallocationUpdateArgs} args - Arguments to update one Receiptinvoiceallocation.
+     * @example
+     * // Update one Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends receiptinvoiceallocationUpdateArgs>(args: SelectSubset<T, receiptinvoiceallocationUpdateArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Receiptinvoiceallocations.
+     * @param {receiptinvoiceallocationDeleteManyArgs} args - Arguments to filter Receiptinvoiceallocations to delete.
+     * @example
+     * // Delete a few Receiptinvoiceallocations
+     * const { count } = await prisma.receiptinvoiceallocation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends receiptinvoiceallocationDeleteManyArgs>(args?: SelectSubset<T, receiptinvoiceallocationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Receiptinvoiceallocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Receiptinvoiceallocations
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends receiptinvoiceallocationUpdateManyArgs>(args: SelectSubset<T, receiptinvoiceallocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Receiptinvoiceallocation.
+     * @param {receiptinvoiceallocationUpsertArgs} args - Arguments to update or create a Receiptinvoiceallocation.
+     * @example
+     * // Update or create a Receiptinvoiceallocation
+     * const receiptinvoiceallocation = await prisma.receiptinvoiceallocation.upsert({
+     *   create: {
+     *     // ... data to create a Receiptinvoiceallocation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Receiptinvoiceallocation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends receiptinvoiceallocationUpsertArgs>(args: SelectSubset<T, receiptinvoiceallocationUpsertArgs<ExtArgs>>): Prisma__receiptinvoiceallocationClient<$Result.GetResult<Prisma.$receiptinvoiceallocationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Receiptinvoiceallocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationCountArgs} args - Arguments to filter Receiptinvoiceallocations to count.
+     * @example
+     * // Count the number of Receiptinvoiceallocations
+     * const count = await prisma.receiptinvoiceallocation.count({
+     *   where: {
+     *     // ... the filter for the Receiptinvoiceallocations we want to count
+     *   }
+     * })
+    **/
+    count<T extends receiptinvoiceallocationCountArgs>(
+      args?: Subset<T, receiptinvoiceallocationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReceiptinvoiceallocationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Receiptinvoiceallocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptinvoiceallocationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReceiptinvoiceallocationAggregateArgs>(args: Subset<T, ReceiptinvoiceallocationAggregateArgs>): Prisma.PrismaPromise<GetReceiptinvoiceallocationAggregateType<T>>
+
+    /**
+     * Group by Receiptinvoiceallocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {receiptinvoiceallocationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends receiptinvoiceallocationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: receiptinvoiceallocationGroupByArgs['orderBy'] }
+        : { orderBy?: receiptinvoiceallocationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, receiptinvoiceallocationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReceiptinvoiceallocationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the receiptinvoiceallocation model
+   */
+  readonly fields: receiptinvoiceallocationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for receiptinvoiceallocation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__receiptinvoiceallocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    receipt<T extends receiptDefaultArgs<ExtArgs> = {}>(args?: Subset<T, receiptDefaultArgs<ExtArgs>>): Prisma__receiptClient<$Result.GetResult<Prisma.$receiptPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    invoice<T extends invoiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, invoiceDefaultArgs<ExtArgs>>): Prisma__invoiceClient<$Result.GetResult<Prisma.$invoicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the receiptinvoiceallocation model
+   */ 
+  interface receiptinvoiceallocationFieldRefs {
+    readonly id: FieldRef<"receiptinvoiceallocation", 'Int'>
+    readonly receiptId: FieldRef<"receiptinvoiceallocation", 'Int'>
+    readonly invoiceId: FieldRef<"receiptinvoiceallocation", 'Int'>
+    readonly amount: FieldRef<"receiptinvoiceallocation", 'Float'>
+    readonly companyId: FieldRef<"receiptinvoiceallocation", 'Int'>
+    readonly createdAt: FieldRef<"receiptinvoiceallocation", 'DateTime'>
+    readonly updatedAt: FieldRef<"receiptinvoiceallocation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * receiptinvoiceallocation findUnique
+   */
+  export type receiptinvoiceallocationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which receiptinvoiceallocation to fetch.
+     */
+    where: receiptinvoiceallocationWhereUniqueInput
+  }
+
+  /**
+   * receiptinvoiceallocation findUniqueOrThrow
+   */
+  export type receiptinvoiceallocationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which receiptinvoiceallocation to fetch.
+     */
+    where: receiptinvoiceallocationWhereUniqueInput
+  }
+
+  /**
+   * receiptinvoiceallocation findFirst
+   */
+  export type receiptinvoiceallocationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which receiptinvoiceallocation to fetch.
+     */
+    where?: receiptinvoiceallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of receiptinvoiceallocations to fetch.
+     */
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for receiptinvoiceallocations.
+     */
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` receiptinvoiceallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` receiptinvoiceallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of receiptinvoiceallocations.
+     */
+    distinct?: ReceiptinvoiceallocationScalarFieldEnum | ReceiptinvoiceallocationScalarFieldEnum[]
+  }
+
+  /**
+   * receiptinvoiceallocation findFirstOrThrow
+   */
+  export type receiptinvoiceallocationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which receiptinvoiceallocation to fetch.
+     */
+    where?: receiptinvoiceallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of receiptinvoiceallocations to fetch.
+     */
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for receiptinvoiceallocations.
+     */
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` receiptinvoiceallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` receiptinvoiceallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of receiptinvoiceallocations.
+     */
+    distinct?: ReceiptinvoiceallocationScalarFieldEnum | ReceiptinvoiceallocationScalarFieldEnum[]
+  }
+
+  /**
+   * receiptinvoiceallocation findMany
+   */
+  export type receiptinvoiceallocationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which receiptinvoiceallocations to fetch.
+     */
+    where?: receiptinvoiceallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of receiptinvoiceallocations to fetch.
+     */
+    orderBy?: receiptinvoiceallocationOrderByWithRelationInput | receiptinvoiceallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing receiptinvoiceallocations.
+     */
+    cursor?: receiptinvoiceallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` receiptinvoiceallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` receiptinvoiceallocations.
+     */
+    skip?: number
+    distinct?: ReceiptinvoiceallocationScalarFieldEnum | ReceiptinvoiceallocationScalarFieldEnum[]
+  }
+
+  /**
+   * receiptinvoiceallocation create
+   */
+  export type receiptinvoiceallocationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a receiptinvoiceallocation.
+     */
+    data: XOR<receiptinvoiceallocationCreateInput, receiptinvoiceallocationUncheckedCreateInput>
+  }
+
+  /**
+   * receiptinvoiceallocation createMany
+   */
+  export type receiptinvoiceallocationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many receiptinvoiceallocations.
+     */
+    data: receiptinvoiceallocationCreateManyInput | receiptinvoiceallocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * receiptinvoiceallocation update
+   */
+  export type receiptinvoiceallocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a receiptinvoiceallocation.
+     */
+    data: XOR<receiptinvoiceallocationUpdateInput, receiptinvoiceallocationUncheckedUpdateInput>
+    /**
+     * Choose, which receiptinvoiceallocation to update.
+     */
+    where: receiptinvoiceallocationWhereUniqueInput
+  }
+
+  /**
+   * receiptinvoiceallocation updateMany
+   */
+  export type receiptinvoiceallocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update receiptinvoiceallocations.
+     */
+    data: XOR<receiptinvoiceallocationUpdateManyMutationInput, receiptinvoiceallocationUncheckedUpdateManyInput>
+    /**
+     * Filter which receiptinvoiceallocations to update
+     */
+    where?: receiptinvoiceallocationWhereInput
+  }
+
+  /**
+   * receiptinvoiceallocation upsert
+   */
+  export type receiptinvoiceallocationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the receiptinvoiceallocation to update in case it exists.
+     */
+    where: receiptinvoiceallocationWhereUniqueInput
+    /**
+     * In case the receiptinvoiceallocation found by the `where` argument doesn't exist, create a new receiptinvoiceallocation with this data.
+     */
+    create: XOR<receiptinvoiceallocationCreateInput, receiptinvoiceallocationUncheckedCreateInput>
+    /**
+     * In case the receiptinvoiceallocation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<receiptinvoiceallocationUpdateInput, receiptinvoiceallocationUncheckedUpdateInput>
+  }
+
+  /**
+   * receiptinvoiceallocation delete
+   */
+  export type receiptinvoiceallocationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+    /**
+     * Filter which receiptinvoiceallocation to delete.
+     */
+    where: receiptinvoiceallocationWhereUniqueInput
+  }
+
+  /**
+   * receiptinvoiceallocation deleteMany
+   */
+  export type receiptinvoiceallocationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which receiptinvoiceallocations to delete
+     */
+    where?: receiptinvoiceallocationWhereInput
+  }
+
+  /**
+   * receiptinvoiceallocation without action
+   */
+  export type receiptinvoiceallocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the receiptinvoiceallocation
+     */
+    select?: receiptinvoiceallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: receiptinvoiceallocationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model paymentbillallocation
+   */
+
+  export type AggregatePaymentbillallocation = {
+    _count: PaymentbillallocationCountAggregateOutputType | null
+    _avg: PaymentbillallocationAvgAggregateOutputType | null
+    _sum: PaymentbillallocationSumAggregateOutputType | null
+    _min: PaymentbillallocationMinAggregateOutputType | null
+    _max: PaymentbillallocationMaxAggregateOutputType | null
+  }
+
+  export type PaymentbillallocationAvgAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    purchaseBillId: number | null
+    amount: number | null
+    companyId: number | null
+  }
+
+  export type PaymentbillallocationSumAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    purchaseBillId: number | null
+    amount: number | null
+    companyId: number | null
+  }
+
+  export type PaymentbillallocationMinAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    purchaseBillId: number | null
+    amount: number | null
+    companyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaymentbillallocationMaxAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    purchaseBillId: number | null
+    amount: number | null
+    companyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaymentbillallocationCountAggregateOutputType = {
+    id: number
+    paymentId: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PaymentbillallocationAvgAggregateInputType = {
+    id?: true
+    paymentId?: true
+    purchaseBillId?: true
+    amount?: true
+    companyId?: true
+  }
+
+  export type PaymentbillallocationSumAggregateInputType = {
+    id?: true
+    paymentId?: true
+    purchaseBillId?: true
+    amount?: true
+    companyId?: true
+  }
+
+  export type PaymentbillallocationMinAggregateInputType = {
+    id?: true
+    paymentId?: true
+    purchaseBillId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaymentbillallocationMaxAggregateInputType = {
+    id?: true
+    paymentId?: true
+    purchaseBillId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaymentbillallocationCountAggregateInputType = {
+    id?: true
+    paymentId?: true
+    purchaseBillId?: true
+    amount?: true
+    companyId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PaymentbillallocationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which paymentbillallocation to aggregate.
+     */
+    where?: paymentbillallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of paymentbillallocations to fetch.
+     */
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: paymentbillallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` paymentbillallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` paymentbillallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned paymentbillallocations
+    **/
+    _count?: true | PaymentbillallocationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentbillallocationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentbillallocationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentbillallocationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentbillallocationMaxAggregateInputType
+  }
+
+  export type GetPaymentbillallocationAggregateType<T extends PaymentbillallocationAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaymentbillallocation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaymentbillallocation[P]>
+      : GetScalarType<T[P], AggregatePaymentbillallocation[P]>
+  }
+
+
+
+
+  export type paymentbillallocationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: paymentbillallocationWhereInput
+    orderBy?: paymentbillallocationOrderByWithAggregationInput | paymentbillallocationOrderByWithAggregationInput[]
+    by: PaymentbillallocationScalarFieldEnum[] | PaymentbillallocationScalarFieldEnum
+    having?: paymentbillallocationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaymentbillallocationCountAggregateInputType | true
+    _avg?: PaymentbillallocationAvgAggregateInputType
+    _sum?: PaymentbillallocationSumAggregateInputType
+    _min?: PaymentbillallocationMinAggregateInputType
+    _max?: PaymentbillallocationMaxAggregateInputType
+  }
+
+  export type PaymentbillallocationGroupByOutputType = {
+    id: number
+    paymentId: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: PaymentbillallocationCountAggregateOutputType | null
+    _avg: PaymentbillallocationAvgAggregateOutputType | null
+    _sum: PaymentbillallocationSumAggregateOutputType | null
+    _min: PaymentbillallocationMinAggregateOutputType | null
+    _max: PaymentbillallocationMaxAggregateOutputType | null
+  }
+
+  type GetPaymentbillallocationGroupByPayload<T extends paymentbillallocationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentbillallocationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentbillallocationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentbillallocationGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentbillallocationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type paymentbillallocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paymentId?: boolean
+    purchaseBillId?: boolean
+    amount?: boolean
+    companyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    payment?: boolean | paymentDefaultArgs<ExtArgs>
+    purchasebill?: boolean | purchasebillDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paymentbillallocation"]>
+
+
+  export type paymentbillallocationSelectScalar = {
+    id?: boolean
+    paymentId?: boolean
+    purchaseBillId?: boolean
+    amount?: boolean
+    companyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type paymentbillallocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment?: boolean | paymentDefaultArgs<ExtArgs>
+    purchasebill?: boolean | purchasebillDefaultArgs<ExtArgs>
+  }
+
+  export type $paymentbillallocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "paymentbillallocation"
+    objects: {
+      payment: Prisma.$paymentPayload<ExtArgs>
+      purchasebill: Prisma.$purchasebillPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      paymentId: number
+      purchaseBillId: number
+      amount: number
+      companyId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["paymentbillallocation"]>
+    composites: {}
+  }
+
+  type paymentbillallocationGetPayload<S extends boolean | null | undefined | paymentbillallocationDefaultArgs> = $Result.GetResult<Prisma.$paymentbillallocationPayload, S>
+
+  type paymentbillallocationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<paymentbillallocationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PaymentbillallocationCountAggregateInputType | true
+    }
+
+  export interface paymentbillallocationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['paymentbillallocation'], meta: { name: 'paymentbillallocation' } }
+    /**
+     * Find zero or one Paymentbillallocation that matches the filter.
+     * @param {paymentbillallocationFindUniqueArgs} args - Arguments to find a Paymentbillallocation
+     * @example
+     * // Get one Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends paymentbillallocationFindUniqueArgs>(args: SelectSubset<T, paymentbillallocationFindUniqueArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Paymentbillallocation that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {paymentbillallocationFindUniqueOrThrowArgs} args - Arguments to find a Paymentbillallocation
+     * @example
+     * // Get one Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends paymentbillallocationFindUniqueOrThrowArgs>(args: SelectSubset<T, paymentbillallocationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Paymentbillallocation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationFindFirstArgs} args - Arguments to find a Paymentbillallocation
+     * @example
+     * // Get one Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends paymentbillallocationFindFirstArgs>(args?: SelectSubset<T, paymentbillallocationFindFirstArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Paymentbillallocation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationFindFirstOrThrowArgs} args - Arguments to find a Paymentbillallocation
+     * @example
+     * // Get one Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends paymentbillallocationFindFirstOrThrowArgs>(args?: SelectSubset<T, paymentbillallocationFindFirstOrThrowArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Paymentbillallocations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Paymentbillallocations
+     * const paymentbillallocations = await prisma.paymentbillallocation.findMany()
+     * 
+     * // Get first 10 Paymentbillallocations
+     * const paymentbillallocations = await prisma.paymentbillallocation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentbillallocationWithIdOnly = await prisma.paymentbillallocation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends paymentbillallocationFindManyArgs>(args?: SelectSubset<T, paymentbillallocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Paymentbillallocation.
+     * @param {paymentbillallocationCreateArgs} args - Arguments to create a Paymentbillallocation.
+     * @example
+     * // Create one Paymentbillallocation
+     * const Paymentbillallocation = await prisma.paymentbillallocation.create({
+     *   data: {
+     *     // ... data to create a Paymentbillallocation
+     *   }
+     * })
+     * 
+     */
+    create<T extends paymentbillallocationCreateArgs>(args: SelectSubset<T, paymentbillallocationCreateArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Paymentbillallocations.
+     * @param {paymentbillallocationCreateManyArgs} args - Arguments to create many Paymentbillallocations.
+     * @example
+     * // Create many Paymentbillallocations
+     * const paymentbillallocation = await prisma.paymentbillallocation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends paymentbillallocationCreateManyArgs>(args?: SelectSubset<T, paymentbillallocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Paymentbillallocation.
+     * @param {paymentbillallocationDeleteArgs} args - Arguments to delete one Paymentbillallocation.
+     * @example
+     * // Delete one Paymentbillallocation
+     * const Paymentbillallocation = await prisma.paymentbillallocation.delete({
+     *   where: {
+     *     // ... filter to delete one Paymentbillallocation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends paymentbillallocationDeleteArgs>(args: SelectSubset<T, paymentbillallocationDeleteArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Paymentbillallocation.
+     * @param {paymentbillallocationUpdateArgs} args - Arguments to update one Paymentbillallocation.
+     * @example
+     * // Update one Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends paymentbillallocationUpdateArgs>(args: SelectSubset<T, paymentbillallocationUpdateArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Paymentbillallocations.
+     * @param {paymentbillallocationDeleteManyArgs} args - Arguments to filter Paymentbillallocations to delete.
+     * @example
+     * // Delete a few Paymentbillallocations
+     * const { count } = await prisma.paymentbillallocation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends paymentbillallocationDeleteManyArgs>(args?: SelectSubset<T, paymentbillallocationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Paymentbillallocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Paymentbillallocations
+     * const paymentbillallocation = await prisma.paymentbillallocation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends paymentbillallocationUpdateManyArgs>(args: SelectSubset<T, paymentbillallocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Paymentbillallocation.
+     * @param {paymentbillallocationUpsertArgs} args - Arguments to update or create a Paymentbillallocation.
+     * @example
+     * // Update or create a Paymentbillallocation
+     * const paymentbillallocation = await prisma.paymentbillallocation.upsert({
+     *   create: {
+     *     // ... data to create a Paymentbillallocation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Paymentbillallocation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends paymentbillallocationUpsertArgs>(args: SelectSubset<T, paymentbillallocationUpsertArgs<ExtArgs>>): Prisma__paymentbillallocationClient<$Result.GetResult<Prisma.$paymentbillallocationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Paymentbillallocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationCountArgs} args - Arguments to filter Paymentbillallocations to count.
+     * @example
+     * // Count the number of Paymentbillallocations
+     * const count = await prisma.paymentbillallocation.count({
+     *   where: {
+     *     // ... the filter for the Paymentbillallocations we want to count
+     *   }
+     * })
+    **/
+    count<T extends paymentbillallocationCountArgs>(
+      args?: Subset<T, paymentbillallocationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentbillallocationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Paymentbillallocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentbillallocationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentbillallocationAggregateArgs>(args: Subset<T, PaymentbillallocationAggregateArgs>): Prisma.PrismaPromise<GetPaymentbillallocationAggregateType<T>>
+
+    /**
+     * Group by Paymentbillallocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {paymentbillallocationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends paymentbillallocationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: paymentbillallocationGroupByArgs['orderBy'] }
+        : { orderBy?: paymentbillallocationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, paymentbillallocationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentbillallocationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the paymentbillallocation model
+   */
+  readonly fields: paymentbillallocationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for paymentbillallocation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__paymentbillallocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    payment<T extends paymentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, paymentDefaultArgs<ExtArgs>>): Prisma__paymentClient<$Result.GetResult<Prisma.$paymentPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    purchasebill<T extends purchasebillDefaultArgs<ExtArgs> = {}>(args?: Subset<T, purchasebillDefaultArgs<ExtArgs>>): Prisma__purchasebillClient<$Result.GetResult<Prisma.$purchasebillPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the paymentbillallocation model
+   */ 
+  interface paymentbillallocationFieldRefs {
+    readonly id: FieldRef<"paymentbillallocation", 'Int'>
+    readonly paymentId: FieldRef<"paymentbillallocation", 'Int'>
+    readonly purchaseBillId: FieldRef<"paymentbillallocation", 'Int'>
+    readonly amount: FieldRef<"paymentbillallocation", 'Float'>
+    readonly companyId: FieldRef<"paymentbillallocation", 'Int'>
+    readonly createdAt: FieldRef<"paymentbillallocation", 'DateTime'>
+    readonly updatedAt: FieldRef<"paymentbillallocation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * paymentbillallocation findUnique
+   */
+  export type paymentbillallocationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which paymentbillallocation to fetch.
+     */
+    where: paymentbillallocationWhereUniqueInput
+  }
+
+  /**
+   * paymentbillallocation findUniqueOrThrow
+   */
+  export type paymentbillallocationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which paymentbillallocation to fetch.
+     */
+    where: paymentbillallocationWhereUniqueInput
+  }
+
+  /**
+   * paymentbillallocation findFirst
+   */
+  export type paymentbillallocationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which paymentbillallocation to fetch.
+     */
+    where?: paymentbillallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of paymentbillallocations to fetch.
+     */
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for paymentbillallocations.
+     */
+    cursor?: paymentbillallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` paymentbillallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` paymentbillallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of paymentbillallocations.
+     */
+    distinct?: PaymentbillallocationScalarFieldEnum | PaymentbillallocationScalarFieldEnum[]
+  }
+
+  /**
+   * paymentbillallocation findFirstOrThrow
+   */
+  export type paymentbillallocationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which paymentbillallocation to fetch.
+     */
+    where?: paymentbillallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of paymentbillallocations to fetch.
+     */
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for paymentbillallocations.
+     */
+    cursor?: paymentbillallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` paymentbillallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` paymentbillallocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of paymentbillallocations.
+     */
+    distinct?: PaymentbillallocationScalarFieldEnum | PaymentbillallocationScalarFieldEnum[]
+  }
+
+  /**
+   * paymentbillallocation findMany
+   */
+  export type paymentbillallocationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter, which paymentbillallocations to fetch.
+     */
+    where?: paymentbillallocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of paymentbillallocations to fetch.
+     */
+    orderBy?: paymentbillallocationOrderByWithRelationInput | paymentbillallocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing paymentbillallocations.
+     */
+    cursor?: paymentbillallocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` paymentbillallocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` paymentbillallocations.
+     */
+    skip?: number
+    distinct?: PaymentbillallocationScalarFieldEnum | PaymentbillallocationScalarFieldEnum[]
+  }
+
+  /**
+   * paymentbillallocation create
+   */
+  export type paymentbillallocationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a paymentbillallocation.
+     */
+    data: XOR<paymentbillallocationCreateInput, paymentbillallocationUncheckedCreateInput>
+  }
+
+  /**
+   * paymentbillallocation createMany
+   */
+  export type paymentbillallocationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many paymentbillallocations.
+     */
+    data: paymentbillallocationCreateManyInput | paymentbillallocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * paymentbillallocation update
+   */
+  export type paymentbillallocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a paymentbillallocation.
+     */
+    data: XOR<paymentbillallocationUpdateInput, paymentbillallocationUncheckedUpdateInput>
+    /**
+     * Choose, which paymentbillallocation to update.
+     */
+    where: paymentbillallocationWhereUniqueInput
+  }
+
+  /**
+   * paymentbillallocation updateMany
+   */
+  export type paymentbillallocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update paymentbillallocations.
+     */
+    data: XOR<paymentbillallocationUpdateManyMutationInput, paymentbillallocationUncheckedUpdateManyInput>
+    /**
+     * Filter which paymentbillallocations to update
+     */
+    where?: paymentbillallocationWhereInput
+  }
+
+  /**
+   * paymentbillallocation upsert
+   */
+  export type paymentbillallocationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the paymentbillallocation to update in case it exists.
+     */
+    where: paymentbillallocationWhereUniqueInput
+    /**
+     * In case the paymentbillallocation found by the `where` argument doesn't exist, create a new paymentbillallocation with this data.
+     */
+    create: XOR<paymentbillallocationCreateInput, paymentbillallocationUncheckedCreateInput>
+    /**
+     * In case the paymentbillallocation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<paymentbillallocationUpdateInput, paymentbillallocationUncheckedUpdateInput>
+  }
+
+  /**
+   * paymentbillallocation delete
+   */
+  export type paymentbillallocationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+    /**
+     * Filter which paymentbillallocation to delete.
+     */
+    where: paymentbillallocationWhereUniqueInput
+  }
+
+  /**
+   * paymentbillallocation deleteMany
+   */
+  export type paymentbillallocationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which paymentbillallocations to delete
+     */
+    where?: paymentbillallocationWhereInput
+  }
+
+  /**
+   * paymentbillallocation without action
+   */
+  export type paymentbillallocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the paymentbillallocation
+     */
+    select?: paymentbillallocationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentbillallocationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -74401,7 +76618,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     inventoryConfig: 'inventoryConfig',
-    invoiceTableHeaders: 'invoiceTableHeaders'
+    invoiceTableHeaders: 'invoiceTableHeaders',
+    invoiceLabels: 'invoiceLabels'
   };
 
   export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -75510,6 +77728,32 @@ export namespace Prisma {
   export type Inventory_consumptionScalarFieldEnum = (typeof Inventory_consumptionScalarFieldEnum)[keyof typeof Inventory_consumptionScalarFieldEnum]
 
 
+  export const ReceiptinvoiceallocationScalarFieldEnum: {
+    id: 'id',
+    receiptId: 'receiptId',
+    invoiceId: 'invoiceId',
+    amount: 'amount',
+    companyId: 'companyId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ReceiptinvoiceallocationScalarFieldEnum = (typeof ReceiptinvoiceallocationScalarFieldEnum)[keyof typeof ReceiptinvoiceallocationScalarFieldEnum]
+
+
+  export const PaymentbillallocationScalarFieldEnum: {
+    id: 'id',
+    paymentId: 'paymentId',
+    purchaseBillId: 'purchaseBillId',
+    amount: 'amount',
+    companyId: 'companyId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PaymentbillallocationScalarFieldEnum = (typeof PaymentbillallocationScalarFieldEnum)[keyof typeof PaymentbillallocationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -76126,6 +78370,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"company"> | Date | string
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
+    invoiceLabels?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -76197,6 +78442,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     inventoryConfig?: SortOrderInput | SortOrder
     invoiceTableHeaders?: SortOrderInput | SortOrder
+    invoiceLabels?: SortOrderInput | SortOrder
     accountgroup?: accountgroupOrderByRelationAggregateInput
     accountsubgroup?: accountsubgroupOrderByRelationAggregateInput
     bankaccount?: bankaccountOrderByRelationAggregateInput
@@ -76271,6 +78517,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"company"> | Date | string
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
+    invoiceLabels?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -76342,6 +78589,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     inventoryConfig?: SortOrderInput | SortOrder
     invoiceTableHeaders?: SortOrderInput | SortOrder
+    invoiceLabels?: SortOrderInput | SortOrder
     _count?: companyCountOrderByAggregateInput
     _avg?: companyAvgOrderByAggregateInput
     _max?: companyMaxOrderByAggregateInput
@@ -76384,6 +78632,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"company"> | Date | string
     inventoryConfig?: StringNullableWithAggregatesFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableWithAggregatesFilter<"company"> | string | null
+    invoiceLabels?: StringNullableWithAggregatesFilter<"company"> | string | null
   }
 
   export type customerWhereInput = {
@@ -77583,6 +79832,7 @@ export namespace Prisma {
     salesreturn?: SalesreturnListRelationFilter
     transaction?: TransactionListRelationFilter
     inventory_consumption?: Inventory_consumptionListRelationFilter
+    allocations?: ReceiptinvoiceallocationListRelationFilter
   }
 
   export type invoiceOrderByWithRelationInput = {
@@ -77629,6 +79879,7 @@ export namespace Prisma {
     salesreturn?: salesreturnOrderByRelationAggregateInput
     transaction?: transactionOrderByRelationAggregateInput
     inventory_consumption?: inventory_consumptionOrderByRelationAggregateInput
+    allocations?: receiptinvoiceallocationOrderByRelationAggregateInput
   }
 
   export type invoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -77679,6 +79930,7 @@ export namespace Prisma {
     salesreturn?: SalesreturnListRelationFilter
     transaction?: TransactionListRelationFilter
     inventory_consumption?: Inventory_consumptionListRelationFilter
+    allocations?: ReceiptinvoiceallocationListRelationFilter
   }, "id" | "companyId_invoiceNumber">
 
   export type invoiceOrderByWithAggregationInput = {
@@ -78191,6 +80443,7 @@ export namespace Prisma {
     bankLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
+    allocations?: PaymentbillallocationListRelationFilter
   }
 
   export type paymentOrderByWithRelationInput = {
@@ -78215,6 +80468,7 @@ export namespace Prisma {
     bankLedger?: ledgerOrderByWithRelationInput
     discountLedger?: ledgerOrderByWithRelationInput
     transaction?: transactionOrderByRelationAggregateInput
+    allocations?: paymentbillallocationOrderByRelationAggregateInput
   }
 
   export type paymentWhereUniqueInput = Prisma.AtLeast<{
@@ -78243,6 +80497,7 @@ export namespace Prisma {
     bankLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
+    allocations?: PaymentbillallocationListRelationFilter
   }, "id" | "companyId_paymentNumber">
 
   export type paymentOrderByWithAggregationInput = {
@@ -79064,6 +81319,7 @@ export namespace Prisma {
     purchasereturn?: PurchasereturnListRelationFilter
     transaction?: TransactionListRelationFilter
     inventory_batch?: Inventory_batchListRelationFilter
+    allocations?: PaymentbillallocationListRelationFilter
   }
 
   export type purchasebillOrderByWithRelationInput = {
@@ -79110,6 +81366,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnOrderByRelationAggregateInput
     transaction?: transactionOrderByRelationAggregateInput
     inventory_batch?: inventory_batchOrderByRelationAggregateInput
+    allocations?: paymentbillallocationOrderByRelationAggregateInput
   }
 
   export type purchasebillWhereUniqueInput = Prisma.AtLeast<{
@@ -79160,6 +81417,7 @@ export namespace Prisma {
     purchasereturn?: PurchasereturnListRelationFilter
     transaction?: TransactionListRelationFilter
     inventory_batch?: Inventory_batchListRelationFilter
+    allocations?: PaymentbillallocationListRelationFilter
   }, "id" | "companyId_billNumber">
 
   export type purchasebillOrderByWithAggregationInput = {
@@ -80081,6 +82339,7 @@ export namespace Prisma {
     cashBankAccount?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
+    allocations?: ReceiptinvoiceallocationListRelationFilter
   }
 
   export type receiptOrderByWithRelationInput = {
@@ -80105,6 +82364,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerOrderByWithRelationInput
     discountLedger?: ledgerOrderByWithRelationInput
     transaction?: transactionOrderByRelationAggregateInput
+    allocations?: receiptinvoiceallocationOrderByRelationAggregateInput
   }
 
   export type receiptWhereUniqueInput = Prisma.AtLeast<{
@@ -80133,6 +82393,7 @@ export namespace Prisma {
     cashBankAccount?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     discountLedger?: XOR<LedgerNullableRelationFilter, ledgerWhereInput> | null
     transaction?: TransactionListRelationFilter
+    allocations?: ReceiptinvoiceallocationListRelationFilter
   }, "id" | "companyId_receiptNumber">
 
   export type receiptOrderByWithAggregationInput = {
@@ -82663,6 +84924,146 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"inventory_consumption"> | Date | string
   }
 
+  export type receiptinvoiceallocationWhereInput = {
+    AND?: receiptinvoiceallocationWhereInput | receiptinvoiceallocationWhereInput[]
+    OR?: receiptinvoiceallocationWhereInput[]
+    NOT?: receiptinvoiceallocationWhereInput | receiptinvoiceallocationWhereInput[]
+    id?: IntFilter<"receiptinvoiceallocation"> | number
+    receiptId?: IntFilter<"receiptinvoiceallocation"> | number
+    invoiceId?: IntFilter<"receiptinvoiceallocation"> | number
+    amount?: FloatFilter<"receiptinvoiceallocation"> | number
+    companyId?: IntFilter<"receiptinvoiceallocation"> | number
+    createdAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+    receipt?: XOR<ReceiptRelationFilter, receiptWhereInput>
+    invoice?: XOR<InvoiceRelationFilter, invoiceWhereInput>
+  }
+
+  export type receiptinvoiceallocationOrderByWithRelationInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    receipt?: receiptOrderByWithRelationInput
+    invoice?: invoiceOrderByWithRelationInput
+  }
+
+  export type receiptinvoiceallocationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: receiptinvoiceallocationWhereInput | receiptinvoiceallocationWhereInput[]
+    OR?: receiptinvoiceallocationWhereInput[]
+    NOT?: receiptinvoiceallocationWhereInput | receiptinvoiceallocationWhereInput[]
+    receiptId?: IntFilter<"receiptinvoiceallocation"> | number
+    invoiceId?: IntFilter<"receiptinvoiceallocation"> | number
+    amount?: FloatFilter<"receiptinvoiceallocation"> | number
+    companyId?: IntFilter<"receiptinvoiceallocation"> | number
+    createdAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+    receipt?: XOR<ReceiptRelationFilter, receiptWhereInput>
+    invoice?: XOR<InvoiceRelationFilter, invoiceWhereInput>
+  }, "id">
+
+  export type receiptinvoiceallocationOrderByWithAggregationInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: receiptinvoiceallocationCountOrderByAggregateInput
+    _avg?: receiptinvoiceallocationAvgOrderByAggregateInput
+    _max?: receiptinvoiceallocationMaxOrderByAggregateInput
+    _min?: receiptinvoiceallocationMinOrderByAggregateInput
+    _sum?: receiptinvoiceallocationSumOrderByAggregateInput
+  }
+
+  export type receiptinvoiceallocationScalarWhereWithAggregatesInput = {
+    AND?: receiptinvoiceallocationScalarWhereWithAggregatesInput | receiptinvoiceallocationScalarWhereWithAggregatesInput[]
+    OR?: receiptinvoiceallocationScalarWhereWithAggregatesInput[]
+    NOT?: receiptinvoiceallocationScalarWhereWithAggregatesInput | receiptinvoiceallocationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"receiptinvoiceallocation"> | number
+    receiptId?: IntWithAggregatesFilter<"receiptinvoiceallocation"> | number
+    invoiceId?: IntWithAggregatesFilter<"receiptinvoiceallocation"> | number
+    amount?: FloatWithAggregatesFilter<"receiptinvoiceallocation"> | number
+    companyId?: IntWithAggregatesFilter<"receiptinvoiceallocation"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"receiptinvoiceallocation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"receiptinvoiceallocation"> | Date | string
+  }
+
+  export type paymentbillallocationWhereInput = {
+    AND?: paymentbillallocationWhereInput | paymentbillallocationWhereInput[]
+    OR?: paymentbillallocationWhereInput[]
+    NOT?: paymentbillallocationWhereInput | paymentbillallocationWhereInput[]
+    id?: IntFilter<"paymentbillallocation"> | number
+    paymentId?: IntFilter<"paymentbillallocation"> | number
+    purchaseBillId?: IntFilter<"paymentbillallocation"> | number
+    amount?: FloatFilter<"paymentbillallocation"> | number
+    companyId?: IntFilter<"paymentbillallocation"> | number
+    createdAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+    payment?: XOR<PaymentRelationFilter, paymentWhereInput>
+    purchasebill?: XOR<PurchasebillRelationFilter, purchasebillWhereInput>
+  }
+
+  export type paymentbillallocationOrderByWithRelationInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    payment?: paymentOrderByWithRelationInput
+    purchasebill?: purchasebillOrderByWithRelationInput
+  }
+
+  export type paymentbillallocationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: paymentbillallocationWhereInput | paymentbillallocationWhereInput[]
+    OR?: paymentbillallocationWhereInput[]
+    NOT?: paymentbillallocationWhereInput | paymentbillallocationWhereInput[]
+    paymentId?: IntFilter<"paymentbillallocation"> | number
+    purchaseBillId?: IntFilter<"paymentbillallocation"> | number
+    amount?: FloatFilter<"paymentbillallocation"> | number
+    companyId?: IntFilter<"paymentbillallocation"> | number
+    createdAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+    payment?: XOR<PaymentRelationFilter, paymentWhereInput>
+    purchasebill?: XOR<PurchasebillRelationFilter, purchasebillWhereInput>
+  }, "id">
+
+  export type paymentbillallocationOrderByWithAggregationInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: paymentbillallocationCountOrderByAggregateInput
+    _avg?: paymentbillallocationAvgOrderByAggregateInput
+    _max?: paymentbillallocationMaxOrderByAggregateInput
+    _min?: paymentbillallocationMinOrderByAggregateInput
+    _sum?: paymentbillallocationSumOrderByAggregateInput
+  }
+
+  export type paymentbillallocationScalarWhereWithAggregatesInput = {
+    AND?: paymentbillallocationScalarWhereWithAggregatesInput | paymentbillallocationScalarWhereWithAggregatesInput[]
+    OR?: paymentbillallocationScalarWhereWithAggregatesInput[]
+    NOT?: paymentbillallocationScalarWhereWithAggregatesInput | paymentbillallocationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"paymentbillallocation"> | number
+    paymentId?: IntWithAggregatesFilter<"paymentbillallocation"> | number
+    purchaseBillId?: IntWithAggregatesFilter<"paymentbillallocation"> | number
+    amount?: FloatWithAggregatesFilter<"paymentbillallocation"> | number
+    companyId?: IntWithAggregatesFilter<"paymentbillallocation"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"paymentbillallocation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"paymentbillallocation"> | Date | string
+  }
+
   export type accountgroupCreateInput = {
     name: string
     type: $Enums.accountgroup_type
@@ -83062,6 +85463,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -83133,6 +85535,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -83201,6 +85604,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -83272,6 +85676,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -83342,6 +85747,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
   }
 
   export type companyUpdateManyMutationInput = {
@@ -83374,6 +85780,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type companyUncheckedUpdateManyInput = {
@@ -83408,6 +85815,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type customerCreateInput = {
@@ -84677,6 +87085,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateInput = {
@@ -84719,6 +87128,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUpdateInput = {
@@ -84760,6 +87170,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateInput = {
@@ -84802,6 +87213,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceCreateManyInput = {
@@ -85322,6 +87734,7 @@ export namespace Prisma {
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateInput = {
@@ -85341,6 +87754,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUpdateInput = {
@@ -85359,6 +87773,7 @@ export namespace Prisma {
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateInput = {
@@ -85378,6 +87793,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentCreateManyInput = {
@@ -86281,6 +88697,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateInput = {
@@ -86323,6 +88740,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUpdateInput = {
@@ -86364,6 +88782,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateInput = {
@@ -86406,6 +88825,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillCreateManyInput = {
@@ -87394,6 +89814,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateInput = {
@@ -87413,6 +89834,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUpdateInput = {
@@ -87431,6 +89853,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateInput = {
@@ -87450,6 +89873,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptCreateManyInput = {
@@ -90171,6 +92595,136 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type receiptinvoiceallocationCreateInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    receipt: receiptCreateNestedOneWithoutAllocationsInput
+    invoice: invoiceCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type receiptinvoiceallocationUncheckedCreateInput = {
+    id?: number
+    receiptId: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type receiptinvoiceallocationUpdateInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt?: receiptUpdateOneRequiredWithoutAllocationsNestedInput
+    invoice?: invoiceUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptId?: IntFieldUpdateOperationsInput | number
+    invoiceId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type receiptinvoiceallocationCreateManyInput = {
+    id?: number
+    receiptId: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type receiptinvoiceallocationUpdateManyMutationInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptId?: IntFieldUpdateOperationsInput | number
+    invoiceId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentbillallocationCreateInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payment: paymentCreateNestedOneWithoutAllocationsInput
+    purchasebill: purchasebillCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type paymentbillallocationUncheckedCreateInput = {
+    id?: number
+    paymentId: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type paymentbillallocationUpdateInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payment?: paymentUpdateOneRequiredWithoutAllocationsNestedInput
+    purchasebill?: purchasebillUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type paymentbillallocationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentbillallocationCreateManyInput = {
+    id?: number
+    paymentId: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type paymentbillallocationUpdateManyMutationInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentbillallocationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -91030,6 +93584,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
+    invoiceLabels?: SortOrder
   }
 
   export type companyAvgOrderByAggregateInput = {
@@ -91069,6 +93624,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
+    invoiceLabels?: SortOrder
   }
 
   export type companyMinOrderByAggregateInput = {
@@ -91103,6 +93659,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
+    invoiceLabels?: SortOrder
   }
 
   export type companySumOrderByAggregateInput = {
@@ -92102,11 +94659,21 @@ export namespace Prisma {
     none?: inventory_consumptionWhereInput
   }
 
+  export type ReceiptinvoiceallocationListRelationFilter = {
+    every?: receiptinvoiceallocationWhereInput
+    some?: receiptinvoiceallocationWhereInput
+    none?: receiptinvoiceallocationWhereInput
+  }
+
   export type invoiceitemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type inventory_consumptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type receiptinvoiceallocationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -92590,6 +95157,16 @@ export namespace Prisma {
   export type PurchasebillNullableRelationFilter = {
     is?: purchasebillWhereInput | null
     isNot?: purchasebillWhereInput | null
+  }
+
+  export type PaymentbillallocationListRelationFilter = {
+    every?: paymentbillallocationWhereInput
+    some?: paymentbillallocationWhereInput
+    none?: paymentbillallocationWhereInput
+  }
+
+  export type paymentbillallocationOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type paymentCompanyIdPaymentNumberCompoundUniqueInput = {
@@ -95885,6 +98462,108 @@ export namespace Prisma {
     totalCost?: SortOrder
   }
 
+  export type ReceiptRelationFilter = {
+    is?: receiptWhereInput
+    isNot?: receiptWhereInput
+  }
+
+  export type receiptinvoiceallocationCountOrderByAggregateInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type receiptinvoiceallocationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+  }
+
+  export type receiptinvoiceallocationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type receiptinvoiceallocationMinOrderByAggregateInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type receiptinvoiceallocationSumOrderByAggregateInput = {
+    id?: SortOrder
+    receiptId?: SortOrder
+    invoiceId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+  }
+
+  export type PaymentRelationFilter = {
+    is?: paymentWhereInput
+    isNot?: paymentWhereInput
+  }
+
+  export type paymentbillallocationCountOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type paymentbillallocationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+  }
+
+  export type paymentbillallocationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type paymentbillallocationMinOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type paymentbillallocationSumOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    purchaseBillId?: SortOrder
+    amount?: SortOrder
+    companyId?: SortOrder
+  }
+
   export type companyCreateNestedOneWithoutAccountgroupInput = {
     create?: XOR<companyCreateWithoutAccountgroupInput, companyUncheckedCreateWithoutAccountgroupInput>
     connectOrCreate?: companyCreateOrConnectWithoutAccountgroupInput
@@ -98824,6 +101503,13 @@ export namespace Prisma {
     connect?: inventory_consumptionWhereUniqueInput | inventory_consumptionWhereUniqueInput[]
   }
 
+  export type receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput> | receiptinvoiceallocationCreateWithoutInvoiceInput[] | receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput | receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput[]
+    createMany?: receiptinvoiceallocationCreateManyInvoiceInputEnvelope
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+  }
+
   export type invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput = {
     create?: XOR<invoiceitemCreateWithoutInvoiceInput, invoiceitemUncheckedCreateWithoutInvoiceInput> | invoiceitemCreateWithoutInvoiceInput[] | invoiceitemUncheckedCreateWithoutInvoiceInput[]
     connectOrCreate?: invoiceitemCreateOrConnectWithoutInvoiceInput | invoiceitemCreateOrConnectWithoutInvoiceInput[]
@@ -98857,6 +101543,13 @@ export namespace Prisma {
     connectOrCreate?: inventory_consumptionCreateOrConnectWithoutInvoiceInput | inventory_consumptionCreateOrConnectWithoutInvoiceInput[]
     createMany?: inventory_consumptionCreateManyInvoiceInputEnvelope
     connect?: inventory_consumptionWhereUniqueInput | inventory_consumptionWhereUniqueInput[]
+  }
+
+  export type receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput> | receiptinvoiceallocationCreateWithoutInvoiceInput[] | receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput | receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput[]
+    createMany?: receiptinvoiceallocationCreateManyInvoiceInputEnvelope
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -98977,6 +101670,20 @@ export namespace Prisma {
     deleteMany?: inventory_consumptionScalarWhereInput | inventory_consumptionScalarWhereInput[]
   }
 
+  export type receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput> | receiptinvoiceallocationCreateWithoutInvoiceInput[] | receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput | receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput[]
+    upsert?: receiptinvoiceallocationUpsertWithWhereUniqueWithoutInvoiceInput | receiptinvoiceallocationUpsertWithWhereUniqueWithoutInvoiceInput[]
+    createMany?: receiptinvoiceallocationCreateManyInvoiceInputEnvelope
+    set?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    disconnect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    delete?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    update?: receiptinvoiceallocationUpdateWithWhereUniqueWithoutInvoiceInput | receiptinvoiceallocationUpdateWithWhereUniqueWithoutInvoiceInput[]
+    updateMany?: receiptinvoiceallocationUpdateManyWithWhereWithoutInvoiceInput | receiptinvoiceallocationUpdateManyWithWhereWithoutInvoiceInput[]
+    deleteMany?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
+  }
+
   export type invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput = {
     create?: XOR<invoiceitemCreateWithoutInvoiceInput, invoiceitemUncheckedCreateWithoutInvoiceInput> | invoiceitemCreateWithoutInvoiceInput[] | invoiceitemUncheckedCreateWithoutInvoiceInput[]
     connectOrCreate?: invoiceitemCreateOrConnectWithoutInvoiceInput | invoiceitemCreateOrConnectWithoutInvoiceInput[]
@@ -99045,6 +101752,20 @@ export namespace Prisma {
     update?: inventory_consumptionUpdateWithWhereUniqueWithoutInvoiceInput | inventory_consumptionUpdateWithWhereUniqueWithoutInvoiceInput[]
     updateMany?: inventory_consumptionUpdateManyWithWhereWithoutInvoiceInput | inventory_consumptionUpdateManyWithWhereWithoutInvoiceInput[]
     deleteMany?: inventory_consumptionScalarWhereInput | inventory_consumptionScalarWhereInput[]
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput> | receiptinvoiceallocationCreateWithoutInvoiceInput[] | receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput | receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput[]
+    upsert?: receiptinvoiceallocationUpsertWithWhereUniqueWithoutInvoiceInput | receiptinvoiceallocationUpsertWithWhereUniqueWithoutInvoiceInput[]
+    createMany?: receiptinvoiceallocationCreateManyInvoiceInputEnvelope
+    set?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    disconnect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    delete?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    update?: receiptinvoiceallocationUpdateWithWhereUniqueWithoutInvoiceInput | receiptinvoiceallocationUpdateWithWhereUniqueWithoutInvoiceInput[]
+    updateMany?: receiptinvoiceallocationUpdateManyWithWhereWithoutInvoiceInput | receiptinvoiceallocationUpdateManyWithWhereWithoutInvoiceInput[]
+    deleteMany?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
   }
 
   export type invoiceCreateNestedOneWithoutInvoiceitemInput = {
@@ -99758,11 +102479,25 @@ export namespace Prisma {
     connect?: transactionWhereUniqueInput | transactionWhereUniqueInput[]
   }
 
+  export type paymentbillallocationCreateNestedManyWithoutPaymentInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput> | paymentbillallocationCreateWithoutPaymentInput[] | paymentbillallocationUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPaymentInput | paymentbillallocationCreateOrConnectWithoutPaymentInput[]
+    createMany?: paymentbillallocationCreateManyPaymentInputEnvelope
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+  }
+
   export type transactionUncheckedCreateNestedManyWithoutPaymentInput = {
     create?: XOR<transactionCreateWithoutPaymentInput, transactionUncheckedCreateWithoutPaymentInput> | transactionCreateWithoutPaymentInput[] | transactionUncheckedCreateWithoutPaymentInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutPaymentInput | transactionCreateOrConnectWithoutPaymentInput[]
     createMany?: transactionCreateManyPaymentInputEnvelope
     connect?: transactionWhereUniqueInput | transactionWhereUniqueInput[]
+  }
+
+  export type paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput> | paymentbillallocationCreateWithoutPaymentInput[] | paymentbillallocationUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPaymentInput | paymentbillallocationCreateOrConnectWithoutPaymentInput[]
+    createMany?: paymentbillallocationCreateManyPaymentInputEnvelope
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
   }
 
   export type Enumpayment_paymentModeFieldUpdateOperationsInput = {
@@ -99829,6 +102564,20 @@ export namespace Prisma {
     deleteMany?: transactionScalarWhereInput | transactionScalarWhereInput[]
   }
 
+  export type paymentbillallocationUpdateManyWithoutPaymentNestedInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput> | paymentbillallocationCreateWithoutPaymentInput[] | paymentbillallocationUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPaymentInput | paymentbillallocationCreateOrConnectWithoutPaymentInput[]
+    upsert?: paymentbillallocationUpsertWithWhereUniqueWithoutPaymentInput | paymentbillallocationUpsertWithWhereUniqueWithoutPaymentInput[]
+    createMany?: paymentbillallocationCreateManyPaymentInputEnvelope
+    set?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    disconnect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    delete?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    update?: paymentbillallocationUpdateWithWhereUniqueWithoutPaymentInput | paymentbillallocationUpdateWithWhereUniqueWithoutPaymentInput[]
+    updateMany?: paymentbillallocationUpdateManyWithWhereWithoutPaymentInput | paymentbillallocationUpdateManyWithWhereWithoutPaymentInput[]
+    deleteMany?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
+  }
+
   export type transactionUncheckedUpdateManyWithoutPaymentNestedInput = {
     create?: XOR<transactionCreateWithoutPaymentInput, transactionUncheckedCreateWithoutPaymentInput> | transactionCreateWithoutPaymentInput[] | transactionUncheckedCreateWithoutPaymentInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutPaymentInput | transactionCreateOrConnectWithoutPaymentInput[]
@@ -99841,6 +102590,20 @@ export namespace Prisma {
     update?: transactionUpdateWithWhereUniqueWithoutPaymentInput | transactionUpdateWithWhereUniqueWithoutPaymentInput[]
     updateMany?: transactionUpdateManyWithWhereWithoutPaymentInput | transactionUpdateManyWithWhereWithoutPaymentInput[]
     deleteMany?: transactionScalarWhereInput | transactionScalarWhereInput[]
+  }
+
+  export type paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput> | paymentbillallocationCreateWithoutPaymentInput[] | paymentbillallocationUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPaymentInput | paymentbillallocationCreateOrConnectWithoutPaymentInput[]
+    upsert?: paymentbillallocationUpsertWithWhereUniqueWithoutPaymentInput | paymentbillallocationUpsertWithWhereUniqueWithoutPaymentInput[]
+    createMany?: paymentbillallocationCreateManyPaymentInputEnvelope
+    set?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    disconnect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    delete?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    update?: paymentbillallocationUpdateWithWhereUniqueWithoutPaymentInput | paymentbillallocationUpdateWithWhereUniqueWithoutPaymentInput[]
+    updateMany?: paymentbillallocationUpdateManyWithWhereWithoutPaymentInput | paymentbillallocationUpdateManyWithWhereWithoutPaymentInput[]
+    deleteMany?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
   }
 
   export type companyCreateNestedManyWithoutPlanInput = {
@@ -101012,6 +103775,13 @@ export namespace Prisma {
     connect?: inventory_batchWhereUniqueInput | inventory_batchWhereUniqueInput[]
   }
 
+  export type paymentbillallocationCreateNestedManyWithoutPurchasebillInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput> | paymentbillallocationCreateWithoutPurchasebillInput[] | paymentbillallocationUncheckedCreateWithoutPurchasebillInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPurchasebillInput | paymentbillallocationCreateOrConnectWithoutPurchasebillInput[]
+    createMany?: paymentbillallocationCreateManyPurchasebillInputEnvelope
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+  }
+
   export type paymentUncheckedCreateNestedManyWithoutPurchasebillInput = {
     create?: XOR<paymentCreateWithoutPurchasebillInput, paymentUncheckedCreateWithoutPurchasebillInput> | paymentCreateWithoutPurchasebillInput[] | paymentUncheckedCreateWithoutPurchasebillInput[]
     connectOrCreate?: paymentCreateOrConnectWithoutPurchasebillInput | paymentCreateOrConnectWithoutPurchasebillInput[]
@@ -101045,6 +103815,13 @@ export namespace Prisma {
     connectOrCreate?: inventory_batchCreateOrConnectWithoutPurchasebillInput | inventory_batchCreateOrConnectWithoutPurchasebillInput[]
     createMany?: inventory_batchCreateManyPurchasebillInputEnvelope
     connect?: inventory_batchWhereUniqueInput | inventory_batchWhereUniqueInput[]
+  }
+
+  export type paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput> | paymentbillallocationCreateWithoutPurchasebillInput[] | paymentbillallocationUncheckedCreateWithoutPurchasebillInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPurchasebillInput | paymentbillallocationCreateOrConnectWithoutPurchasebillInput[]
+    createMany?: paymentbillallocationCreateManyPurchasebillInputEnvelope
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
   }
 
   export type Enumpurchasebill_statusFieldUpdateOperationsInput = {
@@ -101157,6 +103934,20 @@ export namespace Prisma {
     deleteMany?: inventory_batchScalarWhereInput | inventory_batchScalarWhereInput[]
   }
 
+  export type paymentbillallocationUpdateManyWithoutPurchasebillNestedInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput> | paymentbillallocationCreateWithoutPurchasebillInput[] | paymentbillallocationUncheckedCreateWithoutPurchasebillInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPurchasebillInput | paymentbillallocationCreateOrConnectWithoutPurchasebillInput[]
+    upsert?: paymentbillallocationUpsertWithWhereUniqueWithoutPurchasebillInput | paymentbillallocationUpsertWithWhereUniqueWithoutPurchasebillInput[]
+    createMany?: paymentbillallocationCreateManyPurchasebillInputEnvelope
+    set?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    disconnect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    delete?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    update?: paymentbillallocationUpdateWithWhereUniqueWithoutPurchasebillInput | paymentbillallocationUpdateWithWhereUniqueWithoutPurchasebillInput[]
+    updateMany?: paymentbillallocationUpdateManyWithWhereWithoutPurchasebillInput | paymentbillallocationUpdateManyWithWhereWithoutPurchasebillInput[]
+    deleteMany?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
+  }
+
   export type paymentUncheckedUpdateManyWithoutPurchasebillNestedInput = {
     create?: XOR<paymentCreateWithoutPurchasebillInput, paymentUncheckedCreateWithoutPurchasebillInput> | paymentCreateWithoutPurchasebillInput[] | paymentUncheckedCreateWithoutPurchasebillInput[]
     connectOrCreate?: paymentCreateOrConnectWithoutPurchasebillInput | paymentCreateOrConnectWithoutPurchasebillInput[]
@@ -101225,6 +104016,20 @@ export namespace Prisma {
     update?: inventory_batchUpdateWithWhereUniqueWithoutPurchasebillInput | inventory_batchUpdateWithWhereUniqueWithoutPurchasebillInput[]
     updateMany?: inventory_batchUpdateManyWithWhereWithoutPurchasebillInput | inventory_batchUpdateManyWithWhereWithoutPurchasebillInput[]
     deleteMany?: inventory_batchScalarWhereInput | inventory_batchScalarWhereInput[]
+  }
+
+  export type paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput = {
+    create?: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput> | paymentbillallocationCreateWithoutPurchasebillInput[] | paymentbillallocationUncheckedCreateWithoutPurchasebillInput[]
+    connectOrCreate?: paymentbillallocationCreateOrConnectWithoutPurchasebillInput | paymentbillallocationCreateOrConnectWithoutPurchasebillInput[]
+    upsert?: paymentbillallocationUpsertWithWhereUniqueWithoutPurchasebillInput | paymentbillallocationUpsertWithWhereUniqueWithoutPurchasebillInput[]
+    createMany?: paymentbillallocationCreateManyPurchasebillInputEnvelope
+    set?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    disconnect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    delete?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    connect?: paymentbillallocationWhereUniqueInput | paymentbillallocationWhereUniqueInput[]
+    update?: paymentbillallocationUpdateWithWhereUniqueWithoutPurchasebillInput | paymentbillallocationUpdateWithWhereUniqueWithoutPurchasebillInput[]
+    updateMany?: paymentbillallocationUpdateManyWithWhereWithoutPurchasebillInput | paymentbillallocationUpdateManyWithWhereWithoutPurchasebillInput[]
+    deleteMany?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
   }
 
   export type purchasebillCreateNestedOneWithoutPurchasebillitemInput = {
@@ -101830,11 +104635,25 @@ export namespace Prisma {
     connect?: transactionWhereUniqueInput | transactionWhereUniqueInput[]
   }
 
+  export type receiptinvoiceallocationCreateNestedManyWithoutReceiptInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput> | receiptinvoiceallocationCreateWithoutReceiptInput[] | receiptinvoiceallocationUncheckedCreateWithoutReceiptInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutReceiptInput | receiptinvoiceallocationCreateOrConnectWithoutReceiptInput[]
+    createMany?: receiptinvoiceallocationCreateManyReceiptInputEnvelope
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+  }
+
   export type transactionUncheckedCreateNestedManyWithoutReceiptInput = {
     create?: XOR<transactionCreateWithoutReceiptInput, transactionUncheckedCreateWithoutReceiptInput> | transactionCreateWithoutReceiptInput[] | transactionUncheckedCreateWithoutReceiptInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutReceiptInput | transactionCreateOrConnectWithoutReceiptInput[]
     createMany?: transactionCreateManyReceiptInputEnvelope
     connect?: transactionWhereUniqueInput | transactionWhereUniqueInput[]
+  }
+
+  export type receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput> | receiptinvoiceallocationCreateWithoutReceiptInput[] | receiptinvoiceallocationUncheckedCreateWithoutReceiptInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutReceiptInput | receiptinvoiceallocationCreateOrConnectWithoutReceiptInput[]
+    createMany?: receiptinvoiceallocationCreateManyReceiptInputEnvelope
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
   }
 
   export type Enumreceipt_paymentModeFieldUpdateOperationsInput = {
@@ -101901,6 +104720,20 @@ export namespace Prisma {
     deleteMany?: transactionScalarWhereInput | transactionScalarWhereInput[]
   }
 
+  export type receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput> | receiptinvoiceallocationCreateWithoutReceiptInput[] | receiptinvoiceallocationUncheckedCreateWithoutReceiptInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutReceiptInput | receiptinvoiceallocationCreateOrConnectWithoutReceiptInput[]
+    upsert?: receiptinvoiceallocationUpsertWithWhereUniqueWithoutReceiptInput | receiptinvoiceallocationUpsertWithWhereUniqueWithoutReceiptInput[]
+    createMany?: receiptinvoiceallocationCreateManyReceiptInputEnvelope
+    set?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    disconnect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    delete?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    update?: receiptinvoiceallocationUpdateWithWhereUniqueWithoutReceiptInput | receiptinvoiceallocationUpdateWithWhereUniqueWithoutReceiptInput[]
+    updateMany?: receiptinvoiceallocationUpdateManyWithWhereWithoutReceiptInput | receiptinvoiceallocationUpdateManyWithWhereWithoutReceiptInput[]
+    deleteMany?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
+  }
+
   export type transactionUncheckedUpdateManyWithoutReceiptNestedInput = {
     create?: XOR<transactionCreateWithoutReceiptInput, transactionUncheckedCreateWithoutReceiptInput> | transactionCreateWithoutReceiptInput[] | transactionUncheckedCreateWithoutReceiptInput[]
     connectOrCreate?: transactionCreateOrConnectWithoutReceiptInput | transactionCreateOrConnectWithoutReceiptInput[]
@@ -101913,6 +104746,20 @@ export namespace Prisma {
     update?: transactionUpdateWithWhereUniqueWithoutReceiptInput | transactionUpdateWithWhereUniqueWithoutReceiptInput[]
     updateMany?: transactionUpdateManyWithWhereWithoutReceiptInput | transactionUpdateManyWithWhereWithoutReceiptInput[]
     deleteMany?: transactionScalarWhereInput | transactionScalarWhereInput[]
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput = {
+    create?: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput> | receiptinvoiceallocationCreateWithoutReceiptInput[] | receiptinvoiceallocationUncheckedCreateWithoutReceiptInput[]
+    connectOrCreate?: receiptinvoiceallocationCreateOrConnectWithoutReceiptInput | receiptinvoiceallocationCreateOrConnectWithoutReceiptInput[]
+    upsert?: receiptinvoiceallocationUpsertWithWhereUniqueWithoutReceiptInput | receiptinvoiceallocationUpsertWithWhereUniqueWithoutReceiptInput[]
+    createMany?: receiptinvoiceallocationCreateManyReceiptInputEnvelope
+    set?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    disconnect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    delete?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    connect?: receiptinvoiceallocationWhereUniqueInput | receiptinvoiceallocationWhereUniqueInput[]
+    update?: receiptinvoiceallocationUpdateWithWhereUniqueWithoutReceiptInput | receiptinvoiceallocationUpdateWithWhereUniqueWithoutReceiptInput[]
+    updateMany?: receiptinvoiceallocationUpdateManyWithWhereWithoutReceiptInput | receiptinvoiceallocationUpdateManyWithWhereWithoutReceiptInput[]
+    deleteMany?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
   }
 
   export type deliverychallanCreateNestedManyWithoutSalesorderInput = {
@@ -104849,6 +107696,62 @@ export namespace Prisma {
     update?: XOR<XOR<productUpdateToOneWithWhereWithoutInventory_consumptionInput, productUpdateWithoutInventory_consumptionInput>, productUncheckedUpdateWithoutInventory_consumptionInput>
   }
 
+  export type receiptCreateNestedOneWithoutAllocationsInput = {
+    create?: XOR<receiptCreateWithoutAllocationsInput, receiptUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: receiptCreateOrConnectWithoutAllocationsInput
+    connect?: receiptWhereUniqueInput
+  }
+
+  export type invoiceCreateNestedOneWithoutAllocationsInput = {
+    create?: XOR<invoiceCreateWithoutAllocationsInput, invoiceUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutAllocationsInput
+    connect?: invoiceWhereUniqueInput
+  }
+
+  export type receiptUpdateOneRequiredWithoutAllocationsNestedInput = {
+    create?: XOR<receiptCreateWithoutAllocationsInput, receiptUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: receiptCreateOrConnectWithoutAllocationsInput
+    upsert?: receiptUpsertWithoutAllocationsInput
+    connect?: receiptWhereUniqueInput
+    update?: XOR<XOR<receiptUpdateToOneWithWhereWithoutAllocationsInput, receiptUpdateWithoutAllocationsInput>, receiptUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type invoiceUpdateOneRequiredWithoutAllocationsNestedInput = {
+    create?: XOR<invoiceCreateWithoutAllocationsInput, invoiceUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutAllocationsInput
+    upsert?: invoiceUpsertWithoutAllocationsInput
+    connect?: invoiceWhereUniqueInput
+    update?: XOR<XOR<invoiceUpdateToOneWithWhereWithoutAllocationsInput, invoiceUpdateWithoutAllocationsInput>, invoiceUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type paymentCreateNestedOneWithoutAllocationsInput = {
+    create?: XOR<paymentCreateWithoutAllocationsInput, paymentUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: paymentCreateOrConnectWithoutAllocationsInput
+    connect?: paymentWhereUniqueInput
+  }
+
+  export type purchasebillCreateNestedOneWithoutAllocationsInput = {
+    create?: XOR<purchasebillCreateWithoutAllocationsInput, purchasebillUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: purchasebillCreateOrConnectWithoutAllocationsInput
+    connect?: purchasebillWhereUniqueInput
+  }
+
+  export type paymentUpdateOneRequiredWithoutAllocationsNestedInput = {
+    create?: XOR<paymentCreateWithoutAllocationsInput, paymentUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: paymentCreateOrConnectWithoutAllocationsInput
+    upsert?: paymentUpsertWithoutAllocationsInput
+    connect?: paymentWhereUniqueInput
+    update?: XOR<XOR<paymentUpdateToOneWithWhereWithoutAllocationsInput, paymentUpdateWithoutAllocationsInput>, paymentUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type purchasebillUpdateOneRequiredWithoutAllocationsNestedInput = {
+    create?: XOR<purchasebillCreateWithoutAllocationsInput, purchasebillUncheckedCreateWithoutAllocationsInput>
+    connectOrCreate?: purchasebillCreateOrConnectWithoutAllocationsInput
+    upsert?: purchasebillUpsertWithoutAllocationsInput
+    connect?: purchasebillWhereUniqueInput
+    update?: XOR<XOR<purchasebillUpdateToOneWithWhereWithoutAllocationsInput, purchasebillUpdateWithoutAllocationsInput>, purchasebillUncheckedUpdateWithoutAllocationsInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -105469,6 +108372,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -105539,6 +108443,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -105712,6 +108617,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -105782,6 +108688,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -105914,6 +108821,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -105984,6 +108892,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -106154,6 +109063,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -106224,6 +109134,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -106337,6 +109248,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -106407,6 +109319,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -106523,6 +109436,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -106593,6 +109507,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -106724,6 +109639,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -106794,6 +109710,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -106915,6 +109832,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -106985,6 +109903,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -107052,6 +109971,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -107122,6 +110042,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -107304,6 +110225,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -107374,6 +110296,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -108030,6 +110953,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutCompanyInput = {
@@ -108071,6 +110995,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutCompanyInput = {
@@ -108215,6 +111140,7 @@ export namespace Prisma {
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutCompanyInput = {
@@ -108233,6 +111159,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutCompanyInput = {
@@ -108431,6 +111358,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutCompanyInput = {
@@ -108472,6 +111400,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutCompanyInput = {
@@ -108668,6 +111597,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutCompanyInput = {
@@ -108686,6 +111616,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutCompanyInput = {
@@ -110735,6 +113666,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -110805,6 +113737,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -110944,6 +113877,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutCustomerInput = {
@@ -110985,6 +113919,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutCustomerInput = {
@@ -111119,6 +114054,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutCustomerInput = {
@@ -111137,6 +114073,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutCustomerInput = {
@@ -111469,6 +114406,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -111539,6 +114477,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -111833,6 +114772,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -111903,6 +114843,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -112190,6 +115131,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutDeliverychallanInput = {
@@ -112231,6 +115173,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutDeliverychallanInput = {
@@ -112284,6 +115227,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -112354,6 +115298,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -113111,6 +116056,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -113181,6 +116127,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -113264,6 +116211,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -113334,6 +116282,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -113401,6 +116350,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -113471,6 +116421,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -113756,6 +116707,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutGoodsreceiptnoteInput = {
@@ -113797,6 +116749,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutGoodsreceiptnoteInput = {
@@ -113850,6 +116803,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -113920,6 +116874,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -114631,6 +117586,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -114701,6 +117657,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -114784,6 +117741,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -114854,6 +117812,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -114921,6 +117880,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -114991,6 +117951,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -115177,6 +118138,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -115247,6 +118209,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -115832,6 +118795,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -115902,6 +118866,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -116219,6 +119184,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -116289,6 +119255,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -116608,6 +119575,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -116678,6 +119646,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -117008,6 +119977,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutInvoiceInput = {
@@ -117026,6 +119996,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutInvoiceInput = {
@@ -117159,6 +120130,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type receiptinvoiceallocationCreateWithoutInvoiceInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    receipt: receiptCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput = {
+    id?: number
+    receiptId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type receiptinvoiceallocationCreateOrConnectWithoutInvoiceInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    create: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type receiptinvoiceallocationCreateManyInvoiceInputEnvelope = {
+    data: receiptinvoiceallocationCreateManyInvoiceInput | receiptinvoiceallocationCreateManyInvoiceInput[]
+    skipDuplicates?: boolean
+  }
+
   export type companyUpsertWithoutInvoiceInput = {
     update: XOR<companyUpdateWithoutInvoiceInput, companyUncheckedUpdateWithoutInvoiceInput>
     create: XOR<companyCreateWithoutInvoiceInput, companyUncheckedCreateWithoutInvoiceInput>
@@ -117200,6 +120198,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -117270,6 +120269,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -117671,6 +120671,35 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"inventory_consumption"> | Date | string
   }
 
+  export type receiptinvoiceallocationUpsertWithWhereUniqueWithoutInvoiceInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    update: XOR<receiptinvoiceallocationUpdateWithoutInvoiceInput, receiptinvoiceallocationUncheckedUpdateWithoutInvoiceInput>
+    create: XOR<receiptinvoiceallocationCreateWithoutInvoiceInput, receiptinvoiceallocationUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type receiptinvoiceallocationUpdateWithWhereUniqueWithoutInvoiceInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    data: XOR<receiptinvoiceallocationUpdateWithoutInvoiceInput, receiptinvoiceallocationUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type receiptinvoiceallocationUpdateManyWithWhereWithoutInvoiceInput = {
+    where: receiptinvoiceallocationScalarWhereInput
+    data: XOR<receiptinvoiceallocationUpdateManyMutationInput, receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceInput>
+  }
+
+  export type receiptinvoiceallocationScalarWhereInput = {
+    AND?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
+    OR?: receiptinvoiceallocationScalarWhereInput[]
+    NOT?: receiptinvoiceallocationScalarWhereInput | receiptinvoiceallocationScalarWhereInput[]
+    id?: IntFilter<"receiptinvoiceallocation"> | number
+    receiptId?: IntFilter<"receiptinvoiceallocation"> | number
+    invoiceId?: IntFilter<"receiptinvoiceallocation"> | number
+    amount?: FloatFilter<"receiptinvoiceallocation"> | number
+    companyId?: IntFilter<"receiptinvoiceallocation"> | number
+    createdAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"receiptinvoiceallocation"> | Date | string
+  }
+
   export type invoiceCreateWithoutInvoiceitemInput = {
     invoiceNumber: string
     date?: Date | string
@@ -117709,6 +120738,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutInvoiceitemInput = {
@@ -117750,6 +120780,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutInvoiceitemInput = {
@@ -118054,6 +121085,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutInvoiceitemInput = {
@@ -118095,6 +121127,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type productUpsertWithoutInvoiceitemInput = {
@@ -118399,6 +121432,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -118469,6 +121503,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -118603,6 +121638,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -118673,6 +121709,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -118756,6 +121793,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -118826,6 +121864,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -119468,6 +122507,7 @@ export namespace Prisma {
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutCashBankAccountInput = {
@@ -119486,6 +122526,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutCashBankAccountInput = {
@@ -119513,6 +122554,7 @@ export namespace Prisma {
     vendor: vendorCreateNestedOneWithoutPaymentInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutBankLedgerInput = {
@@ -119531,6 +122573,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutBankLedgerInput = {
@@ -119558,6 +122601,7 @@ export namespace Prisma {
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     transaction?: transactionCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutDiscountLedgerInput = {
@@ -119576,6 +122620,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutDiscountLedgerInput = {
@@ -119603,6 +122648,7 @@ export namespace Prisma {
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutDiscountLedgerInput = {
@@ -119621,6 +122667,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutDiscountLedgerInput = {
@@ -119717,6 +122764,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -119787,6 +122835,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -120379,6 +123428,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -120449,6 +123499,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -120564,6 +123615,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -120634,6 +123686,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -120739,6 +123792,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -120809,6 +123863,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -120889,6 +123944,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutPaymentInput = {
@@ -120930,6 +123986,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutPaymentInput = {
@@ -121208,6 +124265,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type paymentbillallocationCreateWithoutPaymentInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    purchasebill: purchasebillCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type paymentbillallocationUncheckedCreateWithoutPaymentInput = {
+    id?: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type paymentbillallocationCreateOrConnectWithoutPaymentInput = {
+    where: paymentbillallocationWhereUniqueInput
+    create: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type paymentbillallocationCreateManyPaymentInputEnvelope = {
+    data: paymentbillallocationCreateManyPaymentInput | paymentbillallocationCreateManyPaymentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type companyUpsertWithoutPaymentInput = {
     update: XOR<companyUpdateWithoutPaymentInput, companyUncheckedUpdateWithoutPaymentInput>
     create: XOR<companyCreateWithoutPaymentInput, companyUncheckedCreateWithoutPaymentInput>
@@ -121249,6 +124333,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -121319,6 +124404,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -121405,6 +124491,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutPaymentInput = {
@@ -121446,6 +124533,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type vendorUpsertWithoutPaymentInput = {
@@ -121702,6 +124790,35 @@ export namespace Prisma {
     data: XOR<transactionUpdateManyMutationInput, transactionUncheckedUpdateManyWithoutPaymentInput>
   }
 
+  export type paymentbillallocationUpsertWithWhereUniqueWithoutPaymentInput = {
+    where: paymentbillallocationWhereUniqueInput
+    update: XOR<paymentbillallocationUpdateWithoutPaymentInput, paymentbillallocationUncheckedUpdateWithoutPaymentInput>
+    create: XOR<paymentbillallocationCreateWithoutPaymentInput, paymentbillallocationUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type paymentbillallocationUpdateWithWhereUniqueWithoutPaymentInput = {
+    where: paymentbillallocationWhereUniqueInput
+    data: XOR<paymentbillallocationUpdateWithoutPaymentInput, paymentbillallocationUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type paymentbillallocationUpdateManyWithWhereWithoutPaymentInput = {
+    where: paymentbillallocationScalarWhereInput
+    data: XOR<paymentbillallocationUpdateManyMutationInput, paymentbillallocationUncheckedUpdateManyWithoutPaymentInput>
+  }
+
+  export type paymentbillallocationScalarWhereInput = {
+    AND?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
+    OR?: paymentbillallocationScalarWhereInput[]
+    NOT?: paymentbillallocationScalarWhereInput | paymentbillallocationScalarWhereInput[]
+    id?: IntFilter<"paymentbillallocation"> | number
+    paymentId?: IntFilter<"paymentbillallocation"> | number
+    purchaseBillId?: IntFilter<"paymentbillallocation"> | number
+    amount?: FloatFilter<"paymentbillallocation"> | number
+    companyId?: IntFilter<"paymentbillallocation"> | number
+    createdAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+    updatedAt?: DateTimeFilter<"paymentbillallocation"> | Date | string
+  }
+
   export type companyCreateWithoutPlanInput = {
     name: string
     email: string
@@ -121732,6 +124849,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -121801,6 +124919,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -121939,6 +125058,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"company"> | Date | string
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
+    invoiceLabels?: StringNullableFilter<"company"> | string | null
   }
 
   export type planrequestUpsertWithWhereUniqueWithoutPlanInput = {
@@ -122096,6 +125216,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -122166,6 +125287,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -122443,6 +125565,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -122513,6 +125636,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -123498,6 +126622,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -123568,6 +126693,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -124337,6 +127463,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -124407,6 +127534,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -124978,6 +128106,7 @@ export namespace Prisma {
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutPurchasebillInput = {
@@ -124996,6 +128125,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutPurchasebillInput = {
@@ -125038,6 +128168,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -125108,6 +128239,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -125522,6 +128654,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type paymentbillallocationCreateWithoutPurchasebillInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payment: paymentCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type paymentbillallocationUncheckedCreateWithoutPurchasebillInput = {
+    id?: number
+    paymentId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type paymentbillallocationCreateOrConnectWithoutPurchasebillInput = {
+    where: paymentbillallocationWhereUniqueInput
+    create: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput>
+  }
+
+  export type paymentbillallocationCreateManyPurchasebillInputEnvelope = {
+    data: paymentbillallocationCreateManyPurchasebillInput | paymentbillallocationCreateManyPurchasebillInput[]
+    skipDuplicates?: boolean
+  }
+
   export type paymentUpsertWithWhereUniqueWithoutPurchasebillInput = {
     where: paymentWhereUniqueInput
     update: XOR<paymentUpdateWithoutPurchasebillInput, paymentUncheckedUpdateWithoutPurchasebillInput>
@@ -125579,6 +128738,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -125649,6 +128809,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -125976,6 +129137,22 @@ export namespace Prisma {
     data: XOR<inventory_batchUpdateManyMutationInput, inventory_batchUncheckedUpdateManyWithoutPurchasebillInput>
   }
 
+  export type paymentbillallocationUpsertWithWhereUniqueWithoutPurchasebillInput = {
+    where: paymentbillallocationWhereUniqueInput
+    update: XOR<paymentbillallocationUpdateWithoutPurchasebillInput, paymentbillallocationUncheckedUpdateWithoutPurchasebillInput>
+    create: XOR<paymentbillallocationCreateWithoutPurchasebillInput, paymentbillallocationUncheckedCreateWithoutPurchasebillInput>
+  }
+
+  export type paymentbillallocationUpdateWithWhereUniqueWithoutPurchasebillInput = {
+    where: paymentbillallocationWhereUniqueInput
+    data: XOR<paymentbillallocationUpdateWithoutPurchasebillInput, paymentbillallocationUncheckedUpdateWithoutPurchasebillInput>
+  }
+
+  export type paymentbillallocationUpdateManyWithWhereWithoutPurchasebillInput = {
+    where: paymentbillallocationScalarWhereInput
+    data: XOR<paymentbillallocationUpdateManyMutationInput, paymentbillallocationUncheckedUpdateManyWithoutPurchasebillInput>
+  }
+
   export type purchasebillCreateWithoutPurchasebillitemInput = {
     billNumber: string
     date?: Date | string
@@ -126014,6 +129191,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutPurchasebillitemInput = {
@@ -126055,6 +129233,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutPurchasebillitemInput = {
@@ -126321,6 +129500,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutPurchasebillitemInput = {
@@ -126362,6 +129542,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type productUpsertWithoutPurchasebillitemInput = {
@@ -126667,6 +129848,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutPurchaseorderInput = {
@@ -126708,6 +129890,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutPurchaseorderInput = {
@@ -126750,6 +129933,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -126820,6 +130004,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -127126,6 +130311,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -127196,6 +130382,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -128007,6 +131194,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -128077,6 +131265,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -128379,6 +131568,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -128449,6 +131639,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -129088,6 +132279,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -129158,6 +132350,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -129238,6 +132431,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutPurchasereturnInput = {
@@ -129279,6 +132473,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutPurchasereturnInput = {
@@ -129462,6 +132657,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -129532,6 +132728,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -129618,6 +132815,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutPurchasereturnInput = {
@@ -129659,6 +132857,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type vendorUpsertWithoutPurchasereturnInput = {
@@ -130227,6 +133426,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -130297,6 +133497,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -130483,6 +133684,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutReceiptInput = {
@@ -130524,6 +133726,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutReceiptInput = {
@@ -130698,6 +133901,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type receiptinvoiceallocationCreateWithoutReceiptInput = {
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    invoice: invoiceCreateNestedOneWithoutAllocationsInput
+  }
+
+  export type receiptinvoiceallocationUncheckedCreateWithoutReceiptInput = {
+    id?: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type receiptinvoiceallocationCreateOrConnectWithoutReceiptInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    create: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput>
+  }
+
+  export type receiptinvoiceallocationCreateManyReceiptInputEnvelope = {
+    data: receiptinvoiceallocationCreateManyReceiptInput | receiptinvoiceallocationCreateManyReceiptInput[]
+    skipDuplicates?: boolean
+  }
+
   export type companyUpsertWithoutReceiptInput = {
     update: XOR<companyUpdateWithoutReceiptInput, companyUncheckedUpdateWithoutReceiptInput>
     create: XOR<companyCreateWithoutReceiptInput, companyUncheckedCreateWithoutReceiptInput>
@@ -130739,6 +133969,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -130809,6 +134040,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -131007,6 +134239,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutReceiptInput = {
@@ -131048,6 +134281,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type ledgerUpsertWithoutReceipt_CashBankAccountInput = {
@@ -131194,6 +134428,22 @@ export namespace Prisma {
     data: XOR<transactionUpdateManyMutationInput, transactionUncheckedUpdateManyWithoutReceiptInput>
   }
 
+  export type receiptinvoiceallocationUpsertWithWhereUniqueWithoutReceiptInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    update: XOR<receiptinvoiceallocationUpdateWithoutReceiptInput, receiptinvoiceallocationUncheckedUpdateWithoutReceiptInput>
+    create: XOR<receiptinvoiceallocationCreateWithoutReceiptInput, receiptinvoiceallocationUncheckedCreateWithoutReceiptInput>
+  }
+
+  export type receiptinvoiceallocationUpdateWithWhereUniqueWithoutReceiptInput = {
+    where: receiptinvoiceallocationWhereUniqueInput
+    data: XOR<receiptinvoiceallocationUpdateWithoutReceiptInput, receiptinvoiceallocationUncheckedUpdateWithoutReceiptInput>
+  }
+
+  export type receiptinvoiceallocationUpdateManyWithWhereWithoutReceiptInput = {
+    where: receiptinvoiceallocationScalarWhereInput
+    data: XOR<receiptinvoiceallocationUpdateManyMutationInput, receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptInput>
+  }
+
   export type deliverychallanCreateWithoutSalesorderInput = {
     challanNumber: string
     manualReference?: string | null
@@ -131291,6 +134541,7 @@ export namespace Prisma {
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutSalesorderInput = {
@@ -131332,6 +134583,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutSalesorderInput = {
@@ -131374,6 +134626,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -131444,6 +134697,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -131768,6 +135022,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -131838,6 +135093,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -132747,6 +136003,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -132817,6 +136074,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -133123,6 +136381,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -133193,6 +136452,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -133944,6 +137204,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -134014,6 +137275,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -134200,6 +137462,7 @@ export namespace Prisma {
     receipt?: receiptCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutSalesreturnInput = {
@@ -134241,6 +137504,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutSalesreturnInput = {
@@ -134320,6 +137584,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -134390,6 +137655,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -134588,6 +137854,7 @@ export namespace Prisma {
     receipt?: receiptUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutSalesreturnInput = {
@@ -134629,6 +137896,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type salesreturnitemUpsertWithWhereUniqueWithoutSalesreturnInput = {
@@ -135214,6 +138482,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -135284,6 +138553,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -135461,6 +138731,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -135531,6 +138802,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -135990,6 +139262,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -136060,6 +139333,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -136246,6 +139520,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -136316,6 +139591,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -136881,6 +140157,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -136951,6 +140228,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -137147,6 +140425,7 @@ export namespace Prisma {
     receipt?: receiptCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutTransactionInput = {
@@ -137188,6 +140467,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutTransactionInput = {
@@ -137234,6 +140514,7 @@ export namespace Prisma {
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutTransactionInput = {
@@ -137252,6 +140533,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutTransactionInput = {
@@ -137341,6 +140623,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutTransactionInput = {
@@ -137382,6 +140665,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutTransactionInput = {
@@ -137404,6 +140688,7 @@ export namespace Prisma {
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptUncheckedCreateWithoutTransactionInput = {
@@ -137422,6 +140707,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
   export type receiptCreateOrConnectWithoutTransactionInput = {
@@ -137470,6 +140756,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -137540,6 +140827,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -137754,6 +141042,7 @@ export namespace Prisma {
     receipt?: receiptUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutTransactionInput = {
@@ -137795,6 +141084,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type journalentryUpsertWithoutTransactionInput = {
@@ -137853,6 +141143,7 @@ export namespace Prisma {
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutTransactionInput = {
@@ -137871,6 +141162,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type posinvoiceUpsertWithoutTransactionInput = {
@@ -137972,6 +141264,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutTransactionInput = {
@@ -138013,6 +141306,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type receiptUpsertWithoutTransactionInput = {
@@ -138041,6 +141335,7 @@ export namespace Prisma {
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutTransactionInput = {
@@ -138059,6 +141354,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type companyCreateWithoutUomInput = {
@@ -138091,6 +141387,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -138161,6 +141458,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -138798,6 +142096,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -138868,6 +142167,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -139140,6 +142440,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -139210,6 +142511,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -139309,6 +142611,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -139379,6 +142682,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -139526,6 +142830,7 @@ export namespace Prisma {
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
     discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
     transaction?: transactionCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentUncheckedCreateWithoutVendorInput = {
@@ -139544,6 +142849,7 @@ export namespace Prisma {
     discountAmount?: number
     discountLedgerId?: number | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type paymentCreateOrConnectWithoutVendorInput = {
@@ -139594,6 +142900,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutVendorInput = {
@@ -139635,6 +142942,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
     inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutVendorInput = {
@@ -139938,6 +143246,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -140008,6 +143317,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -140283,6 +143593,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -140353,6 +143664,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -141048,6 +144360,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -141118,6 +144431,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -141526,6 +144840,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -141596,6 +144911,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -141679,6 +144995,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -141749,6 +145066,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -142201,6 +145519,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -142271,6 +145590,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -143122,6 +146442,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -143192,6 +146513,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -143275,6 +146597,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -143345,6 +146668,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -144016,6 +147340,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillUncheckedCreateWithoutInventory_batchInput = {
@@ -144057,6 +147382,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
+    allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPurchasebillInput
   }
 
   export type purchasebillCreateOrConnectWithoutInventory_batchInput = {
@@ -144318,6 +147644,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutInventory_batchInput = {
@@ -144359,6 +147686,7 @@ export namespace Prisma {
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type inventory_consumptionUpsertWithWhereUniqueWithoutBatchInput = {
@@ -144447,6 +147775,7 @@ export namespace Prisma {
     receipt?: receiptCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
     transaction?: transactionCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutInventory_consumptionInput = {
@@ -144488,6 +147817,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
+    allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutInvoiceInput
   }
 
   export type invoiceCreateOrConnectWithoutInventory_consumptionInput = {
@@ -144676,6 +148006,7 @@ export namespace Prisma {
     receipt?: receiptUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutInventory_consumptionInput = {
@@ -144717,6 +148048,7 @@ export namespace Prisma {
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type productUpsertWithoutInventory_consumptionInput = {
@@ -144817,6 +148149,550 @@ export namespace Prisma {
     voucheritem?: voucheritemUncheckedUpdateManyWithoutProductNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutProductNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type receiptCreateWithoutAllocationsInput = {
+    receiptNumber: string
+    date?: Date | string
+    amount: number
+    paymentMode: $Enums.receipt_paymentMode
+    referenceNumber?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    company: companyCreateNestedOneWithoutReceiptInput
+    customer: customerCreateNestedOneWithoutReceiptInput
+    invoice?: invoiceCreateNestedOneWithoutReceiptInput
+    cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutReceipt_DiscountLedgerInput
+    transaction?: transactionCreateNestedManyWithoutReceiptInput
+  }
+
+  export type receiptUncheckedCreateWithoutAllocationsInput = {
+    id?: number
+    receiptNumber: string
+    date?: Date | string
+    customerId: number
+    invoiceId?: number | null
+    amount: number
+    paymentMode: $Enums.receipt_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
+    transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
+  }
+
+  export type receiptCreateOrConnectWithoutAllocationsInput = {
+    where: receiptWhereUniqueInput
+    create: XOR<receiptCreateWithoutAllocationsInput, receiptUncheckedCreateWithoutAllocationsInput>
+  }
+
+  export type invoiceCreateWithoutAllocationsInput = {
+    invoiceNumber: string
+    date?: Date | string
+    dueDate?: Date | string | null
+    subtotal: number
+    discountAmount?: number
+    taxAmount?: number
+    totalAmount: number
+    paidAmount?: number
+    balanceAmount: number
+    currency?: string | null
+    exchangeRate?: number | null
+    status?: $Enums.invoice_status
+    notes?: string | null
+    createdAt?: Date | string
+    overallDiscount?: number
+    overallDiscountType?: string
+    updatedAt?: Date | string
+    billingName?: string | null
+    billingAddress?: string | null
+    billingCity?: string | null
+    billingState?: string | null
+    billingZipCode?: string | null
+    billingCountry?: string | null
+    shippingName?: string | null
+    shippingAddress?: string | null
+    shippingCity?: string | null
+    shippingState?: string | null
+    shippingZipCode?: string | null
+    shippingCountry?: string | null
+    company: companyCreateNestedOneWithoutInvoiceInput
+    customer: customerCreateNestedOneWithoutInvoiceInput
+    deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
+    salesorder?: salesorderCreateNestedOneWithoutInvoiceInput
+    invoiceitem?: invoiceitemCreateNestedManyWithoutInvoiceInput
+    receipt?: receiptCreateNestedManyWithoutInvoiceInput
+    salesreturn?: salesreturnCreateNestedManyWithoutInvoiceInput
+    transaction?: transactionCreateNestedManyWithoutInvoiceInput
+    inventory_consumption?: inventory_consumptionCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type invoiceUncheckedCreateWithoutAllocationsInput = {
+    id?: number
+    invoiceNumber: string
+    date?: Date | string
+    dueDate?: Date | string | null
+    customerId: number
+    companyId: number
+    subtotal: number
+    discountAmount?: number
+    taxAmount?: number
+    totalAmount: number
+    paidAmount?: number
+    balanceAmount: number
+    currency?: string | null
+    exchangeRate?: number | null
+    status?: $Enums.invoice_status
+    salesOrderId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    overallDiscount?: number
+    overallDiscountType?: string
+    updatedAt?: Date | string
+    deliveryChallanId?: number | null
+    billingName?: string | null
+    billingAddress?: string | null
+    billingCity?: string | null
+    billingState?: string | null
+    billingZipCode?: string | null
+    billingCountry?: string | null
+    shippingName?: string | null
+    shippingAddress?: string | null
+    shippingCity?: string | null
+    shippingState?: string | null
+    shippingZipCode?: string | null
+    shippingCountry?: string | null
+    invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
+    receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
+    salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
+    transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
+    inventory_consumption?: inventory_consumptionUncheckedCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type invoiceCreateOrConnectWithoutAllocationsInput = {
+    where: invoiceWhereUniqueInput
+    create: XOR<invoiceCreateWithoutAllocationsInput, invoiceUncheckedCreateWithoutAllocationsInput>
+  }
+
+  export type receiptUpsertWithoutAllocationsInput = {
+    update: XOR<receiptUpdateWithoutAllocationsInput, receiptUncheckedUpdateWithoutAllocationsInput>
+    create: XOR<receiptCreateWithoutAllocationsInput, receiptUncheckedCreateWithoutAllocationsInput>
+    where?: receiptWhereInput
+  }
+
+  export type receiptUpdateToOneWithWhereWithoutAllocationsInput = {
+    where?: receiptWhereInput
+    data: XOR<receiptUpdateWithoutAllocationsInput, receiptUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type receiptUpdateWithoutAllocationsInput = {
+    receiptNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumreceipt_paymentModeFieldUpdateOperationsInput | $Enums.receipt_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    company?: companyUpdateOneRequiredWithoutReceiptNestedInput
+    customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
+    invoice?: invoiceUpdateOneWithoutReceiptNestedInput
+    cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
+    transaction?: transactionUpdateManyWithoutReceiptNestedInput
+  }
+
+  export type receiptUncheckedUpdateWithoutAllocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: IntFieldUpdateOperationsInput | number
+    invoiceId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumreceipt_paymentModeFieldUpdateOperationsInput | $Enums.receipt_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+  }
+
+  export type invoiceUpsertWithoutAllocationsInput = {
+    update: XOR<invoiceUpdateWithoutAllocationsInput, invoiceUncheckedUpdateWithoutAllocationsInput>
+    create: XOR<invoiceCreateWithoutAllocationsInput, invoiceUncheckedCreateWithoutAllocationsInput>
+    where?: invoiceWhereInput
+  }
+
+  export type invoiceUpdateToOneWithWhereWithoutAllocationsInput = {
+    where?: invoiceWhereInput
+    data: XOR<invoiceUpdateWithoutAllocationsInput, invoiceUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type invoiceUpdateWithoutAllocationsInput = {
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subtotal?: FloatFieldUpdateOperationsInput | number
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    taxAmount?: FloatFieldUpdateOperationsInput | number
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    balanceAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    exchangeRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: Enuminvoice_statusFieldUpdateOperationsInput | $Enums.invoice_status
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallDiscount?: FloatFieldUpdateOperationsInput | number
+    overallDiscountType?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billingName?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    billingState?: NullableStringFieldUpdateOperationsInput | string | null
+    billingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingName?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
+    customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
+    deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
+    salesorder?: salesorderUpdateOneWithoutInvoiceNestedInput
+    invoiceitem?: invoiceitemUpdateManyWithoutInvoiceNestedInput
+    receipt?: receiptUpdateManyWithoutInvoiceNestedInput
+    salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
+    transaction?: transactionUpdateManyWithoutInvoiceNestedInput
+    inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type invoiceUncheckedUpdateWithoutAllocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: IntFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    subtotal?: FloatFieldUpdateOperationsInput | number
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    taxAmount?: FloatFieldUpdateOperationsInput | number
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    balanceAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    exchangeRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: Enuminvoice_statusFieldUpdateOperationsInput | $Enums.invoice_status
+    salesOrderId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallDiscount?: FloatFieldUpdateOperationsInput | number
+    overallDiscountType?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deliveryChallanId?: NullableIntFieldUpdateOperationsInput | number | null
+    billingName?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    billingState?: NullableStringFieldUpdateOperationsInput | string | null
+    billingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingName?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
+    receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
+    salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
+    transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
+    inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type paymentCreateWithoutAllocationsInput = {
+    paymentNumber: string
+    date?: Date | string
+    amount: number
+    paymentMode: $Enums.payment_paymentMode
+    referenceNumber?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    company: companyCreateNestedOneWithoutPaymentInput
+    purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
+    vendor: vendorCreateNestedOneWithoutPaymentInput
+    bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
+    discountLedger?: ledgerCreateNestedOneWithoutPayment_DiscountLedgerInput
+    transaction?: transactionCreateNestedManyWithoutPaymentInput
+  }
+
+  export type paymentUncheckedCreateWithoutAllocationsInput = {
+    id?: number
+    paymentNumber: string
+    date?: Date | string
+    vendorId: number
+    purchaseBillId?: number | null
+    amount: number
+    paymentMode: $Enums.payment_paymentMode
+    referenceNumber?: string | null
+    companyId: number
+    cashBankAccountId?: number | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    discountAmount?: number
+    discountLedgerId?: number | null
+    transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
+  }
+
+  export type paymentCreateOrConnectWithoutAllocationsInput = {
+    where: paymentWhereUniqueInput
+    create: XOR<paymentCreateWithoutAllocationsInput, paymentUncheckedCreateWithoutAllocationsInput>
+  }
+
+  export type purchasebillCreateWithoutAllocationsInput = {
+    billNumber: string
+    date?: Date | string
+    dueDate?: Date | string | null
+    subtotal: number
+    overallDiscount?: number
+    overallDiscountType?: string
+    discountAmount?: number
+    taxAmount?: number
+    totalAmount: number
+    paidAmount?: number
+    balanceAmount: number
+    currency?: string | null
+    exchangeRate?: number | null
+    status?: $Enums.purchasebill_status
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    billingName?: string | null
+    billingAddress?: string | null
+    billingCity?: string | null
+    billingState?: string | null
+    billingZipCode?: string | null
+    billingCountry?: string | null
+    shippingName?: string | null
+    shippingAddress?: string | null
+    shippingCity?: string | null
+    shippingState?: string | null
+    shippingZipCode?: string | null
+    shippingCountry?: string | null
+    payment?: paymentCreateNestedManyWithoutPurchasebillInput
+    company: companyCreateNestedOneWithoutPurchasebillInput
+    goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
+    purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasebillInput
+    vendor: vendorCreateNestedOneWithoutPurchasebillInput
+    purchasebillitem?: purchasebillitemCreateNestedManyWithoutPurchasebillInput
+    purchasereturn?: purchasereturnCreateNestedManyWithoutPurchasebillInput
+    transaction?: transactionCreateNestedManyWithoutPurchasebillInput
+    inventory_batch?: inventory_batchCreateNestedManyWithoutPurchasebillInput
+  }
+
+  export type purchasebillUncheckedCreateWithoutAllocationsInput = {
+    id?: number
+    billNumber: string
+    date?: Date | string
+    dueDate?: Date | string | null
+    vendorId: number
+    companyId: number
+    subtotal: number
+    overallDiscount?: number
+    overallDiscountType?: string
+    discountAmount?: number
+    taxAmount?: number
+    totalAmount: number
+    paidAmount?: number
+    balanceAmount: number
+    currency?: string | null
+    exchangeRate?: number | null
+    status?: $Enums.purchasebill_status
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    grnId?: number | null
+    purchaseOrderId?: number | null
+    billingName?: string | null
+    billingAddress?: string | null
+    billingCity?: string | null
+    billingState?: string | null
+    billingZipCode?: string | null
+    billingCountry?: string | null
+    shippingName?: string | null
+    shippingAddress?: string | null
+    shippingCity?: string | null
+    shippingState?: string | null
+    shippingZipCode?: string | null
+    shippingCountry?: string | null
+    payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
+    purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
+    purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
+    transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
+    inventory_batch?: inventory_batchUncheckedCreateNestedManyWithoutPurchasebillInput
+  }
+
+  export type purchasebillCreateOrConnectWithoutAllocationsInput = {
+    where: purchasebillWhereUniqueInput
+    create: XOR<purchasebillCreateWithoutAllocationsInput, purchasebillUncheckedCreateWithoutAllocationsInput>
+  }
+
+  export type paymentUpsertWithoutAllocationsInput = {
+    update: XOR<paymentUpdateWithoutAllocationsInput, paymentUncheckedUpdateWithoutAllocationsInput>
+    create: XOR<paymentCreateWithoutAllocationsInput, paymentUncheckedCreateWithoutAllocationsInput>
+    where?: paymentWhereInput
+  }
+
+  export type paymentUpdateToOneWithWhereWithoutAllocationsInput = {
+    where?: paymentWhereInput
+    data: XOR<paymentUpdateWithoutAllocationsInput, paymentUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type paymentUpdateWithoutAllocationsInput = {
+    paymentNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumpayment_paymentModeFieldUpdateOperationsInput | $Enums.payment_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    company?: companyUpdateOneRequiredWithoutPaymentNestedInput
+    purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
+    vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
+    bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
+    discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
+    transaction?: transactionUpdateManyWithoutPaymentNestedInput
+  }
+
+  export type paymentUncheckedUpdateWithoutAllocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorId?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: NullableIntFieldUpdateOperationsInput | number | null
+    amount?: FloatFieldUpdateOperationsInput | number
+    paymentMode?: Enumpayment_paymentModeFieldUpdateOperationsInput | $Enums.payment_paymentMode
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: IntFieldUpdateOperationsInput | number
+    cashBankAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+  }
+
+  export type purchasebillUpsertWithoutAllocationsInput = {
+    update: XOR<purchasebillUpdateWithoutAllocationsInput, purchasebillUncheckedUpdateWithoutAllocationsInput>
+    create: XOR<purchasebillCreateWithoutAllocationsInput, purchasebillUncheckedCreateWithoutAllocationsInput>
+    where?: purchasebillWhereInput
+  }
+
+  export type purchasebillUpdateToOneWithWhereWithoutAllocationsInput = {
+    where?: purchasebillWhereInput
+    data: XOR<purchasebillUpdateWithoutAllocationsInput, purchasebillUncheckedUpdateWithoutAllocationsInput>
+  }
+
+  export type purchasebillUpdateWithoutAllocationsInput = {
+    billNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subtotal?: FloatFieldUpdateOperationsInput | number
+    overallDiscount?: FloatFieldUpdateOperationsInput | number
+    overallDiscountType?: StringFieldUpdateOperationsInput | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    taxAmount?: FloatFieldUpdateOperationsInput | number
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    balanceAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    exchangeRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: Enumpurchasebill_statusFieldUpdateOperationsInput | $Enums.purchasebill_status
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    billingName?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    billingState?: NullableStringFieldUpdateOperationsInput | string | null
+    billingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingName?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    payment?: paymentUpdateManyWithoutPurchasebillNestedInput
+    company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
+    goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
+    purchaseorder?: purchaseorderUpdateOneWithoutPurchasebillNestedInput
+    vendor?: vendorUpdateOneRequiredWithoutPurchasebillNestedInput
+    purchasebillitem?: purchasebillitemUpdateManyWithoutPurchasebillNestedInput
+    purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
+    transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
+    inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+  }
+
+  export type purchasebillUncheckedUpdateWithoutAllocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    billNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vendorId?: IntFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    subtotal?: FloatFieldUpdateOperationsInput | number
+    overallDiscount?: FloatFieldUpdateOperationsInput | number
+    overallDiscountType?: StringFieldUpdateOperationsInput | string
+    discountAmount?: FloatFieldUpdateOperationsInput | number
+    taxAmount?: FloatFieldUpdateOperationsInput | number
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    paidAmount?: FloatFieldUpdateOperationsInput | number
+    balanceAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    exchangeRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: Enumpurchasebill_statusFieldUpdateOperationsInput | $Enums.purchasebill_status
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    grnId?: NullableIntFieldUpdateOperationsInput | number | null
+    purchaseOrderId?: NullableIntFieldUpdateOperationsInput | number | null
+    billingName?: NullableStringFieldUpdateOperationsInput | string | null
+    billingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    billingState?: NullableStringFieldUpdateOperationsInput | string | null
+    billingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    billingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingName?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
+    purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
+    purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
+    transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
+    inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type accountsubgroupCreateManyAccountgroupInput = {
@@ -146451,6 +150327,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutCompanyInput = {
@@ -146492,6 +150369,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateManyWithoutCompanyInput = {
@@ -146666,6 +150544,7 @@ export namespace Prisma {
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutCompanyInput = {
@@ -146684,6 +150563,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateManyWithoutCompanyInput = {
@@ -146914,6 +150794,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutCompanyInput = {
@@ -146955,6 +150836,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateManyWithoutCompanyInput = {
@@ -147212,6 +151094,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutCompanyInput = {
@@ -147230,6 +151113,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateManyWithoutCompanyInput = {
@@ -148340,6 +152224,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutCustomerInput = {
@@ -148381,6 +152266,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateManyWithoutCustomerInput = {
@@ -148491,6 +152377,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutCustomerInput = {
@@ -148509,6 +152396,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateManyWithoutCustomerInput = {
@@ -148980,6 +152868,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutDeliverychallanInput = {
@@ -149021,6 +152910,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateManyWithoutDeliverychallanInput = {
@@ -149172,6 +153062,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutGoodsreceiptnoteInput = {
@@ -149213,6 +153104,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateManyWithoutGoodsreceiptnoteInput = {
@@ -149377,6 +153269,15 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type receiptinvoiceallocationCreateManyInvoiceInput = {
+    id?: number
+    receiptId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type invoiceitemUpdateWithoutInvoiceInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: FloatFieldUpdateOperationsInput | number
@@ -149439,6 +153340,7 @@ export namespace Prisma {
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutInvoiceInput = {
@@ -149457,6 +153359,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateManyWithoutInvoiceInput = {
@@ -149611,6 +153514,32 @@ export namespace Prisma {
     rateUsed?: FloatFieldUpdateOperationsInput | number
     totalCost?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type receiptinvoiceallocationUpdateWithoutInvoiceInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receipt?: receiptUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateWithoutInvoiceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    receiptId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type transactionCreateManyJournalentryInput = {
@@ -150219,6 +154148,7 @@ export namespace Prisma {
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     discountLedger?: ledgerUpdateOneWithoutReceipt_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutCashBankAccountInput = {
@@ -150237,6 +154167,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateManyWithoutCashBankAccountInput = {
@@ -150271,6 +154202,7 @@ export namespace Prisma {
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutBankLedgerInput = {
@@ -150289,6 +154221,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateManyWithoutBankLedgerInput = {
@@ -150323,6 +154256,7 @@ export namespace Prisma {
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
     transaction?: transactionUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateWithoutDiscountLedgerInput = {
@@ -150341,6 +154275,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
   export type receiptUncheckedUpdateManyWithoutDiscountLedgerInput = {
@@ -150375,6 +154310,7 @@ export namespace Prisma {
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutDiscountLedgerInput = {
@@ -150393,6 +154329,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateManyWithoutDiscountLedgerInput = {
@@ -150483,6 +154420,15 @@ export namespace Prisma {
     logo?: string | null
   }
 
+  export type paymentbillallocationCreateManyPaymentInput = {
+    id?: number
+    purchaseBillId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type transactionUpdateWithoutPaymentInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
@@ -150545,6 +154491,32 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type paymentbillallocationUpdateWithoutPaymentInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    purchasebill?: purchasebillUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type paymentbillallocationUncheckedUpdateWithoutPaymentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentbillallocationUncheckedUpdateManyWithoutPaymentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    purchaseBillId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type companyCreateManyPlanInput = {
     id?: number
     name: string
@@ -150576,6 +154548,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
+    invoiceLabels?: string | null
   }
 
   export type planrequestCreateManyPlanInput = {
@@ -150623,6 +154596,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -150692,6 +154666,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -150761,6 +154736,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type planrequestUpdateWithoutPlanInput = {
@@ -151940,6 +155916,15 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type paymentbillallocationCreateManyPurchasebillInput = {
+    id?: number
+    paymentId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type paymentUpdateWithoutPurchasebillInput = {
     paymentNumber?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -151955,6 +155940,7 @@ export namespace Prisma {
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutPurchasebillInput = {
@@ -151973,6 +155959,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateManyWithoutPurchasebillInput = {
@@ -152178,6 +156165,32 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type paymentbillallocationUpdateWithoutPurchasebillInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payment?: paymentUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type paymentbillallocationUncheckedUpdateWithoutPurchasebillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentbillallocationUncheckedUpdateManyWithoutPurchasebillInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type goodsreceiptnoteCreateManyPurchaseorderInput = {
     id?: number
     grnNumber: string
@@ -152317,6 +156330,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutPurchaseorderInput = {
@@ -152358,6 +156372,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateManyWithoutPurchaseorderInput = {
@@ -152556,6 +156571,15 @@ export namespace Prisma {
     logo?: string | null
   }
 
+  export type receiptinvoiceallocationCreateManyReceiptInput = {
+    id?: number
+    invoiceId: number
+    amount: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type transactionUpdateWithoutReceiptInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
@@ -152616,6 +156640,32 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type receiptinvoiceallocationUpdateWithoutReceiptInput = {
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoice?: invoiceUpdateOneRequiredWithoutAllocationsNestedInput
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateWithoutReceiptInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceId?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type deliverychallanCreateManySalesorderInput = {
@@ -152802,6 +156852,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutSalesorderInput = {
@@ -152843,6 +156894,7 @@ export namespace Prisma {
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
     inventory_consumption?: inventory_consumptionUncheckedUpdateManyWithoutInvoiceNestedInput
+    allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateManyWithoutSalesorderInput = {
@@ -154240,6 +158292,7 @@ export namespace Prisma {
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
     discountLedger?: ledgerUpdateOneWithoutPayment_DiscountLedgerNestedInput
     transaction?: transactionUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateWithoutVendorInput = {
@@ -154258,6 +158311,7 @@ export namespace Prisma {
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type paymentUncheckedUpdateManyWithoutVendorInput = {
@@ -154315,6 +158369,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateWithoutVendorInput = {
@@ -154356,6 +158411,7 @@ export namespace Prisma {
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
     inventory_batch?: inventory_batchUncheckedUpdateManyWithoutPurchasebillNestedInput
+    allocations?: paymentbillallocationUncheckedUpdateManyWithoutPurchasebillNestedInput
   }
 
   export type purchasebillUncheckedUpdateManyWithoutVendorInput = {
@@ -156144,6 +160200,14 @@ export namespace Prisma {
      * @deprecated Use inventory_consumptionDefaultArgs instead
      */
     export type inventory_consumptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = inventory_consumptionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use receiptinvoiceallocationDefaultArgs instead
+     */
+    export type receiptinvoiceallocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = receiptinvoiceallocationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use paymentbillallocationDefaultArgs instead
+     */
+    export type paymentbillallocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = paymentbillallocationDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

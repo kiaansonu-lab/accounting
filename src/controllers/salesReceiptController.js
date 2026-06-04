@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 // Create Customer Receipt (Payment)
 const createReceipt = async (req, res) => {
     try {
-        const { receiptNumber, date, customerId, invoiceId, amount, paymentMode, referenceNumber, cashBankAccountId, notes, discountAmount, discountLedgerId } = req.body;
+        const { receiptNumber, date, customerId, invoiceId, amount, paymentMode, referenceNumber, cashBankAccountId, notes, discountAmount, discountLedgerId, allocations } = req.body;
         const companyId = req.user?.companyId || req.body.companyId;
 
         if (!receiptNumber || !customerId || !amount || !cashBankAccountId) {
@@ -24,6 +24,25 @@ const createReceipt = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Invalid customer or bank/cash account' });
         }
 
+        // Normalize allocations
+        let normalizedAllocations = [];
+        if (allocations && allocations.length > 0) {
+            normalizedAllocations = allocations.map(a => ({
+                invoiceId: parseInt(a.invoiceId),
+                amount: parseFloat(a.amount)
+            }));
+        } else if (invoiceId) {
+            normalizedAllocations = [{
+                invoiceId: parseInt(invoiceId),
+                amount: parseFloat(amount)
+            }];
+        }
+
+        const allocatedSum = normalizedAllocations.reduce((sum, a) => sum + a.amount, 0);
+        if (allocatedSum > parseFloat(amount)) {
+            return res.status(400).json({ success: false, message: 'Total allocation cannot exceed the received amount' });
+        }
+
         const result = await prisma.$transaction(async (tx) => {
             // 1. Create Receipt Record
             const receipt = await tx.receipt.create({
@@ -31,7 +50,7 @@ const createReceipt = async (req, res) => {
                     receiptNumber,
                     date: new Date(date),
                     customerId: parseInt(customerId),
-                    invoiceId: invoiceId ? parseInt(invoiceId) : null,
+                    invoiceId: invoiceId ? parseInt(invoiceId) : (normalizedAllocations[0]?.invoiceId || null),
                     amount: parseFloat(amount),
                     paymentMode: paymentMode,
                     referenceNumber,
@@ -43,53 +62,74 @@ const createReceipt = async (req, res) => {
                 }
             });
 
-            let ledgerAmount = parseFloat(amount);
-            let ledgerDiscountAmount = parseFloat(discountAmount || 0);
-            // 2. Update Invoice Balance if applicable
-            if (invoiceId) {
-                const invoice = await tx.invoice.findUnique({ where: { id: parseInt(invoiceId) } });
+            // 2. Create Allocations and Update Invoice Balances
+            let totalLedgerAmount = 0;
+            let totalLedgerDiscount = 0;
+            const appliedDiscount = parseFloat(discountAmount || 0);
+
+            // Sum allocations
+            const allocatedSum = normalizedAllocations.reduce((sum, a) => sum + a.amount, 0);
+            const unallocatedAmount = parseFloat(amount) - allocatedSum;
+
+            for (let i = 0; i < normalizedAllocations.length; i++) {
+                const alloc = normalizedAllocations[i];
+                
+                // Create link record
+                await tx.receiptinvoiceallocation.create({
+                    data: {
+                        receiptId: receipt.id,
+                        invoiceId: alloc.invoiceId,
+                        amount: alloc.amount,
+                        companyId: parseInt(companyId)
+                    }
+                });
+
+                const invoice = await tx.invoice.findUnique({ where: { id: alloc.invoiceId } });
                 if (invoice) {
-                    const newPaid = (invoice.paidAmount || 0) + parseFloat(amount) + parseFloat(discountAmount || 0);
+                    const allocDiscount = (i === 0) ? appliedDiscount : 0;
+                    const newPaid = (invoice.paidAmount || 0) + alloc.amount + allocDiscount;
                     const newBalance = (invoice.totalAmount || 0) - newPaid;
 
                     await tx.invoice.update({
-                        where: { id: parseInt(invoiceId) },
+                        where: { id: alloc.invoiceId },
                         data: {
                             paidAmount: newPaid,
                             balanceAmount: newBalance,
-                            status: newBalance <= 0 ? 'PAID' : 'PARTIAL'
+                            status: newBalance <= 0 ? 'PAID' : (newPaid > 0 ? 'PARTIAL' : 'UNPAID')
                         }
                     });
 
-                    if (invoice.exchangeRate) {
-                        ledgerAmount = parseFloat(amount) * invoice.exchangeRate;
-                        ledgerDiscountAmount = parseFloat(discountAmount || 0) * invoice.exchangeRate;
-                    }
+                    const rate = invoice.exchangeRate || 1.0;
+                    totalLedgerAmount += alloc.amount * rate;
+                    totalLedgerDiscount += allocDiscount * rate;
                 }
             }
+
+            // Unallocated amount is in company base currency
+            totalLedgerAmount += unallocatedAmount;
 
             // 3. Accounting Entries
             // DR Cash/Bank
             await tx.ledger.update({
                 where: { id: bankLedger.id },
-                data: { currentBalance: { increment: ledgerAmount } }
+                data: { currentBalance: { increment: totalLedgerAmount } }
             });
 
             // DR Discount Expense Ledger
-            if (discountLedgerId && ledgerDiscountAmount > 0) {
+            if (discountLedgerId && totalLedgerDiscount > 0) {
                 await tx.ledger.update({
                     where: { id: parseInt(discountLedgerId) },
-                    data: { currentBalance: { increment: ledgerDiscountAmount } }
+                    data: { currentBalance: { increment: totalLedgerDiscount } }
                 });
             }
 
             // CR Customer
             await tx.ledger.update({
                 where: { id: customer.ledgerId },
-                data: { currentBalance: { decrement: ledgerAmount + ledgerDiscountAmount } }
+                data: { currentBalance: { decrement: totalLedgerAmount + totalLedgerDiscount } }
             });
 
-            // Log Cash/Bank Transaction
+            // Log Cash/Bank Transaction (Decoupled from invoice)
             await tx.transaction.create({
                 data: {
                     date: new Date(date),
@@ -97,16 +137,16 @@ const createReceipt = async (req, res) => {
                     voucherNumber: receiptNumber,
                     debitLedgerId: bankLedger.id,
                     creditLedgerId: customer.ledgerId,
-                    amount: ledgerAmount,
-                    narration: `Payment received from ${customer.name}${invoiceId ? ' for Invoice ' + invoiceId : ''}`,
+                    amount: totalLedgerAmount,
+                    narration: `Payment received from ${customer.name}`,
                     companyId: parseInt(companyId),
                     receiptId: receipt.id,
-                    invoiceId: invoiceId ? parseInt(invoiceId) : null
+                    invoiceId: null // Keep null so it is decoupled and never cascade-deleted!
                 }
             });
 
-            // Log Discount Transaction
-            if (discountLedgerId && ledgerDiscountAmount > 0) {
+            // Log Discount Transaction (Decoupled from invoice)
+            if (discountLedgerId && totalLedgerDiscount > 0) {
                 await tx.transaction.create({
                     data: {
                         date: new Date(date),
@@ -114,11 +154,11 @@ const createReceipt = async (req, res) => {
                         voucherNumber: receiptNumber,
                         debitLedgerId: parseInt(discountLedgerId),
                         creditLedgerId: customer.ledgerId,
-                        amount: ledgerDiscountAmount,
-                        narration: `Discount allowed to ${customer.name}${invoiceId ? ' for Invoice ' + invoiceId : ''}`,
+                        amount: totalLedgerDiscount,
+                        narration: `Discount allowed to ${customer.name}`,
                         companyId: parseInt(companyId),
                         receiptId: receipt.id,
-                        invoiceId: invoiceId ? parseInt(invoiceId) : null
+                        invoiceId: null // Keep null
                     }
                 });
             }
@@ -139,38 +179,80 @@ const createReceipt = async (req, res) => {
 const updateReceipt = async (req, res) => {
     try {
         const { id } = req.params;
-        const { date, amount, paymentMode, referenceNumber, cashBankAccountId, notes, discountAmount, discountLedgerId } = req.body;
+        const { date, amount, paymentMode, referenceNumber, cashBankAccountId, notes, discountAmount, discountLedgerId, allocations } = req.body;
         const companyId = req.user?.companyId || req.body.companyId;
 
         const existingReceipt = await prisma.receipt.findUnique({
             where: { id: parseInt(id) },
-            include: { customer: true, invoice: true }
+            include: {
+                customer: true,
+                allocations: {
+                    include: { invoice: true }
+                }
+            }
         });
 
         if (!existingReceipt) {
             return res.status(404).json({ success: false, message: 'Receipt not found' });
         }
 
-        const result = await prisma.$transaction(async (tx) => {
-            // 1. Reverse previous effects
-            let revertAmount = existingReceipt.amount;
-            let revertDiscountAmount = existingReceipt.discountAmount || 0;
+        // Normalize new allocations
+        let normalizedNewAllocations = [];
+        if (allocations && allocations.length > 0) {
+            normalizedNewAllocations = allocations.map(a => ({
+                invoiceId: parseInt(a.invoiceId),
+                amount: parseFloat(a.amount)
+            }));
+        } else if (req.body.invoiceId) {
+            normalizedNewAllocations = [{
+                invoiceId: parseInt(req.body.invoiceId),
+                amount: parseFloat(amount || existingReceipt.amount)
+            }];
+        }
 
-            if (existingReceipt.invoiceId) {
-                const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
+        const newAllocatedSum = normalizedNewAllocations.reduce((sum, a) => sum + a.amount, 0);
+        const finalAmount = amount !== undefined ? parseFloat(amount) : existingReceipt.amount;
+        if (newAllocatedSum > finalAmount) {
+            return res.status(400).json({ success: false, message: 'Total allocation cannot exceed the received amount' });
+        }
+
+        const result = await prisma.$transaction(async (tx) => {
+            // 1. REVERSE PREVIOUS EFFECTS
+            // Reverse invoice paid amounts based on old allocations
+            const oldDiscount = existingReceipt.discountAmount || 0;
+            for (let i = 0; i < existingReceipt.allocations.length; i++) {
+                const oldAlloc = existingReceipt.allocations[i];
+                const invoice = await tx.invoice.findUnique({ where: { id: oldAlloc.invoiceId } });
                 if (invoice) {
-                    const revPaid = (invoice.paidAmount || 0) - existingReceipt.amount - (existingReceipt.discountAmount || 0);
+                    const oldAllocDiscount = (i === 0) ? oldDiscount : 0;
+                    const revPaid = Math.max(0, (invoice.paidAmount || 0) - oldAlloc.amount - oldAllocDiscount);
                     const revBalance = (invoice.totalAmount || 0) - revPaid;
                     await tx.invoice.update({
-                        where: { id: existingReceipt.invoiceId },
-                        data: { paidAmount: revPaid, balanceAmount: revBalance, status: revBalance <= 0 ? 'PAID' : revPaid > 0 ? 'PARTIAL' : 'UNPAID' }
+                        where: { id: oldAlloc.invoiceId },
+                        data: {
+                            paidAmount: revPaid,
+                            balanceAmount: revBalance,
+                            status: revBalance <= 0 ? 'PAID' : (revPaid > 0 ? 'PARTIAL' : 'UNPAID')
+                        }
                     });
-                    if (invoice.exchangeRate) {
-                        revertAmount = existingReceipt.amount * invoice.exchangeRate;
-                        revertDiscountAmount = (existingReceipt.discountAmount || 0) * invoice.exchangeRate;
-                    }
                 }
             }
+
+            // Calculate old ledger amounts to revert ledger balances
+            let oldLedgerAmount = 0;
+            let oldLedgerDiscount = 0;
+            const oldAllocatedSum = existingReceipt.allocations.reduce((sum, a) => sum + a.amount, 0);
+            const oldUnallocatedAmount = existingReceipt.amount - oldAllocatedSum;
+
+            for (let i = 0; i < existingReceipt.allocations.length; i++) {
+                const oldAlloc = existingReceipt.allocations[i];
+                const rate = oldAlloc.invoice?.exchangeRate || 1.0;
+                oldLedgerAmount += oldAlloc.amount * rate;
+                if (i === 0) {
+                    oldLedgerDiscount += oldDiscount * rate;
+                }
+            }
+            oldLedgerAmount += oldUnallocatedAmount;
 
             // Reverse ledger balances
             if (existingReceipt.cashBankAccountId) {
@@ -178,17 +260,17 @@ const updateReceipt = async (req, res) => {
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.cashBankAccountId },
-                        data: { currentBalance: { decrement: revertAmount } }
+                        data: { currentBalance: { decrement: oldLedgerAmount } }
                     });
                 }
             }
 
-            if (existingReceipt.discountLedgerId && revertDiscountAmount > 0) {
+            if (existingReceipt.discountLedgerId && oldLedgerDiscount > 0) {
                 const discountLedger = await tx.ledger.findUnique({ where: { id: existingReceipt.discountLedgerId } });
                 if (discountLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.discountLedgerId },
-                        data: { currentBalance: { decrement: revertDiscountAmount } }
+                        data: { currentBalance: { decrement: oldLedgerDiscount } }
                     });
                 }
             }
@@ -198,69 +280,93 @@ const updateReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { increment: revertAmount + revertDiscountAmount } }
+                        data: { currentBalance: { increment: oldLedgerAmount + oldLedgerDiscount } }
                     });
                 }
             }
 
-            // Delete old transaction
+            // Delete old transaction & old allocations
             await tx.transaction.deleteMany({ where: { receiptId: parseInt(id) } });
+            await tx.receiptinvoiceallocation.deleteMany({ where: { receiptId: parseInt(id) } });
 
-            // 2. Apply new effects
-            const updatedReceipt = await tx.receipt.update({
-                where: { id: parseInt(id) },
-                data: {
-                    date: date ? new Date(date) : undefined,
-                    amount: amount ? parseFloat(amount) : undefined,
-                    paymentMode,
-                    referenceNumber,
-                    cashBankAccountId: cashBankAccountId ? parseInt(cashBankAccountId) : undefined,
-                    notes,
-                    discountAmount: discountAmount !== undefined ? parseFloat(discountAmount || 0) : undefined,
-                    discountLedgerId: discountLedgerId !== undefined ? (discountLedgerId ? parseInt(discountLedgerId) : null) : undefined
-                }
-            });
-
-            const finalAmount = amount ? parseFloat(amount) : existingReceipt.amount;
+            // 2. APPLY NEW EFFECTS
+            const finalAmount = amount !== undefined ? parseFloat(amount) : existingReceipt.amount;
             const finalDiscount = discountAmount !== undefined ? parseFloat(discountAmount || 0) : (existingReceipt.discountAmount || 0);
             const finalBankId = cashBankAccountId ? parseInt(cashBankAccountId) : existingReceipt.cashBankAccountId;
             const finalDiscountLedgerId = discountLedgerId !== undefined ? (discountLedgerId ? parseInt(discountLedgerId) : null) : existingReceipt.discountLedgerId;
 
-            let finalLedgerAmount = finalAmount;
-            let finalLedgerDiscount = finalDiscount;
+            const updatedReceipt = await tx.receipt.update({
+                where: { id: parseInt(id) },
+                data: {
+                    date: date ? new Date(date) : undefined,
+                    amount: finalAmount,
+                    paymentMode,
+                    referenceNumber,
+                    cashBankAccountId: finalBankId,
+                    notes,
+                    discountAmount: finalDiscount,
+                    discountLedgerId: finalDiscountLedgerId,
+                    invoiceId: req.body.invoiceId ? parseInt(req.body.invoiceId) : (normalizedNewAllocations[0]?.invoiceId || null)
+                }
+            });
 
-            if (existingReceipt.invoiceId) {
-                const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
-                if (invoice) {
-                    const newPaid = (invoice.paidAmount || 0) + finalAmount + finalDiscount;
-                    const newBalance = (invoice.totalAmount || 0) - newPaid;
-                    await tx.invoice.update({
-                        where: { id: existingReceipt.invoiceId },
-                        data: { paidAmount: newPaid, balanceAmount: newBalance, status: newBalance <= 0 ? 'PAID' : 'PARTIAL' }
-                    });
-                    if (invoice.exchangeRate) {
-                        finalLedgerAmount = finalAmount * invoice.exchangeRate;
-                        finalLedgerDiscount = finalDiscount * invoice.exchangeRate;
+            // Create new allocations and update new invoices
+            let newLedgerAmount = 0;
+            let newLedgerDiscount = 0;
+            const newAllocatedSum = normalizedNewAllocations.reduce((sum, a) => sum + a.amount, 0);
+            const newUnallocatedAmount = finalAmount - newAllocatedSum;
+
+            for (let i = 0; i < normalizedNewAllocations.length; i++) {
+                const alloc = normalizedNewAllocations[i];
+
+                await tx.receiptinvoiceallocation.create({
+                    data: {
+                        receiptId: parseInt(id),
+                        invoiceId: alloc.invoiceId,
+                        amount: alloc.amount,
+                        companyId: parseInt(companyId)
                     }
+                });
+
+                const invoice = await tx.invoice.findUnique({ where: { id: alloc.invoiceId } });
+                if (invoice) {
+                    const allocDiscount = (i === 0) ? finalDiscount : 0;
+                    const newPaid = (invoice.paidAmount || 0) + alloc.amount + allocDiscount;
+                    const newBalance = (invoice.totalAmount || 0) - newPaid;
+
+                    await tx.invoice.update({
+                        where: { id: alloc.invoiceId },
+                        data: {
+                            paidAmount: newPaid,
+                            balanceAmount: newBalance,
+                            status: newBalance <= 0 ? 'PAID' : (newPaid > 0 ? 'PARTIAL' : 'UNPAID')
+                        }
+                    });
+
+                    const rate = invoice.exchangeRate || 1.0;
+                    newLedgerAmount += alloc.amount * rate;
+                    newLedgerDiscount += allocDiscount * rate;
                 }
             }
+            newLedgerAmount += newUnallocatedAmount;
 
+            // Apply new ledger balances
             if (finalBankId) {
                 const bankLedger = await tx.ledger.findUnique({ where: { id: finalBankId } });
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: finalBankId },
-                        data: { currentBalance: { increment: finalLedgerAmount } }
+                        data: { currentBalance: { increment: newLedgerAmount } }
                     });
                 }
             }
 
-            if (finalDiscountLedgerId && finalLedgerDiscount > 0) {
+            if (finalDiscountLedgerId && newLedgerDiscount > 0) {
                 const discountLedger = await tx.ledger.findUnique({ where: { id: finalDiscountLedgerId } });
                 if (discountLedger) {
                     await tx.ledger.update({
                         where: { id: finalDiscountLedgerId },
-                        data: { currentBalance: { increment: finalLedgerDiscount } }
+                        data: { currentBalance: { increment: newLedgerDiscount } }
                     });
                 }
             }
@@ -270,12 +376,12 @@ const updateReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { decrement: finalLedgerAmount + finalLedgerDiscount } }
+                        data: { currentBalance: { decrement: newLedgerAmount + newLedgerDiscount } }
                     });
                 }
             }
 
-            // Create new transaction
+            // Create new transaction (decoupled)
             await tx.transaction.create({
                 data: {
                     date: date ? new Date(date) : existingReceipt.date,
@@ -283,15 +389,15 @@ const updateReceipt = async (req, res) => {
                     voucherNumber: existingReceipt.receiptNumber,
                     debitLedgerId: finalBankId,
                     creditLedgerId: existingReceipt.customer.ledgerId,
-                    amount: finalLedgerAmount,
+                    amount: newLedgerAmount,
                     narration: `Updated Payment from ${existingReceipt.customer.name}`,
                     companyId: parseInt(companyId),
                     receiptId: parseInt(id),
-                    invoiceId: existingReceipt.invoiceId
+                    invoiceId: null // Decoupled
                 }
             });
 
-            if (finalDiscountLedgerId && finalLedgerDiscount > 0) {
+            if (finalDiscountLedgerId && newLedgerDiscount > 0) {
                 await tx.transaction.create({
                     data: {
                         date: date ? new Date(date) : existingReceipt.date,
@@ -299,11 +405,11 @@ const updateReceipt = async (req, res) => {
                         voucherNumber: existingReceipt.receiptNumber,
                         debitLedgerId: finalDiscountLedgerId,
                         creditLedgerId: existingReceipt.customer.ledgerId,
-                        amount: finalLedgerDiscount,
+                        amount: newLedgerDiscount,
                         narration: `Updated Discount allowed to ${existingReceipt.customer.name}`,
                         companyId: parseInt(companyId),
                         receiptId: parseInt(id),
-                        invoiceId: existingReceipt.invoiceId
+                        invoiceId: null // Decoupled
                     }
                 });
             }
@@ -328,7 +434,12 @@ const deleteReceipt = async (req, res) => {
 
         const existingReceipt = await prisma.receipt.findUnique({
             where: { id: parseInt(id) },
-            include: { customer: true, invoice: true }
+            include: {
+                customer: true,
+                allocations: {
+                    include: { invoice: true }
+                }
+            }
         });
 
         if (!existingReceipt) {
@@ -337,41 +448,57 @@ const deleteReceipt = async (req, res) => {
 
         await prisma.$transaction(async (tx) => {
             // Reverse effects
-            let revertAmount = existingReceipt.amount;
-            let revertDiscountAmount = existingReceipt.discountAmount || 0;
-
-            if (existingReceipt.invoiceId) {
-                const invoice = await tx.invoice.findUnique({ where: { id: existingReceipt.invoiceId } });
+            const oldDiscount = existingReceipt.discountAmount || 0;
+            for (let i = 0; i < existingReceipt.allocations.length; i++) {
+                const oldAlloc = existingReceipt.allocations[i];
+                const invoice = await tx.invoice.findUnique({ where: { id: oldAlloc.invoiceId } });
                 if (invoice) {
-                    const revPaid = (invoice.paidAmount || 0) - existingReceipt.amount - (existingReceipt.discountAmount || 0);
+                    const oldAllocDiscount = (i === 0) ? oldDiscount : 0;
+                    const revPaid = Math.max(0, (invoice.paidAmount || 0) - oldAlloc.amount - oldAllocDiscount);
                     const revBalance = (invoice.totalAmount || 0) - revPaid;
                     await tx.invoice.update({
-                        where: { id: existingReceipt.invoiceId },
-                        data: { paidAmount: revPaid, balanceAmount: revBalance, status: revBalance <= 0 ? 'PAID' : revPaid > 0 ? 'PARTIAL' : 'UNPAID' }
+                        where: { id: oldAlloc.invoiceId },
+                        data: {
+                            paidAmount: revPaid,
+                            balanceAmount: revBalance,
+                            status: revBalance <= 0 ? 'PAID' : (revPaid > 0 ? 'PARTIAL' : 'UNPAID')
+                        }
                     });
-                    if (invoice.exchangeRate) {
-                        revertAmount = existingReceipt.amount * invoice.exchangeRate;
-                        revertDiscountAmount = (existingReceipt.discountAmount || 0) * invoice.exchangeRate;
-                    }
                 }
             }
+
+            // Calculate old ledger amounts to revert ledger balances
+            let oldLedgerAmount = 0;
+            let oldLedgerDiscount = 0;
+            const oldAllocatedSum = existingReceipt.allocations.reduce((sum, a) => sum + a.amount, 0);
+            const oldUnallocatedAmount = existingReceipt.amount - oldAllocatedSum;
+
+            for (let i = 0; i < existingReceipt.allocations.length; i++) {
+                const oldAlloc = existingReceipt.allocations[i];
+                const rate = oldAlloc.invoice?.exchangeRate || 1.0;
+                oldLedgerAmount += oldAlloc.amount * rate;
+                if (i === 0) {
+                    oldLedgerDiscount += oldDiscount * rate;
+                }
+            }
+            oldLedgerAmount += oldUnallocatedAmount;
 
             if (existingReceipt.cashBankAccountId) {
                 const bankLedger = await tx.ledger.findUnique({ where: { id: existingReceipt.cashBankAccountId } });
                 if (bankLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.cashBankAccountId },
-                        data: { currentBalance: { decrement: revertAmount } }
+                        data: { currentBalance: { decrement: oldLedgerAmount } }
                     });
                 }
             }
 
-            if (existingReceipt.discountLedgerId && revertDiscountAmount > 0) {
+            if (existingReceipt.discountLedgerId && oldLedgerDiscount > 0) {
                 const discountLedger = await tx.ledger.findUnique({ where: { id: existingReceipt.discountLedgerId } });
                 if (discountLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.discountLedgerId },
-                        data: { currentBalance: { decrement: revertDiscountAmount } }
+                        data: { currentBalance: { decrement: oldLedgerDiscount } }
                     });
                 }
             }
@@ -381,13 +508,14 @@ const deleteReceipt = async (req, res) => {
                 if (customerLedger) {
                     await tx.ledger.update({
                         where: { id: existingReceipt.customer.ledgerId },
-                        data: { currentBalance: { increment: revertAmount + revertDiscountAmount } }
+                        data: { currentBalance: { increment: oldLedgerAmount + oldLedgerDiscount } }
                     });
                 }
             }
 
-            // Delete transactions and receipt
+            // Delete transactions, allocations and receipt
             await tx.transaction.deleteMany({ where: { receiptId: parseInt(id) } });
+            await tx.receiptinvoiceallocation.deleteMany({ where: { receiptId: parseInt(id) } });
             await tx.receipt.delete({ where: { id: parseInt(id) } });
         }, {
             timeout: 30000
@@ -404,17 +532,35 @@ const deleteReceipt = async (req, res) => {
 const getReceipts = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.query.companyId;
+        const { customerId } = req.query;
+        
+        const where = { companyId: parseInt(companyId) };
+        if (customerId) {
+            where.customerId = parseInt(customerId);
+        }
+
         const receipts = await prisma.receipt.findMany({
-            where: { companyId: parseInt(companyId) },
+            where,
             include: {
                 customer: { select: { id: true, name: true, ledgerId: true } },
-                invoice: { select: { id: true, invoiceNumber: true, balanceAmount: true, totalAmount: true, paidAmount: true, date: true, dueDate: true, status: true } },
                 cashBankAccount: { select: { id: true, name: true } },
-                discountLedger: { select: { id: true, name: true } }
+                discountLedger: { select: { id: true, name: true } },
+                allocations: {
+                    include: {
+                        invoice: { select: { id: true, invoiceNumber: true, balanceAmount: true, totalAmount: true, paidAmount: true, date: true, dueDate: true, status: true } }
+                    }
+                }
             },
             orderBy: { createdAt: 'desc' }
         });
-        res.status(200).json({ success: true, data: receipts });
+
+        // Map invoice for backwards compatibility
+        const mapped = receipts.map(r => ({
+            ...r,
+            invoice: r.allocations[0]?.invoice || null
+        }));
+
+        res.status(200).json({ success: true, data: mapped });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -432,19 +578,23 @@ const getReceiptById = async (req, res) => {
             },
             include: {
                 customer: true,
-                invoice: {
+                cashBankAccount: true,
+                discountLedger: true,
+                allocations: {
                     include: {
-                        invoiceitem: {
+                        invoice: {
                             include: {
-                                product: true,
-                                service: true,
-                                warehouse: true
+                                invoiceitem: {
+                                    include: {
+                                        product: true,
+                                        service: true,
+                                        warehouse: true
+                                    }
+                                }
                             }
                         }
                     }
-                },
-                cashBankAccount: true,
-                discountLedger: true
+                }
             }
         });
 
@@ -452,7 +602,13 @@ const getReceiptById = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Receipt not found' });
         }
 
-        res.status(200).json({ success: true, data: receipt });
+        // Map invoice for backwards compatibility
+        const mapped = {
+            ...receipt,
+            invoice: receipt.allocations[0]?.invoice || null
+        };
+
+        res.status(200).json({ success: true, data: mapped });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

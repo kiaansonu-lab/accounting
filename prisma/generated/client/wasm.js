@@ -206,7 +206,8 @@ exports.Prisma.CompanyScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   inventoryConfig: 'inventoryConfig',
-  invoiceTableHeaders: 'invoiceTableHeaders'
+  invoiceTableHeaders: 'invoiceTableHeaders',
+  invoiceLabels: 'invoiceLabels'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -1153,6 +1154,26 @@ exports.Prisma.Inventory_consumptionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ReceiptinvoiceallocationScalarFieldEnum = {
+  id: 'id',
+  receiptId: 'receiptId',
+  invoiceId: 'invoiceId',
+  amount: 'amount',
+  companyId: 'companyId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentbillallocationScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  purchaseBillId: 'purchaseBillId',
+  amount: 'amount',
+  companyId: 'companyId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1391,7 +1412,9 @@ exports.Prisma.ModelName = {
   role: 'role',
   shippingaddress: 'shippingaddress',
   inventory_batch: 'inventory_batch',
-  inventory_consumption: 'inventory_consumption'
+  inventory_consumption: 'inventory_consumption',
+  receiptinvoiceallocation: 'receiptinvoiceallocation',
+  paymentbillallocation: 'paymentbillallocation'
 };
 
 /**

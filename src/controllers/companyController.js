@@ -163,6 +163,9 @@ const getCompanyById = async (req, res) => {
                 plan: true
             }
         });
+        
+        logToFile(`📡 getCompanyById ID: ${req.params.id} | company.name: ${company?.name} | company.invoiceLabels: ${company?.invoiceLabels}`);
+        
         if (company && company.inventoryConfig) {
             try {
                 const config = JSON.parse(company.inventoryConfig);
@@ -171,17 +174,29 @@ const getCompanyById = async (req, res) => {
         }
         res.json(company);
     } catch (error) {
-        console.error('Get Company By ID Error:', error);
+        logToFile(`❌ getCompanyById error: ${error.message}`);
         res.status(500).json({ error: error.message });
+    }
+};
+
+const fs = require('fs');
+const path = require('path');
+const logFilePath = path.join(__dirname, '../../debug_logs.txt');
+
+const logToFile = (message) => {
+    try {
+        const timestamp = new Date().toISOString();
+        fs.appendFileSync(logFilePath, `[${timestamp}] ${message}\n`);
+    } catch (e) {
+        console.error('Failed to log to file:', e);
     }
 };
 
 const updateCompany = async (req, res) => {
     try {
-        console.log('📥 Received company update request');
-        console.log('Company ID:', req.params.id);
-        console.log('Request body fields:', Object.keys(req.body));
-        console.log('Files received:', req.files ? Object.keys(req.files) : 'None');
+        logToFile(`📥 Received company update request for ID: ${req.params.id}`);
+        logToFile(`Request body fields: ${Object.keys(req.body).join(', ')}`);
+        logToFile(`invoiceLabels raw value: ${req.body.invoiceLabels}`);
 
         const {
             name, email, phone, website, address, city, state, zip, country, currency,
@@ -193,7 +208,8 @@ const updateCompany = async (req, res) => {
             notes,
             inventoryConfig,
             storageCapacity,
-            invoiceTableHeaders
+            invoiceTableHeaders,
+            invoiceLabels
         } = req.body;
 
         // Fetch current company to get existing inventoryConfig
@@ -214,7 +230,7 @@ const updateCompany = async (req, res) => {
             }
             finalInventoryConfig = JSON.stringify(configObj);
         } catch (e) {
-            console.error('Error parsing inventoryConfig:', e);
+            logToFile(`Error parsing inventoryConfig: ${e.message}`);
         }
 
         const updateData = {
@@ -242,7 +258,8 @@ const updateCompany = async (req, res) => {
             terms,
             notes,
             inventoryConfig: finalInventoryConfig,
-            invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined
+            invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined,
+            invoiceLabels: invoiceLabels ? (typeof invoiceLabels === 'string' ? invoiceLabels : JSON.stringify(invoiceLabels)) : undefined
         };
 
         if (req.files) {
@@ -264,13 +281,15 @@ const updateCompany = async (req, res) => {
             }
         }
 
-        console.log('💾 Updating company with data:', updateData);
+        logToFile(`💾 Updating company in DB with updateData: ${JSON.stringify(updateData)}`);
 
         const company = await prisma.company.update({
             where: { id: parseInt(req.params.id) },
             data: updateData,
             include: { plan: true }
         });
+
+        logToFile(`✅ Company updated in DB. company.invoiceLabels value: ${company.invoiceLabels}`);
 
         // Add storageCapacity to the response object for frontend
         if (company.inventoryConfig) {
@@ -280,10 +299,9 @@ const updateCompany = async (req, res) => {
             } catch (e) {}
         }
 
-        console.log('✅ Company updated successfully!');
         res.json(company);
     } catch (error) {
-        console.error('❌ Update Company Error:', error);
+        logToFile(`❌ Update Company Error: ${error.message}`);
         res.status(500).json({
             error: error.message || 'Internal Server Error'
         });
