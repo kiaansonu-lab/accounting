@@ -143,7 +143,7 @@ const getCompanies = async (req, res) => {
                 try {
                     const config = JSON.parse(company.inventoryConfig);
                     company.storageCapacity = config.storageCapacity;
-                } catch (e) {}
+                } catch (e) { }
             }
             return company;
         });
@@ -163,14 +163,14 @@ const getCompanyById = async (req, res) => {
                 plan: true
             }
         });
-        
+
         logToFile(`📡 getCompanyById ID: ${req.params.id} | company.name: ${company?.name} | company.invoiceLabels: ${company?.invoiceLabels}`);
-        
+
         if (company && company.inventoryConfig) {
             try {
                 const config = JSON.parse(company.inventoryConfig);
                 company.storageCapacity = config.storageCapacity;
-            } catch (e) {}
+            } catch (e) { }
         }
         res.json(company);
     } catch (error) {
@@ -209,7 +209,15 @@ const updateCompany = async (req, res) => {
             inventoryConfig,
             storageCapacity,
             invoiceTableHeaders,
-            invoiceLabels
+            invoiceLabels,
+            receiptTemplate,
+            receiptColor,
+            receiptLabels,
+            receiptTableHeaders,
+            paymentTemplate,
+            paymentColor,
+            paymentLabels,
+            paymentTableHeaders
         } = req.body;
 
         // Fetch current company to get existing inventoryConfig
@@ -259,7 +267,15 @@ const updateCompany = async (req, res) => {
             notes,
             inventoryConfig: finalInventoryConfig,
             invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined,
-            invoiceLabels: invoiceLabels ? (typeof invoiceLabels === 'string' ? invoiceLabels : JSON.stringify(invoiceLabels)) : undefined
+            invoiceLabels: invoiceLabels ? (typeof invoiceLabels === 'string' ? invoiceLabels : JSON.stringify(invoiceLabels)) : undefined,
+            receiptTemplate: receiptTemplate || undefined,
+            receiptColor: receiptColor || undefined,
+            receiptLabels: receiptLabels ? (typeof receiptLabels === 'string' ? receiptLabels : JSON.stringify(receiptLabels)) : undefined,
+            receiptTableHeaders: receiptTableHeaders ? (typeof receiptTableHeaders === 'string' ? receiptTableHeaders : JSON.stringify(receiptTableHeaders)) : undefined,
+            paymentTemplate: paymentTemplate || undefined,
+            paymentColor: paymentColor || undefined,
+            paymentLabels: paymentLabels ? (typeof paymentLabels === 'string' ? paymentLabels : JSON.stringify(paymentLabels)) : undefined,
+            paymentTableHeaders: paymentTableHeaders ? (typeof paymentTableHeaders === 'string' ? paymentTableHeaders : JSON.stringify(paymentTableHeaders)) : undefined
         };
 
         if (req.files) {
@@ -296,7 +312,7 @@ const updateCompany = async (req, res) => {
             try {
                 const config = JSON.parse(company.inventoryConfig);
                 company.storageCapacity = config.storageCapacity;
-            } catch (e) {}
+            } catch (e) { }
         }
 
         res.json(company);

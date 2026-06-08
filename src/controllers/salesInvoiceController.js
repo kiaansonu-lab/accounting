@@ -263,9 +263,17 @@ const createInvoice = async (req, res) => {
                                 const baseQty = convertToBaseQuantity(item.quantity, transUom, prod?.uom);
 
                                 // 1. Clear Challan Reservation
-                                await tx.stock.updateMany({
-                                    where: { productId: item.productId, warehouseId: item.warehouseId },
-                                    data: {
+                                await tx.stock.upsert({
+                                    where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                                    create: {
+                                        warehouseId: item.warehouseId,
+                                        productId: item.productId,
+                                        reservedQuantity: -baseQty,
+                                        quantity: -baseQty,
+                                        initialQty: 0,
+                                        minOrderQty: 0
+                                    },
+                                    update: {
                                         reservedQuantity: { decrement: baseQty },
                                         quantity: { decrement: baseQty }
                                     }
@@ -310,16 +318,35 @@ const createInvoice = async (req, res) => {
 
                             // 1. Clear SO Reservation if it was active
                             if (config.reserveOnSO) {
-                                await tx.stock.updateMany({
-                                    where: { productId: item.productId, warehouseId: item.warehouseId },
-                                    data: { reservedQuantity: { decrement: baseQty } }
+                                await tx.stock.upsert({
+                                    where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                                    create: {
+                                        warehouseId: item.warehouseId,
+                                        productId: item.productId,
+                                        reservedQuantity: -baseQty,
+                                        quantity: 0,
+                                        initialQty: 0,
+                                        minOrderQty: 0
+                                    },
+                                    update: {
+                                        reservedQuantity: { decrement: baseQty }
+                                    }
                                 });
                             }
 
                             // 2. Decrement Stock
-                            await tx.stock.updateMany({
-                                where: { productId: item.productId, warehouseId: item.warehouseId },
-                                data: { quantity: { decrement: baseQty } }
+                            await tx.stock.upsert({
+                                where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                                create: {
+                                    warehouseId: item.warehouseId,
+                                    productId: item.productId,
+                                    quantity: -baseQty,
+                                    initialQty: 0,
+                                    minOrderQty: 0
+                                },
+                                update: {
+                                    quantity: { decrement: baseQty }
+                                }
                             });
 
                             // 3. Log Transaction
@@ -347,9 +374,18 @@ const createInvoice = async (req, res) => {
                         const transUom = item.uomId ? await tx.uom.findUnique({ where: { id: item.uomId } }) : null;
                         const baseQty = convertToBaseQuantity(item.quantity, transUom, prod?.uom);
 
-                        await tx.stock.updateMany({
-                            where: { productId: item.productId, warehouseId: item.warehouseId },
-                            data: { quantity: { decrement: baseQty } }
+                        await tx.stock.upsert({
+                            where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                            create: {
+                                warehouseId: item.warehouseId,
+                                productId: item.productId,
+                                quantity: -baseQty,
+                                initialQty: 0,
+                                minOrderQty: 0
+                            },
+                            update: {
+                                quantity: { decrement: baseQty }
+                            }
                         });
 
                         await tx.inventorytransaction.create({
@@ -564,9 +600,18 @@ const createInvoice = async (req, res) => {
                     if (resolvedWarehouseId) {
                         // Also update stock deduction if original warehouseId was missing
                         if (!item.warehouseId) {
-                            await tx.stock.updateMany({
-                                where: { productId: parseInt(item.productId), warehouseId: resolvedWarehouseId },
-                                data: { quantity: { decrement: baseQty } }
+                            await tx.stock.upsert({
+                                where: { warehouseId_productId: { warehouseId: resolvedWarehouseId, productId: parseInt(item.productId) } },
+                                create: {
+                                    warehouseId: resolvedWarehouseId,
+                                    productId: parseInt(item.productId),
+                                    quantity: -baseQty,
+                                    initialQty: 0,
+                                    minOrderQty: 0
+                                },
+                                update: {
+                                    quantity: { decrement: baseQty }
+                                }
                             });
                         }
 
@@ -944,9 +989,18 @@ const updateInvoice = async (req, res) => {
                         // Find which warehouse was used (warehouseId may be in item or resolved earlier)
                         const wId = item.warehouseId;
                         if (wId) {
-                            await tx.stock.updateMany({
-                                where: { productId: item.productId, warehouseId: wId },
-                                data: { quantity: { increment: item.quantity } }
+                            await tx.stock.upsert({
+                                where: { warehouseId_productId: { warehouseId: wId, productId: item.productId } },
+                                create: {
+                                    warehouseId: wId,
+                                    productId: item.productId,
+                                    quantity: item.quantity,
+                                    initialQty: 0,
+                                    minOrderQty: 0
+                                },
+                                update: {
+                                    quantity: { increment: item.quantity }
+                                }
                             });
                         }
                     }
@@ -1050,9 +1104,18 @@ const updateInvoice = async (req, res) => {
                             }
                         }
                         if (resolvedWId) {
-                            await tx.stock.updateMany({
-                                where: { productId: parseInt(item.productId), warehouseId: resolvedWId },
-                                data: { quantity: { decrement: item.quantity } }
+                            await tx.stock.upsert({
+                                where: { warehouseId_productId: { warehouseId: resolvedWId, productId: parseInt(item.productId) } },
+                                create: {
+                                    warehouseId: resolvedWId,
+                                    productId: parseInt(item.productId),
+                                    quantity: -item.quantity,
+                                    initialQty: 0,
+                                    minOrderQty: 0
+                                },
+                                update: {
+                                    quantity: { decrement: item.quantity }
+                                }
                             });
                         }
                     }
@@ -1355,9 +1418,18 @@ const deleteInvoice = async (req, res) => {
                         quantity: baseQty
                     });
 
-                    await tx.stock.updateMany({
-                        where: { productId: item.productId, warehouseId: item.warehouseId },
-                        data: { quantity: { increment: baseQty } }
+                    await tx.stock.upsert({
+                        where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                        create: {
+                            warehouseId: item.warehouseId,
+                            productId: item.productId,
+                            quantity: baseQty,
+                            initialQty: 0,
+                            minOrderQty: 0
+                        },
+                        update: {
+                            quantity: { increment: baseQty }
+                        }
                     });
 
                     // Log inventory return

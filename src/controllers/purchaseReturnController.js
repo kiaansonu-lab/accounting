@@ -40,9 +40,18 @@ const createReturn = async (req, res) => {
 
             // 2. Inventory Update (Stock Decrement - OUT)
             for (const item of returnItems) {
-                await tx.stock.update({
+                await tx.stock.upsert({
                     where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
-                    data: { quantity: { decrement: item.quantity } }
+                    create: {
+                        warehouseId: item.warehouseId,
+                        productId: item.productId,
+                        quantity: -item.quantity,
+                        initialQty: 0,
+                        minOrderQty: 0
+                    },
+                    update: {
+                        quantity: { decrement: item.quantity }
+                    }
                 });
 
                 await tx.inventorytransaction.create({
@@ -276,9 +285,18 @@ const deleteReturn = async (req, res) => {
         await prisma.$transaction(async (tx) => {
             // 1. Revert Stock
             for (const item of purchaseReturn.purchasereturnitem) {
-                await tx.stock.update({
+                await tx.stock.upsert({
                     where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
-                    data: { quantity: { increment: item.quantity } }
+                    create: {
+                        warehouseId: item.warehouseId,
+                        productId: item.productId,
+                        quantity: item.quantity,
+                        initialQty: 0,
+                        minOrderQty: 0
+                    },
+                    update: {
+                        quantity: { increment: item.quantity }
+                    }
                 });
             }
 

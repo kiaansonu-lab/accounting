@@ -74,9 +74,19 @@ const createChallan = async (req, res) => {
                 if (so && config.reserveOnSO) {
                     for (const item of so.salesorderitem) {
                         if (item.productId && item.warehouseId) {
-                            await tx.stock.updateMany({
-                                where: { warehouseId: item.warehouseId, productId: item.productId },
-                                data: { reservedQuantity: { decrement: item.quantity } }
+                            await tx.stock.upsert({
+                                where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                                create: {
+                                    warehouseId: item.warehouseId,
+                                    productId: item.productId,
+                                    reservedQuantity: -item.quantity,
+                                    quantity: 0,
+                                    initialQty: 0,
+                                    minOrderQty: 0
+                                },
+                                update: {
+                                    reservedQuantity: { decrement: item.quantity }
+                                }
                             });
                         }
                     }
@@ -90,9 +100,18 @@ const createChallan = async (req, res) => {
                 if (item.productId && item.warehouseId) {
                     if (action === 'ISSUE') {
                         // Decrement Stock
-                        await tx.stock.updateMany({
-                            where: { productId: item.productId, warehouseId: item.warehouseId },
-                            data: { quantity: { decrement: item.quantity } }
+                        await tx.stock.upsert({
+                            where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                            create: {
+                                warehouseId: item.warehouseId,
+                                productId: item.productId,
+                                quantity: -item.quantity,
+                                initialQty: 0,
+                                minOrderQty: 0
+                            },
+                            update: {
+                                quantity: { decrement: item.quantity }
+                            }
                         });
 
                         // Log Inventory Transaction

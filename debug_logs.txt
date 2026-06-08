@@ -26,3 +26,399 @@
 [2026-06-04T08:41:23.772Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
 [2026-06-04T08:41:25.449Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
 [2026-06-04T08:41:42.763Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:14:19.786Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:14:34.803Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:14:59.843Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:23:29.060Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:25:00.163Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:25:01.604Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:31:12.400Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:31:13.806Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:31:15.774Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:31:17.130Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:31:19.607Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:34:37.967Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:38:02.440Z] 📥 Received company update request for ID: 16
+[2026-06-05T10:38:02.441Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T10:38:02.442Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:38:05.331Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}","receiptTemplate":"Toronto","receiptColor":"#84cc16","receiptTableHeaders":"{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","receiptLabels":"{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","paymentTemplate":"Toronto","paymentColor":"#84cc16","paymentTableHeaders":"{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","paymentLabels":"{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}"}
+[2026-06-05T10:38:05.369Z] ❌ Update Company Error: 
+Invalid `prisma.company.update()` invocation in
+C:\Users\kiaan\Desktop\Kiaan\ZirakBook Accounting New Latest\Backend-Zirakbook\src\controllers\companyController.js:318:46
+
+  315 
+  316 logToFile(`💾 Updating company in DB with updateData: ${JSON.stringify(updateData)}`);
+  317 
+→ 318 const company = await prisma.company.update({
+        where: {
+          id: 16
+        },
+        data: {
+          name: "Test",
+          email: "test@gmail.com",
+          phone: "123456798998",
+          website: "",
+          address: "",
+          city: "",
+          state: "",
+          zip: "",
+          country: "United States",
+          currency: "USD",
+          startDate: undefined,
+          endDate: undefined,
+          planId: undefined,
+          planType: undefined,
+          invoiceTemplate: "New York",
+          invoiceColor: "#000000",
+          showQrCode: true,
+          bankName: "",
+          accountHolder: "",
+          accountNumber: "",
+          ifsc: "",
+          terms: "",
+          notes: "",
+          inventoryConfig: "{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}",
+          invoiceTableHeaders: "{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}",
+          invoiceLabels: "{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}",
+          receiptTemplate: "Toronto",
+          ~~~~~~~~~~~~~~~
+          receiptColor: "#84cc16",
+          receiptTableHeaders: "{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          receiptLabels: "{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+          paymentTemplate: "Toronto",
+          paymentColor: "#84cc16",
+          paymentTableHeaders: "{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          paymentLabels: "{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+      ?   logo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   invoiceLogo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   planName?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput,
+      ?   accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput,
+      ?   bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput,
+      ?   banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput,
+      ?   category?: categoryUpdateManyWithoutCompanyNestedInput,
+      ?   plan?: planUpdateOneWithoutCompanyNestedInput,
+      ?   customer?: customerUpdateManyWithoutCompanyNestedInput,
+      ?   deliverychallan?: deliverychallanUpdateManyWithoutCompanyNestedInput,
+      ?   expenseentry?: expenseentryUpdateManyWithoutCompanyNestedInput,
+      ?   goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutCompanyNestedInput,
+      ?   incomeentry?: incomeentryUpdateManyWithoutCompanyNestedInput,
+      ?   inventoryadjustment?: inventoryadjustmentUpdateManyWithoutCompanyNestedInput,
+      ?   inventorytransaction?: inventorytransactionUpdateManyWithoutCompanyNestedInput,
+      ?   invoice?: invoiceUpdateManyWithoutCompanyNestedInput,
+      ?   journalentry?: journalentryUpdateManyWithoutCompanyNestedInput,
+      ?   ledger?: ledgerUpdateManyWithoutCompanyNestedInput,
+      ?   passwordrequest?: passwordrequestUpdateManyWithoutCompanyNestedInput,
+      ?   payment?: paymentUpdateManyWithoutCompanyNestedInput,
+      ?   posinvoice?: posinvoiceUpdateManyWithoutCompanyNestedInput,
+      ?   product?: productUpdateManyWithoutCompanyNestedInput,
+      ?   purchasebill?: purchasebillUpdateManyWithoutCompanyNestedInput,
+      ?   purchaseorder?: purchaseorderUpdateManyWithoutCompanyNestedInput,
+      ?   purchasequotation?: purchasequotationUpdateManyWithoutCompanyNestedInput,
+      ?   purchasereturn?: purchasereturnUpdateManyWithoutCompanyNestedInput,
+      ?   receipt?: receiptUpdateManyWithoutCompanyNestedInput,
+      ?   salesorder?: salesorderUpdateManyWithoutCompanyNestedInput,
+      ?   salesquotation?: salesquotationUpdateManyWithoutCompanyNestedInput,
+      ?   salesreturn?: salesreturnUpdateManyWithoutCompanyNestedInput,
+      ?   service?: serviceUpdateManyWithoutCompanyNestedInput,
+      ?   stocktransfer?: stocktransferUpdateManyWithoutCompanyNestedInput,
+      ?   transaction?: transactionUpdateManyWithoutCompanyNestedInput,
+      ?   uom?: uomUpdateManyWithoutCompanyNestedInput,
+      ?   user?: userUpdateManyWithoutCompanyNestedInput,
+      ?   vendor?: vendorUpdateManyWithoutCompanyNestedInput,
+      ?   warehouse?: warehouseUpdateManyWithoutCompanyNestedInput,
+      ?   voucher?: voucherUpdateManyWithoutCompanyNestedInput,
+      ?   role?: roleUpdateManyWithoutCompanyNestedInput
+        },
+        include: {
+          plan: true
+        }
+      })
+
+Unknown argument `receiptTemplate`. Available options are marked with ?.
+[2026-06-05T10:38:32.535Z] 📥 Received company update request for ID: 16
+[2026-06-05T10:38:32.536Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T10:38:32.536Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:38:33.499Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}","receiptTemplate":"Toronto","receiptColor":"#84cc16","receiptTableHeaders":"{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","receiptLabels":"{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","paymentTemplate":"Toronto","paymentColor":"#84cc16","paymentTableHeaders":"{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","paymentLabels":"{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}"}
+[2026-06-05T10:38:33.506Z] ❌ Update Company Error: 
+Invalid `prisma.company.update()` invocation in
+C:\Users\kiaan\Desktop\Kiaan\ZirakBook Accounting New Latest\Backend-Zirakbook\src\controllers\companyController.js:318:46
+
+  315 
+  316 logToFile(`💾 Updating company in DB with updateData: ${JSON.stringify(updateData)}`);
+  317 
+→ 318 const company = await prisma.company.update({
+        where: {
+          id: 16
+        },
+        data: {
+          name: "Test",
+          email: "test@gmail.com",
+          phone: "123456798998",
+          website: "",
+          address: "",
+          city: "",
+          state: "",
+          zip: "",
+          country: "United States",
+          currency: "USD",
+          startDate: undefined,
+          endDate: undefined,
+          planId: undefined,
+          planType: undefined,
+          invoiceTemplate: "New York",
+          invoiceColor: "#000000",
+          showQrCode: true,
+          bankName: "",
+          accountHolder: "",
+          accountNumber: "",
+          ifsc: "",
+          terms: "",
+          notes: "",
+          inventoryConfig: "{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}",
+          invoiceTableHeaders: "{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}",
+          invoiceLabels: "{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}",
+          receiptTemplate: "Toronto",
+          ~~~~~~~~~~~~~~~
+          receiptColor: "#84cc16",
+          receiptTableHeaders: "{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          receiptLabels: "{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+          paymentTemplate: "Toronto",
+          paymentColor: "#84cc16",
+          paymentTableHeaders: "{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          paymentLabels: "{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+      ?   logo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   invoiceLogo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   planName?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput,
+      ?   accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput,
+      ?   bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput,
+      ?   banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput,
+      ?   category?: categoryUpdateManyWithoutCompanyNestedInput,
+      ?   plan?: planUpdateOneWithoutCompanyNestedInput,
+      ?   customer?: customerUpdateManyWithoutCompanyNestedInput,
+      ?   deliverychallan?: deliverychallanUpdateManyWithoutCompanyNestedInput,
+      ?   expenseentry?: expenseentryUpdateManyWithoutCompanyNestedInput,
+      ?   goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutCompanyNestedInput,
+      ?   incomeentry?: incomeentryUpdateManyWithoutCompanyNestedInput,
+      ?   inventoryadjustment?: inventoryadjustmentUpdateManyWithoutCompanyNestedInput,
+      ?   inventorytransaction?: inventorytransactionUpdateManyWithoutCompanyNestedInput,
+      ?   invoice?: invoiceUpdateManyWithoutCompanyNestedInput,
+      ?   journalentry?: journalentryUpdateManyWithoutCompanyNestedInput,
+      ?   ledger?: ledgerUpdateManyWithoutCompanyNestedInput,
+      ?   passwordrequest?: passwordrequestUpdateManyWithoutCompanyNestedInput,
+      ?   payment?: paymentUpdateManyWithoutCompanyNestedInput,
+      ?   posinvoice?: posinvoiceUpdateManyWithoutCompanyNestedInput,
+      ?   product?: productUpdateManyWithoutCompanyNestedInput,
+      ?   purchasebill?: purchasebillUpdateManyWithoutCompanyNestedInput,
+      ?   purchaseorder?: purchaseorderUpdateManyWithoutCompanyNestedInput,
+      ?   purchasequotation?: purchasequotationUpdateManyWithoutCompanyNestedInput,
+      ?   purchasereturn?: purchasereturnUpdateManyWithoutCompanyNestedInput,
+      ?   receipt?: receiptUpdateManyWithoutCompanyNestedInput,
+      ?   salesorder?: salesorderUpdateManyWithoutCompanyNestedInput,
+      ?   salesquotation?: salesquotationUpdateManyWithoutCompanyNestedInput,
+      ?   salesreturn?: salesreturnUpdateManyWithoutCompanyNestedInput,
+      ?   service?: serviceUpdateManyWithoutCompanyNestedInput,
+      ?   stocktransfer?: stocktransferUpdateManyWithoutCompanyNestedInput,
+      ?   transaction?: transactionUpdateManyWithoutCompanyNestedInput,
+      ?   uom?: uomUpdateManyWithoutCompanyNestedInput,
+      ?   user?: userUpdateManyWithoutCompanyNestedInput,
+      ?   vendor?: vendorUpdateManyWithoutCompanyNestedInput,
+      ?   warehouse?: warehouseUpdateManyWithoutCompanyNestedInput,
+      ?   voucher?: voucherUpdateManyWithoutCompanyNestedInput,
+      ?   role?: roleUpdateManyWithoutCompanyNestedInput
+        },
+        include: {
+          plan: true
+        }
+      })
+
+Unknown argument `receiptTemplate`. Available options are marked with ?.
+[2026-06-05T10:38:36.872Z] 📥 Received company update request for ID: 16
+[2026-06-05T10:38:36.872Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T10:38:36.873Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:38:37.358Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}","receiptTemplate":"Toronto","receiptColor":"#84cc16","receiptTableHeaders":"{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","receiptLabels":"{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","paymentTemplate":"Toronto","paymentColor":"#84cc16","paymentTableHeaders":"{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","paymentLabels":"{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}"}
+[2026-06-05T10:38:37.365Z] ❌ Update Company Error: 
+Invalid `prisma.company.update()` invocation in
+C:\Users\kiaan\Desktop\Kiaan\ZirakBook Accounting New Latest\Backend-Zirakbook\src\controllers\companyController.js:318:46
+
+  315 
+  316 logToFile(`💾 Updating company in DB with updateData: ${JSON.stringify(updateData)}`);
+  317 
+→ 318 const company = await prisma.company.update({
+        where: {
+          id: 16
+        },
+        data: {
+          name: "Test",
+          email: "test@gmail.com",
+          phone: "123456798998",
+          website: "",
+          address: "",
+          city: "",
+          state: "",
+          zip: "",
+          country: "United States",
+          currency: "USD",
+          startDate: undefined,
+          endDate: undefined,
+          planId: undefined,
+          planType: undefined,
+          invoiceTemplate: "New York",
+          invoiceColor: "#000000",
+          showQrCode: true,
+          bankName: "",
+          accountHolder: "",
+          accountNumber: "",
+          ifsc: "",
+          terms: "",
+          notes: "",
+          inventoryConfig: "{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}",
+          invoiceTableHeaders: "{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}",
+          invoiceLabels: "{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}",
+          receiptTemplate: "Toronto",
+          ~~~~~~~~~~~~~~~
+          receiptColor: "#84cc16",
+          receiptTableHeaders: "{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          receiptLabels: "{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+          paymentTemplate: "Toronto",
+          paymentColor: "#84cc16",
+          paymentTableHeaders: "{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}",
+          paymentLabels: "{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}",
+      ?   logo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   invoiceLogo?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   planName?: String | NullableStringFieldUpdateOperationsInput | Null,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput,
+      ?   accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput,
+      ?   bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput,
+      ?   banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput,
+      ?   category?: categoryUpdateManyWithoutCompanyNestedInput,
+      ?   plan?: planUpdateOneWithoutCompanyNestedInput,
+      ?   customer?: customerUpdateManyWithoutCompanyNestedInput,
+      ?   deliverychallan?: deliverychallanUpdateManyWithoutCompanyNestedInput,
+      ?   expenseentry?: expenseentryUpdateManyWithoutCompanyNestedInput,
+      ?   goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutCompanyNestedInput,
+      ?   incomeentry?: incomeentryUpdateManyWithoutCompanyNestedInput,
+      ?   inventoryadjustment?: inventoryadjustmentUpdateManyWithoutCompanyNestedInput,
+      ?   inventorytransaction?: inventorytransactionUpdateManyWithoutCompanyNestedInput,
+      ?   invoice?: invoiceUpdateManyWithoutCompanyNestedInput,
+      ?   journalentry?: journalentryUpdateManyWithoutCompanyNestedInput,
+      ?   ledger?: ledgerUpdateManyWithoutCompanyNestedInput,
+      ?   passwordrequest?: passwordrequestUpdateManyWithoutCompanyNestedInput,
+      ?   payment?: paymentUpdateManyWithoutCompanyNestedInput,
+      ?   posinvoice?: posinvoiceUpdateManyWithoutCompanyNestedInput,
+      ?   product?: productUpdateManyWithoutCompanyNestedInput,
+      ?   purchasebill?: purchasebillUpdateManyWithoutCompanyNestedInput,
+      ?   purchaseorder?: purchaseorderUpdateManyWithoutCompanyNestedInput,
+      ?   purchasequotation?: purchasequotationUpdateManyWithoutCompanyNestedInput,
+      ?   purchasereturn?: purchasereturnUpdateManyWithoutCompanyNestedInput,
+      ?   receipt?: receiptUpdateManyWithoutCompanyNestedInput,
+      ?   salesorder?: salesorderUpdateManyWithoutCompanyNestedInput,
+      ?   salesquotation?: salesquotationUpdateManyWithoutCompanyNestedInput,
+      ?   salesreturn?: salesreturnUpdateManyWithoutCompanyNestedInput,
+      ?   service?: serviceUpdateManyWithoutCompanyNestedInput,
+      ?   stocktransfer?: stocktransferUpdateManyWithoutCompanyNestedInput,
+      ?   transaction?: transactionUpdateManyWithoutCompanyNestedInput,
+      ?   uom?: uomUpdateManyWithoutCompanyNestedInput,
+      ?   user?: userUpdateManyWithoutCompanyNestedInput,
+      ?   vendor?: vendorUpdateManyWithoutCompanyNestedInput,
+      ?   warehouse?: warehouseUpdateManyWithoutCompanyNestedInput,
+      ?   voucher?: voucherUpdateManyWithoutCompanyNestedInput,
+      ?   role?: roleUpdateManyWithoutCompanyNestedInput
+        },
+        include: {
+          plan: true
+        }
+      })
+
+Unknown argument `receiptTemplate`. Available options are marked with ?.
+[2026-06-05T10:41:38.150Z] 📥 Received company update request for ID: 16
+[2026-06-05T10:41:38.151Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T10:41:38.151Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:41:40.777Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}","receiptTemplate":"Toronto","receiptColor":"#84cc16","receiptTableHeaders":"{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","receiptLabels":"{\"number\":\"Receipt Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","paymentTemplate":"Toronto","paymentColor":"#84cc16","paymentTableHeaders":"{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","paymentLabels":"{\"number\":\"Receipt No:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}"}
+[2026-06-05T10:41:45.156Z] ✅ Company updated in DB. company.invoiceLabels value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:41:46.924Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:41:54.433Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:41:55.754Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:46:18.287Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:46:22.682Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:46:24.874Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:46:25.727Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:46:26.568Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:48:11.553Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:48:12.432Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:48:14.152Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:48:15.483Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:49:42.394Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:49:44.358Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:49:53.389Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:50:36.889Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:50:37.706Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:50:38.526Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:54:44.095Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:54:44.899Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:55:18.519Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:55:19.572Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:55:53.872Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:55:55.339Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:56:00.176Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:56:01.485Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:56:48.469Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:57:45.543Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:57:46.851Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:57:48.619Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:02.552Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:03.864Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:34.170Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:35.476Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:43.414Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:44.728Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:46.039Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:49.097Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:50.845Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:52.219Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:54.310Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:55.620Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:58:56.934Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:59:52.990Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:59:54.296Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T10:59:56.345Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:17.693Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:19.341Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:20.649Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:21.982Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:23.304Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:34.605Z] 📥 Received company update request for ID: 16
+[2026-06-05T11:02:34.606Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T11:02:34.606Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:35.481Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}"}
+[2026-06-05T11:02:39.520Z] ✅ Company updated in DB. company.invoiceLabels value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:02:40.880Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:03:43.746Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:03:45.057Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:04:27.899Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:04:29.211Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:04:58.232Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:04:59.578Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:08:19.991Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:08:20.762Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:11:50.584Z] 📥 Received company update request for ID: 16
+[2026-06-05T11:11:50.585Z] Request body fields: name, email, phone, website, address, city, state, zip, country, currency, bankName, accountHolder, accountNumber, ifsc, terms, notes, invoiceTemplate, invoiceColor, showQrCode, inventoryConfig, invoiceTableHeaders, invoiceLabels, receiptTemplate, receiptColor, receiptTableHeaders, receiptLabels, paymentTemplate, paymentColor, paymentTableHeaders, paymentLabels
+[2026-06-05T11:11:50.586Z] invoiceLabels raw value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:11:52.296Z] 💾 Updating company in DB with updateData: {"name":"Test","email":"test@gmail.com","phone":"123456798998","website":"","address":"","city":"","state":"","zip":"","country":"United States","currency":"USD","invoiceTemplate":"New York","invoiceColor":"#000000","showQrCode":true,"bankName":"","accountHolder":"","accountNumber":"","ifsc":"","terms":"","notes":"","inventoryConfig":"{\"reserveOnQuotation\":false,\"reserveOnSO\":false,\"challanAction\":\"ISSUE\",\"valuationMethod\":\"WAC\",\"negativeStockAllow\":true,\"batchTracking\":false,\"expiryTracking\":false,\"autoCogsEntry\":true,\"multiWarehouse\":false}","invoiceTableHeaders":"{\"item\":\"Item Name\",\"quantity\":\"Quantity\",\"rate\":\"Rate\",\"discount\":\"Discount\",\"tax\":\"Tax (%)\",\"price\":\"Price\"}","invoiceLabels":"{\"billTo\":\"Billing To:\",\"shipTo\":\"Shiping To:\",\"subTotal\":\"Sub Total\",\"tax\":\"Tax\",\"total\":\"Total\",\"number\":\"Number:\",\"issue\":\"Issue:\",\"dueDate\":\"Due Date:\"}","receiptTemplate":"Toronto","receiptColor":"#84cc16","receiptLabels":"{\"number\":\"Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"Received From:\",\"receivedInto\":\"Received Into:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Allowed:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"Authorized Signature\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","receiptTableHeaders":"{\"invoiceNumber\":\"Invoice Number\",\"invoiceDate\":\"Invoice Date\",\"invoiceAmount\":\"Invoice Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}","paymentTemplate":"Toronto","paymentColor":"#84cc16","paymentLabels":"{\"number\":\"Number:\",\"date\":\"Payment Date:\",\"invoiceRef\":\"Invoice Ref:\",\"receivedFrom\":\"RECEIVED FROM:\",\"paidFrom\":\"Paid From:\",\"mode\":\"Payment Mode:\",\"refNo\":\"Ref No:\",\"discount\":\"Discount Received:\",\"discountAccount\":\"Discount Account:\",\"notes\":\"Remarks / Notes:\",\"signature\":\"AUTHORIZED SIGNATURE\",\"satisfaction\":\"The sum of {amount} {discountText} was received in full satisfaction of the mentioned account.\"}","paymentTableHeaders":"{\"billNumber\":\"Bill Number\",\"billDate\":\"Bill Date\",\"billAmount\":\"Bill Amount\",\"allocatedAmount\":\"Allocated Amount\",\"balanceDue\":\"Balance Due\"}"}
+[2026-06-05T11:11:55.147Z] ✅ Company updated in DB. company.invoiceLabels value: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:11:56.317Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:12:02.124Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:12:06.008Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:12:06.027Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:12:14.410Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-05T11:12:15.848Z] 📡 getCompanyById ID: 16 | company.name: Test | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shiping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-08T07:40:16.808Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-08T07:43:33.062Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}
+[2026-06-08T07:43:34.352Z] 📡 getCompanyById ID: 13 | company.name: company | company.invoiceLabels: {"billTo":"Billing To:","shipTo":"Shipping To:","subTotal":"Sub Total","tax":"Tax","total":"Total","number":"Number:","issue":"Issue:","dueDate":"Due Date:"}

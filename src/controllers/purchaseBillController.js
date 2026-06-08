@@ -682,9 +682,18 @@ const deleteBill = async (req, res) => {
                     const baseQty = convertToBaseQuantity(item.quantity, item.uom, item.product?.uom);
 
                     // Revert physical stock
-                    await tx.stock.updateMany({
-                        where: { warehouseId: item.warehouseId, productId: item.productId },
-                        data: { quantity: { decrement: baseQty } }
+                    await tx.stock.upsert({
+                        where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                        create: {
+                            warehouseId: item.warehouseId,
+                            productId: item.productId,
+                            quantity: -baseQty,
+                            initialQty: 0,
+                            minOrderQty: 0
+                        },
+                        update: {
+                            quantity: { decrement: baseQty }
+                        }
                     });
 
                     // Log inventory transaction for return/reversal

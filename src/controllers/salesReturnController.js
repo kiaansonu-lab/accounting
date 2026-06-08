@@ -91,12 +91,16 @@ const createReturn = async (req, res) => {
             // 2. Inventory IN Logic
             for (const item of returnItems) {
                 // Increment Stock
-                await tx.stock.updateMany({
-                    where: {
+                await tx.stock.upsert({
+                    where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                    create: {
+                        warehouseId: item.warehouseId,
                         productId: item.productId,
-                        warehouseId: item.warehouseId
+                        quantity: item.quantity,
+                        initialQty: 0,
+                        minOrderQty: 0
                     },
-                    data: {
+                    update: {
                         quantity: { increment: item.quantity }
                     }
                 });
@@ -361,12 +365,16 @@ const deleteReturn = async (req, res) => {
         await prisma.$transaction(async (tx) => {
             // 1. Reverse Inventory Logic (Decrement Stock)
             for (const item of salesReturn.salesreturnitem) {
-                await tx.stock.updateMany({
-                    where: {
+                await tx.stock.upsert({
+                    where: { warehouseId_productId: { warehouseId: item.warehouseId, productId: item.productId } },
+                    create: {
+                        warehouseId: item.warehouseId,
                         productId: item.productId,
-                        warehouseId: item.warehouseId
+                        quantity: -item.quantity,
+                        initialQty: 0,
+                        minOrderQty: 0
                     },
-                    data: {
+                    update: {
                         quantity: { decrement: item.quantity }
                     }
                 });

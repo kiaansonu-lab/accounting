@@ -13127,6 +13127,14 @@ export namespace Prisma {
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
     invoiceLabels: string | null
+    receiptTemplate: string | null
+    receiptColor: string | null
+    receiptLabels: string | null
+    receiptTableHeaders: string | null
+    paymentTemplate: string | null
+    paymentColor: string | null
+    paymentLabels: string | null
+    paymentTableHeaders: string | null
   }
 
   export type CompanyMaxAggregateOutputType = {
@@ -13162,6 +13170,14 @@ export namespace Prisma {
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
     invoiceLabels: string | null
+    receiptTemplate: string | null
+    receiptColor: string | null
+    receiptLabels: string | null
+    receiptTableHeaders: string | null
+    paymentTemplate: string | null
+    paymentColor: string | null
+    paymentLabels: string | null
+    paymentTableHeaders: string | null
   }
 
   export type CompanyCountAggregateOutputType = {
@@ -13197,6 +13213,14 @@ export namespace Prisma {
     inventoryConfig: number
     invoiceTableHeaders: number
     invoiceLabels: number
+    receiptTemplate: number
+    receiptColor: number
+    receiptLabels: number
+    receiptTableHeaders: number
+    paymentTemplate: number
+    paymentColor: number
+    paymentLabels: number
+    paymentTableHeaders: number
     _all: number
   }
 
@@ -13244,6 +13268,14 @@ export namespace Prisma {
     inventoryConfig?: true
     invoiceTableHeaders?: true
     invoiceLabels?: true
+    receiptTemplate?: true
+    receiptColor?: true
+    receiptLabels?: true
+    receiptTableHeaders?: true
+    paymentTemplate?: true
+    paymentColor?: true
+    paymentLabels?: true
+    paymentTableHeaders?: true
   }
 
   export type CompanyMaxAggregateInputType = {
@@ -13279,6 +13311,14 @@ export namespace Prisma {
     inventoryConfig?: true
     invoiceTableHeaders?: true
     invoiceLabels?: true
+    receiptTemplate?: true
+    receiptColor?: true
+    receiptLabels?: true
+    receiptTableHeaders?: true
+    paymentTemplate?: true
+    paymentColor?: true
+    paymentLabels?: true
+    paymentTableHeaders?: true
   }
 
   export type CompanyCountAggregateInputType = {
@@ -13314,6 +13354,14 @@ export namespace Prisma {
     inventoryConfig?: true
     invoiceTableHeaders?: true
     invoiceLabels?: true
+    receiptTemplate?: true
+    receiptColor?: true
+    receiptLabels?: true
+    receiptTableHeaders?: true
+    paymentTemplate?: true
+    paymentColor?: true
+    paymentLabels?: true
+    paymentTableHeaders?: true
     _all?: true
   }
 
@@ -13436,6 +13484,14 @@ export namespace Prisma {
     inventoryConfig: string | null
     invoiceTableHeaders: string | null
     invoiceLabels: string | null
+    receiptTemplate: string | null
+    receiptColor: string | null
+    receiptLabels: string | null
+    receiptTableHeaders: string | null
+    paymentTemplate: string | null
+    paymentColor: string | null
+    paymentLabels: string | null
+    paymentTableHeaders: string | null
     _count: CompanyCountAggregateOutputType | null
     _avg: CompanyAvgAggregateOutputType | null
     _sum: CompanySumAggregateOutputType | null
@@ -13490,6 +13546,14 @@ export namespace Prisma {
     inventoryConfig?: boolean
     invoiceTableHeaders?: boolean
     invoiceLabels?: boolean
+    receiptTemplate?: boolean
+    receiptColor?: boolean
+    receiptLabels?: boolean
+    receiptTableHeaders?: boolean
+    paymentTemplate?: boolean
+    paymentColor?: boolean
+    paymentLabels?: boolean
+    paymentTableHeaders?: boolean
     accountgroup?: boolean | company$accountgroupArgs<ExtArgs>
     accountsubgroup?: boolean | company$accountsubgroupArgs<ExtArgs>
     bankaccount?: boolean | company$bankaccountArgs<ExtArgs>
@@ -13564,6 +13628,14 @@ export namespace Prisma {
     inventoryConfig?: boolean
     invoiceTableHeaders?: boolean
     invoiceLabels?: boolean
+    receiptTemplate?: boolean
+    receiptColor?: boolean
+    receiptLabels?: boolean
+    receiptTableHeaders?: boolean
+    paymentTemplate?: boolean
+    paymentColor?: boolean
+    paymentLabels?: boolean
+    paymentTableHeaders?: boolean
   }
 
   export type companyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13681,6 +13753,14 @@ export namespace Prisma {
       inventoryConfig: string | null
       invoiceTableHeaders: string | null
       invoiceLabels: string | null
+      receiptTemplate: string | null
+      receiptColor: string | null
+      receiptLabels: string | null
+      receiptTableHeaders: string | null
+      paymentTemplate: string | null
+      paymentColor: string | null
+      paymentLabels: string | null
+      paymentTableHeaders: string | null
     }, ExtArgs["result"]["company"]>
     composites: {}
   }
@@ -14119,6 +14199,14 @@ export namespace Prisma {
     readonly inventoryConfig: FieldRef<"company", 'String'>
     readonly invoiceTableHeaders: FieldRef<"company", 'String'>
     readonly invoiceLabels: FieldRef<"company", 'String'>
+    readonly receiptTemplate: FieldRef<"company", 'String'>
+    readonly receiptColor: FieldRef<"company", 'String'>
+    readonly receiptLabels: FieldRef<"company", 'String'>
+    readonly receiptTableHeaders: FieldRef<"company", 'String'>
+    readonly paymentTemplate: FieldRef<"company", 'String'>
+    readonly paymentColor: FieldRef<"company", 'String'>
+    readonly paymentLabels: FieldRef<"company", 'String'>
+    readonly paymentTableHeaders: FieldRef<"company", 'String'>
   }
     
 
@@ -76619,7 +76707,15 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     inventoryConfig: 'inventoryConfig',
     invoiceTableHeaders: 'invoiceTableHeaders',
-    invoiceLabels: 'invoiceLabels'
+    invoiceLabels: 'invoiceLabels',
+    receiptTemplate: 'receiptTemplate',
+    receiptColor: 'receiptColor',
+    receiptLabels: 'receiptLabels',
+    receiptTableHeaders: 'receiptTableHeaders',
+    paymentTemplate: 'paymentTemplate',
+    paymentColor: 'paymentColor',
+    paymentLabels: 'paymentLabels',
+    paymentTableHeaders: 'paymentTableHeaders'
   };
 
   export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -78371,6 +78467,14 @@ export namespace Prisma {
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
     invoiceLabels?: StringNullableFilter<"company"> | string | null
+    receiptTemplate?: StringNullableFilter<"company"> | string | null
+    receiptColor?: StringNullableFilter<"company"> | string | null
+    receiptLabels?: StringNullableFilter<"company"> | string | null
+    receiptTableHeaders?: StringNullableFilter<"company"> | string | null
+    paymentTemplate?: StringNullableFilter<"company"> | string | null
+    paymentColor?: StringNullableFilter<"company"> | string | null
+    paymentLabels?: StringNullableFilter<"company"> | string | null
+    paymentTableHeaders?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -78443,6 +78547,14 @@ export namespace Prisma {
     inventoryConfig?: SortOrderInput | SortOrder
     invoiceTableHeaders?: SortOrderInput | SortOrder
     invoiceLabels?: SortOrderInput | SortOrder
+    receiptTemplate?: SortOrderInput | SortOrder
+    receiptColor?: SortOrderInput | SortOrder
+    receiptLabels?: SortOrderInput | SortOrder
+    receiptTableHeaders?: SortOrderInput | SortOrder
+    paymentTemplate?: SortOrderInput | SortOrder
+    paymentColor?: SortOrderInput | SortOrder
+    paymentLabels?: SortOrderInput | SortOrder
+    paymentTableHeaders?: SortOrderInput | SortOrder
     accountgroup?: accountgroupOrderByRelationAggregateInput
     accountsubgroup?: accountsubgroupOrderByRelationAggregateInput
     bankaccount?: bankaccountOrderByRelationAggregateInput
@@ -78518,6 +78630,14 @@ export namespace Prisma {
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
     invoiceLabels?: StringNullableFilter<"company"> | string | null
+    receiptTemplate?: StringNullableFilter<"company"> | string | null
+    receiptColor?: StringNullableFilter<"company"> | string | null
+    receiptLabels?: StringNullableFilter<"company"> | string | null
+    receiptTableHeaders?: StringNullableFilter<"company"> | string | null
+    paymentTemplate?: StringNullableFilter<"company"> | string | null
+    paymentColor?: StringNullableFilter<"company"> | string | null
+    paymentLabels?: StringNullableFilter<"company"> | string | null
+    paymentTableHeaders?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -78590,6 +78710,14 @@ export namespace Prisma {
     inventoryConfig?: SortOrderInput | SortOrder
     invoiceTableHeaders?: SortOrderInput | SortOrder
     invoiceLabels?: SortOrderInput | SortOrder
+    receiptTemplate?: SortOrderInput | SortOrder
+    receiptColor?: SortOrderInput | SortOrder
+    receiptLabels?: SortOrderInput | SortOrder
+    receiptTableHeaders?: SortOrderInput | SortOrder
+    paymentTemplate?: SortOrderInput | SortOrder
+    paymentColor?: SortOrderInput | SortOrder
+    paymentLabels?: SortOrderInput | SortOrder
+    paymentTableHeaders?: SortOrderInput | SortOrder
     _count?: companyCountOrderByAggregateInput
     _avg?: companyAvgOrderByAggregateInput
     _max?: companyMaxOrderByAggregateInput
@@ -78633,6 +78761,14 @@ export namespace Prisma {
     inventoryConfig?: StringNullableWithAggregatesFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableWithAggregatesFilter<"company"> | string | null
     invoiceLabels?: StringNullableWithAggregatesFilter<"company"> | string | null
+    receiptTemplate?: StringNullableWithAggregatesFilter<"company"> | string | null
+    receiptColor?: StringNullableWithAggregatesFilter<"company"> | string | null
+    receiptLabels?: StringNullableWithAggregatesFilter<"company"> | string | null
+    receiptTableHeaders?: StringNullableWithAggregatesFilter<"company"> | string | null
+    paymentTemplate?: StringNullableWithAggregatesFilter<"company"> | string | null
+    paymentColor?: StringNullableWithAggregatesFilter<"company"> | string | null
+    paymentLabels?: StringNullableWithAggregatesFilter<"company"> | string | null
+    paymentTableHeaders?: StringNullableWithAggregatesFilter<"company"> | string | null
   }
 
   export type customerWhereInput = {
@@ -85464,6 +85600,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -85536,6 +85680,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -85605,6 +85757,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -85677,6 +85837,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -85748,6 +85916,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
   }
 
   export type companyUpdateManyMutationInput = {
@@ -85781,6 +85957,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type companyUncheckedUpdateManyInput = {
@@ -85816,6 +86000,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type customerCreateInput = {
@@ -93585,6 +93777,14 @@ export namespace Prisma {
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
     invoiceLabels?: SortOrder
+    receiptTemplate?: SortOrder
+    receiptColor?: SortOrder
+    receiptLabels?: SortOrder
+    receiptTableHeaders?: SortOrder
+    paymentTemplate?: SortOrder
+    paymentColor?: SortOrder
+    paymentLabels?: SortOrder
+    paymentTableHeaders?: SortOrder
   }
 
   export type companyAvgOrderByAggregateInput = {
@@ -93625,6 +93825,14 @@ export namespace Prisma {
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
     invoiceLabels?: SortOrder
+    receiptTemplate?: SortOrder
+    receiptColor?: SortOrder
+    receiptLabels?: SortOrder
+    receiptTableHeaders?: SortOrder
+    paymentTemplate?: SortOrder
+    paymentColor?: SortOrder
+    paymentLabels?: SortOrder
+    paymentTableHeaders?: SortOrder
   }
 
   export type companyMinOrderByAggregateInput = {
@@ -93660,6 +93868,14 @@ export namespace Prisma {
     inventoryConfig?: SortOrder
     invoiceTableHeaders?: SortOrder
     invoiceLabels?: SortOrder
+    receiptTemplate?: SortOrder
+    receiptColor?: SortOrder
+    receiptLabels?: SortOrder
+    receiptTableHeaders?: SortOrder
+    paymentTemplate?: SortOrder
+    paymentColor?: SortOrder
+    paymentLabels?: SortOrder
+    paymentTableHeaders?: SortOrder
   }
 
   export type companySumOrderByAggregateInput = {
@@ -108373,6 +108589,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -108444,6 +108668,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -108618,6 +108850,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -108689,6 +108929,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -108822,6 +109070,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -108893,6 +109149,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -109064,6 +109328,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -109135,6 +109407,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -109249,6 +109529,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -109320,6 +109608,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -109437,6 +109733,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -109508,6 +109812,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -109640,6 +109952,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -109711,6 +110031,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -109833,6 +110161,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -109904,6 +110240,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -109972,6 +110316,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -110043,6 +110395,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -110226,6 +110586,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -110297,6 +110665,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -113667,6 +114043,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -113738,6 +114122,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -114407,6 +114799,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -114478,6 +114878,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -114773,6 +115181,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -114844,6 +115260,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -115228,6 +115652,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -115299,6 +115731,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -116057,6 +116497,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -116128,6 +116576,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -116212,6 +116668,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -116283,6 +116747,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -116351,6 +116823,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -116422,6 +116902,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -116804,6 +117292,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -116875,6 +117371,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -117587,6 +118091,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -117658,6 +118170,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -117742,6 +118262,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -117813,6 +118341,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -117881,6 +118417,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -117952,6 +118496,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -118139,6 +118691,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -118210,6 +118770,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -118796,6 +119364,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -118867,6 +119443,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -119185,6 +119769,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -119256,6 +119848,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -119576,6 +120176,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -119647,6 +120255,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -120199,6 +120815,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -120270,6 +120894,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -121433,6 +122065,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -121504,6 +122144,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -121639,6 +122287,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -121710,6 +122366,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -121794,6 +122458,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -121865,6 +122537,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -122765,6 +123445,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -122836,6 +123524,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -123429,6 +124125,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -123500,6 +124204,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -123616,6 +124328,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -123687,6 +124407,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -123793,6 +124521,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -123864,6 +124600,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -124334,6 +125078,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -124405,6 +125157,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -124850,6 +125610,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -124920,6 +125688,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -125059,6 +125835,14 @@ export namespace Prisma {
     inventoryConfig?: StringNullableFilter<"company"> | string | null
     invoiceTableHeaders?: StringNullableFilter<"company"> | string | null
     invoiceLabels?: StringNullableFilter<"company"> | string | null
+    receiptTemplate?: StringNullableFilter<"company"> | string | null
+    receiptColor?: StringNullableFilter<"company"> | string | null
+    receiptLabels?: StringNullableFilter<"company"> | string | null
+    receiptTableHeaders?: StringNullableFilter<"company"> | string | null
+    paymentTemplate?: StringNullableFilter<"company"> | string | null
+    paymentColor?: StringNullableFilter<"company"> | string | null
+    paymentLabels?: StringNullableFilter<"company"> | string | null
+    paymentTableHeaders?: StringNullableFilter<"company"> | string | null
   }
 
   export type planrequestUpsertWithWhereUniqueWithoutPlanInput = {
@@ -125217,6 +126001,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -125288,6 +126080,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -125566,6 +126366,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -125637,6 +126445,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -126623,6 +127439,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -126694,6 +127518,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -127464,6 +128296,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -127535,6 +128375,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -128169,6 +129017,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -128240,6 +129096,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -128739,6 +129603,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -128810,6 +129682,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -129934,6 +130814,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -130005,6 +130893,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -130312,6 +131208,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -130383,6 +131287,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -131195,6 +132107,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -131266,6 +132186,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -131569,6 +132497,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -131640,6 +132576,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -132280,6 +133224,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -132351,6 +133303,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -132658,6 +133618,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -132729,6 +133697,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -133427,6 +134403,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -133498,6 +134482,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -133970,6 +134962,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -134041,6 +135041,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -134627,6 +135635,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -134698,6 +135714,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -135023,6 +136047,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -135094,6 +136126,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -136004,6 +137044,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -136075,6 +137123,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -136382,6 +137438,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -136453,6 +137517,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -137205,6 +138277,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -137276,6 +138356,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -137585,6 +138673,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -137656,6 +138752,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -138483,6 +139587,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -138554,6 +139666,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -138732,6 +139852,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -138803,6 +139931,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -139263,6 +140399,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -139334,6 +140478,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -139521,6 +140673,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -139592,6 +140752,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -140158,6 +141326,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -140229,6 +141405,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -140757,6 +141941,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -140828,6 +142020,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -141388,6 +142588,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -141459,6 +142667,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -142097,6 +143313,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -142168,6 +143392,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -142441,6 +143673,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -142512,6 +143752,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -142612,6 +143860,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -142683,6 +143939,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -143247,6 +144511,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -143318,6 +144590,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -143594,6 +144874,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -143665,6 +144953,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -144361,6 +145657,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -144432,6 +145736,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -144841,6 +146153,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -144912,6 +146232,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -144996,6 +146324,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -145067,6 +146403,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -145520,6 +146864,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -145591,6 +146943,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -146443,6 +147803,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -146514,6 +147882,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -146598,6 +147974,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -146669,6 +148053,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -154549,6 +155941,14 @@ export namespace Prisma {
     inventoryConfig?: string | null
     invoiceTableHeaders?: string | null
     invoiceLabels?: string | null
+    receiptTemplate?: string | null
+    receiptColor?: string | null
+    receiptLabels?: string | null
+    receiptTableHeaders?: string | null
+    paymentTemplate?: string | null
+    paymentColor?: string | null
+    paymentLabels?: string | null
+    paymentTableHeaders?: string | null
   }
 
   export type planrequestCreateManyPlanInput = {
@@ -154597,6 +155997,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -154667,6 +156075,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -154737,6 +156153,14 @@ export namespace Prisma {
     inventoryConfig?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptColor?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTemplate?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type planrequestUpdateWithoutPlanInput = {

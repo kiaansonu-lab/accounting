@@ -207,7 +207,15 @@ exports.Prisma.CompanyScalarFieldEnum = {
   updatedAt: 'updatedAt',
   inventoryConfig: 'inventoryConfig',
   invoiceTableHeaders: 'invoiceTableHeaders',
-  invoiceLabels: 'invoiceLabels'
+  invoiceLabels: 'invoiceLabels',
+  receiptTemplate: 'receiptTemplate',
+  receiptColor: 'receiptColor',
+  receiptLabels: 'receiptLabels',
+  receiptTableHeaders: 'receiptTableHeaders',
+  paymentTemplate: 'paymentTemplate',
+  paymentColor: 'paymentColor',
+  paymentLabels: 'paymentLabels',
+  paymentTableHeaders: 'paymentTableHeaders'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {

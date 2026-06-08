@@ -124,6 +124,14 @@ model company {
   inventoryConfig      String?                @db.LongText
   invoiceTableHeaders  String?                @db.LongText
   invoiceLabels        String?                @db.LongText
+  receiptTemplate      String?                @default("New York")
+  receiptColor         String?                @default("#004aad")
+  receiptLabels        String?                @db.LongText
+  receiptTableHeaders  String?                @db.LongText
+  paymentTemplate      String?                @default("New York")
+  paymentColor         String?                @default("#004aad")
+  paymentLabels        String?                @db.LongText
+  paymentTableHeaders  String?                @db.LongText
   accountgroup         accountgroup[]
   accountsubgroup      accountsubgroup[]
   bankaccount          bankaccount[]
