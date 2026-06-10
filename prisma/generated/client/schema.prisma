@@ -507,6 +507,7 @@ model journalentry {
   voucherNumber String
   narration     String?       @db.Text
   companyId     Int
+  source        String?       @default("system")
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @default(now()) @updatedAt
   company       company       @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "JournalEntry_companyId_fkey")
@@ -529,6 +530,7 @@ model ledger {
   parentLedgerId                                 Int?
   customerId                                     Int?             @unique(map: "Ledger_customerId_key")
   vendorId                                       Int?             @unique(map: "Ledger_vendorId_key")
+  date                                           DateTime         @default(now())
   createdAt                                      DateTime         @default(now())
   updatedAt                                      DateTime         @default(now()) @updatedAt
   company                                        company          @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "Ledger_companyId_fkey")

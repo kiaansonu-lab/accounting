@@ -48,6 +48,14 @@ prisma.$use(async (params, next) => {
                 });
 
                 if (ledger) {
+                    // Check Ledger (Account) date
+                    if (ledger.date) {
+                        const ledgerDateStr = getLocalDateString(ledger.date);
+                        if (ledgerDateStr && txDateStr < ledgerDateStr) {
+                            throw new Error(`Transaction date (${getFormattedDate(txDate)}) cannot be before Account '${ledger.name}' creation date (${getFormattedDate(ledger.date)})`);
+                        }
+                    }
+
                     // Check Customer Account creation date
                     if (ledger.customer && ledger.customer.creationDate) {
                         const custDateStr = getLocalDateString(ledger.customer.creationDate);

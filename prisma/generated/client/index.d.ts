@@ -29455,6 +29455,7 @@ export namespace Prisma {
     voucherNumber: string | null
     narration: string | null
     companyId: number | null
+    source: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -29465,6 +29466,7 @@ export namespace Prisma {
     voucherNumber: string | null
     narration: string | null
     companyId: number | null
+    source: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -29475,6 +29477,7 @@ export namespace Prisma {
     voucherNumber: number
     narration: number
     companyId: number
+    source: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -29497,6 +29500,7 @@ export namespace Prisma {
     voucherNumber?: true
     narration?: true
     companyId?: true
+    source?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -29507,6 +29511,7 @@ export namespace Prisma {
     voucherNumber?: true
     narration?: true
     companyId?: true
+    source?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -29517,6 +29522,7 @@ export namespace Prisma {
     voucherNumber?: true
     narration?: true
     companyId?: true
+    source?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -29614,6 +29620,7 @@ export namespace Prisma {
     voucherNumber: string
     narration: string | null
     companyId: number
+    source: string | null
     createdAt: Date
     updatedAt: Date
     _count: JournalentryCountAggregateOutputType | null
@@ -29643,6 +29650,7 @@ export namespace Prisma {
     voucherNumber?: boolean
     narration?: boolean
     companyId?: boolean
+    source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -29657,6 +29665,7 @@ export namespace Prisma {
     voucherNumber?: boolean
     narration?: boolean
     companyId?: boolean
+    source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -29679,6 +29688,7 @@ export namespace Prisma {
       voucherNumber: string
       narration: string | null
       companyId: number
+      source: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["journalentry"]>
@@ -30057,6 +30067,7 @@ export namespace Prisma {
     readonly voucherNumber: FieldRef<"journalentry", 'String'>
     readonly narration: FieldRef<"journalentry", 'String'>
     readonly companyId: FieldRef<"journalentry", 'Int'>
+    readonly source: FieldRef<"journalentry", 'String'>
     readonly createdAt: FieldRef<"journalentry", 'DateTime'>
     readonly updatedAt: FieldRef<"journalentry", 'DateTime'>
   }
@@ -30442,6 +30453,7 @@ export namespace Prisma {
     parentLedgerId: number | null
     customerId: number | null
     vendorId: number | null
+    date: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -30460,6 +30472,7 @@ export namespace Prisma {
     parentLedgerId: number | null
     customerId: number | null
     vendorId: number | null
+    date: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -30478,6 +30491,7 @@ export namespace Prisma {
     parentLedgerId: number
     customerId: number
     vendorId: number
+    date: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -30522,6 +30536,7 @@ export namespace Prisma {
     parentLedgerId?: true
     customerId?: true
     vendorId?: true
+    date?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -30540,6 +30555,7 @@ export namespace Prisma {
     parentLedgerId?: true
     customerId?: true
     vendorId?: true
+    date?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -30558,6 +30574,7 @@ export namespace Prisma {
     parentLedgerId?: true
     customerId?: true
     vendorId?: true
+    date?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -30663,6 +30680,7 @@ export namespace Prisma {
     parentLedgerId: number | null
     customerId: number | null
     vendorId: number | null
+    date: Date
     createdAt: Date
     updatedAt: Date
     _count: LedgerCountAggregateOutputType | null
@@ -30700,6 +30718,7 @@ export namespace Prisma {
     parentLedgerId?: boolean
     customerId?: boolean
     vendorId?: boolean
+    date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -30736,6 +30755,7 @@ export namespace Prisma {
     parentLedgerId?: boolean
     customerId?: boolean
     vendorId?: boolean
+    date?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -30794,6 +30814,7 @@ export namespace Prisma {
       parentLedgerId: number | null
       customerId: number | null
       vendorId: number | null
+      date: Date
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["ledger"]>
@@ -31194,6 +31215,7 @@ export namespace Prisma {
     readonly parentLedgerId: FieldRef<"ledger", 'Int'>
     readonly customerId: FieldRef<"ledger", 'Int'>
     readonly vendorId: FieldRef<"ledger", 'Int'>
+    readonly date: FieldRef<"ledger", 'DateTime'>
     readonly createdAt: FieldRef<"ledger", 'DateTime'>
     readonly updatedAt: FieldRef<"ledger", 'DateTime'>
   }
@@ -76995,6 +77017,7 @@ export namespace Prisma {
     voucherNumber: 'voucherNumber',
     narration: 'narration',
     companyId: 'companyId',
+    source: 'source',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -77016,6 +77039,7 @@ export namespace Prisma {
     parentLedgerId: 'parentLedgerId',
     customerId: 'customerId',
     vendorId: 'vendorId',
+    date: 'date',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -80274,6 +80298,7 @@ export namespace Prisma {
     voucherNumber?: StringFilter<"journalentry"> | string
     narration?: StringNullableFilter<"journalentry"> | string | null
     companyId?: IntFilter<"journalentry"> | number
+    source?: StringNullableFilter<"journalentry"> | string | null
     createdAt?: DateTimeFilter<"journalentry"> | Date | string
     updatedAt?: DateTimeFilter<"journalentry"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -80286,6 +80311,7 @@ export namespace Prisma {
     voucherNumber?: SortOrder
     narration?: SortOrderInput | SortOrder
     companyId?: SortOrder
+    source?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -80302,6 +80328,7 @@ export namespace Prisma {
     voucherNumber?: StringFilter<"journalentry"> | string
     narration?: StringNullableFilter<"journalentry"> | string | null
     companyId?: IntFilter<"journalentry"> | number
+    source?: StringNullableFilter<"journalentry"> | string | null
     createdAt?: DateTimeFilter<"journalentry"> | Date | string
     updatedAt?: DateTimeFilter<"journalentry"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -80314,6 +80341,7 @@ export namespace Prisma {
     voucherNumber?: SortOrder
     narration?: SortOrderInput | SortOrder
     companyId?: SortOrder
+    source?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: journalentryCountOrderByAggregateInput
@@ -80332,6 +80360,7 @@ export namespace Prisma {
     voucherNumber?: StringWithAggregatesFilter<"journalentry"> | string
     narration?: StringNullableWithAggregatesFilter<"journalentry"> | string | null
     companyId?: IntWithAggregatesFilter<"journalentry"> | number
+    source?: StringNullableWithAggregatesFilter<"journalentry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"journalentry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"journalentry"> | Date | string
   }
@@ -80353,6 +80382,7 @@ export namespace Prisma {
     parentLedgerId?: IntNullableFilter<"ledger"> | number | null
     customerId?: IntNullableFilter<"ledger"> | number | null
     vendorId?: IntNullableFilter<"ledger"> | number | null
+    date?: DateTimeFilter<"ledger"> | Date | string
     createdAt?: DateTimeFilter<"ledger"> | Date | string
     updatedAt?: DateTimeFilter<"ledger"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -80387,6 +80417,7 @@ export namespace Prisma {
     parentLedgerId?: SortOrderInput | SortOrder
     customerId?: SortOrderInput | SortOrder
     vendorId?: SortOrderInput | SortOrder
+    date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -80425,6 +80456,7 @@ export namespace Prisma {
     isEnabled?: BoolFilter<"ledger"> | boolean
     description?: StringNullableFilter<"ledger"> | string | null
     parentLedgerId?: IntNullableFilter<"ledger"> | number | null
+    date?: DateTimeFilter<"ledger"> | Date | string
     createdAt?: DateTimeFilter<"ledger"> | Date | string
     updatedAt?: DateTimeFilter<"ledger"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -80459,6 +80491,7 @@ export namespace Prisma {
     parentLedgerId?: SortOrderInput | SortOrder
     customerId?: SortOrderInput | SortOrder
     vendorId?: SortOrderInput | SortOrder
+    date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ledgerCountOrderByAggregateInput
@@ -80485,6 +80518,7 @@ export namespace Prisma {
     parentLedgerId?: IntNullableWithAggregatesFilter<"ledger"> | number | null
     customerId?: IntNullableWithAggregatesFilter<"ledger"> | number | null
     vendorId?: IntNullableWithAggregatesFilter<"ledger"> | number | null
+    date?: DateTimeWithAggregatesFilter<"ledger"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"ledger"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ledger"> | Date | string
   }
@@ -87629,6 +87663,7 @@ export namespace Prisma {
     date?: Date | string
     voucherNumber: string
     narration?: string | null
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutJournalentryInput
@@ -87641,6 +87676,7 @@ export namespace Prisma {
     voucherNumber: string
     narration?: string | null
     companyId: number
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     transaction?: transactionUncheckedCreateNestedManyWithoutJournalentryInput
@@ -87650,6 +87686,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutJournalentryNestedInput
@@ -87662,6 +87699,7 @@ export namespace Prisma {
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transaction?: transactionUncheckedUpdateManyWithoutJournalentryNestedInput
@@ -87673,6 +87711,7 @@ export namespace Prisma {
     voucherNumber: string
     narration?: string | null
     companyId: number
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -87681,6 +87720,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -87691,6 +87731,7 @@ export namespace Prisma {
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -87702,6 +87743,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -87736,6 +87778,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -87757,6 +87800,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -87791,6 +87835,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -87819,6 +87864,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -87830,6 +87876,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -87848,6 +87895,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -95177,6 +95225,7 @@ export namespace Prisma {
     voucherNumber?: SortOrder
     narration?: SortOrder
     companyId?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95192,6 +95241,7 @@ export namespace Prisma {
     voucherNumber?: SortOrder
     narration?: SortOrder
     companyId?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95202,6 +95252,7 @@ export namespace Prisma {
     voucherNumber?: SortOrder
     narration?: SortOrder
     companyId?: SortOrder
+    source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95255,6 +95306,7 @@ export namespace Prisma {
     parentLedgerId?: SortOrder
     customerId?: SortOrder
     vendorId?: SortOrder
+    date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95285,6 +95337,7 @@ export namespace Prisma {
     parentLedgerId?: SortOrder
     customerId?: SortOrder
     vendorId?: SortOrder
+    date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95303,6 +95356,7 @@ export namespace Prisma {
     parentLedgerId?: SortOrder
     customerId?: SortOrder
     vendorId?: SortOrder
+    date?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -108752,6 +108806,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -108784,6 +108839,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -109035,6 +109091,7 @@ export namespace Prisma {
     parentLedgerId?: IntNullableFilter<"ledger"> | number | null
     customerId?: IntNullableFilter<"ledger"> | number | null
     vendorId?: IntNullableFilter<"ledger"> | number | null
+    date?: DateTimeFilter<"ledger"> | Date | string
     createdAt?: DateTimeFilter<"ledger"> | Date | string
     updatedAt?: DateTimeFilter<"ledger"> | Date | string
   }
@@ -109230,6 +109287,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -109262,6 +109320,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -111388,6 +111447,7 @@ export namespace Prisma {
     date?: Date | string
     voucherNumber: string
     narration?: string | null
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     transaction?: transactionCreateNestedManyWithoutJournalentryInput
@@ -111398,6 +111458,7 @@ export namespace Prisma {
     date?: Date | string
     voucherNumber: string
     narration?: string | null
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     transaction?: transactionUncheckedCreateNestedManyWithoutJournalentryInput
@@ -111420,6 +111481,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     customer?: customerCreateNestedOneWithoutLedgerInput
@@ -111452,6 +111514,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -113184,6 +113247,7 @@ export namespace Prisma {
     voucherNumber?: StringFilter<"journalentry"> | string
     narration?: StringNullableFilter<"journalentry"> | string | null
     companyId?: IntFilter<"journalentry"> | number
+    source?: StringNullableFilter<"journalentry"> | string | null
     createdAt?: DateTimeFilter<"journalentry"> | Date | string
     updatedAt?: DateTimeFilter<"journalentry"> | Date | string
   }
@@ -114331,6 +114395,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -114363,6 +114428,7 @@ export namespace Prisma {
     description?: string | null
     parentLedgerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -114973,6 +115039,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -115005,6 +115072,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -122724,6 +122792,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -122757,6 +122826,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     transaction_transaction_creditLedgerIdToledger?: transactionUncheckedCreateNestedManyWithoutLedger_transaction_creditLedgerIdToledgerInput
@@ -122782,6 +122852,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -122814,6 +122885,7 @@ export namespace Prisma {
     description?: string | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -123729,6 +123801,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -123762,6 +123835,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transaction_transaction_creditLedgerIdToledger?: transactionUncheckedUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerNestedInput
@@ -124849,6 +124923,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -124882,6 +124957,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -124907,6 +124983,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -124940,6 +125017,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -125424,6 +125502,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -125457,6 +125536,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -125488,6 +125568,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -125521,6 +125602,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -134733,6 +134815,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -134766,6 +134849,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -134791,6 +134875,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -134824,6 +134909,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -135310,6 +135396,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -135343,6 +135430,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -135374,6 +135462,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -135407,6 +135496,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -141462,6 +141552,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -141495,6 +141586,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -141520,6 +141612,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -141553,6 +141646,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -141663,6 +141757,7 @@ export namespace Prisma {
     date?: Date | string
     voucherNumber: string
     narration?: string | null
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutJournalentryInput
@@ -141674,6 +141769,7 @@ export namespace Prisma {
     voucherNumber: string
     narration?: string | null
     companyId: number
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -142083,6 +142179,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -142116,6 +142213,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -142147,6 +142245,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -142180,6 +142279,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -142302,6 +142402,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutJournalentryNestedInput
@@ -142313,6 +142414,7 @@ export namespace Prisma {
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -144028,6 +144130,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -144060,6 +144163,7 @@ export namespace Prisma {
     description?: string | null
     parentLedgerId?: number | null
     customerId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -144674,6 +144778,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -144706,6 +144811,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -146670,6 +146776,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -146703,6 +146810,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -146728,6 +146836,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -146761,6 +146870,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -147228,6 +147338,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -147261,6 +147372,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -147292,6 +147404,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -147325,6 +147438,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -147503,6 +147617,7 @@ export namespace Prisma {
     isControlAccount?: boolean
     isEnabled?: boolean
     description?: string | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutLedgerInput
@@ -147536,6 +147651,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     other_ledger?: ledgerUncheckedCreateNestedManyWithoutLedgerInput
@@ -147726,6 +147842,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -147759,6 +147876,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -150108,6 +150226,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150144,6 +150263,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -150176,6 +150296,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -150203,6 +150324,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -150220,6 +150342,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150231,6 +150354,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -150263,6 +150387,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -150290,6 +150415,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -150697,6 +150823,7 @@ export namespace Prisma {
     date?: Date | string
     voucherNumber: string
     narration?: string | null
+    source?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150714,6 +150841,7 @@ export namespace Prisma {
     parentLedgerId?: number | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -151804,6 +151932,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transaction?: transactionUpdateManyWithoutJournalentryNestedInput
@@ -151814,6 +151943,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transaction?: transactionUncheckedUpdateManyWithoutJournalentryNestedInput
@@ -151824,6 +151954,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     voucherNumber?: StringFieldUpdateOperationsInput | string
     narration?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151835,6 +151966,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: customerUpdateOneWithoutLedgerNestedInput
@@ -151867,6 +151999,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -151894,6 +152027,7 @@ export namespace Prisma {
     parentLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -155030,6 +155164,7 @@ export namespace Prisma {
     description?: string | null
     customerId?: number | null
     vendorId?: number | null
+    date?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -155210,6 +155345,7 @@ export namespace Prisma {
     isControlAccount?: BoolFieldUpdateOperationsInput | boolean
     isEnabled?: BoolFieldUpdateOperationsInput | boolean
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutLedgerNestedInput
@@ -155242,6 +155378,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     other_ledger?: ledgerUncheckedUpdateManyWithoutLedgerNestedInput
@@ -155269,6 +155406,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
     vendorId?: NullableIntFieldUpdateOperationsInput | number | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

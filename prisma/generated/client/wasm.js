@@ -453,6 +453,7 @@ exports.Prisma.JournalentryScalarFieldEnum = {
   voucherNumber: 'voucherNumber',
   narration: 'narration',
   companyId: 'companyId',
+  source: 'source',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -471,6 +472,7 @@ exports.Prisma.LedgerScalarFieldEnum = {
   parentLedgerId: 'parentLedgerId',
   customerId: 'customerId',
   vendorId: 'vendorId',
+  date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

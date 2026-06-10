@@ -113,7 +113,7 @@ const createLedger = async (req, res) => {
     try {
         const companyId = req.user.companyId;
         console.log("Create Ledger Payload:", req.body);
-        const { name, groupId, subGroupId, openingBalance, isControlAccount, isEnabled, description, parentLedgerId, accountType } = req.body;
+        const { name, groupId, subGroupId, openingBalance, isControlAccount, isEnabled, description, parentLedgerId, accountType, date } = req.body;
 
         if (!name) {
             return res.status(400).json({
@@ -132,6 +132,7 @@ const createLedger = async (req, res) => {
             description,
             parentLedgerId: parentLedgerId ? parseInt(parentLedgerId) : null,
             accountType,
+            date,
             companyId
         });
 
@@ -387,7 +388,7 @@ const updateLedger = async (req, res) => {
     try {
         const companyId = req.user.companyId;
         const { id } = req.params;
-        const { name, groupId, subGroupId, openingBalance, isControlAccount, isEnabled, description, parentLedgerId } = req.body;
+        const { name, groupId, subGroupId, openingBalance, isControlAccount, isEnabled, description, parentLedgerId, date } = req.body;
 
         if (!name || !groupId) {
             return res.status(400).json({
@@ -404,7 +405,8 @@ const updateLedger = async (req, res) => {
             isControlAccount,
             isEnabled,
             description,
-            parentLedgerId
+            parentLedgerId,
+            date
         });
 
         res.status(200).json({

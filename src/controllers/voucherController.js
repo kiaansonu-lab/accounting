@@ -52,7 +52,8 @@ const createVoucher = async (req, res) => {
                     voucherNumber,
                     date: date ? new Date(date) : new Date(),
                     narration: notes,
-                    companyId: parseInt(companyId)
+                    companyId: parseInt(companyId),
+                    source: 'manual'
                 }
             });
 
@@ -365,24 +366,11 @@ const getVoucherById = async (req, res) => {
 const updateVoucher = async (req, res) => {
     try {
         const { id } = req.params;
-        const {
-            voucherNumber,
-            voucherType,
-            date,
-            companyName,
-            logo,
-            paidFromLedgerId,
-            paidToLedgerId,
-            paidFromAccount,
-            paidToParty,
-            vendorId,
-            customerId,
-            items,
-            notes,
-            signature
-        } = req.body;
+        const companyId = req.body.companyId || req.user?.companyId;
 
-        const companyId = req.user.companyId;
+        if (!companyId) {
+            return res.status(400).json({ success: false, message: 'Company ID is required' });
+        }
 
         const existingVoucher = await prisma.voucher.findFirst({
             where: { id: parseInt(id), companyId: parseInt(companyId) }
@@ -392,65 +380,351 @@ const updateVoucher = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Voucher not found' });
         }
 
-        // Calculate totals
-        const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
-        const totalAmount = subtotal;
+        if (req.body.isJournal) {
+            const { journalRows, voucherNumber, date, notes, logo, signature } = req.body;
 
-        // Delete old items
-        await prisma.voucheritem.deleteMany({
-            where: { voucherId: parseInt(id) }
-        });
+            // Validate totals
+            const totalDr = journalRows.reduce((sum, r) => sum + (parseFloat(r.debit) || 0), 0);
+            const totalCr = journalRows.reduce((sum, r) => sum + (parseFloat(r.credit) || 0), 0);
 
-        // Use the same item mapping logic as 'create' for consistency
-        const voucherItems = items.map(item => ({
-            productId: item.productId ? parseInt(item.productId) : null,
-            productName: item.productName || item.name,
-            ledgerName: item.ledgerName || item.productName || item.name || 'Account Detail',
-            description: item.description,
-            quantity: parseFloat(item.quantity) || 1,
-            rate: parseFloat(item.rate) || 0,
-            amount: parseFloat(item.amount) || 0,
-            debit: item.debit || (voucherType?.toUpperCase() === 'EXPENSE' ? parseFloat(item.amount) : 0),
-            credit: item.credit || (voucherType?.toUpperCase() === 'INCOME' ? parseFloat(item.amount) : 0),
-            narration: item.narration || item.description || ''
-        }));
+            if (Math.abs(totalDr - totalCr) > 0.1) {
+                return res.status(400).json({ success: false, message: 'Total Debit must equal Total Credit' });
+            }
 
-        const updatedVoucher = await prisma.voucher.update({
-            where: { id: parseInt(id) },
-            data: {
+            if (voucherNumber !== existingVoucher.voucherNumber) {
+                const conflictJE = await prisma.journalentry.findFirst({
+                    where: { voucherNumber, companyId: parseInt(companyId) }
+                });
+                if (conflictJE) {
+                    return res.status(400).json({ success: false, message: `Journal Voucher ${voucherNumber} already exists.` });
+                }
+            }
+
+            // Perform entire reversion and updating inside a transaction
+            await prisma.$transaction(async (tx) => {
+                // 1. Revert old accounting transactions for the EXISTING voucherNumber
+                const txs = await tx.transaction.findMany({
+                    where: {
+                        companyId: parseInt(companyId),
+                        voucherNumber: existingVoucher.voucherNumber,
+                        voucherType: { in: ['JOURNAL', 'PAYMENT', 'RECEIPT', 'CONTRA'] }
+                    }
+                });
+
+                for (const t of txs) {
+                    // Reverse balances: debit ledger gets decremented, credit ledger gets incremented
+                    await tx.ledger.update({
+                        where: { id: t.debitLedgerId },
+                        data: { currentBalance: { decrement: t.amount } }
+                    });
+                    await tx.ledger.update({
+                        where: { id: t.creditLedgerId },
+                        data: { currentBalance: { increment: t.amount } }
+                    });
+                }
+
+                // Delete old transactions and associated Journal Entries
+                const journalEntryIds = [...new Set(txs.map(t => t.journalEntryId).filter(Boolean))];
+                await tx.transaction.deleteMany({
+                    where: {
+                        companyId: parseInt(companyId),
+                        voucherNumber: existingVoucher.voucherNumber,
+                        voucherType: { in: ['JOURNAL', 'PAYMENT', 'RECEIPT', 'CONTRA'] }
+                    }
+                });
+
+                if (journalEntryIds.length > 0) {
+                    await tx.journalentry.deleteMany({
+                        where: { id: { in: journalEntryIds } }
+                    });
+                }
+
+                // Delete old voucher items
+                await tx.voucheritem.deleteMany({
+                    where: { voucherId: existingVoucher.id }
+                });
+
+                // 2. Create new Journal Entry Header
+                const newJE = await tx.journalentry.create({
+                    data: {
+                        voucherNumber,
+                        date: date ? new Date(date) : new Date(),
+                        narration: notes,
+                        companyId: parseInt(companyId),
+                        source: 'manual'
+                    }
+                });
+
+                // 3. Split and Match Logic for new journal rows
+                let drs = journalRows.filter(r => r.type === 'Dr').map(r => ({ ...r, accountId: parseInt(r.accountId), remaining: parseFloat(r.debit) || 0 }));
+                let crs = journalRows.filter(r => r.type === 'Cr').map(r => ({ ...r, accountId: parseInt(r.accountId), remaining: parseFloat(r.credit) || 0 }));
+
+                let newTransactions = [];
+                let dIdx = 0, cIdx = 0;
+
+                while (dIdx < drs.length && cIdx < crs.length) {
+                    let d = drs[dIdx];
+                    let c = crs[cIdx];
+                    let amount = Math.min(d.remaining, c.remaining);
+
+                    if (amount > 0) {
+                        const dLedger = await tx.ledger.findUnique({ where: { id: d.accountId }, include: { accountgroup: true } });
+                        const cLedger = await tx.ledger.findUnique({ where: { id: c.accountId }, include: { accountgroup: true } });
+
+                        const isDrNormal = (type) => ['ASSETS', 'EXPENSES'].includes(type);
+
+                        let drChange = isDrNormal(dLedger.accountgroup.type) ? amount : -amount;
+                        await tx.ledger.update({ where: { id: d.accountId }, data: { currentBalance: { increment: drChange } } });
+
+                        let crChange = isDrNormal(cLedger.accountgroup.type) ? -amount : amount;
+                        await tx.ledger.update({ where: { id: c.accountId }, data: { currentBalance: { increment: crChange } } });
+
+                        newTransactions.push({
+                            date: date ? new Date(date) : new Date(),
+                            amount: amount,
+                            debitLedgerId: d.accountId,
+                            creditLedgerId: c.accountId,
+                            voucherType: 'JOURNAL',
+                            voucherNumber,
+                            narration: (d.narration || c.narration || notes || '').trim(),
+                            companyId: parseInt(companyId),
+                            journalEntryId: newJE.id
+                        });
+                    }
+
+                    d.remaining -= amount;
+                    c.remaining -= amount;
+
+                    if (d.remaining < 0.01) dIdx++;
+                    if (c.remaining < 0.01) cIdx++;
+                }
+
+                if (newTransactions.length > 0) {
+                    await tx.transaction.createMany({ data: newTransactions });
+                }
+
+                // 4. Recreate Voucher Items
+                const voucherItems = await Promise.all(journalRows.map(async (row) => {
+                    const ledger = await tx.ledger.findUnique({ where: { id: parseInt(row.accountId) } });
+                    return {
+                        ledgerName: ledger?.name || 'Unknown',
+                        ledgerId: parseInt(row.accountId),
+                        debit: parseFloat(row.debit) || 0,
+                        credit: parseFloat(row.credit) || 0,
+                        narration: row.narration || '',
+                        amount: (parseFloat(row.debit) || 0) + (parseFloat(row.credit) || 0)
+                    };
+                }));
+
+                // 5. Update Voucher
+                await tx.voucher.update({
+                    where: { id: existingVoucher.id },
+                    data: {
+                        voucherNumber,
+                        voucherType: 'JOURNAL',
+                        date: date ? new Date(date) : new Date(),
+                        notes: notes || '',
+                        totalAmount: totalDr,
+                        subtotal: totalDr,
+                        logo,
+                        signature,
+                        voucheritem: {
+                            create: voucherItems
+                        }
+                    }
+                });
+            });
+
+            // Fetch final updated voucher to return
+            const updatedVoucher = await prisma.voucher.findUnique({
+                where: { id: existingVoucher.id },
+                include: {
+                    voucheritem: {
+                        include: {
+                            product: true
+                        }
+                    },
+                    vendor: true,
+                    customer: true,
+                    paidFromLedger: true,
+                    paidToLedger: true
+                }
+            });
+
+            return res.status(200).json({ success: true, data: updatedVoucher });
+        } else {
+            // Standard Voucher Update
+            const {
                 voucherNumber,
-                voucherType: voucherType ? voucherType.toUpperCase() : undefined,
-                date: date ? new Date(date) : undefined,
+                voucherType,
+                date,
                 companyName,
                 logo,
-                paidFromLedgerId: paidFromLedgerId ? parseInt(paidFromLedgerId) : null,
-                paidToLedgerId: paidToLedgerId ? parseInt(paidToLedgerId) : null,
+                paidFromLedgerId,
+                paidToLedgerId,
                 paidFromAccount,
                 paidToParty,
-                vendorId: vendorId ? parseInt(vendorId) : null,
-                customerId: customerId ? parseInt(customerId) : null,
-                subtotal,
-                totalAmount,
+                vendorId,
+                customerId,
+                items,
                 notes,
-                signature,
-                voucheritem: {
-                    create: voucherItems
-                }
-            },
-            include: {
-                voucheritem: {
-                    include: {
-                        product: true
-                    }
-                },
-                vendor: true,
-                customer: true,
-                paidFromLedger: true,
-                paidToLedger: true
-            }
-        });
+                signature
+            } = req.body;
 
-        res.status(200).json({ success: true, data: updatedVoucher });
+            const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
+            const totalAmount = subtotal;
+
+            const voucherItems = items.map(item => ({
+                productId: item.productId ? parseInt(item.productId) : null,
+                productName: item.productName || item.name,
+                ledgerName: item.ledgerName || item.productName || item.name || 'Account Detail',
+                description: item.description,
+                quantity: parseFloat(item.quantity) || 1,
+                rate: parseFloat(item.rate) || 0,
+                amount: parseFloat(item.amount) || 0,
+                debit: item.debit || (voucherType?.toUpperCase() === 'EXPENSE' ? parseFloat(item.amount) : 0),
+                credit: item.credit || (voucherType?.toUpperCase() === 'INCOME' ? parseFloat(item.amount) : 0),
+                narration: item.narration || item.description || ''
+            }));
+
+            const updatedVoucher = await prisma.$transaction(async (tx) => {
+                // 1. Revert old accounting entries for the old voucher
+                const txs = await tx.transaction.findMany({
+                    where: {
+                        companyId: parseInt(companyId),
+                        voucherNumber: existingVoucher.voucherNumber,
+                        voucherType: { in: ['JOURNAL', 'PAYMENT', 'RECEIPT', 'CONTRA'] }
+                    }
+                });
+
+                for (const t of txs) {
+                    await tx.ledger.update({
+                        where: { id: t.debitLedgerId },
+                        data: { currentBalance: { decrement: t.amount } }
+                    });
+                    await tx.ledger.update({
+                        where: { id: t.creditLedgerId },
+                        data: { currentBalance: { increment: t.amount } }
+                    });
+                }
+
+                await tx.transaction.deleteMany({
+                    where: {
+                        companyId: parseInt(companyId),
+                        voucherNumber: existingVoucher.voucherNumber,
+                        voucherType: { in: ['JOURNAL', 'PAYMENT', 'RECEIPT', 'CONTRA'] }
+                    }
+                });
+
+                // Delete old items
+                await tx.voucheritem.deleteMany({
+                    where: { voucherId: existingVoucher.id }
+                });
+
+                // 2. Recreate items and update voucher
+                const v = await tx.voucher.update({
+                    where: { id: existingVoucher.id },
+                    data: {
+                        voucherNumber,
+                        voucherType: voucherType ? voucherType.toUpperCase() : undefined,
+                        date: date ? new Date(date) : undefined,
+                        companyName,
+                        logo,
+                        paidFromLedgerId: paidFromLedgerId ? parseInt(paidFromLedgerId) : null,
+                        paidToLedgerId: paidToLedgerId ? parseInt(paidToLedgerId) : null,
+                        paidFromAccount,
+                        paidToParty,
+                        vendorId: vendorId ? parseInt(vendorId) : null,
+                        customerId: customerId ? parseInt(customerId) : null,
+                        subtotal,
+                        totalAmount,
+                        notes,
+                        signature,
+                        voucheritem: {
+                            create: voucherItems
+                        }
+                    },
+                    include: {
+                        voucheritem: {
+                            include: {
+                                product: true
+                            }
+                        },
+                        vendor: true,
+                        customer: true,
+                        paidFromLedger: true,
+                        paidToLedger: true
+                    }
+                });
+
+                // 3. Accounting Integration for the updated voucher
+                if (parseFloat(totalAmount) > 0) {
+                    let debitLedgerId = null;
+                    let creditLedgerId = null;
+                    let txnType = 'JOURNAL';
+
+                    if (v.voucherType === 'EXPENSE') {
+                        txnType = 'PAYMENT';
+                        creditLedgerId = paidFromLedgerId ? parseInt(paidFromLedgerId) : null;
+
+                        if (vendorId) {
+                            const vendor = await tx.vendor.findUnique({ where: { id: parseInt(vendorId) } });
+                            if (vendor) debitLedgerId = vendor.ledgerId;
+                        } else if (customerId) {
+                            const customer = await tx.customer.findUnique({ where: { id: parseInt(customerId) } });
+                            if (customer) debitLedgerId = customer.ledgerId;
+                        } else if (paidToLedgerId) {
+                            debitLedgerId = parseInt(paidToLedgerId);
+                        }
+                    } else if (v.voucherType === 'INCOME') {
+                        txnType = 'RECEIPT';
+                        debitLedgerId = paidFromLedgerId ? parseInt(paidFromLedgerId) : null;
+
+                        if (customerId) {
+                            const customer = await tx.customer.findUnique({ where: { id: parseInt(customerId) } });
+                            if (customer) creditLedgerId = customer.ledgerId;
+                        } else if (vendorId) {
+                            const vendor = await tx.vendor.findUnique({ where: { id: parseInt(vendorId) } });
+                            if (vendor) creditLedgerId = vendor.ledgerId;
+                        } else if (paidToLedgerId) {
+                            creditLedgerId = parseInt(paidToLedgerId);
+                        }
+                    } else if (v.voucherType === 'CONTRA') {
+                        txnType = 'CONTRA';
+                        creditLedgerId = paidFromLedgerId ? parseInt(paidFromLedgerId) : null;
+                        debitLedgerId = paidToLedgerId ? parseInt(paidToLedgerId) : null;
+                    }
+
+                    if (debitLedgerId && creditLedgerId) {
+                        await tx.ledger.update({
+                            where: { id: parseInt(debitLedgerId) },
+                            data: { currentBalance: { increment: parseFloat(totalAmount) } }
+                        });
+                        await tx.ledger.update({
+                            where: { id: parseInt(creditLedgerId) },
+                            data: { currentBalance: { decrement: parseFloat(totalAmount) } }
+                        });
+
+                        await tx.transaction.create({
+                            data: {
+                                date: date ? new Date(date) : new Date(),
+                                amount: parseFloat(totalAmount),
+                                debitLedgerId: parseInt(debitLedgerId),
+                                creditLedgerId: parseInt(creditLedgerId),
+                                voucherType: txnType,
+                                voucherNumber: voucherNumber,
+                                narration: notes || `${voucherType} Voucher ${voucherNumber}`,
+                                companyId: parseInt(companyId)
+                            }
+                        });
+                    }
+                }
+
+                return v;
+            });
+
+            res.status(200).json({ success: true, data: updatedVoucher });
+        }
     } catch (error) {
         console.error('Update Voucher Error:', error);
         res.status(500).json({ success: false, message: error.message });

@@ -1513,7 +1513,8 @@ const getJournalReport = async (req, res) => {
         const journals = await prisma.journalentry.findMany({
             where: {
                 companyId: parseInt(companyId),
-                date: { gte: startDate, lte: endDate }
+                date: { gte: startDate, lte: endDate },
+                source: 'manual'
             },
             include: {
                 transaction: {

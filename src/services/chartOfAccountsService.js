@@ -570,6 +570,7 @@ const createLedger = async (data) => {
                 isEnabled: data.isEnabled !== undefined ? data.isEnabled : true,
                 description: data.description,
                 parentLedgerId: data.parentLedgerId ? parseInt(data.parentLedgerId) : null,
+                date: data.date ? new Date(data.date) : new Date(),
                 updatedAt: new Date()
             },
             include: { accountgroup: true }
@@ -603,7 +604,7 @@ const createLedger = async (data) => {
 
                     await prisma.transaction.create({
                         data: {
-                            date: new Date(),
+                            date: data.date ? new Date(data.date) : new Date(),
                             amount: Math.abs(openingBal),
                             debitLedgerId: isDrNormal ? ledger.id : obeLedger.id,
                             creditLedgerId: isDrNormal ? obeLedger.id : ledger.id,
@@ -999,6 +1000,7 @@ const updateLedger = async (id, companyId, data) => {
                 isEnabled: data.isEnabled,
                 description: data.description,
                 parentLedgerId: data.parentLedgerId ? parseInt(data.parentLedgerId) : null,
+                date: data.date ? new Date(data.date) : undefined,
                 updatedAt: new Date()
             }
         });
