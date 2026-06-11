@@ -136,6 +136,7 @@ const createVoucher = async (req, res) => {
                     notes: notes || '',
                     totalAmount: totalDrAmount,
                     subtotal: totalDrAmount,
+                    paidFromAccount: req.body.paidFromAccount || null,
                     logo,
                     signature,
                     voucheritem: {
@@ -194,7 +195,8 @@ const createVoucher = async (req, res) => {
             include: {
                 voucheritem: {
                     include: {
-                        product: true
+                        product: true,
+                        ledger: true
                     }
                 },
                 vendor: true,
@@ -289,12 +291,16 @@ const createVoucher = async (req, res) => {
 const getVouchers = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.query.companyId;
-        const { voucherType, startDate, endDate } = req.query;
+        const { voucherType, startDate, endDate, paidFromAccount } = req.query;
 
         const where = { companyId: parseInt(companyId) };
 
         if (voucherType) {
             where.voucherType = voucherType.toUpperCase();
+        }
+
+        if (paidFromAccount) {
+            where.paidFromAccount = paidFromAccount;
         }
 
         if (startDate && endDate) {
@@ -309,7 +315,8 @@ const getVouchers = async (req, res) => {
             include: {
                 voucheritem: {
                     include: {
-                        product: true
+                        product: true,
+                        ledger: true
                     }
                 },
                 vendor: true,
@@ -341,7 +348,8 @@ const getVoucherById = async (req, res) => {
             include: {
                 voucheritem: {
                     include: {
-                        product: true
+                        product: true,
+                        ledger: true
                     }
                 },
                 vendor: true,
@@ -412,14 +420,23 @@ const updateVoucher = async (req, res) => {
                 });
 
                 for (const t of txs) {
-                    // Reverse balances: debit ledger gets decremented, credit ledger gets incremented
+                    const dLedger = await tx.ledger.findUnique({ where: { id: t.debitLedgerId }, include: { accountgroup: true } });
+                    const cLedger = await tx.ledger.findUnique({ where: { id: t.creditLedgerId }, include: { accountgroup: true } });
+
+                    const isDrNormal = (type) => ['ASSETS', 'EXPENSES'].includes(type);
+
+                    // Reverse Debit Ledger: opposite of debiting (was increment for DrNormal, decrement for CrNormal)
+                    let drRevert = isDrNormal(dLedger.accountgroup.type) ? -t.amount : t.amount;
                     await tx.ledger.update({
                         where: { id: t.debitLedgerId },
-                        data: { currentBalance: { decrement: t.amount } }
+                        data: { currentBalance: { increment: drRevert } }
                     });
+
+                    // Reverse Credit Ledger: opposite of crediting (was decrement for DrNormal, increment for CrNormal)
+                    let crRevert = isDrNormal(cLedger.accountgroup.type) ? t.amount : -t.amount;
                     await tx.ledger.update({
                         where: { id: t.creditLedgerId },
-                        data: { currentBalance: { increment: t.amount } }
+                        data: { currentBalance: { increment: crRevert } }
                     });
                 }
 
@@ -526,6 +543,7 @@ const updateVoucher = async (req, res) => {
                         notes: notes || '',
                         totalAmount: totalDr,
                         subtotal: totalDr,
+                        paidFromAccount: req.body.paidFromAccount || null,
                         logo,
                         signature,
                         voucheritem: {
@@ -541,7 +559,8 @@ const updateVoucher = async (req, res) => {
                 include: {
                     voucheritem: {
                         include: {
-                            product: true
+                            product: true,
+                            ledger: true
                         }
                     },
                     vendor: true,
@@ -598,13 +617,23 @@ const updateVoucher = async (req, res) => {
                 });
 
                 for (const t of txs) {
+                    const dLedger = await tx.ledger.findUnique({ where: { id: t.debitLedgerId }, include: { accountgroup: true } });
+                    const cLedger = await tx.ledger.findUnique({ where: { id: t.creditLedgerId }, include: { accountgroup: true } });
+
+                    const isDrNormal = (type) => ['ASSETS', 'EXPENSES'].includes(type);
+
+                    // Reverse Debit Ledger: opposite of debiting
+                    let drRevert = isDrNormal(dLedger.accountgroup.type) ? -t.amount : t.amount;
                     await tx.ledger.update({
                         where: { id: t.debitLedgerId },
-                        data: { currentBalance: { decrement: t.amount } }
+                        data: { currentBalance: { increment: drRevert } }
                     });
+
+                    // Reverse Credit Ledger: opposite of crediting
+                    let crRevert = isDrNormal(cLedger.accountgroup.type) ? t.amount : -t.amount;
                     await tx.ledger.update({
                         where: { id: t.creditLedgerId },
-                        data: { currentBalance: { increment: t.amount } }
+                        data: { currentBalance: { increment: crRevert } }
                     });
                 }
 
@@ -647,7 +676,8 @@ const updateVoucher = async (req, res) => {
                     include: {
                         voucheritem: {
                             include: {
-                                product: true
+                                product: true,
+                                ledger: true
                             }
                         },
                         vendor: true,
@@ -758,16 +788,23 @@ const deleteVoucher = async (req, res) => {
             });
 
             for (const t of txs) {
-                // Reverse balances based on the same logic as creation
-                // Debit side (Decrement because it was Incremented)
+                const dLedger = await tx.ledger.findUnique({ where: { id: t.debitLedgerId }, include: { accountgroup: true } });
+                const cLedger = await tx.ledger.findUnique({ where: { id: t.creditLedgerId }, include: { accountgroup: true } });
+
+                const isDrNormal = (type) => ['ASSETS', 'EXPENSES'].includes(type);
+
+                // Reverse Debit Ledger: opposite of debiting
+                let drRevert = isDrNormal(dLedger.accountgroup.type) ? -t.amount : t.amount;
                 await tx.ledger.update({
                     where: { id: t.debitLedgerId },
-                    data: { currentBalance: { decrement: t.amount } }
+                    data: { currentBalance: { increment: drRevert } }
                 });
-                // Credit side (Increment because it was Decremented)
+
+                // Reverse Credit Ledger: opposite of crediting
+                let crRevert = isDrNormal(cLedger.accountgroup.type) ? t.amount : -t.amount;
                 await tx.ledger.update({
                     where: { id: t.creditLedgerId },
-                    data: { currentBalance: { increment: t.amount } }
+                    data: { currentBalance: { increment: crRevert } }
                 });
             }
 

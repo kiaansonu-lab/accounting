@@ -7,6 +7,7 @@ router.post('/', authenticateToken, posController.createPOSInvoice);
 router.get('/', authenticateToken, posController.getPOSInvoices);
 router.get('/:id', authenticateToken, posController.getPOSInvoiceById);
 router.get('/public/:id', posController.getPublicPOSInvoiceById);
+router.put('/:id', authenticateToken, posController.updatePOSInvoice);
 router.delete('/:id', authenticateToken, posController.deletePOSInvoice);
 
 module.exports = router;
