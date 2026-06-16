@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const createExpense = async (req, res) => {
     try {
         const companyId = req.user?.companyId || req.body.companyId;
-        const { date, paidFromAccountId, items, manualReceiptNo, narration, paidToVendorId, paidToAccountId, signature } = req.body;
+        const { date, paidFromAccountId, items, manualReceiptNo, narration, paidToVendorId, paidToAccountId, signature, customFields } = req.body;
         
         // Fetch company logo
         const company = await prisma.company.findUnique({
@@ -48,7 +48,8 @@ const createExpense = async (req, res) => {
                     narration: combinedNarration,
                     companyId: parseInt(companyId),
                     signature: signature,
-                    logo: companyLogo
+                    logo: companyLogo,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null
                 }
             });
 
@@ -181,7 +182,8 @@ const getExpenses = async (req, res) => {
                 totalAmount: txs.reduce((sum, t) => sum + t.amount, 0),
                 mainNarration: mainNarration,
                 signature: firstTx.signature,
-                logo: firstTx.logo
+                logo: firstTx.logo,
+                customFields: firstTx.customFields
             };
         });
 
@@ -254,7 +256,7 @@ const updateExpense = async (req, res) => {
     try {
         let { voucherNumber } = req.params;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
-        const { date, paidFromAccountId, items, manualReceiptNo, mainNarration, signature } = req.body;
+        const { date, paidFromAccountId, items, manualReceiptNo, mainNarration, signature, customFields } = req.body;
 
         // Fetch company logo
         const company = await prisma.company.findUnique({
@@ -320,7 +322,8 @@ const updateExpense = async (req, res) => {
                     narration: combinedNarration,
                     companyId: parseInt(companyId),
                     signature: signature,
-                    logo: companyLogo
+                    logo: companyLogo,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null
                 }
             });
 

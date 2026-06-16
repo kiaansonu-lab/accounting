@@ -657,6 +657,75 @@ const recalculateBalance = async (req, res) => {
     }
 };
 
+// Recalculate All Customers Ledger Balances
+const recalculateAllBalances = async (req, res) => {
+    try {
+        const companyId = req.user.companyId;
+
+        // Fetch all customers for this company, including their ledgers
+        const customers = await prisma.customer.findMany({
+            where: { companyId: companyId },
+            include: { ledger: true }
+        });
+
+        const results = [];
+
+        await prisma.$transaction(async (tx) => {
+            for (const customer of customers) {
+                if (!customer.ledgerId) continue;
+
+                // Query all transactions involving the customer's ledger
+                const transactions = await tx.transaction.findMany({
+                    where: {
+                        companyId: companyId,
+                        OR: [
+                            { debitLedgerId: customer.ledgerId },
+                            { creditLedgerId: customer.ledgerId }
+                        ]
+                    }
+                });
+
+                let newBalance = customer.ledger.openingBalance || 0;
+                for (const txn of transactions) {
+                    if (txn.debitLedgerId === customer.ledgerId) {
+                        newBalance += txn.amount;
+                    } else {
+                        newBalance -= txn.amount;
+                    }
+                }
+
+                // Update ledger currentBalance
+                await tx.ledger.update({
+                    where: { id: customer.ledgerId },
+                    data: { currentBalance: newBalance }
+                });
+
+                // Update customer accountBalance
+                await tx.customer.update({
+                    where: { id: customer.id },
+                    data: { accountBalance: newBalance }
+                });
+
+                results.push({
+                    customerId: customer.id,
+                    customerName: customer.name,
+                    oldBalance: customer.accountBalance,
+                    newBalance: newBalance
+                });
+            }
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'All customer balances recalculated successfully',
+            data: results
+        });
+    } catch (error) {
+        console.error('Recalculate All Balances Error:', error);
+        res.status(500).json({ success: false, message: error.message || 'Failed to recalculate balances' });
+    }
+};
+
 module.exports = {
     createCustomer,
     getAllCustomers,
@@ -664,5 +733,6 @@ module.exports = {
     updateCustomer,
     deleteCustomer,
     getCustomerStatement,
-    recalculateBalance
+    recalculateBalance,
+    recalculateAllBalances
 };

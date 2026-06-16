@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./src/routes/authRoutes');
@@ -46,7 +47,7 @@ const uploadRoutes = require('./src/routes/uploadRoutes');
 
 const prisma = require('./src/config/prisma');
 
-// Force Restart Triggered - 3
+    // Force Restart Triggered - 4
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -144,6 +145,7 @@ app.use('/api/upload', uploadRoutes);
 app.get('/', (req, res) => {
     res.send('Accounting Software Backend is running');
 });
+
 
 
 // Error Handling Middleware

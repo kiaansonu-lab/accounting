@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create GRN (Linked to PO)
 const createGRN = async (req, res) => {
     try {
-        const { grnNumber, date, vendorId, purchaseOrderId, items, notes } = req.body;
+        const { grnNumber, date, vendorId, purchaseOrderId, items, notes, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!grnNumber || !vendorId || !items || items.length === 0) {
@@ -28,6 +29,7 @@ const createGRN = async (req, res) => {
                     purchaseOrderId: purchaseOrderId ? parseInt(purchaseOrderId) : null,
                     companyId: parseInt(companyId),
                     notes,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     goodsreceiptnoteitem: {
                         create: grnItems
                     }
@@ -76,6 +78,7 @@ const createGRN = async (req, res) => {
             return grn;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'goodsreceiptnote', grnNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create GRN Error:', error);
@@ -177,12 +180,15 @@ const deleteGRN = async (req, res) => {
 const updateGRN = async (req, res) => {
     try {
         const { id } = req.params;
-        const { notes } = req.body;
+        const { notes, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const updated = await prisma.goodsreceiptnote.update({
             where: { id: parseInt(id), companyId: parseInt(companyId) },
-            data: { notes }
+            data: { 
+                notes,
+                customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined
+            }
         });
 
         res.status(200).json({ success: true, data: updated });

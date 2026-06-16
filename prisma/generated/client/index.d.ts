@@ -13121,6 +13121,12 @@ export namespace Prisma {
     accountNumber: string | null
     ifsc: string | null
     terms: string | null
+    termsInvoice: string | null
+    termsReceipt: string | null
+    termsPurchase: string | null
+    termsSalesOrder: string | null
+    termsQuotation: string | null
+    termsCreditNote: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13135,6 +13141,7 @@ export namespace Prisma {
     paymentColor: string | null
     paymentLabels: string | null
     paymentTableHeaders: string | null
+    customFieldsConfig: string | null
   }
 
   export type CompanyMaxAggregateOutputType = {
@@ -13164,6 +13171,12 @@ export namespace Prisma {
     accountNumber: string | null
     ifsc: string | null
     terms: string | null
+    termsInvoice: string | null
+    termsReceipt: string | null
+    termsPurchase: string | null
+    termsSalesOrder: string | null
+    termsQuotation: string | null
+    termsCreditNote: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13178,6 +13191,7 @@ export namespace Prisma {
     paymentColor: string | null
     paymentLabels: string | null
     paymentTableHeaders: string | null
+    customFieldsConfig: string | null
   }
 
   export type CompanyCountAggregateOutputType = {
@@ -13207,6 +13221,12 @@ export namespace Prisma {
     accountNumber: number
     ifsc: number
     terms: number
+    termsInvoice: number
+    termsReceipt: number
+    termsPurchase: number
+    termsSalesOrder: number
+    termsQuotation: number
+    termsCreditNote: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -13221,6 +13241,7 @@ export namespace Prisma {
     paymentColor: number
     paymentLabels: number
     paymentTableHeaders: number
+    customFieldsConfig: number
     _all: number
   }
 
@@ -13262,6 +13283,12 @@ export namespace Prisma {
     accountNumber?: true
     ifsc?: true
     terms?: true
+    termsInvoice?: true
+    termsReceipt?: true
+    termsPurchase?: true
+    termsSalesOrder?: true
+    termsQuotation?: true
+    termsCreditNote?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -13276,6 +13303,7 @@ export namespace Prisma {
     paymentColor?: true
     paymentLabels?: true
     paymentTableHeaders?: true
+    customFieldsConfig?: true
   }
 
   export type CompanyMaxAggregateInputType = {
@@ -13305,6 +13333,12 @@ export namespace Prisma {
     accountNumber?: true
     ifsc?: true
     terms?: true
+    termsInvoice?: true
+    termsReceipt?: true
+    termsPurchase?: true
+    termsSalesOrder?: true
+    termsQuotation?: true
+    termsCreditNote?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -13319,6 +13353,7 @@ export namespace Prisma {
     paymentColor?: true
     paymentLabels?: true
     paymentTableHeaders?: true
+    customFieldsConfig?: true
   }
 
   export type CompanyCountAggregateInputType = {
@@ -13348,6 +13383,12 @@ export namespace Prisma {
     accountNumber?: true
     ifsc?: true
     terms?: true
+    termsInvoice?: true
+    termsReceipt?: true
+    termsPurchase?: true
+    termsSalesOrder?: true
+    termsQuotation?: true
+    termsCreditNote?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -13362,6 +13403,7 @@ export namespace Prisma {
     paymentColor?: true
     paymentLabels?: true
     paymentTableHeaders?: true
+    customFieldsConfig?: true
     _all?: true
   }
 
@@ -13478,6 +13520,12 @@ export namespace Prisma {
     accountNumber: string | null
     ifsc: string | null
     terms: string | null
+    termsInvoice: string | null
+    termsReceipt: string | null
+    termsPurchase: string | null
+    termsSalesOrder: string | null
+    termsQuotation: string | null
+    termsCreditNote: string | null
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -13492,6 +13540,7 @@ export namespace Prisma {
     paymentColor: string | null
     paymentLabels: string | null
     paymentTableHeaders: string | null
+    customFieldsConfig: string | null
     _count: CompanyCountAggregateOutputType | null
     _avg: CompanyAvgAggregateOutputType | null
     _sum: CompanySumAggregateOutputType | null
@@ -13540,6 +13589,12 @@ export namespace Prisma {
     accountNumber?: boolean
     ifsc?: boolean
     terms?: boolean
+    termsInvoice?: boolean
+    termsReceipt?: boolean
+    termsPurchase?: boolean
+    termsSalesOrder?: boolean
+    termsQuotation?: boolean
+    termsCreditNote?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -13554,6 +13609,7 @@ export namespace Prisma {
     paymentColor?: boolean
     paymentLabels?: boolean
     paymentTableHeaders?: boolean
+    customFieldsConfig?: boolean
     accountgroup?: boolean | company$accountgroupArgs<ExtArgs>
     accountsubgroup?: boolean | company$accountsubgroupArgs<ExtArgs>
     bankaccount?: boolean | company$bankaccountArgs<ExtArgs>
@@ -13622,6 +13678,12 @@ export namespace Prisma {
     accountNumber?: boolean
     ifsc?: boolean
     terms?: boolean
+    termsInvoice?: boolean
+    termsReceipt?: boolean
+    termsPurchase?: boolean
+    termsSalesOrder?: boolean
+    termsQuotation?: boolean
+    termsCreditNote?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -13636,6 +13698,7 @@ export namespace Prisma {
     paymentColor?: boolean
     paymentLabels?: boolean
     paymentTableHeaders?: boolean
+    customFieldsConfig?: boolean
   }
 
   export type companyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13747,6 +13810,12 @@ export namespace Prisma {
       accountNumber: string | null
       ifsc: string | null
       terms: string | null
+      termsInvoice: string | null
+      termsReceipt: string | null
+      termsPurchase: string | null
+      termsSalesOrder: string | null
+      termsQuotation: string | null
+      termsCreditNote: string | null
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -13761,6 +13830,7 @@ export namespace Prisma {
       paymentColor: string | null
       paymentLabels: string | null
       paymentTableHeaders: string | null
+      customFieldsConfig: string | null
     }, ExtArgs["result"]["company"]>
     composites: {}
   }
@@ -14193,6 +14263,12 @@ export namespace Prisma {
     readonly accountNumber: FieldRef<"company", 'String'>
     readonly ifsc: FieldRef<"company", 'String'>
     readonly terms: FieldRef<"company", 'String'>
+    readonly termsInvoice: FieldRef<"company", 'String'>
+    readonly termsReceipt: FieldRef<"company", 'String'>
+    readonly termsPurchase: FieldRef<"company", 'String'>
+    readonly termsSalesOrder: FieldRef<"company", 'String'>
+    readonly termsQuotation: FieldRef<"company", 'String'>
+    readonly termsCreditNote: FieldRef<"company", 'String'>
     readonly notes: FieldRef<"company", 'String'>
     readonly createdAt: FieldRef<"company", 'DateTime'>
     readonly updatedAt: FieldRef<"company", 'DateTime'>
@@ -14207,6 +14283,7 @@ export namespace Prisma {
     readonly paymentColor: FieldRef<"company", 'String'>
     readonly paymentLabels: FieldRef<"company", 'String'>
     readonly paymentTableHeaders: FieldRef<"company", 'String'>
+    readonly customFieldsConfig: FieldRef<"company", 'String'>
   }
     
 
@@ -17720,6 +17797,7 @@ export namespace Prisma {
     carrier: string | null
     transportNote: string | null
     remarks: string | null
+    customFields: string | null
   }
 
   export type DeliverychallanMaxAggregateOutputType = {
@@ -17744,6 +17822,7 @@ export namespace Prisma {
     carrier: string | null
     transportNote: string | null
     remarks: string | null
+    customFields: string | null
   }
 
   export type DeliverychallanCountAggregateOutputType = {
@@ -17768,6 +17847,7 @@ export namespace Prisma {
     carrier: number
     transportNote: number
     remarks: number
+    customFields: number
     _all: number
   }
 
@@ -17808,6 +17888,7 @@ export namespace Prisma {
     carrier?: true
     transportNote?: true
     remarks?: true
+    customFields?: true
   }
 
   export type DeliverychallanMaxAggregateInputType = {
@@ -17832,6 +17913,7 @@ export namespace Prisma {
     carrier?: true
     transportNote?: true
     remarks?: true
+    customFields?: true
   }
 
   export type DeliverychallanCountAggregateInputType = {
@@ -17856,6 +17938,7 @@ export namespace Prisma {
     carrier?: true
     transportNote?: true
     remarks?: true
+    customFields?: true
     _all?: true
   }
 
@@ -17967,6 +18050,7 @@ export namespace Prisma {
     carrier: string | null
     transportNote: string | null
     remarks: string | null
+    customFields: string | null
     _count: DeliverychallanCountAggregateOutputType | null
     _avg: DeliverychallanAvgAggregateOutputType | null
     _sum: DeliverychallanSumAggregateOutputType | null
@@ -18010,6 +18094,7 @@ export namespace Prisma {
     carrier?: boolean
     transportNote?: boolean
     remarks?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
     salesorder?: boolean | deliverychallan$salesorderArgs<ExtArgs>
@@ -18041,6 +18126,7 @@ export namespace Prisma {
     carrier?: boolean
     transportNote?: boolean
     remarks?: boolean
+    customFields?: boolean
   }
 
   export type deliverychallanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18083,6 +18169,7 @@ export namespace Prisma {
       carrier: string | null
       transportNote: string | null
       remarks: string | null
+      customFields: string | null
     }, ExtArgs["result"]["deliverychallan"]>
     composites: {}
   }
@@ -18478,6 +18565,7 @@ export namespace Prisma {
     readonly carrier: FieldRef<"deliverychallan", 'String'>
     readonly transportNote: FieldRef<"deliverychallan", 'String'>
     readonly remarks: FieldRef<"deliverychallan", 'String'>
+    readonly customFields: FieldRef<"deliverychallan", 'String'>
   }
     
 
@@ -19847,6 +19935,7 @@ export namespace Prisma {
     amount: number | null
     paymentMode: $Enums.expenseentry_paymentMode | null
     description: string | null
+    customFields: string | null
     companyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19859,6 +19948,7 @@ export namespace Prisma {
     amount: number | null
     paymentMode: $Enums.expenseentry_paymentMode | null
     description: string | null
+    customFields: string | null
     companyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19871,6 +19961,7 @@ export namespace Prisma {
     amount: number
     paymentMode: number
     description: number
+    customFields: number
     companyId: number
     createdAt: number
     updatedAt: number
@@ -19897,6 +19988,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -19909,6 +20001,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -19921,6 +20014,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -20020,6 +20114,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description: string | null
+    customFields: string | null
     companyId: number
     createdAt: Date
     updatedAt: Date
@@ -20051,6 +20146,7 @@ export namespace Prisma {
     amount?: boolean
     paymentMode?: boolean
     description?: boolean
+    customFields?: boolean
     companyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -20065,6 +20161,7 @@ export namespace Prisma {
     amount?: boolean
     paymentMode?: boolean
     description?: boolean
+    customFields?: boolean
     companyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -20086,6 +20183,7 @@ export namespace Prisma {
       amount: number
       paymentMode: $Enums.expenseentry_paymentMode
       description: string | null
+      customFields: string | null
       companyId: number
       createdAt: Date
       updatedAt: Date
@@ -20465,6 +20563,7 @@ export namespace Prisma {
     readonly amount: FieldRef<"expenseentry", 'Float'>
     readonly paymentMode: FieldRef<"expenseentry", 'expenseentry_paymentMode'>
     readonly description: FieldRef<"expenseentry", 'String'>
+    readonly customFields: FieldRef<"expenseentry", 'String'>
     readonly companyId: FieldRef<"expenseentry", 'Int'>
     readonly createdAt: FieldRef<"expenseentry", 'DateTime'>
     readonly updatedAt: FieldRef<"expenseentry", 'DateTime'>
@@ -20816,6 +20915,7 @@ export namespace Prisma {
     companyId: number | null
     notes: string | null
     status: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -20829,6 +20929,7 @@ export namespace Prisma {
     companyId: number | null
     notes: string | null
     status: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -20842,6 +20943,7 @@ export namespace Prisma {
     companyId: number
     notes: number
     status: number
+    customFields: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -20871,6 +20973,7 @@ export namespace Prisma {
     companyId?: true
     notes?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -20884,6 +20987,7 @@ export namespace Prisma {
     companyId?: true
     notes?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -20897,6 +21001,7 @@ export namespace Prisma {
     companyId?: true
     notes?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -20997,6 +21102,7 @@ export namespace Prisma {
     companyId: number
     notes: string | null
     status: string
+    customFields: string | null
     createdAt: Date
     updatedAt: Date
     _count: GoodsreceiptnoteCountAggregateOutputType | null
@@ -21029,6 +21135,7 @@ export namespace Prisma {
     companyId?: boolean
     notes?: boolean
     status?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -21049,6 +21156,7 @@ export namespace Prisma {
     companyId?: boolean
     notes?: boolean
     status?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -21080,6 +21188,7 @@ export namespace Prisma {
       companyId: number
       notes: string | null
       status: string
+      customFields: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["goodsreceiptnote"]>
@@ -21464,6 +21573,7 @@ export namespace Prisma {
     readonly companyId: FieldRef<"goodsreceiptnote", 'Int'>
     readonly notes: FieldRef<"goodsreceiptnote", 'String'>
     readonly status: FieldRef<"goodsreceiptnote", 'String'>
+    readonly customFields: FieldRef<"goodsreceiptnote", 'String'>
     readonly createdAt: FieldRef<"goodsreceiptnote", 'DateTime'>
     readonly updatedAt: FieldRef<"goodsreceiptnote", 'DateTime'>
   }
@@ -22835,6 +22945,7 @@ export namespace Prisma {
     amount: number | null
     paymentMode: $Enums.incomeentry_paymentMode | null
     description: string | null
+    customFields: string | null
     companyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -22847,6 +22958,7 @@ export namespace Prisma {
     amount: number | null
     paymentMode: $Enums.incomeentry_paymentMode | null
     description: string | null
+    customFields: string | null
     companyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -22859,6 +22971,7 @@ export namespace Prisma {
     amount: number
     paymentMode: number
     description: number
+    customFields: number
     companyId: number
     createdAt: number
     updatedAt: number
@@ -22885,6 +22998,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -22897,6 +23011,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -22909,6 +23024,7 @@ export namespace Prisma {
     amount?: true
     paymentMode?: true
     description?: true
+    customFields?: true
     companyId?: true
     createdAt?: true
     updatedAt?: true
@@ -23008,6 +23124,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description: string | null
+    customFields: string | null
     companyId: number
     createdAt: Date
     updatedAt: Date
@@ -23039,6 +23156,7 @@ export namespace Prisma {
     amount?: boolean
     paymentMode?: boolean
     description?: boolean
+    customFields?: boolean
     companyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -23053,6 +23171,7 @@ export namespace Prisma {
     amount?: boolean
     paymentMode?: boolean
     description?: boolean
+    customFields?: boolean
     companyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -23074,6 +23193,7 @@ export namespace Prisma {
       amount: number
       paymentMode: $Enums.incomeentry_paymentMode
       description: string | null
+      customFields: string | null
       companyId: number
       createdAt: Date
       updatedAt: Date
@@ -23453,6 +23573,7 @@ export namespace Prisma {
     readonly amount: FieldRef<"incomeentry", 'Float'>
     readonly paymentMode: FieldRef<"incomeentry", 'incomeentry_paymentMode'>
     readonly description: FieldRef<"incomeentry", 'String'>
+    readonly customFields: FieldRef<"incomeentry", 'String'>
     readonly companyId: FieldRef<"incomeentry", 'Int'>
     readonly createdAt: FieldRef<"incomeentry", 'DateTime'>
     readonly updatedAt: FieldRef<"incomeentry", 'DateTime'>
@@ -26910,6 +27031,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type InvoiceMaxAggregateOutputType = {
@@ -26947,6 +27069,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type InvoiceCountAggregateOutputType = {
@@ -26984,6 +27107,7 @@ export namespace Prisma {
     shippingState: number
     shippingZipCode: number
     shippingCountry: number
+    customFields: number
     _all: number
   }
 
@@ -27055,6 +27179,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type InvoiceMaxAggregateInputType = {
@@ -27092,6 +27217,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type InvoiceCountAggregateInputType = {
@@ -27129,6 +27255,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     _all?: true
   }
 
@@ -27253,6 +27380,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     _count: InvoiceCountAggregateOutputType | null
     _avg: InvoiceAvgAggregateOutputType | null
     _sum: InvoiceSumAggregateOutputType | null
@@ -27309,6 +27437,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
     deliverychallan?: boolean | invoice$deliverychallanArgs<ExtArgs>
@@ -27358,6 +27487,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
   }
 
   export type invoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -27423,6 +27553,7 @@ export namespace Prisma {
       shippingState: string | null
       shippingZipCode: string | null
       shippingCountry: string | null
+      customFields: string | null
     }, ExtArgs["result"]["invoice"]>
     composites: {}
   }
@@ -27836,6 +27967,7 @@ export namespace Prisma {
     readonly shippingState: FieldRef<"invoice", 'String'>
     readonly shippingZipCode: FieldRef<"invoice", 'String'>
     readonly shippingCountry: FieldRef<"invoice", 'String'>
+    readonly customFields: FieldRef<"invoice", 'String'>
   }
     
 
@@ -32777,6 +32909,7 @@ export namespace Prisma {
     updatedAt: Date | null
     discountAmount: number | null
     discountLedgerId: number | null
+    customFields: string | null
   }
 
   export type PaymentMaxAggregateOutputType = {
@@ -32795,6 +32928,7 @@ export namespace Prisma {
     updatedAt: Date | null
     discountAmount: number | null
     discountLedgerId: number | null
+    customFields: string | null
   }
 
   export type PaymentCountAggregateOutputType = {
@@ -32813,6 +32947,7 @@ export namespace Prisma {
     updatedAt: number
     discountAmount: number
     discountLedgerId: number
+    customFields: number
     _all: number
   }
 
@@ -32855,6 +32990,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
   }
 
   export type PaymentMaxAggregateInputType = {
@@ -32873,6 +33009,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
   }
 
   export type PaymentCountAggregateInputType = {
@@ -32891,6 +33028,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
     _all?: true
   }
 
@@ -32996,6 +33134,7 @@ export namespace Prisma {
     updatedAt: Date
     discountAmount: number
     discountLedgerId: number | null
+    customFields: string | null
     _count: PaymentCountAggregateOutputType | null
     _avg: PaymentAvgAggregateOutputType | null
     _sum: PaymentSumAggregateOutputType | null
@@ -33033,6 +33172,7 @@ export namespace Prisma {
     updatedAt?: boolean
     discountAmount?: boolean
     discountLedgerId?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     purchasebill?: boolean | payment$purchasebillArgs<ExtArgs>
     vendor?: boolean | vendorDefaultArgs<ExtArgs>
@@ -33060,6 +33200,7 @@ export namespace Prisma {
     updatedAt?: boolean
     discountAmount?: boolean
     discountLedgerId?: boolean
+    customFields?: boolean
   }
 
   export type paymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -33100,6 +33241,7 @@ export namespace Prisma {
       updatedAt: Date
       discountAmount: number
       discountLedgerId: number | null
+      customFields: string | null
     }, ExtArgs["result"]["payment"]>
     composites: {}
   }
@@ -33491,6 +33633,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"payment", 'DateTime'>
     readonly discountAmount: FieldRef<"payment", 'Float'>
     readonly discountLedgerId: FieldRef<"payment", 'Int'>
+    readonly customFields: FieldRef<"payment", 'String'>
   }
     
 
@@ -36955,6 +37098,7 @@ export namespace Prisma {
     paymentMode: string | null
     status: string | null
     notes: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -36974,6 +37118,7 @@ export namespace Prisma {
     paymentMode: string | null
     status: string | null
     notes: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -36993,6 +37138,7 @@ export namespace Prisma {
     paymentMode: number
     status: number
     notes: number
+    customFields: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -37038,6 +37184,7 @@ export namespace Prisma {
     paymentMode?: true
     status?: true
     notes?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -37057,6 +37204,7 @@ export namespace Prisma {
     paymentMode?: true
     status?: true
     notes?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -37076,6 +37224,7 @@ export namespace Prisma {
     paymentMode?: true
     status?: true
     notes?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -37182,6 +37331,7 @@ export namespace Prisma {
     paymentMode: string | null
     status: string
     notes: string | null
+    customFields: string | null
     createdAt: Date
     updatedAt: Date
     _count: PosinvoiceCountAggregateOutputType | null
@@ -37220,6 +37370,7 @@ export namespace Prisma {
     paymentMode?: boolean
     status?: boolean
     notes?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -37245,6 +37396,7 @@ export namespace Prisma {
     paymentMode?: boolean
     status?: boolean
     notes?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -37280,6 +37432,7 @@ export namespace Prisma {
       paymentMode: string | null
       status: string
       notes: string | null
+      customFields: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["posinvoice"]>
@@ -37669,6 +37822,7 @@ export namespace Prisma {
     readonly paymentMode: FieldRef<"posinvoice", 'String'>
     readonly status: FieldRef<"posinvoice", 'String'>
     readonly notes: FieldRef<"posinvoice", 'String'>
+    readonly customFields: FieldRef<"posinvoice", 'String'>
     readonly createdAt: FieldRef<"posinvoice", 'DateTime'>
     readonly updatedAt: FieldRef<"posinvoice", 'DateTime'>
   }
@@ -40888,6 +41042,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type PurchasebillMaxAggregateOutputType = {
@@ -40925,6 +41080,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type PurchasebillCountAggregateOutputType = {
@@ -40962,6 +41118,7 @@ export namespace Prisma {
     shippingState: number
     shippingZipCode: number
     shippingCountry: number
+    customFields: number
     _all: number
   }
 
@@ -41033,6 +41190,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type PurchasebillMaxAggregateInputType = {
@@ -41070,6 +41228,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type PurchasebillCountAggregateInputType = {
@@ -41107,6 +41266,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     _all?: true
   }
 
@@ -41231,6 +41391,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     _count: PurchasebillCountAggregateOutputType | null
     _avg: PurchasebillAvgAggregateOutputType | null
     _sum: PurchasebillSumAggregateOutputType | null
@@ -41287,6 +41448,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
     payment?: boolean | purchasebill$paymentArgs<ExtArgs>
     company?: boolean | companyDefaultArgs<ExtArgs>
     goodsreceiptnote?: boolean | purchasebill$goodsreceiptnoteArgs<ExtArgs>
@@ -41336,6 +41498,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
   }
 
   export type purchasebillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -41401,6 +41564,7 @@ export namespace Prisma {
       shippingState: string | null
       shippingZipCode: string | null
       shippingCountry: string | null
+      customFields: string | null
     }, ExtArgs["result"]["purchasebill"]>
     composites: {}
   }
@@ -41814,6 +41978,7 @@ export namespace Prisma {
     readonly shippingState: FieldRef<"purchasebill", 'String'>
     readonly shippingZipCode: FieldRef<"purchasebill", 'String'>
     readonly shippingCountry: FieldRef<"purchasebill", 'String'>
+    readonly customFields: FieldRef<"purchasebill", 'String'>
   }
     
 
@@ -43435,6 +43600,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -43467,6 +43633,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -43499,6 +43666,7 @@ export namespace Prisma {
     shippingState: number
     shippingZipCode: number
     shippingCountry: number
+    customFields: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -43557,6 +43725,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -43589,6 +43758,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -43621,6 +43791,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -43740,6 +43911,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     createdAt: Date
     updatedAt: Date
     _count: PurchaseorderCountAggregateOutputType | null
@@ -43791,6 +43963,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     goodsreceiptnote?: boolean | purchaseorder$goodsreceiptnoteArgs<ExtArgs>
@@ -43831,6 +44004,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -43883,6 +44057,7 @@ export namespace Prisma {
       shippingState: string | null
       shippingZipCode: string | null
       shippingCountry: string | null
+      customFields: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["purchaseorder"]>
@@ -44287,6 +44462,7 @@ export namespace Prisma {
     readonly shippingState: FieldRef<"purchaseorder", 'String'>
     readonly shippingZipCode: FieldRef<"purchaseorder", 'String'>
     readonly shippingCountry: FieldRef<"purchaseorder", 'String'>
+    readonly customFields: FieldRef<"purchaseorder", 'String'>
     readonly createdAt: FieldRef<"purchaseorder", 'DateTime'>
     readonly updatedAt: FieldRef<"purchaseorder", 'DateTime'>
   }
@@ -45791,6 +45967,7 @@ export namespace Prisma {
     attachments: string | null
     manualReference: string | null
     terms: string | null
+    customFields: string | null
   }
 
   export type PurchasequotationMaxAggregateOutputType = {
@@ -45813,6 +45990,7 @@ export namespace Prisma {
     attachments: string | null
     manualReference: string | null
     terms: string | null
+    customFields: string | null
   }
 
   export type PurchasequotationCountAggregateOutputType = {
@@ -45835,6 +46013,7 @@ export namespace Prisma {
     attachments: number
     manualReference: number
     terms: number
+    customFields: number
     _all: number
   }
 
@@ -45881,6 +46060,7 @@ export namespace Prisma {
     attachments?: true
     manualReference?: true
     terms?: true
+    customFields?: true
   }
 
   export type PurchasequotationMaxAggregateInputType = {
@@ -45903,6 +46083,7 @@ export namespace Prisma {
     attachments?: true
     manualReference?: true
     terms?: true
+    customFields?: true
   }
 
   export type PurchasequotationCountAggregateInputType = {
@@ -45925,6 +46106,7 @@ export namespace Prisma {
     attachments?: true
     manualReference?: true
     terms?: true
+    customFields?: true
     _all?: true
   }
 
@@ -46034,6 +46216,7 @@ export namespace Prisma {
     attachments: string | null
     manualReference: string | null
     terms: string | null
+    customFields: string | null
     _count: PurchasequotationCountAggregateOutputType | null
     _avg: PurchasequotationAvgAggregateOutputType | null
     _sum: PurchasequotationSumAggregateOutputType | null
@@ -46075,6 +46258,7 @@ export namespace Prisma {
     attachments?: boolean
     manualReference?: boolean
     terms?: boolean
+    customFields?: boolean
     purchaseorder?: boolean | purchasequotation$purchaseorderArgs<ExtArgs>
     company?: boolean | companyDefaultArgs<ExtArgs>
     vendor?: boolean | vendorDefaultArgs<ExtArgs>
@@ -46103,6 +46287,7 @@ export namespace Prisma {
     attachments?: boolean
     manualReference?: boolean
     terms?: boolean
+    customFields?: boolean
   }
 
   export type purchasequotationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -46141,6 +46326,7 @@ export namespace Prisma {
       attachments: string | null
       manualReference: string | null
       terms: string | null
+      customFields: string | null
     }, ExtArgs["result"]["purchasequotation"]>
     composites: {}
   }
@@ -46533,6 +46719,7 @@ export namespace Prisma {
     readonly attachments: FieldRef<"purchasequotation", 'String'>
     readonly manualReference: FieldRef<"purchasequotation", 'String'>
     readonly terms: FieldRef<"purchasequotation", 'String'>
+    readonly customFields: FieldRef<"purchasequotation", 'String'>
   }
     
 
@@ -47979,6 +48166,7 @@ export namespace Prisma {
     totalAmount: number | null
     reason: string | null
     status: $Enums.purchasereturn_status | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -47993,6 +48181,7 @@ export namespace Prisma {
     totalAmount: number | null
     reason: string | null
     status: $Enums.purchasereturn_status | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -48007,6 +48196,7 @@ export namespace Prisma {
     totalAmount: number
     reason: number
     status: number
+    customFields: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -48039,6 +48229,7 @@ export namespace Prisma {
     totalAmount?: true
     reason?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -48053,6 +48244,7 @@ export namespace Prisma {
     totalAmount?: true
     reason?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -48067,6 +48259,7 @@ export namespace Prisma {
     totalAmount?: true
     reason?: true
     status?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -48168,6 +48361,7 @@ export namespace Prisma {
     totalAmount: number
     reason: string | null
     status: $Enums.purchasereturn_status
+    customFields: string | null
     createdAt: Date
     updatedAt: Date
     _count: PurchasereturnCountAggregateOutputType | null
@@ -48201,6 +48395,7 @@ export namespace Prisma {
     totalAmount?: boolean
     reason?: boolean
     status?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -48221,6 +48416,7 @@ export namespace Prisma {
     totalAmount?: boolean
     reason?: boolean
     status?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -48251,6 +48447,7 @@ export namespace Prisma {
       totalAmount: number
       reason: string | null
       status: $Enums.purchasereturn_status
+      customFields: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["purchasereturn"]>
@@ -48635,6 +48832,7 @@ export namespace Prisma {
     readonly totalAmount: FieldRef<"purchasereturn", 'Float'>
     readonly reason: FieldRef<"purchasereturn", 'String'>
     readonly status: FieldRef<"purchasereturn", 'purchasereturn_status'>
+    readonly customFields: FieldRef<"purchasereturn", 'String'>
     readonly createdAt: FieldRef<"purchasereturn", 'DateTime'>
     readonly updatedAt: FieldRef<"purchasereturn", 'DateTime'>
   }
@@ -50024,6 +50222,7 @@ export namespace Prisma {
     updatedAt: Date | null
     discountAmount: number | null
     discountLedgerId: number | null
+    customFields: string | null
   }
 
   export type ReceiptMaxAggregateOutputType = {
@@ -50042,6 +50241,7 @@ export namespace Prisma {
     updatedAt: Date | null
     discountAmount: number | null
     discountLedgerId: number | null
+    customFields: string | null
   }
 
   export type ReceiptCountAggregateOutputType = {
@@ -50060,6 +50260,7 @@ export namespace Prisma {
     updatedAt: number
     discountAmount: number
     discountLedgerId: number
+    customFields: number
     _all: number
   }
 
@@ -50102,6 +50303,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
   }
 
   export type ReceiptMaxAggregateInputType = {
@@ -50120,6 +50322,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
   }
 
   export type ReceiptCountAggregateInputType = {
@@ -50138,6 +50341,7 @@ export namespace Prisma {
     updatedAt?: true
     discountAmount?: true
     discountLedgerId?: true
+    customFields?: true
     _all?: true
   }
 
@@ -50243,6 +50447,7 @@ export namespace Prisma {
     updatedAt: Date
     discountAmount: number
     discountLedgerId: number | null
+    customFields: string | null
     _count: ReceiptCountAggregateOutputType | null
     _avg: ReceiptAvgAggregateOutputType | null
     _sum: ReceiptSumAggregateOutputType | null
@@ -50280,6 +50485,7 @@ export namespace Prisma {
     updatedAt?: boolean
     discountAmount?: boolean
     discountLedgerId?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
     invoice?: boolean | receipt$invoiceArgs<ExtArgs>
@@ -50307,6 +50513,7 @@ export namespace Prisma {
     updatedAt?: boolean
     discountAmount?: boolean
     discountLedgerId?: boolean
+    customFields?: boolean
   }
 
   export type receiptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -50347,6 +50554,7 @@ export namespace Prisma {
       updatedAt: Date
       discountAmount: number
       discountLedgerId: number | null
+      customFields: string | null
     }, ExtArgs["result"]["receipt"]>
     composites: {}
   }
@@ -50738,6 +50946,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"receipt", 'DateTime'>
     readonly discountAmount: FieldRef<"receipt", 'Float'>
     readonly discountLedgerId: FieldRef<"receipt", 'Int'>
+    readonly customFields: FieldRef<"receipt", 'String'>
   }
     
 
@@ -51202,6 +51411,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type SalesorderMaxAggregateOutputType = {
@@ -51234,6 +51444,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
   }
 
   export type SalesorderCountAggregateOutputType = {
@@ -51266,6 +51477,7 @@ export namespace Prisma {
     shippingState: number
     shippingZipCode: number
     shippingCountry: number
+    customFields: number
     _all: number
   }
 
@@ -51324,6 +51536,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type SalesorderMaxAggregateInputType = {
@@ -51356,6 +51569,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
   }
 
   export type SalesorderCountAggregateInputType = {
@@ -51388,6 +51602,7 @@ export namespace Prisma {
     shippingState?: true
     shippingZipCode?: true
     shippingCountry?: true
+    customFields?: true
     _all?: true
   }
 
@@ -51507,6 +51722,7 @@ export namespace Prisma {
     shippingState: string | null
     shippingZipCode: string | null
     shippingCountry: string | null
+    customFields: string | null
     _count: SalesorderCountAggregateOutputType | null
     _avg: SalesorderAvgAggregateOutputType | null
     _sum: SalesorderSumAggregateOutputType | null
@@ -51558,6 +51774,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
     deliverychallan?: boolean | salesorder$deliverychallanArgs<ExtArgs>
     invoice?: boolean | salesorder$invoiceArgs<ExtArgs>
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -51598,6 +51815,7 @@ export namespace Prisma {
     shippingState?: boolean
     shippingZipCode?: boolean
     shippingCountry?: boolean
+    customFields?: boolean
   }
 
   export type salesorderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -51650,6 +51868,7 @@ export namespace Prisma {
       shippingState: string | null
       shippingZipCode: string | null
       shippingCountry: string | null
+      customFields: string | null
     }, ExtArgs["result"]["salesorder"]>
     composites: {}
   }
@@ -52054,6 +52273,7 @@ export namespace Prisma {
     readonly shippingState: FieldRef<"salesorder", 'String'>
     readonly shippingZipCode: FieldRef<"salesorder", 'String'>
     readonly shippingCountry: FieldRef<"salesorder", 'String'>
+    readonly customFields: FieldRef<"salesorder", 'String'>
   }
     
 
@@ -53597,6 +53817,7 @@ export namespace Prisma {
     shippingCity: string | null
     shippingState: string | null
     shippingZipCode: string | null
+    customFields: string | null
   }
 
   export type SalesquotationMaxAggregateOutputType = {
@@ -53626,6 +53847,7 @@ export namespace Prisma {
     shippingCity: string | null
     shippingState: string | null
     shippingZipCode: string | null
+    customFields: string | null
   }
 
   export type SalesquotationCountAggregateOutputType = {
@@ -53655,6 +53877,7 @@ export namespace Prisma {
     shippingCity: number
     shippingState: number
     shippingZipCode: number
+    customFields: number
     _all: number
   }
 
@@ -53708,6 +53931,7 @@ export namespace Prisma {
     shippingCity?: true
     shippingState?: true
     shippingZipCode?: true
+    customFields?: true
   }
 
   export type SalesquotationMaxAggregateInputType = {
@@ -53737,6 +53961,7 @@ export namespace Prisma {
     shippingCity?: true
     shippingState?: true
     shippingZipCode?: true
+    customFields?: true
   }
 
   export type SalesquotationCountAggregateInputType = {
@@ -53766,6 +53991,7 @@ export namespace Prisma {
     shippingCity?: true
     shippingState?: true
     shippingZipCode?: true
+    customFields?: true
     _all?: true
   }
 
@@ -53882,6 +54108,7 @@ export namespace Prisma {
     shippingCity: string | null
     shippingState: string | null
     shippingZipCode: string | null
+    customFields: string | null
     _count: SalesquotationCountAggregateOutputType | null
     _avg: SalesquotationAvgAggregateOutputType | null
     _sum: SalesquotationSumAggregateOutputType | null
@@ -53930,6 +54157,7 @@ export namespace Prisma {
     shippingCity?: boolean
     shippingState?: boolean
     shippingZipCode?: boolean
+    customFields?: boolean
     salesorder?: boolean | salesquotation$salesorderArgs<ExtArgs>
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
@@ -53965,6 +54193,7 @@ export namespace Prisma {
     shippingCity?: boolean
     shippingState?: boolean
     shippingZipCode?: boolean
+    customFields?: boolean
   }
 
   export type salesquotationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -54010,6 +54239,7 @@ export namespace Prisma {
       shippingCity: string | null
       shippingState: string | null
       shippingZipCode: string | null
+      customFields: string | null
     }, ExtArgs["result"]["salesquotation"]>
     composites: {}
   }
@@ -54409,6 +54639,7 @@ export namespace Prisma {
     readonly shippingCity: FieldRef<"salesquotation", 'String'>
     readonly shippingState: FieldRef<"salesquotation", 'String'>
     readonly shippingZipCode: FieldRef<"salesquotation", 'String'>
+    readonly customFields: FieldRef<"salesquotation", 'String'>
   }
     
 
@@ -55893,6 +56124,7 @@ export namespace Prisma {
     autoVoucherNo: string | null
     manualVoucherNo: string | null
     status: $Enums.salesreturn_status | null
+    customFields: string | null
   }
 
   export type SalesreturnMaxAggregateOutputType = {
@@ -55909,6 +56141,7 @@ export namespace Prisma {
     autoVoucherNo: string | null
     manualVoucherNo: string | null
     status: $Enums.salesreturn_status | null
+    customFields: string | null
   }
 
   export type SalesreturnCountAggregateOutputType = {
@@ -55925,6 +56158,7 @@ export namespace Prisma {
     autoVoucherNo: number
     manualVoucherNo: number
     status: number
+    customFields: number
     _all: number
   }
 
@@ -55959,6 +56193,7 @@ export namespace Prisma {
     autoVoucherNo?: true
     manualVoucherNo?: true
     status?: true
+    customFields?: true
   }
 
   export type SalesreturnMaxAggregateInputType = {
@@ -55975,6 +56210,7 @@ export namespace Prisma {
     autoVoucherNo?: true
     manualVoucherNo?: true
     status?: true
+    customFields?: true
   }
 
   export type SalesreturnCountAggregateInputType = {
@@ -55991,6 +56227,7 @@ export namespace Prisma {
     autoVoucherNo?: true
     manualVoucherNo?: true
     status?: true
+    customFields?: true
     _all?: true
   }
 
@@ -56094,6 +56331,7 @@ export namespace Prisma {
     autoVoucherNo: string | null
     manualVoucherNo: string | null
     status: $Enums.salesreturn_status
+    customFields: string | null
     _count: SalesreturnCountAggregateOutputType | null
     _avg: SalesreturnAvgAggregateOutputType | null
     _sum: SalesreturnSumAggregateOutputType | null
@@ -56129,6 +56367,7 @@ export namespace Prisma {
     autoVoucherNo?: boolean
     manualVoucherNo?: boolean
     status?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     customer?: boolean | customerDefaultArgs<ExtArgs>
     invoice?: boolean | salesreturn$invoiceArgs<ExtArgs>
@@ -56151,6 +56390,7 @@ export namespace Prisma {
     autoVoucherNo?: boolean
     manualVoucherNo?: boolean
     status?: boolean
+    customFields?: boolean
   }
 
   export type salesreturnInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -56183,6 +56423,7 @@ export namespace Prisma {
       autoVoucherNo: string | null
       manualVoucherNo: string | null
       status: $Enums.salesreturn_status
+      customFields: string | null
     }, ExtArgs["result"]["salesreturn"]>
     composites: {}
   }
@@ -56569,6 +56810,7 @@ export namespace Prisma {
     readonly autoVoucherNo: FieldRef<"salesreturn", 'String'>
     readonly manualVoucherNo: FieldRef<"salesreturn", 'String'>
     readonly status: FieldRef<"salesreturn", 'salesreturn_status'>
+    readonly customFields: FieldRef<"salesreturn", 'String'>
   }
     
 
@@ -62045,6 +62287,7 @@ export namespace Prisma {
     posInvoiceId: number | null
     signature: string | null
     logo: string | null
+    customFields: string | null
   }
 
   export type TransactionMaxAggregateOutputType = {
@@ -62067,6 +62310,7 @@ export namespace Prisma {
     posInvoiceId: number | null
     signature: string | null
     logo: string | null
+    customFields: string | null
   }
 
   export type TransactionCountAggregateOutputType = {
@@ -62089,6 +62333,7 @@ export namespace Prisma {
     posInvoiceId: number
     signature: number
     logo: number
+    customFields: number
     _all: number
   }
 
@@ -62141,6 +62386,7 @@ export namespace Prisma {
     posInvoiceId?: true
     signature?: true
     logo?: true
+    customFields?: true
   }
 
   export type TransactionMaxAggregateInputType = {
@@ -62163,6 +62409,7 @@ export namespace Prisma {
     posInvoiceId?: true
     signature?: true
     logo?: true
+    customFields?: true
   }
 
   export type TransactionCountAggregateInputType = {
@@ -62185,6 +62432,7 @@ export namespace Prisma {
     posInvoiceId?: true
     signature?: true
     logo?: true
+    customFields?: true
     _all?: true
   }
 
@@ -62294,6 +62542,7 @@ export namespace Prisma {
     posInvoiceId: number | null
     signature: string | null
     logo: string | null
+    customFields: string | null
     _count: TransactionCountAggregateOutputType | null
     _avg: TransactionAvgAggregateOutputType | null
     _sum: TransactionSumAggregateOutputType | null
@@ -62335,6 +62584,7 @@ export namespace Prisma {
     posInvoiceId?: boolean
     signature?: boolean
     logo?: boolean
+    customFields?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
     ledger_transaction_creditLedgerIdToledger?: boolean | ledgerDefaultArgs<ExtArgs>
     ledger_transaction_debitLedgerIdToledger?: boolean | ledgerDefaultArgs<ExtArgs>
@@ -62367,6 +62617,7 @@ export namespace Prisma {
     posInvoiceId?: boolean
     signature?: boolean
     logo?: boolean
+    customFields?: boolean
   }
 
   export type transactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -62414,6 +62665,7 @@ export namespace Prisma {
       posInvoiceId: number | null
       signature: string | null
       logo: string | null
+      customFields: string | null
     }, ExtArgs["result"]["transaction"]>
     composites: {}
   }
@@ -62811,6 +63063,7 @@ export namespace Prisma {
     readonly posInvoiceId: FieldRef<"transaction", 'Int'>
     readonly signature: FieldRef<"transaction", 'String'>
     readonly logo: FieldRef<"transaction", 'String'>
+    readonly customFields: FieldRef<"transaction", 'String'>
   }
     
 
@@ -68466,6 +68719,7 @@ export namespace Prisma {
     totalAmount: number | null
     notes: string | null
     signature: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -68488,6 +68742,7 @@ export namespace Prisma {
     totalAmount: number | null
     notes: string | null
     signature: string | null
+    customFields: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -68510,6 +68765,7 @@ export namespace Prisma {
     totalAmount: number
     notes: number
     signature: number
+    customFields: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -68556,6 +68812,7 @@ export namespace Prisma {
     totalAmount?: true
     notes?: true
     signature?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -68578,6 +68835,7 @@ export namespace Prisma {
     totalAmount?: true
     notes?: true
     signature?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -68600,6 +68858,7 @@ export namespace Prisma {
     totalAmount?: true
     notes?: true
     signature?: true
+    customFields?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -68709,6 +68968,7 @@ export namespace Prisma {
     totalAmount: number
     notes: string | null
     signature: string | null
+    customFields: string | null
     createdAt: Date
     updatedAt: Date
     _count: VoucherCountAggregateOutputType | null
@@ -68750,6 +69010,7 @@ export namespace Prisma {
     totalAmount?: boolean
     notes?: boolean
     signature?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     company?: boolean | companyDefaultArgs<ExtArgs>
@@ -68780,6 +69041,7 @@ export namespace Prisma {
     totalAmount?: boolean
     notes?: boolean
     signature?: boolean
+    customFields?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -68822,6 +69084,7 @@ export namespace Prisma {
       totalAmount: number
       notes: string | null
       signature: string | null
+      customFields: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["voucher"]>
@@ -69216,6 +69479,7 @@ export namespace Prisma {
     readonly totalAmount: FieldRef<"voucher", 'Float'>
     readonly notes: FieldRef<"voucher", 'String'>
     readonly signature: FieldRef<"voucher", 'String'>
+    readonly customFields: FieldRef<"voucher", 'String'>
     readonly createdAt: FieldRef<"voucher", 'DateTime'>
     readonly updatedAt: FieldRef<"voucher", 'DateTime'>
   }
@@ -76724,6 +76988,12 @@ export namespace Prisma {
     accountNumber: 'accountNumber',
     ifsc: 'ifsc',
     terms: 'terms',
+    termsInvoice: 'termsInvoice',
+    termsReceipt: 'termsReceipt',
+    termsPurchase: 'termsPurchase',
+    termsSalesOrder: 'termsSalesOrder',
+    termsQuotation: 'termsQuotation',
+    termsCreditNote: 'termsCreditNote',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -76737,7 +77007,8 @@ export namespace Prisma {
     paymentTemplate: 'paymentTemplate',
     paymentColor: 'paymentColor',
     paymentLabels: 'paymentLabels',
-    paymentTableHeaders: 'paymentTableHeaders'
+    paymentTableHeaders: 'paymentTableHeaders',
+    customFieldsConfig: 'customFieldsConfig'
   };
 
   export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -76821,7 +77092,8 @@ export namespace Prisma {
     vehicleNo: 'vehicleNo',
     carrier: 'carrier',
     transportNote: 'transportNote',
-    remarks: 'remarks'
+    remarks: 'remarks',
+    customFields: 'customFields'
   };
 
   export type DeliverychallanScalarFieldEnum = (typeof DeliverychallanScalarFieldEnum)[keyof typeof DeliverychallanScalarFieldEnum]
@@ -76848,6 +77120,7 @@ export namespace Prisma {
     amount: 'amount',
     paymentMode: 'paymentMode',
     description: 'description',
+    customFields: 'customFields',
     companyId: 'companyId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -76865,6 +77138,7 @@ export namespace Prisma {
     companyId: 'companyId',
     notes: 'notes',
     status: 'status',
+    customFields: 'customFields',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -76893,6 +77167,7 @@ export namespace Prisma {
     amount: 'amount',
     paymentMode: 'paymentMode',
     description: 'description',
+    customFields: 'customFields',
     companyId: 'companyId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -76985,7 +77260,8 @@ export namespace Prisma {
     shippingCity: 'shippingCity',
     shippingState: 'shippingState',
     shippingZipCode: 'shippingZipCode',
-    shippingCountry: 'shippingCountry'
+    shippingCountry: 'shippingCountry',
+    customFields: 'customFields'
   };
 
   export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -77074,7 +77350,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     discountAmount: 'discountAmount',
-    discountLedgerId: 'discountLedgerId'
+    discountLedgerId: 'discountLedgerId',
+    customFields: 'customFields'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -77150,6 +77427,7 @@ export namespace Prisma {
     paymentMode: 'paymentMode',
     status: 'status',
     notes: 'notes',
+    customFields: 'customFields',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -77240,7 +77518,8 @@ export namespace Prisma {
     shippingCity: 'shippingCity',
     shippingState: 'shippingState',
     shippingZipCode: 'shippingZipCode',
-    shippingCountry: 'shippingCountry'
+    shippingCountry: 'shippingCountry',
+    customFields: 'customFields'
   };
 
   export type PurchasebillScalarFieldEnum = (typeof PurchasebillScalarFieldEnum)[keyof typeof PurchasebillScalarFieldEnum]
@@ -77293,6 +77572,7 @@ export namespace Prisma {
     shippingState: 'shippingState',
     shippingZipCode: 'shippingZipCode',
     shippingCountry: 'shippingCountry',
+    customFields: 'customFields',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -77337,7 +77617,8 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     attachments: 'attachments',
     manualReference: 'manualReference',
-    terms: 'terms'
+    terms: 'terms',
+    customFields: 'customFields'
   };
 
   export type PurchasequotationScalarFieldEnum = (typeof PurchasequotationScalarFieldEnum)[keyof typeof PurchasequotationScalarFieldEnum]
@@ -77371,6 +77652,7 @@ export namespace Prisma {
     totalAmount: 'totalAmount',
     reason: 'reason',
     status: 'status',
+    customFields: 'customFields',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -77408,7 +77690,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     discountAmount: 'discountAmount',
-    discountLedgerId: 'discountLedgerId'
+    discountLedgerId: 'discountLedgerId',
+    customFields: 'customFields'
   };
 
   export type ReceiptScalarFieldEnum = (typeof ReceiptScalarFieldEnum)[keyof typeof ReceiptScalarFieldEnum]
@@ -77443,7 +77726,8 @@ export namespace Prisma {
     shippingCity: 'shippingCity',
     shippingState: 'shippingState',
     shippingZipCode: 'shippingZipCode',
-    shippingCountry: 'shippingCountry'
+    shippingCountry: 'shippingCountry',
+    customFields: 'customFields'
   };
 
   export type SalesorderScalarFieldEnum = (typeof SalesorderScalarFieldEnum)[keyof typeof SalesorderScalarFieldEnum]
@@ -77494,7 +77778,8 @@ export namespace Prisma {
     shippingAddress: 'shippingAddress',
     shippingCity: 'shippingCity',
     shippingState: 'shippingState',
-    shippingZipCode: 'shippingZipCode'
+    shippingZipCode: 'shippingZipCode',
+    customFields: 'customFields'
   };
 
   export type SalesquotationScalarFieldEnum = (typeof SalesquotationScalarFieldEnum)[keyof typeof SalesquotationScalarFieldEnum]
@@ -77532,7 +77817,8 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     autoVoucherNo: 'autoVoucherNo',
     manualVoucherNo: 'manualVoucherNo',
-    status: 'status'
+    status: 'status',
+    customFields: 'customFields'
   };
 
   export type SalesreturnScalarFieldEnum = (typeof SalesreturnScalarFieldEnum)[keyof typeof SalesreturnScalarFieldEnum]
@@ -77637,7 +77923,8 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     posInvoiceId: 'posInvoiceId',
     signature: 'signature',
-    logo: 'logo'
+    logo: 'logo',
+    customFields: 'customFields'
   };
 
   export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
@@ -77758,6 +78045,7 @@ export namespace Prisma {
     totalAmount: 'totalAmount',
     notes: 'notes',
     signature: 'signature',
+    customFields: 'customFields',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -78485,6 +78773,12 @@ export namespace Prisma {
     accountNumber?: StringNullableFilter<"company"> | string | null
     ifsc?: StringNullableFilter<"company"> | string | null
     terms?: StringNullableFilter<"company"> | string | null
+    termsInvoice?: StringNullableFilter<"company"> | string | null
+    termsReceipt?: StringNullableFilter<"company"> | string | null
+    termsPurchase?: StringNullableFilter<"company"> | string | null
+    termsSalesOrder?: StringNullableFilter<"company"> | string | null
+    termsQuotation?: StringNullableFilter<"company"> | string | null
+    termsCreditNote?: StringNullableFilter<"company"> | string | null
     notes?: StringNullableFilter<"company"> | string | null
     createdAt?: DateTimeFilter<"company"> | Date | string
     updatedAt?: DateTimeFilter<"company"> | Date | string
@@ -78499,6 +78793,7 @@ export namespace Prisma {
     paymentColor?: StringNullableFilter<"company"> | string | null
     paymentLabels?: StringNullableFilter<"company"> | string | null
     paymentTableHeaders?: StringNullableFilter<"company"> | string | null
+    customFieldsConfig?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -78565,6 +78860,12 @@ export namespace Prisma {
     accountNumber?: SortOrderInput | SortOrder
     ifsc?: SortOrderInput | SortOrder
     terms?: SortOrderInput | SortOrder
+    termsInvoice?: SortOrderInput | SortOrder
+    termsReceipt?: SortOrderInput | SortOrder
+    termsPurchase?: SortOrderInput | SortOrder
+    termsSalesOrder?: SortOrderInput | SortOrder
+    termsQuotation?: SortOrderInput | SortOrder
+    termsCreditNote?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -78579,6 +78880,7 @@ export namespace Prisma {
     paymentColor?: SortOrderInput | SortOrder
     paymentLabels?: SortOrderInput | SortOrder
     paymentTableHeaders?: SortOrderInput | SortOrder
+    customFieldsConfig?: SortOrderInput | SortOrder
     accountgroup?: accountgroupOrderByRelationAggregateInput
     accountsubgroup?: accountsubgroupOrderByRelationAggregateInput
     bankaccount?: bankaccountOrderByRelationAggregateInput
@@ -78648,6 +78950,12 @@ export namespace Prisma {
     accountNumber?: StringNullableFilter<"company"> | string | null
     ifsc?: StringNullableFilter<"company"> | string | null
     terms?: StringNullableFilter<"company"> | string | null
+    termsInvoice?: StringNullableFilter<"company"> | string | null
+    termsReceipt?: StringNullableFilter<"company"> | string | null
+    termsPurchase?: StringNullableFilter<"company"> | string | null
+    termsSalesOrder?: StringNullableFilter<"company"> | string | null
+    termsQuotation?: StringNullableFilter<"company"> | string | null
+    termsCreditNote?: StringNullableFilter<"company"> | string | null
     notes?: StringNullableFilter<"company"> | string | null
     createdAt?: DateTimeFilter<"company"> | Date | string
     updatedAt?: DateTimeFilter<"company"> | Date | string
@@ -78662,6 +78970,7 @@ export namespace Prisma {
     paymentColor?: StringNullableFilter<"company"> | string | null
     paymentLabels?: StringNullableFilter<"company"> | string | null
     paymentTableHeaders?: StringNullableFilter<"company"> | string | null
+    customFieldsConfig?: StringNullableFilter<"company"> | string | null
     accountgroup?: AccountgroupListRelationFilter
     accountsubgroup?: AccountsubgroupListRelationFilter
     bankaccount?: BankaccountListRelationFilter
@@ -78728,6 +79037,12 @@ export namespace Prisma {
     accountNumber?: SortOrderInput | SortOrder
     ifsc?: SortOrderInput | SortOrder
     terms?: SortOrderInput | SortOrder
+    termsInvoice?: SortOrderInput | SortOrder
+    termsReceipt?: SortOrderInput | SortOrder
+    termsPurchase?: SortOrderInput | SortOrder
+    termsSalesOrder?: SortOrderInput | SortOrder
+    termsQuotation?: SortOrderInput | SortOrder
+    termsCreditNote?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -78742,6 +79057,7 @@ export namespace Prisma {
     paymentColor?: SortOrderInput | SortOrder
     paymentLabels?: SortOrderInput | SortOrder
     paymentTableHeaders?: SortOrderInput | SortOrder
+    customFieldsConfig?: SortOrderInput | SortOrder
     _count?: companyCountOrderByAggregateInput
     _avg?: companyAvgOrderByAggregateInput
     _max?: companyMaxOrderByAggregateInput
@@ -78779,6 +79095,12 @@ export namespace Prisma {
     accountNumber?: StringNullableWithAggregatesFilter<"company"> | string | null
     ifsc?: StringNullableWithAggregatesFilter<"company"> | string | null
     terms?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsInvoice?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsReceipt?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsPurchase?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsSalesOrder?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsQuotation?: StringNullableWithAggregatesFilter<"company"> | string | null
+    termsCreditNote?: StringNullableWithAggregatesFilter<"company"> | string | null
     notes?: StringNullableWithAggregatesFilter<"company"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"company"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"company"> | Date | string
@@ -78793,6 +79115,7 @@ export namespace Prisma {
     paymentColor?: StringNullableWithAggregatesFilter<"company"> | string | null
     paymentLabels?: StringNullableWithAggregatesFilter<"company"> | string | null
     paymentTableHeaders?: StringNullableWithAggregatesFilter<"company"> | string | null
+    customFieldsConfig?: StringNullableWithAggregatesFilter<"company"> | string | null
   }
 
   export type customerWhereInput = {
@@ -79137,6 +79460,7 @@ export namespace Prisma {
     carrier?: StringNullableFilter<"deliverychallan"> | string | null
     transportNote?: StringNullableFilter<"deliverychallan"> | string | null
     remarks?: StringNullableFilter<"deliverychallan"> | string | null
+    customFields?: StringNullableFilter<"deliverychallan"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     salesorder?: XOR<SalesorderNullableRelationFilter, salesorderWhereInput> | null
@@ -79166,6 +79490,7 @@ export namespace Prisma {
     carrier?: SortOrderInput | SortOrder
     transportNote?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
     salesorder?: salesorderOrderByWithRelationInput
@@ -79199,6 +79524,7 @@ export namespace Prisma {
     carrier?: StringNullableFilter<"deliverychallan"> | string | null
     transportNote?: StringNullableFilter<"deliverychallan"> | string | null
     remarks?: StringNullableFilter<"deliverychallan"> | string | null
+    customFields?: StringNullableFilter<"deliverychallan"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     salesorder?: XOR<SalesorderNullableRelationFilter, salesorderWhereInput> | null
@@ -79228,6 +79554,7 @@ export namespace Prisma {
     carrier?: SortOrderInput | SortOrder
     transportNote?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: deliverychallanCountOrderByAggregateInput
     _avg?: deliverychallanAvgOrderByAggregateInput
     _max?: deliverychallanMaxOrderByAggregateInput
@@ -79260,6 +79587,7 @@ export namespace Prisma {
     carrier?: StringNullableWithAggregatesFilter<"deliverychallan"> | string | null
     transportNote?: StringNullableWithAggregatesFilter<"deliverychallan"> | string | null
     remarks?: StringNullableWithAggregatesFilter<"deliverychallan"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"deliverychallan"> | string | null
   }
 
   export type deliverychallanitemWhereInput = {
@@ -79350,6 +79678,7 @@ export namespace Prisma {
     amount?: FloatFilter<"expenseentry"> | number
     paymentMode?: Enumexpenseentry_paymentModeFilter<"expenseentry"> | $Enums.expenseentry_paymentMode
     description?: StringNullableFilter<"expenseentry"> | string | null
+    customFields?: StringNullableFilter<"expenseentry"> | string | null
     companyId?: IntFilter<"expenseentry"> | number
     createdAt?: DateTimeFilter<"expenseentry"> | Date | string
     updatedAt?: DateTimeFilter<"expenseentry"> | Date | string
@@ -79363,6 +79692,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -79379,6 +79709,7 @@ export namespace Prisma {
     amount?: FloatFilter<"expenseentry"> | number
     paymentMode?: Enumexpenseentry_paymentModeFilter<"expenseentry"> | $Enums.expenseentry_paymentMode
     description?: StringNullableFilter<"expenseentry"> | string | null
+    customFields?: StringNullableFilter<"expenseentry"> | string | null
     companyId?: IntFilter<"expenseentry"> | number
     createdAt?: DateTimeFilter<"expenseentry"> | Date | string
     updatedAt?: DateTimeFilter<"expenseentry"> | Date | string
@@ -79392,6 +79723,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -79412,6 +79744,7 @@ export namespace Prisma {
     amount?: FloatWithAggregatesFilter<"expenseentry"> | number
     paymentMode?: Enumexpenseentry_paymentModeWithAggregatesFilter<"expenseentry"> | $Enums.expenseentry_paymentMode
     description?: StringNullableWithAggregatesFilter<"expenseentry"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"expenseentry"> | string | null
     companyId?: IntWithAggregatesFilter<"expenseentry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"expenseentry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"expenseentry"> | Date | string
@@ -79429,6 +79762,7 @@ export namespace Prisma {
     companyId?: IntFilter<"goodsreceiptnote"> | number
     notes?: StringNullableFilter<"goodsreceiptnote"> | string | null
     status?: StringFilter<"goodsreceiptnote"> | string
+    customFields?: StringNullableFilter<"goodsreceiptnote"> | string | null
     createdAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
     updatedAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -79447,6 +79781,7 @@ export namespace Prisma {
     companyId?: SortOrder
     notes?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -79469,6 +79804,7 @@ export namespace Prisma {
     companyId?: IntFilter<"goodsreceiptnote"> | number
     notes?: StringNullableFilter<"goodsreceiptnote"> | string | null
     status?: StringFilter<"goodsreceiptnote"> | string
+    customFields?: StringNullableFilter<"goodsreceiptnote"> | string | null
     createdAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
     updatedAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -79487,6 +79823,7 @@ export namespace Prisma {
     companyId?: SortOrder
     notes?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: goodsreceiptnoteCountOrderByAggregateInput
@@ -79508,6 +79845,7 @@ export namespace Prisma {
     companyId?: IntWithAggregatesFilter<"goodsreceiptnote"> | number
     notes?: StringNullableWithAggregatesFilter<"goodsreceiptnote"> | string | null
     status?: StringWithAggregatesFilter<"goodsreceiptnote"> | string
+    customFields?: StringNullableWithAggregatesFilter<"goodsreceiptnote"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"goodsreceiptnote"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"goodsreceiptnote"> | Date | string
   }
@@ -79600,6 +79938,7 @@ export namespace Prisma {
     amount?: FloatFilter<"incomeentry"> | number
     paymentMode?: Enumincomeentry_paymentModeFilter<"incomeentry"> | $Enums.incomeentry_paymentMode
     description?: StringNullableFilter<"incomeentry"> | string | null
+    customFields?: StringNullableFilter<"incomeentry"> | string | null
     companyId?: IntFilter<"incomeentry"> | number
     createdAt?: DateTimeFilter<"incomeentry"> | Date | string
     updatedAt?: DateTimeFilter<"incomeentry"> | Date | string
@@ -79613,6 +79952,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -79629,6 +79969,7 @@ export namespace Prisma {
     amount?: FloatFilter<"incomeentry"> | number
     paymentMode?: Enumincomeentry_paymentModeFilter<"incomeentry"> | $Enums.incomeentry_paymentMode
     description?: StringNullableFilter<"incomeentry"> | string | null
+    customFields?: StringNullableFilter<"incomeentry"> | string | null
     companyId?: IntFilter<"incomeentry"> | number
     createdAt?: DateTimeFilter<"incomeentry"> | Date | string
     updatedAt?: DateTimeFilter<"incomeentry"> | Date | string
@@ -79642,6 +79983,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -79662,6 +80004,7 @@ export namespace Prisma {
     amount?: FloatWithAggregatesFilter<"incomeentry"> | number
     paymentMode?: Enumincomeentry_paymentModeWithAggregatesFilter<"incomeentry"> | $Enums.incomeentry_paymentMode
     description?: StringNullableWithAggregatesFilter<"incomeentry"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"incomeentry"> | string | null
     companyId?: IntWithAggregatesFilter<"incomeentry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"incomeentry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"incomeentry"> | Date | string
@@ -79983,6 +80326,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"invoice"> | string | null
     shippingZipCode?: StringNullableFilter<"invoice"> | string | null
     shippingCountry?: StringNullableFilter<"invoice"> | string | null
+    customFields?: StringNullableFilter<"invoice"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     deliverychallan?: XOR<DeliverychallanNullableRelationFilter, deliverychallanWhereInput> | null
@@ -80030,6 +80374,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
     deliverychallan?: deliverychallanOrderByWithRelationInput
@@ -80081,6 +80426,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"invoice"> | string | null
     shippingZipCode?: StringNullableFilter<"invoice"> | string | null
     shippingCountry?: StringNullableFilter<"invoice"> | string | null
+    customFields?: StringNullableFilter<"invoice"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     deliverychallan?: XOR<DeliverychallanNullableRelationFilter, deliverychallanWhereInput> | null
@@ -80128,6 +80474,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: invoiceCountOrderByAggregateInput
     _avg?: invoiceAvgOrderByAggregateInput
     _max?: invoiceMaxOrderByAggregateInput
@@ -80173,6 +80520,7 @@ export namespace Prisma {
     shippingState?: StringNullableWithAggregatesFilter<"invoice"> | string | null
     shippingZipCode?: StringNullableWithAggregatesFilter<"invoice"> | string | null
     shippingCountry?: StringNullableWithAggregatesFilter<"invoice"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"invoice"> | string | null
   }
 
   export type invoiceitemWhereInput = {
@@ -80607,6 +80955,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"payment"> | Date | string
     discountAmount?: FloatFilter<"payment"> | number
     discountLedgerId?: IntNullableFilter<"payment"> | number | null
+    customFields?: StringNullableFilter<"payment"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     purchasebill?: XOR<PurchasebillNullableRelationFilter, purchasebillWhereInput> | null
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
@@ -80632,6 +80981,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     purchasebill?: purchasebillOrderByWithRelationInput
     vendor?: vendorOrderByWithRelationInput
@@ -80661,6 +81011,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"payment"> | Date | string
     discountAmount?: FloatFilter<"payment"> | number
     discountLedgerId?: IntNullableFilter<"payment"> | number | null
+    customFields?: StringNullableFilter<"payment"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     purchasebill?: XOR<PurchasebillNullableRelationFilter, purchasebillWhereInput> | null
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
@@ -80686,6 +81037,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: paymentCountOrderByAggregateInput
     _avg?: paymentAvgOrderByAggregateInput
     _max?: paymentMaxOrderByAggregateInput
@@ -80712,6 +81064,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"payment"> | Date | string
     discountAmount?: FloatWithAggregatesFilter<"payment"> | number
     discountLedgerId?: IntNullableWithAggregatesFilter<"payment"> | number | null
+    customFields?: StringNullableWithAggregatesFilter<"payment"> | string | null
   }
 
   export type paymentrecordWhereInput = {
@@ -81013,6 +81366,7 @@ export namespace Prisma {
     paymentMode?: StringNullableFilter<"posinvoice"> | string | null
     status?: StringFilter<"posinvoice"> | string
     notes?: StringNullableFilter<"posinvoice"> | string | null
+    customFields?: StringNullableFilter<"posinvoice"> | string | null
     createdAt?: DateTimeFilter<"posinvoice"> | Date | string
     updatedAt?: DateTimeFilter<"posinvoice"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -81036,6 +81390,7 @@ export namespace Prisma {
     paymentMode?: SortOrderInput | SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -81063,6 +81418,7 @@ export namespace Prisma {
     paymentMode?: StringNullableFilter<"posinvoice"> | string | null
     status?: StringFilter<"posinvoice"> | string
     notes?: StringNullableFilter<"posinvoice"> | string | null
+    customFields?: StringNullableFilter<"posinvoice"> | string | null
     createdAt?: DateTimeFilter<"posinvoice"> | Date | string
     updatedAt?: DateTimeFilter<"posinvoice"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -81086,6 +81442,7 @@ export namespace Prisma {
     paymentMode?: SortOrderInput | SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: posinvoiceCountOrderByAggregateInput
@@ -81113,6 +81470,7 @@ export namespace Prisma {
     paymentMode?: StringNullableWithAggregatesFilter<"posinvoice"> | string | null
     status?: StringWithAggregatesFilter<"posinvoice"> | string
     notes?: StringNullableWithAggregatesFilter<"posinvoice"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"posinvoice"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"posinvoice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"posinvoice"> | Date | string
   }
@@ -81480,6 +81838,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchasebill"> | string | null
     shippingZipCode?: StringNullableFilter<"purchasebill"> | string | null
     shippingCountry?: StringNullableFilter<"purchasebill"> | string | null
+    customFields?: StringNullableFilter<"purchasebill"> | string | null
     payment?: PaymentListRelationFilter
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     goodsreceiptnote?: XOR<GoodsreceiptnoteNullableRelationFilter, goodsreceiptnoteWhereInput> | null
@@ -81527,6 +81886,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     payment?: paymentOrderByRelationAggregateInput
     company?: companyOrderByWithRelationInput
     goodsreceiptnote?: goodsreceiptnoteOrderByWithRelationInput
@@ -81578,6 +81938,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchasebill"> | string | null
     shippingZipCode?: StringNullableFilter<"purchasebill"> | string | null
     shippingCountry?: StringNullableFilter<"purchasebill"> | string | null
+    customFields?: StringNullableFilter<"purchasebill"> | string | null
     payment?: PaymentListRelationFilter
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     goodsreceiptnote?: XOR<GoodsreceiptnoteNullableRelationFilter, goodsreceiptnoteWhereInput> | null
@@ -81625,6 +81986,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: purchasebillCountOrderByAggregateInput
     _avg?: purchasebillAvgOrderByAggregateInput
     _max?: purchasebillMaxOrderByAggregateInput
@@ -81670,6 +82032,7 @@ export namespace Prisma {
     shippingState?: StringNullableWithAggregatesFilter<"purchasebill"> | string | null
     shippingZipCode?: StringNullableWithAggregatesFilter<"purchasebill"> | string | null
     shippingCountry?: StringNullableWithAggregatesFilter<"purchasebill"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"purchasebill"> | string | null
   }
 
   export type purchasebillitemWhereInput = {
@@ -81809,6 +82172,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchaseorder"> | string | null
     shippingZipCode?: StringNullableFilter<"purchaseorder"> | string | null
     shippingCountry?: StringNullableFilter<"purchaseorder"> | string | null
+    customFields?: StringNullableFilter<"purchaseorder"> | string | null
     createdAt?: DateTimeFilter<"purchaseorder"> | Date | string
     updatedAt?: DateTimeFilter<"purchaseorder"> | Date | string
     goodsreceiptnote?: GoodsreceiptnoteListRelationFilter
@@ -81847,6 +82211,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     goodsreceiptnote?: goodsreceiptnoteOrderByRelationAggregateInput
@@ -81889,6 +82254,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchaseorder"> | string | null
     shippingZipCode?: StringNullableFilter<"purchaseorder"> | string | null
     shippingCountry?: StringNullableFilter<"purchaseorder"> | string | null
+    customFields?: StringNullableFilter<"purchaseorder"> | string | null
     createdAt?: DateTimeFilter<"purchaseorder"> | Date | string
     updatedAt?: DateTimeFilter<"purchaseorder"> | Date | string
     goodsreceiptnote?: GoodsreceiptnoteListRelationFilter
@@ -81927,6 +82293,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: purchaseorderCountOrderByAggregateInput
@@ -81967,6 +82334,7 @@ export namespace Prisma {
     shippingState?: StringNullableWithAggregatesFilter<"purchaseorder"> | string | null
     shippingZipCode?: StringNullableWithAggregatesFilter<"purchaseorder"> | string | null
     shippingCountry?: StringNullableWithAggregatesFilter<"purchaseorder"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"purchaseorder"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"purchaseorder"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"purchaseorder"> | Date | string
   }
@@ -82092,6 +82460,7 @@ export namespace Prisma {
     attachments?: StringNullableFilter<"purchasequotation"> | string | null
     manualReference?: StringNullableFilter<"purchasequotation"> | string | null
     terms?: StringNullableFilter<"purchasequotation"> | string | null
+    customFields?: StringNullableFilter<"purchasequotation"> | string | null
     purchaseorder?: XOR<PurchaseorderNullableRelationFilter, purchaseorderWhereInput> | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
@@ -82118,6 +82487,7 @@ export namespace Prisma {
     attachments?: SortOrderInput | SortOrder
     manualReference?: SortOrderInput | SortOrder
     terms?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     purchaseorder?: purchaseorderOrderByWithRelationInput
     company?: companyOrderByWithRelationInput
     vendor?: vendorOrderByWithRelationInput
@@ -82148,6 +82518,7 @@ export namespace Prisma {
     attachments?: StringNullableFilter<"purchasequotation"> | string | null
     manualReference?: StringNullableFilter<"purchasequotation"> | string | null
     terms?: StringNullableFilter<"purchasequotation"> | string | null
+    customFields?: StringNullableFilter<"purchasequotation"> | string | null
     purchaseorder?: XOR<PurchaseorderNullableRelationFilter, purchaseorderWhereInput> | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     vendor?: XOR<VendorRelationFilter, vendorWhereInput>
@@ -82174,6 +82545,7 @@ export namespace Prisma {
     attachments?: SortOrderInput | SortOrder
     manualReference?: SortOrderInput | SortOrder
     terms?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: purchasequotationCountOrderByAggregateInput
     _avg?: purchasequotationAvgOrderByAggregateInput
     _max?: purchasequotationMaxOrderByAggregateInput
@@ -82204,6 +82576,7 @@ export namespace Prisma {
     attachments?: StringNullableWithAggregatesFilter<"purchasequotation"> | string | null
     manualReference?: StringNullableWithAggregatesFilter<"purchasequotation"> | string | null
     terms?: StringNullableWithAggregatesFilter<"purchasequotation"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"purchasequotation"> | string | null
   }
 
   export type purchasequotationitemWhereInput = {
@@ -82317,6 +82690,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"purchasereturn"> | number
     reason?: StringNullableFilter<"purchasereturn"> | string | null
     status?: Enumpurchasereturn_statusFilter<"purchasereturn"> | $Enums.purchasereturn_status
+    customFields?: StringNullableFilter<"purchasereturn"> | string | null
     createdAt?: DateTimeFilter<"purchasereturn"> | Date | string
     updatedAt?: DateTimeFilter<"purchasereturn"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -82335,6 +82709,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     reason?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -82357,6 +82732,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"purchasereturn"> | number
     reason?: StringNullableFilter<"purchasereturn"> | string | null
     status?: Enumpurchasereturn_statusFilter<"purchasereturn"> | $Enums.purchasereturn_status
+    customFields?: StringNullableFilter<"purchasereturn"> | string | null
     createdAt?: DateTimeFilter<"purchasereturn"> | Date | string
     updatedAt?: DateTimeFilter<"purchasereturn"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -82375,6 +82751,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     reason?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: purchasereturnCountOrderByAggregateInput
@@ -82397,6 +82774,7 @@ export namespace Prisma {
     totalAmount?: FloatWithAggregatesFilter<"purchasereturn"> | number
     reason?: StringNullableWithAggregatesFilter<"purchasereturn"> | string | null
     status?: Enumpurchasereturn_statusWithAggregatesFilter<"purchasereturn"> | $Enums.purchasereturn_status
+    customFields?: StringNullableWithAggregatesFilter<"purchasereturn"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"purchasereturn"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"purchasereturn"> | Date | string
   }
@@ -82503,6 +82881,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
     discountAmount?: FloatFilter<"receipt"> | number
     discountLedgerId?: IntNullableFilter<"receipt"> | number | null
+    customFields?: StringNullableFilter<"receipt"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
@@ -82528,6 +82907,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
     invoice?: invoiceOrderByWithRelationInput
@@ -82557,6 +82937,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
     discountAmount?: FloatFilter<"receipt"> | number
     discountLedgerId?: IntNullableFilter<"receipt"> | number | null
+    customFields?: StringNullableFilter<"receipt"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
@@ -82582,6 +82963,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: receiptCountOrderByAggregateInput
     _avg?: receiptAvgOrderByAggregateInput
     _max?: receiptMaxOrderByAggregateInput
@@ -82608,6 +82990,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"receipt"> | Date | string
     discountAmount?: FloatWithAggregatesFilter<"receipt"> | number
     discountLedgerId?: IntNullableWithAggregatesFilter<"receipt"> | number | null
+    customFields?: StringNullableWithAggregatesFilter<"receipt"> | string | null
   }
 
   export type salesorderWhereInput = {
@@ -82643,6 +83026,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"salesorder"> | string | null
     shippingZipCode?: StringNullableFilter<"salesorder"> | string | null
     shippingCountry?: StringNullableFilter<"salesorder"> | string | null
+    customFields?: StringNullableFilter<"salesorder"> | string | null
     deliverychallan?: DeliverychallanListRelationFilter
     invoice?: InvoiceListRelationFilter
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -82681,6 +83065,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     deliverychallan?: deliverychallanOrderByRelationAggregateInput
     invoice?: invoiceOrderByRelationAggregateInput
     company?: companyOrderByWithRelationInput
@@ -82723,6 +83108,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"salesorder"> | string | null
     shippingZipCode?: StringNullableFilter<"salesorder"> | string | null
     shippingCountry?: StringNullableFilter<"salesorder"> | string | null
+    customFields?: StringNullableFilter<"salesorder"> | string | null
     deliverychallan?: DeliverychallanListRelationFilter
     invoice?: InvoiceListRelationFilter
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -82761,6 +83147,7 @@ export namespace Prisma {
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
     shippingCountry?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: salesorderCountOrderByAggregateInput
     _avg?: salesorderAvgOrderByAggregateInput
     _max?: salesorderMaxOrderByAggregateInput
@@ -82801,6 +83188,7 @@ export namespace Prisma {
     shippingState?: StringNullableWithAggregatesFilter<"salesorder"> | string | null
     shippingZipCode?: StringNullableWithAggregatesFilter<"salesorder"> | string | null
     shippingCountry?: StringNullableWithAggregatesFilter<"salesorder"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"salesorder"> | string | null
   }
 
   export type salesorderitemWhereInput = {
@@ -82939,6 +83327,7 @@ export namespace Prisma {
     shippingCity?: StringNullableFilter<"salesquotation"> | string | null
     shippingState?: StringNullableFilter<"salesquotation"> | string | null
     shippingZipCode?: StringNullableFilter<"salesquotation"> | string | null
+    customFields?: StringNullableFilter<"salesquotation"> | string | null
     salesorder?: XOR<SalesorderNullableRelationFilter, salesorderWhereInput> | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
@@ -82972,6 +83361,7 @@ export namespace Prisma {
     shippingCity?: SortOrderInput | SortOrder
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     salesorder?: salesorderOrderByWithRelationInput
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
@@ -83009,6 +83399,7 @@ export namespace Prisma {
     shippingCity?: StringNullableFilter<"salesquotation"> | string | null
     shippingState?: StringNullableFilter<"salesquotation"> | string | null
     shippingZipCode?: StringNullableFilter<"salesquotation"> | string | null
+    customFields?: StringNullableFilter<"salesquotation"> | string | null
     salesorder?: XOR<SalesorderNullableRelationFilter, salesorderWhereInput> | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
@@ -83042,6 +83433,7 @@ export namespace Prisma {
     shippingCity?: SortOrderInput | SortOrder
     shippingState?: SortOrderInput | SortOrder
     shippingZipCode?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: salesquotationCountOrderByAggregateInput
     _avg?: salesquotationAvgOrderByAggregateInput
     _max?: salesquotationMaxOrderByAggregateInput
@@ -83079,6 +83471,7 @@ export namespace Prisma {
     shippingCity?: StringNullableWithAggregatesFilter<"salesquotation"> | string | null
     shippingState?: StringNullableWithAggregatesFilter<"salesquotation"> | string | null
     shippingZipCode?: StringNullableWithAggregatesFilter<"salesquotation"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"salesquotation"> | string | null
   }
 
   export type salesquotationitemWhereInput = {
@@ -83204,6 +83597,7 @@ export namespace Prisma {
     autoVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     manualVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     status?: Enumsalesreturn_statusFilter<"salesreturn"> | $Enums.salesreturn_status
+    customFields?: StringNullableFilter<"salesreturn"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
@@ -83224,6 +83618,7 @@ export namespace Prisma {
     autoVoucherNo?: SortOrderInput | SortOrder
     manualVoucherNo?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     customer?: customerOrderByWithRelationInput
     invoice?: invoiceOrderByWithRelationInput
@@ -83248,6 +83643,7 @@ export namespace Prisma {
     autoVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     manualVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     status?: Enumsalesreturn_statusFilter<"salesreturn"> | $Enums.salesreturn_status
+    customFields?: StringNullableFilter<"salesreturn"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     customer?: XOR<CustomerRelationFilter, customerWhereInput>
     invoice?: XOR<InvoiceNullableRelationFilter, invoiceWhereInput> | null
@@ -83268,6 +83664,7 @@ export namespace Prisma {
     autoVoucherNo?: SortOrderInput | SortOrder
     manualVoucherNo?: SortOrderInput | SortOrder
     status?: SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: salesreturnCountOrderByAggregateInput
     _avg?: salesreturnAvgOrderByAggregateInput
     _max?: salesreturnMaxOrderByAggregateInput
@@ -83292,6 +83689,7 @@ export namespace Prisma {
     autoVoucherNo?: StringNullableWithAggregatesFilter<"salesreturn"> | string | null
     manualVoucherNo?: StringNullableWithAggregatesFilter<"salesreturn"> | string | null
     status?: Enumsalesreturn_statusWithAggregatesFilter<"salesreturn"> | $Enums.salesreturn_status
+    customFields?: StringNullableWithAggregatesFilter<"salesreturn"> | string | null
   }
 
   export type salesreturnitemWhereInput = {
@@ -83763,6 +84161,7 @@ export namespace Prisma {
     posInvoiceId?: IntNullableFilter<"transaction"> | number | null
     signature?: StringNullableFilter<"transaction"> | string | null
     logo?: StringNullableFilter<"transaction"> | string | null
+    customFields?: StringNullableFilter<"transaction"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     ledger_transaction_creditLedgerIdToledger?: XOR<LedgerRelationFilter, ledgerWhereInput>
     ledger_transaction_debitLedgerIdToledger?: XOR<LedgerRelationFilter, ledgerWhereInput>
@@ -83794,6 +84193,7 @@ export namespace Prisma {
     posInvoiceId?: SortOrderInput | SortOrder
     signature?: SortOrderInput | SortOrder
     logo?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     company?: companyOrderByWithRelationInput
     ledger_transaction_creditLedgerIdToledger?: ledgerOrderByWithRelationInput
     ledger_transaction_debitLedgerIdToledger?: ledgerOrderByWithRelationInput
@@ -83828,6 +84228,7 @@ export namespace Prisma {
     posInvoiceId?: IntNullableFilter<"transaction"> | number | null
     signature?: StringNullableFilter<"transaction"> | string | null
     logo?: StringNullableFilter<"transaction"> | string | null
+    customFields?: StringNullableFilter<"transaction"> | string | null
     company?: XOR<CompanyRelationFilter, companyWhereInput>
     ledger_transaction_creditLedgerIdToledger?: XOR<LedgerRelationFilter, ledgerWhereInput>
     ledger_transaction_debitLedgerIdToledger?: XOR<LedgerRelationFilter, ledgerWhereInput>
@@ -83859,6 +84260,7 @@ export namespace Prisma {
     posInvoiceId?: SortOrderInput | SortOrder
     signature?: SortOrderInput | SortOrder
     logo?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     _count?: transactionCountOrderByAggregateInput
     _avg?: transactionAvgOrderByAggregateInput
     _max?: transactionMaxOrderByAggregateInput
@@ -83889,6 +84291,7 @@ export namespace Prisma {
     posInvoiceId?: IntNullableWithAggregatesFilter<"transaction"> | number | null
     signature?: StringNullableWithAggregatesFilter<"transaction"> | string | null
     logo?: StringNullableWithAggregatesFilter<"transaction"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"transaction"> | string | null
   }
 
   export type uomWhereInput = {
@@ -84522,6 +84925,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"voucher"> | number
     notes?: StringNullableFilter<"voucher"> | string | null
     signature?: StringNullableFilter<"voucher"> | string | null
+    customFields?: StringNullableFilter<"voucher"> | string | null
     createdAt?: DateTimeFilter<"voucher"> | Date | string
     updatedAt?: DateTimeFilter<"voucher"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -84550,6 +84954,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     notes?: SortOrderInput | SortOrder
     signature?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     company?: companyOrderByWithRelationInput
@@ -84582,6 +84987,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"voucher"> | number
     notes?: StringNullableFilter<"voucher"> | string | null
     signature?: StringNullableFilter<"voucher"> | string | null
+    customFields?: StringNullableFilter<"voucher"> | string | null
     createdAt?: DateTimeFilter<"voucher"> | Date | string
     updatedAt?: DateTimeFilter<"voucher"> | Date | string
     company?: XOR<CompanyRelationFilter, companyWhereInput>
@@ -84610,6 +85016,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     notes?: SortOrderInput | SortOrder
     signature?: SortOrderInput | SortOrder
+    customFields?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: voucherCountOrderByAggregateInput
@@ -84640,6 +85047,7 @@ export namespace Prisma {
     totalAmount?: FloatWithAggregatesFilter<"voucher"> | number
     notes?: StringNullableWithAggregatesFilter<"voucher"> | string | null
     signature?: StringNullableWithAggregatesFilter<"voucher"> | string | null
+    customFields?: StringNullableWithAggregatesFilter<"voucher"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"voucher"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"voucher"> | Date | string
   }
@@ -85628,6 +86036,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -85642,6 +86056,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -85708,6 +86123,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -85722,6 +86143,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -85785,6 +86207,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85799,6 +86227,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -85865,6 +86294,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85879,6 +86314,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -85944,6 +86380,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -85958,6 +86400,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
   }
 
   export type companyUpdateManyMutationInput = {
@@ -85985,6 +86428,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85999,6 +86448,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type companyUncheckedUpdateManyInput = {
@@ -86028,6 +86478,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -86042,6 +86498,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type customerCreateInput = {
@@ -86452,6 +86909,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutDeliverychallanInput
     customer: customerCreateNestedOneWithoutDeliverychallanInput
     salesorder?: salesorderCreateNestedOneWithoutDeliverychallanInput
@@ -86481,6 +86939,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     deliverychallanitem?: deliverychallanitemUncheckedCreateNestedManyWithoutDeliverychallanInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
@@ -86503,6 +86962,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutDeliverychallanNestedInput
     customer?: customerUpdateOneRequiredWithoutDeliverychallanNestedInput
     salesorder?: salesorderUpdateOneWithoutDeliverychallanNestedInput
@@ -86532,6 +86992,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallanitem?: deliverychallanitemUncheckedUpdateManyWithoutDeliverychallanNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
@@ -86558,6 +87019,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
   }
 
   export type deliverychallanUpdateManyMutationInput = {
@@ -86578,6 +87040,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type deliverychallanUncheckedUpdateManyInput = {
@@ -86602,6 +87065,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type deliverychallanitemCreateInput = {
@@ -86681,6 +87145,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutExpenseentryInput
@@ -86693,6 +87158,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -86704,6 +87170,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutExpenseentryNestedInput
@@ -86716,6 +87183,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -86728,6 +87196,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -86739,6 +87208,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -86750,6 +87220,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -86760,6 +87231,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -86778,6 +87250,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -86789,6 +87262,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutGoodsreceiptnoteNestedInput
@@ -86807,6 +87281,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -86822,6 +87297,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -86831,6 +87307,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -86844,6 +87321,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -86925,6 +87403,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutIncomeentryInput
@@ -86937,6 +87416,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -86948,6 +87428,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutIncomeentryNestedInput
@@ -86960,6 +87441,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -86972,6 +87454,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -86983,6 +87466,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -86994,6 +87478,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -87302,6 +87787,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -87349,6 +87835,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -87387,6 +87874,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -87434,6 +87922,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -87477,6 +87966,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type invoiceUpdateManyMutationInput = {
@@ -87509,6 +87999,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type invoiceUncheckedUpdateManyInput = {
@@ -87546,6 +88037,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type invoiceitemCreateInput = {
@@ -87968,6 +88460,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
@@ -87993,6 +88486,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -88007,6 +88501,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
@@ -88032,6 +88527,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -88052,6 +88548,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type paymentUpdateManyMutationInput = {
@@ -88064,6 +88561,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type paymentUncheckedUpdateManyInput = {
@@ -88082,6 +88580,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type paymentrecordCreateInput = {
@@ -88416,6 +88915,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPosinvoiceInput
@@ -88439,6 +88939,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posinvoiceitem?: posinvoiceitemUncheckedCreateNestedManyWithoutPosinvoiceInput
@@ -88457,6 +88958,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPosinvoiceNestedInput
@@ -88480,6 +88982,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posinvoiceitem?: posinvoiceitemUncheckedUpdateManyWithoutPosinvoiceNestedInput
@@ -88501,6 +89004,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -88517,6 +89021,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88536,6 +89041,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88928,6 +89434,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -88975,6 +89482,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -89013,6 +89521,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -89060,6 +89569,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -89103,6 +89613,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type purchasebillUpdateManyMutationInput = {
@@ -89135,6 +89646,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasebillUncheckedUpdateManyInput = {
@@ -89172,6 +89684,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasebillitemCreateInput = {
@@ -89303,6 +89816,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -89341,6 +89855,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -89372,6 +89887,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -89410,6 +89926,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -89445,6 +89962,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -89473,6 +89991,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -89505,6 +90024,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -89625,6 +90145,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasequotationInput
     company: companyCreateNestedOneWithoutPurchasequotationInput
     vendor: vendorCreateNestedOneWithoutPurchasequotationInput
@@ -89651,6 +90172,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderUncheckedCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemUncheckedCreateNestedManyWithoutPurchasequotationInput
   }
@@ -89672,6 +90194,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasequotationNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasequotationNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPurchasequotationNestedInput
@@ -89698,6 +90221,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUncheckedUpdateOneWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUncheckedUpdateManyWithoutPurchasequotationNestedInput
   }
@@ -89722,6 +90246,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
   }
 
   export type purchasequotationUpdateManyMutationInput = {
@@ -89741,6 +90266,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasequotationUncheckedUpdateManyInput = {
@@ -89763,6 +90289,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasequotationitemCreateInput = {
@@ -89870,6 +90397,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPurchasereturnInput
@@ -89888,6 +90416,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasereturnitem?: purchasereturnitemUncheckedCreateNestedManyWithoutPurchasereturnInput
@@ -89899,6 +90428,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPurchasereturnNestedInput
@@ -89917,6 +90447,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasereturnitem?: purchasereturnitemUncheckedUpdateManyWithoutPurchasereturnNestedInput
@@ -89932,6 +90463,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -89942,6 +90474,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -89956,6 +90489,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -90048,6 +90582,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
@@ -90073,6 +90608,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -90087,6 +90623,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
@@ -90112,6 +90649,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -90132,6 +90670,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type receiptUpdateManyMutationInput = {
@@ -90144,6 +90683,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type receiptUncheckedUpdateManyInput = {
@@ -90162,6 +90702,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderCreateInput = {
@@ -90190,6 +90731,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
@@ -90228,6 +90770,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
@@ -90259,6 +90802,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
@@ -90297,6 +90841,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
@@ -90332,6 +90877,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type salesorderUpdateManyMutationInput = {
@@ -90360,6 +90906,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderUncheckedUpdateManyInput = {
@@ -90392,6 +90939,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderitemCreateInput = {
@@ -90523,6 +91071,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderCreateNestedOneWithoutSalesquotationInput
     company: companyCreateNestedOneWithoutSalesquotationInput
     customer: customerCreateNestedOneWithoutSalesquotationInput
@@ -90556,6 +91105,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderUncheckedCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemUncheckedCreateNestedManyWithoutSalesquotationInput
   }
@@ -90584,6 +91134,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUpdateOneWithoutSalesquotationNestedInput
     company?: companyUpdateOneRequiredWithoutSalesquotationNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesquotationNestedInput
@@ -90617,6 +91168,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUncheckedUpdateOneWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUncheckedUpdateManyWithoutSalesquotationNestedInput
   }
@@ -90648,6 +91200,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
   }
 
   export type salesquotationUpdateManyMutationInput = {
@@ -90674,6 +91227,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesquotationUncheckedUpdateManyInput = {
@@ -90703,6 +91257,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesquotationitemCreateInput = {
@@ -90820,6 +91375,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     company: companyCreateNestedOneWithoutSalesreturnInput
     customer: customerCreateNestedOneWithoutSalesreturnInput
     invoice?: invoiceCreateNestedOneWithoutSalesreturnInput
@@ -90840,6 +91396,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     salesreturnitem?: salesreturnitemUncheckedCreateNestedManyWithoutSalesreturnInput
   }
 
@@ -90853,6 +91410,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutSalesreturnNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesreturnNestedInput
     invoice?: invoiceUpdateOneWithoutSalesreturnNestedInput
@@ -90873,6 +91431,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesreturnitem?: salesreturnitemUncheckedUpdateManyWithoutSalesreturnNestedInput
   }
 
@@ -90890,6 +91449,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
   }
 
   export type salesreturnUpdateManyMutationInput = {
@@ -90902,6 +91462,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesreturnUncheckedUpdateManyInput = {
@@ -90918,6 +91479,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesreturnitemCreateInput = {
@@ -91374,6 +91936,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -91405,6 +91968,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionUpdateInput = {
@@ -91417,6 +91981,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -91448,6 +92013,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionCreateManyInput = {
@@ -91470,6 +92036,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionUpdateManyMutationInput = {
@@ -91482,6 +92049,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyInput = {
@@ -91504,6 +92072,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type uomCreateInput = {
@@ -92244,6 +92813,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -92272,6 +92842,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -92289,6 +92860,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -92317,6 +92889,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -92340,6 +92913,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -92356,6 +92930,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -92378,6 +92953,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -93819,6 +94395,12 @@ export namespace Prisma {
     accountNumber?: SortOrder
     ifsc?: SortOrder
     terms?: SortOrder
+    termsInvoice?: SortOrder
+    termsReceipt?: SortOrder
+    termsPurchase?: SortOrder
+    termsSalesOrder?: SortOrder
+    termsQuotation?: SortOrder
+    termsCreditNote?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -93833,6 +94415,7 @@ export namespace Prisma {
     paymentColor?: SortOrder
     paymentLabels?: SortOrder
     paymentTableHeaders?: SortOrder
+    customFieldsConfig?: SortOrder
   }
 
   export type companyAvgOrderByAggregateInput = {
@@ -93867,6 +94450,12 @@ export namespace Prisma {
     accountNumber?: SortOrder
     ifsc?: SortOrder
     terms?: SortOrder
+    termsInvoice?: SortOrder
+    termsReceipt?: SortOrder
+    termsPurchase?: SortOrder
+    termsSalesOrder?: SortOrder
+    termsQuotation?: SortOrder
+    termsCreditNote?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -93881,6 +94470,7 @@ export namespace Prisma {
     paymentColor?: SortOrder
     paymentLabels?: SortOrder
     paymentTableHeaders?: SortOrder
+    customFieldsConfig?: SortOrder
   }
 
   export type companyMinOrderByAggregateInput = {
@@ -93910,6 +94500,12 @@ export namespace Prisma {
     accountNumber?: SortOrder
     ifsc?: SortOrder
     terms?: SortOrder
+    termsInvoice?: SortOrder
+    termsReceipt?: SortOrder
+    termsPurchase?: SortOrder
+    termsSalesOrder?: SortOrder
+    termsQuotation?: SortOrder
+    termsCreditNote?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -93924,6 +94520,7 @@ export namespace Prisma {
     paymentColor?: SortOrder
     paymentLabels?: SortOrder
     paymentTableHeaders?: SortOrder
+    customFieldsConfig?: SortOrder
   }
 
   export type companySumOrderByAggregateInput = {
@@ -94220,6 +94817,7 @@ export namespace Prisma {
     carrier?: SortOrder
     transportNote?: SortOrder
     remarks?: SortOrder
+    customFields?: SortOrder
   }
 
   export type deliverychallanAvgOrderByAggregateInput = {
@@ -94251,6 +94849,7 @@ export namespace Prisma {
     carrier?: SortOrder
     transportNote?: SortOrder
     remarks?: SortOrder
+    customFields?: SortOrder
   }
 
   export type deliverychallanMinOrderByAggregateInput = {
@@ -94275,6 +94874,7 @@ export namespace Prisma {
     carrier?: SortOrder
     transportNote?: SortOrder
     remarks?: SortOrder
+    customFields?: SortOrder
   }
 
   export type deliverychallanSumOrderByAggregateInput = {
@@ -94379,6 +94979,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94397,6 +94998,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94409,6 +95011,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94474,6 +95077,7 @@ export namespace Prisma {
     companyId?: SortOrder
     notes?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -94494,6 +95098,7 @@ export namespace Prisma {
     companyId?: SortOrder
     notes?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -94507,6 +95112,7 @@ export namespace Prisma {
     companyId?: SortOrder
     notes?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -94593,6 +95199,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94611,6 +95218,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94623,6 +95231,7 @@ export namespace Prisma {
     amount?: SortOrder
     paymentMode?: SortOrder
     description?: SortOrder
+    customFields?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -94981,6 +95590,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type invoiceAvgOrderByAggregateInput = {
@@ -95034,6 +95644,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type invoiceMinOrderByAggregateInput = {
@@ -95071,6 +95682,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type invoiceSumOrderByAggregateInput = {
@@ -95460,6 +96072,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type paymentAvgOrderByAggregateInput = {
@@ -95489,6 +96102,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type paymentMinOrderByAggregateInput = {
@@ -95507,6 +96121,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type paymentSumOrderByAggregateInput = {
@@ -95752,6 +96367,7 @@ export namespace Prisma {
     paymentMode?: SortOrder
     status?: SortOrder
     notes?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95783,6 +96399,7 @@ export namespace Prisma {
     paymentMode?: SortOrder
     status?: SortOrder
     notes?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -95802,6 +96419,7 @@ export namespace Prisma {
     paymentMode?: SortOrder
     status?: SortOrder
     notes?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96170,6 +96788,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasebillAvgOrderByAggregateInput = {
@@ -96223,6 +96842,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasebillMinOrderByAggregateInput = {
@@ -96260,6 +96880,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasebillSumOrderByAggregateInput = {
@@ -96412,6 +97033,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96456,6 +97078,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96488,6 +97111,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96620,6 +97244,7 @@ export namespace Prisma {
     attachments?: SortOrder
     manualReference?: SortOrder
     terms?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasequotationAvgOrderByAggregateInput = {
@@ -96653,6 +97278,7 @@ export namespace Prisma {
     attachments?: SortOrder
     manualReference?: SortOrder
     terms?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasequotationMinOrderByAggregateInput = {
@@ -96675,6 +97301,7 @@ export namespace Prisma {
     attachments?: SortOrder
     manualReference?: SortOrder
     terms?: SortOrder
+    customFields?: SortOrder
   }
 
   export type purchasequotationSumOrderByAggregateInput = {
@@ -96794,6 +97421,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     reason?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96816,6 +97444,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     reason?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96830,6 +97459,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     reason?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -96946,6 +97576,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type receiptAvgOrderByAggregateInput = {
@@ -96975,6 +97606,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type receiptMinOrderByAggregateInput = {
@@ -96993,6 +97625,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     discountAmount?: SortOrder
     discountLedgerId?: SortOrder
+    customFields?: SortOrder
   }
 
   export type receiptSumOrderByAggregateInput = {
@@ -97063,6 +97696,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesorderAvgOrderByAggregateInput = {
@@ -97107,6 +97741,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesorderMinOrderByAggregateInput = {
@@ -97139,6 +97774,7 @@ export namespace Prisma {
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
     shippingCountry?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesorderSumOrderByAggregateInput = {
@@ -97281,6 +97917,7 @@ export namespace Prisma {
     shippingCity?: SortOrder
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesquotationAvgOrderByAggregateInput = {
@@ -97321,6 +97958,7 @@ export namespace Prisma {
     shippingCity?: SortOrder
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesquotationMinOrderByAggregateInput = {
@@ -97350,6 +97988,7 @@ export namespace Prisma {
     shippingCity?: SortOrder
     shippingState?: SortOrder
     shippingZipCode?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesquotationSumOrderByAggregateInput = {
@@ -97478,6 +98117,7 @@ export namespace Prisma {
     autoVoucherNo?: SortOrder
     manualVoucherNo?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesreturnAvgOrderByAggregateInput = {
@@ -97502,6 +98142,7 @@ export namespace Prisma {
     autoVoucherNo?: SortOrder
     manualVoucherNo?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesreturnMinOrderByAggregateInput = {
@@ -97518,6 +98159,7 @@ export namespace Prisma {
     autoVoucherNo?: SortOrder
     manualVoucherNo?: SortOrder
     status?: SortOrder
+    customFields?: SortOrder
   }
 
   export type salesreturnSumOrderByAggregateInput = {
@@ -97905,6 +98547,7 @@ export namespace Prisma {
     posInvoiceId?: SortOrder
     signature?: SortOrder
     logo?: SortOrder
+    customFields?: SortOrder
   }
 
   export type transactionAvgOrderByAggregateInput = {
@@ -97941,6 +98584,7 @@ export namespace Prisma {
     posInvoiceId?: SortOrder
     signature?: SortOrder
     logo?: SortOrder
+    customFields?: SortOrder
   }
 
   export type transactionMinOrderByAggregateInput = {
@@ -97963,6 +98607,7 @@ export namespace Prisma {
     posInvoiceId?: SortOrder
     signature?: SortOrder
     logo?: SortOrder
+    customFields?: SortOrder
   }
 
   export type transactionSumOrderByAggregateInput = {
@@ -98347,6 +98992,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     notes?: SortOrder
     signature?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -98380,6 +99026,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     notes?: SortOrder
     signature?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -98402,6 +99049,7 @@ export namespace Prisma {
     totalAmount?: SortOrder
     notes?: SortOrder
     signature?: SortOrder
+    customFields?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -108637,6 +109285,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -108651,6 +109305,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -108716,6 +109371,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -108730,6 +109391,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -108900,6 +109562,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -108914,6 +109582,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -108979,6 +109648,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -108993,6 +109668,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -109121,6 +109797,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -109135,6 +109817,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -109200,6 +109883,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -109214,6 +109903,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -109381,6 +110071,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -109395,6 +110091,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -109460,6 +110157,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -109474,6 +110177,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -109582,6 +110286,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -109596,6 +110306,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionCreateNestedManyWithoutCompanyInput
@@ -109661,6 +110372,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -109675,6 +110392,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     banktransaction?: banktransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -109786,6 +110504,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -109800,6 +110524,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUpdateManyWithoutCompanyNestedInput
@@ -109865,6 +110590,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -109879,6 +110610,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     banktransaction?: banktransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -110005,6 +110737,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -110019,6 +110757,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -110084,6 +110823,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -110098,6 +110843,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -110214,6 +110960,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -110228,6 +110980,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -110293,6 +111046,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -110307,6 +111066,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -110369,6 +111129,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -110383,6 +111149,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -110448,6 +111215,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -110462,6 +111235,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -110639,6 +111413,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -110653,6 +111433,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -110718,6 +111499,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -110732,6 +111519,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -111138,6 +111926,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     customer: customerCreateNestedOneWithoutDeliverychallanInput
     salesorder?: salesorderCreateNestedOneWithoutDeliverychallanInput
     deliverychallanitem?: deliverychallanitemCreateNestedManyWithoutDeliverychallanInput
@@ -111165,6 +111954,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     deliverychallanitem?: deliverychallanitemUncheckedCreateNestedManyWithoutDeliverychallanInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
@@ -111185,6 +111975,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -111196,6 +111987,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -111215,6 +112007,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchaseorder?: purchaseorderCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -111231,6 +112024,7 @@ export namespace Prisma {
     purchaseOrderId?: number | null
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -111253,6 +112047,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -111264,6 +112059,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -111380,6 +112176,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
     salesorder?: salesorderCreateNestedOneWithoutInvoiceInput
@@ -111425,6 +112222,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -111574,6 +112372,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
@@ -111597,6 +112396,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -111623,6 +112423,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     customer?: customerCreateNestedOneWithoutPosinvoiceInput
@@ -111644,6 +112445,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posinvoiceitem?: posinvoiceitemUncheckedCreateNestedManyWithoutPosinvoiceInput
@@ -111789,6 +112591,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasebillInput
@@ -111834,6 +112637,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -111876,6 +112680,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -111912,6 +112717,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -111946,6 +112752,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasequotationInput
     vendor: vendorCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemCreateNestedManyWithoutPurchasequotationInput
@@ -111970,6 +112777,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderUncheckedCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemUncheckedCreateNestedManyWithoutPurchasequotationInput
   }
@@ -111990,6 +112798,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasebill?: purchasebillCreateNestedOneWithoutPurchasereturnInput
@@ -112006,6 +112815,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasereturnitem?: purchasereturnitemUncheckedCreateNestedManyWithoutPurchasereturnInput
@@ -112031,6 +112841,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
@@ -112054,6 +112865,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -112094,6 +112906,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     customer: customerCreateNestedOneWithoutSalesorderInput
@@ -112130,6 +112943,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
@@ -112169,6 +112983,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderCreateNestedOneWithoutSalesquotationInput
     customer: customerCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemCreateNestedManyWithoutSalesquotationInput
@@ -112200,6 +113015,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderUncheckedCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemUncheckedCreateNestedManyWithoutSalesquotationInput
   }
@@ -112224,6 +113040,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     customer: customerCreateNestedOneWithoutSalesreturnInput
     invoice?: invoiceCreateNestedOneWithoutSalesreturnInput
     salesreturnitem?: salesreturnitemCreateNestedManyWithoutSalesreturnInput
@@ -112242,6 +113059,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     salesreturnitem?: salesreturnitemUncheckedCreateNestedManyWithoutSalesreturnInput
   }
 
@@ -112343,6 +113161,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
     invoice?: invoiceCreateNestedOneWithoutTransactionInput
@@ -112372,6 +113191,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutCompanyInput = {
@@ -112668,6 +113488,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     vendor?: vendorCreateNestedOneWithoutVoucherInput
@@ -112694,6 +113515,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -113004,6 +113826,7 @@ export namespace Prisma {
     carrier?: StringNullableFilter<"deliverychallan"> | string | null
     transportNote?: StringNullableFilter<"deliverychallan"> | string | null
     remarks?: StringNullableFilter<"deliverychallan"> | string | null
+    customFields?: StringNullableFilter<"deliverychallan"> | string | null
   }
 
   export type expenseentryUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113032,6 +113855,7 @@ export namespace Prisma {
     amount?: FloatFilter<"expenseentry"> | number
     paymentMode?: Enumexpenseentry_paymentModeFilter<"expenseentry"> | $Enums.expenseentry_paymentMode
     description?: StringNullableFilter<"expenseentry"> | string | null
+    customFields?: StringNullableFilter<"expenseentry"> | string | null
     companyId?: IntFilter<"expenseentry"> | number
     createdAt?: DateTimeFilter<"expenseentry"> | Date | string
     updatedAt?: DateTimeFilter<"expenseentry"> | Date | string
@@ -113065,6 +113889,7 @@ export namespace Prisma {
     companyId?: IntFilter<"goodsreceiptnote"> | number
     notes?: StringNullableFilter<"goodsreceiptnote"> | string | null
     status?: StringFilter<"goodsreceiptnote"> | string
+    customFields?: StringNullableFilter<"goodsreceiptnote"> | string | null
     createdAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
     updatedAt?: DateTimeFilter<"goodsreceiptnote"> | Date | string
   }
@@ -113095,6 +113920,7 @@ export namespace Prisma {
     amount?: FloatFilter<"incomeentry"> | number
     paymentMode?: Enumincomeentry_paymentModeFilter<"incomeentry"> | $Enums.incomeentry_paymentMode
     description?: StringNullableFilter<"incomeentry"> | string | null
+    customFields?: StringNullableFilter<"incomeentry"> | string | null
     companyId?: IntFilter<"incomeentry"> | number
     createdAt?: DateTimeFilter<"incomeentry"> | Date | string
     updatedAt?: DateTimeFilter<"incomeentry"> | Date | string
@@ -113220,6 +114046,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"invoice"> | string | null
     shippingZipCode?: StringNullableFilter<"invoice"> | string | null
     shippingCountry?: StringNullableFilter<"invoice"> | string | null
+    customFields?: StringNullableFilter<"invoice"> | string | null
   }
 
   export type journalentryUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113331,6 +114158,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"payment"> | Date | string
     discountAmount?: FloatFilter<"payment"> | number
     discountLedgerId?: IntNullableFilter<"payment"> | number | null
+    customFields?: StringNullableFilter<"payment"> | string | null
   }
 
   export type posinvoiceUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113367,6 +114195,7 @@ export namespace Prisma {
     paymentMode?: StringNullableFilter<"posinvoice"> | string | null
     status?: StringFilter<"posinvoice"> | string
     notes?: StringNullableFilter<"posinvoice"> | string | null
+    customFields?: StringNullableFilter<"posinvoice"> | string | null
     createdAt?: DateTimeFilter<"posinvoice"> | Date | string
     updatedAt?: DateTimeFilter<"posinvoice"> | Date | string
   }
@@ -113441,6 +114270,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchasebill"> | string | null
     shippingZipCode?: StringNullableFilter<"purchasebill"> | string | null
     shippingCountry?: StringNullableFilter<"purchasebill"> | string | null
+    customFields?: StringNullableFilter<"purchasebill"> | string | null
   }
 
   export type purchaseorderUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113490,6 +114320,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"purchaseorder"> | string | null
     shippingZipCode?: StringNullableFilter<"purchaseorder"> | string | null
     shippingCountry?: StringNullableFilter<"purchaseorder"> | string | null
+    customFields?: StringNullableFilter<"purchaseorder"> | string | null
     createdAt?: DateTimeFilter<"purchaseorder"> | Date | string
     updatedAt?: DateTimeFilter<"purchaseorder"> | Date | string
   }
@@ -113533,6 +114364,7 @@ export namespace Prisma {
     attachments?: StringNullableFilter<"purchasequotation"> | string | null
     manualReference?: StringNullableFilter<"purchasequotation"> | string | null
     terms?: StringNullableFilter<"purchasequotation"> | string | null
+    customFields?: StringNullableFilter<"purchasequotation"> | string | null
   }
 
   export type purchasereturnUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113564,6 +114396,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"purchasereturn"> | number
     reason?: StringNullableFilter<"purchasereturn"> | string | null
     status?: Enumpurchasereturn_statusFilter<"purchasereturn"> | $Enums.purchasereturn_status
+    customFields?: StringNullableFilter<"purchasereturn"> | string | null
     createdAt?: DateTimeFilter<"purchasereturn"> | Date | string
     updatedAt?: DateTimeFilter<"purchasereturn"> | Date | string
   }
@@ -113603,6 +114436,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"receipt"> | Date | string
     discountAmount?: FloatFilter<"receipt"> | number
     discountLedgerId?: IntNullableFilter<"receipt"> | number | null
+    customFields?: StringNullableFilter<"receipt"> | string | null
   }
 
   export type salesorderUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113654,6 +114488,7 @@ export namespace Prisma {
     shippingState?: StringNullableFilter<"salesorder"> | string | null
     shippingZipCode?: StringNullableFilter<"salesorder"> | string | null
     shippingCountry?: StringNullableFilter<"salesorder"> | string | null
+    customFields?: StringNullableFilter<"salesorder"> | string | null
   }
 
   export type salesquotationUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113702,6 +114537,7 @@ export namespace Prisma {
     shippingCity?: StringNullableFilter<"salesquotation"> | string | null
     shippingState?: StringNullableFilter<"salesquotation"> | string | null
     shippingZipCode?: StringNullableFilter<"salesquotation"> | string | null
+    customFields?: StringNullableFilter<"salesquotation"> | string | null
   }
 
   export type salesreturnUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113737,6 +114573,7 @@ export namespace Prisma {
     autoVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     manualVoucherNo?: StringNullableFilter<"salesreturn"> | string | null
     status?: Enumsalesreturn_statusFilter<"salesreturn"> | $Enums.salesreturn_status
+    customFields?: StringNullableFilter<"salesreturn"> | string | null
   }
 
   export type serviceUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -113844,6 +114681,7 @@ export namespace Prisma {
     posInvoiceId?: IntNullableFilter<"transaction"> | number | null
     signature?: StringNullableFilter<"transaction"> | string | null
     logo?: StringNullableFilter<"transaction"> | string | null
+    customFields?: StringNullableFilter<"transaction"> | string | null
   }
 
   export type uomUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -114044,6 +114882,7 @@ export namespace Prisma {
     totalAmount?: FloatFilter<"voucher"> | number
     notes?: StringNullableFilter<"voucher"> | string | null
     signature?: StringNullableFilter<"voucher"> | string | null
+    customFields?: StringNullableFilter<"voucher"> | string | null
     createdAt?: DateTimeFilter<"voucher"> | Date | string
     updatedAt?: DateTimeFilter<"voucher"> | Date | string
   }
@@ -114101,6 +114940,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -114115,6 +114960,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -114180,6 +115026,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -114194,6 +115046,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -114254,6 +115107,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutDeliverychallanInput
     salesorder?: salesorderCreateNestedOneWithoutDeliverychallanInput
     deliverychallanitem?: deliverychallanitemCreateNestedManyWithoutDeliverychallanInput
@@ -114281,6 +115135,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     deliverychallanitem?: deliverychallanitemUncheckedCreateNestedManyWithoutDeliverychallanInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
@@ -114325,6 +115180,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
     salesorder?: salesorderCreateNestedOneWithoutInvoiceInput
@@ -114370,6 +115226,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -114460,6 +115317,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPosinvoiceInput
@@ -114481,6 +115339,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posinvoiceitem?: posinvoiceitemUncheckedCreateNestedManyWithoutPosinvoiceInput
@@ -114507,6 +115366,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
@@ -114530,6 +115390,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -114570,6 +115431,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
@@ -114606,6 +115468,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
@@ -114645,6 +115508,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderCreateNestedOneWithoutSalesquotationInput
     company: companyCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemCreateNestedManyWithoutSalesquotationInput
@@ -114676,6 +115540,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderUncheckedCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemUncheckedCreateNestedManyWithoutSalesquotationInput
   }
@@ -114700,6 +115565,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     company: companyCreateNestedOneWithoutSalesreturnInput
     invoice?: invoiceCreateNestedOneWithoutSalesreturnInput
     salesreturnitem?: salesreturnitemCreateNestedManyWithoutSalesreturnInput
@@ -114718,6 +115584,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     salesreturnitem?: salesreturnitemUncheckedCreateNestedManyWithoutSalesreturnInput
   }
 
@@ -114743,6 +115610,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -114769,6 +115637,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -114859,6 +115728,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -114873,6 +115748,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -114938,6 +115814,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -114952,6 +115834,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -115243,6 +116126,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -115257,6 +116146,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -115322,6 +116212,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -115336,6 +116232,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -115510,6 +116407,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
     customer: customerCreateNestedOneWithoutSalesorderInput
@@ -115547,6 +116445,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
   }
@@ -115615,6 +116514,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     salesorder?: salesorderCreateNestedOneWithoutInvoiceInput
@@ -115660,6 +116560,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -115714,6 +116615,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -115728,6 +116635,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -115793,6 +116701,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -115807,6 +116721,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -115993,6 +116908,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesorderNestedInput
@@ -116030,6 +116946,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
   }
@@ -116098,6 +117015,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutDeliverychallanInput
     customer: customerCreateNestedOneWithoutDeliverychallanInput
     salesorder?: salesorderCreateNestedOneWithoutDeliverychallanInput
@@ -116126,6 +117044,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     invoice?: invoiceUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
 
@@ -116327,6 +117246,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutDeliverychallanNestedInput
     customer?: customerUpdateOneRequiredWithoutDeliverychallanNestedInput
     salesorder?: salesorderUpdateOneWithoutDeliverychallanNestedInput
@@ -116355,6 +117275,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: invoiceUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
 
@@ -116559,6 +117480,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -116573,6 +117500,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -116638,6 +117566,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -116652,6 +117586,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -116730,6 +117665,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -116744,6 +117685,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -116809,6 +117751,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -116823,6 +117771,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -116885,6 +117834,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -116899,6 +117854,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -116964,6 +117920,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -116978,6 +117940,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -117044,6 +118007,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasebill?: purchasebillCreateNestedManyWithoutPurchaseorderInput
@@ -117081,6 +118045,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasebill?: purchasebillUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -117255,6 +118220,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasebillInput
@@ -117300,6 +118266,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -117354,6 +118321,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -117368,6 +118341,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -117433,6 +118407,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -117447,6 +118427,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -117519,6 +118500,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasebill?: purchasebillUpdateManyWithoutPurchaseorderNestedInput
@@ -117556,6 +118538,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasebill?: purchasebillUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -117723,6 +118706,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -117740,6 +118724,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasebill?: purchasebillUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -117930,6 +118915,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutGoodsreceiptnoteNestedInput
@@ -117947,6 +118933,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasebill?: purchasebillUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -118153,6 +119140,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -118167,6 +119160,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -118232,6 +119226,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -118246,6 +119246,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -118324,6 +119325,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -118338,6 +119345,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -118403,6 +119411,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -118417,6 +119431,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -118479,6 +119494,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -118493,6 +119514,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -118558,6 +119580,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -118572,6 +119600,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -118753,6 +119782,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -118767,6 +119802,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -118832,6 +119868,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -118846,6 +119888,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -119426,6 +120469,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -119440,6 +120489,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -119505,6 +120555,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -119519,6 +120575,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -119831,6 +120888,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -119845,6 +120908,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -119910,6 +120974,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -119924,6 +120994,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -120238,6 +121309,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -120252,6 +121329,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -120317,6 +121395,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -120331,6 +121415,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -120497,6 +121582,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutDeliverychallanInput
     customer: customerCreateNestedOneWithoutDeliverychallanInput
     salesorder?: salesorderCreateNestedOneWithoutDeliverychallanInput
@@ -120525,6 +121611,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     deliverychallanitem?: deliverychallanitemUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
 
@@ -120559,6 +121646,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
     customer: customerCreateNestedOneWithoutSalesorderInput
@@ -120596,6 +121684,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
   }
@@ -120656,6 +121745,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     cashBankAccount?: ledgerCreateNestedOneWithoutReceipt_CashBankAccountInput
@@ -120679,6 +121769,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -120703,6 +121794,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     company: companyCreateNestedOneWithoutSalesreturnInput
     customer: customerCreateNestedOneWithoutSalesreturnInput
     salesreturnitem?: salesreturnitemCreateNestedManyWithoutSalesreturnInput
@@ -120721,6 +121813,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     salesreturnitem?: salesreturnitemUncheckedCreateNestedManyWithoutSalesreturnInput
   }
 
@@ -120744,6 +121837,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -120773,6 +121867,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutInvoiceInput = {
@@ -120877,6 +121972,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -120891,6 +121992,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -120956,6 +122058,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -120970,6 +122078,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -121148,6 +122257,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutDeliverychallanNestedInput
     customer?: customerUpdateOneRequiredWithoutDeliverychallanNestedInput
     salesorder?: salesorderUpdateOneWithoutDeliverychallanNestedInput
@@ -121176,6 +122286,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallanitem?: deliverychallanitemUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
 
@@ -121216,6 +122327,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesorderNestedInput
@@ -121253,6 +122365,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
   }
@@ -121430,6 +122543,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -121476,6 +122590,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
@@ -121777,6 +122892,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -121823,6 +122939,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -122127,6 +123244,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -122141,6 +123264,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -122206,6 +123330,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -122220,6 +123350,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -122272,6 +123403,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -122301,6 +123433,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutJournalentryInput = {
@@ -122349,6 +123482,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -122363,6 +123502,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -122428,6 +123568,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -122442,6 +123588,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -122520,6 +123667,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -122534,6 +123687,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -122599,6 +123753,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -122613,6 +123773,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -123046,6 +124207,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
     invoice?: invoiceCreateNestedOneWithoutTransactionInput
@@ -123075,6 +124237,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutLedger_transaction_creditLedgerIdToledgerInput = {
@@ -123097,6 +124260,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     invoice?: invoiceCreateNestedOneWithoutTransactionInput
@@ -123126,6 +124290,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutLedger_transaction_debitLedgerIdToledgerInput = {
@@ -123150,6 +124315,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -123176,6 +124342,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -123203,6 +124370,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -123229,6 +124397,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -123254,6 +124423,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
@@ -123277,6 +124447,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -123301,6 +124472,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
@@ -123324,6 +124496,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -123348,6 +124521,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
@@ -123371,6 +124545,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
@@ -123395,6 +124570,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
@@ -123418,6 +124594,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -123511,6 +124688,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -123525,6 +124708,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -123590,6 +124774,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -123604,6 +124794,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -124193,6 +125384,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -124207,6 +125404,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -124272,6 +125470,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -124286,6 +125490,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -124396,6 +125601,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -124410,6 +125621,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -124475,6 +125687,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -124489,6 +125707,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -124589,6 +125808,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -124603,6 +125828,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -124668,6 +125894,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -124682,6 +125914,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -124754,6 +125987,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasebillInput
@@ -124800,6 +126034,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -125046,6 +126281,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -125075,6 +126311,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutPaymentInput = {
@@ -125150,6 +126387,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -125164,6 +126407,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -125229,6 +126473,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -125243,6 +126493,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -125321,6 +126572,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasebillNestedInput
@@ -125367,6 +126619,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -125686,6 +126939,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -125700,6 +126959,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -125764,6 +127024,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -125778,6 +127044,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -125911,6 +127178,12 @@ export namespace Prisma {
     accountNumber?: StringNullableFilter<"company"> | string | null
     ifsc?: StringNullableFilter<"company"> | string | null
     terms?: StringNullableFilter<"company"> | string | null
+    termsInvoice?: StringNullableFilter<"company"> | string | null
+    termsReceipt?: StringNullableFilter<"company"> | string | null
+    termsPurchase?: StringNullableFilter<"company"> | string | null
+    termsSalesOrder?: StringNullableFilter<"company"> | string | null
+    termsQuotation?: StringNullableFilter<"company"> | string | null
+    termsCreditNote?: StringNullableFilter<"company"> | string | null
     notes?: StringNullableFilter<"company"> | string | null
     createdAt?: DateTimeFilter<"company"> | Date | string
     updatedAt?: DateTimeFilter<"company"> | Date | string
@@ -125925,6 +127198,7 @@ export namespace Prisma {
     paymentColor?: StringNullableFilter<"company"> | string | null
     paymentLabels?: StringNullableFilter<"company"> | string | null
     paymentTableHeaders?: StringNullableFilter<"company"> | string | null
+    customFieldsConfig?: StringNullableFilter<"company"> | string | null
   }
 
   export type planrequestUpsertWithWhereUniqueWithoutPlanInput = {
@@ -126077,6 +127351,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -126091,6 +127371,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -126156,6 +127437,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -126170,6 +127457,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -126365,6 +127653,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -126394,6 +127683,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutPosinvoiceInput = {
@@ -126442,6 +127732,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -126456,6 +127752,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -126521,6 +127818,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -126535,6 +127838,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -126746,6 +128050,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPosinvoiceInput
@@ -126768,6 +128073,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     transaction?: transactionUncheckedCreateNestedManyWithoutPosinvoiceInput
@@ -127011,6 +128317,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPosinvoiceNestedInput
@@ -127033,6 +128340,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transaction?: transactionUncheckedUpdateManyWithoutPosinvoiceNestedInput
@@ -127515,6 +128823,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -127529,6 +128843,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -127594,6 +128909,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -127608,6 +128929,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -128372,6 +129694,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -128386,6 +129714,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -128451,6 +129780,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -128465,6 +129800,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -129031,6 +130367,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
@@ -129054,6 +130391,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -129093,6 +130431,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -129107,6 +130451,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -129172,6 +130517,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -129186,6 +130537,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -129233,6 +130585,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -129250,6 +130603,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -129284,6 +130638,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -129321,6 +130676,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -129481,6 +130837,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPurchasereturnInput
@@ -129497,6 +130854,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasereturnitem?: purchasereturnitemUncheckedCreateNestedManyWithoutPurchasereturnInput
@@ -129522,6 +130880,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -129551,6 +130910,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutPurchasebillInput = {
@@ -129679,6 +131039,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -129693,6 +131059,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -129758,6 +131125,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -129772,6 +131145,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -129825,6 +131199,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutGoodsreceiptnoteNestedInput
@@ -129842,6 +131217,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -129882,6 +131258,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -129919,6 +131296,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -130145,6 +131523,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -130191,6 +131570,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -130454,6 +131834,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -130500,6 +131881,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -130740,6 +132122,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -130756,6 +132139,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -130802,6 +132186,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -130847,6 +132232,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -130890,6 +132276,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -130904,6 +132296,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -130969,6 +132362,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -130983,6 +132382,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -131042,6 +132442,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPurchasequotationInput
     vendor: vendorCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemCreateNestedManyWithoutPurchasequotationInput
@@ -131067,6 +132468,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchasequotationitem?: purchasequotationitemUncheckedCreateNestedManyWithoutPurchasequotationInput
   }
 
@@ -131284,6 +132686,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -131298,6 +132706,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -131363,6 +132772,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -131377,6 +132792,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -131442,6 +132858,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPurchasequotationNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUpdateManyWithoutPurchasequotationNestedInput
@@ -131467,6 +132884,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchasequotationitem?: purchasequotationitemUncheckedUpdateManyWithoutPurchasequotationNestedInput
   }
 
@@ -131620,6 +133038,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -131657,6 +133076,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -131867,6 +133287,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -131904,6 +133325,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -132110,6 +133532,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -132146,6 +133569,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -132183,6 +133607,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -132197,6 +133627,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -132262,6 +133693,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -132276,6 +133713,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -132494,6 +133932,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -132530,6 +133969,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -132573,6 +134013,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -132587,6 +134033,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -132652,6 +134099,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -132666,6 +134119,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -132940,6 +134394,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasequotationInput
     company: companyCreateNestedOneWithoutPurchasequotationInput
     vendor: vendorCreateNestedOneWithoutPurchasequotationInput
@@ -132965,6 +134420,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderUncheckedCreateNestedOneWithoutPurchasequotationInput
   }
 
@@ -133171,6 +134627,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasequotationNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasequotationNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPurchasequotationNestedInput
@@ -133196,6 +134653,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUncheckedUpdateOneWithoutPurchasequotationNestedInput
   }
 
@@ -133300,6 +134758,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -133314,6 +134778,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -133379,6 +134844,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -133393,6 +134864,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -133465,6 +134937,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -133511,6 +134984,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     transaction?: transactionUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -133694,6 +135168,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -133708,6 +135188,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -133773,6 +135254,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -133787,6 +135274,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -133865,6 +135353,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -133911,6 +135400,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -134144,6 +135634,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPurchasereturnInput
@@ -134161,6 +135652,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -134357,6 +135849,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPurchasereturnNestedInput
@@ -134374,6 +135867,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -134479,6 +135973,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -134493,6 +135993,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -134558,6 +136059,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -134572,6 +136079,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -134750,6 +136258,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -134796,6 +136305,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
@@ -134938,6 +136448,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutTransactionInput
     ledger_transaction_creditLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_creditLedgerIdToledgerInput
     ledger_transaction_debitLedgerIdToledger: ledgerCreateNestedOneWithoutTransaction_transaction_debitLedgerIdToledgerInput
@@ -134967,6 +136478,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateOrConnectWithoutReceiptInput = {
@@ -135042,6 +136554,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -135056,6 +136574,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -135121,6 +136640,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -135135,6 +136660,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -135325,6 +136851,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -135371,6 +136898,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -135560,6 +137088,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutDeliverychallanInput
     customer: customerCreateNestedOneWithoutDeliverychallanInput
     deliverychallanitem?: deliverychallanitemCreateNestedManyWithoutDeliverychallanInput
@@ -135587,6 +137116,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
     deliverychallanitem?: deliverychallanitemUncheckedCreateNestedManyWithoutDeliverychallanInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutDeliverychallanInput
   }
@@ -135631,6 +137161,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -135676,6 +137207,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -135719,6 +137251,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -135733,6 +137271,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -135798,6 +137337,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -135812,6 +137357,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -135984,6 +137530,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutSalesquotationInput
     customer: customerCreateNestedOneWithoutSalesquotationInput
     salesquotationitem?: salesquotationitemCreateNestedManyWithoutSalesquotationInput
@@ -136016,6 +137563,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesquotationitem?: salesquotationitemUncheckedCreateNestedManyWithoutSalesquotationInput
   }
 
@@ -136131,6 +137679,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -136145,6 +137699,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -136210,6 +137765,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -136224,6 +137785,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -136408,6 +137970,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutSalesquotationNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUpdateManyWithoutSalesquotationNestedInput
@@ -136440,6 +138003,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesquotationitem?: salesquotationitemUncheckedUpdateManyWithoutSalesquotationNestedInput
   }
 
@@ -136485,6 +138049,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
@@ -136522,6 +138087,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
   }
@@ -136770,6 +138336,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
@@ -136807,6 +138374,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
   }
@@ -137057,6 +138625,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceCreateNestedManyWithoutSalesorderInput
     company: companyCreateNestedOneWithoutSalesorderInput
@@ -137093,6 +138662,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     deliverychallan?: deliverychallanUncheckedCreateNestedManyWithoutSalesorderInput
     invoice?: invoiceUncheckedCreateNestedManyWithoutSalesorderInput
     salesorderitem?: salesorderitemUncheckedCreateNestedManyWithoutSalesorderInput
@@ -137128,6 +138698,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -137142,6 +138718,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -137207,6 +138784,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -137221,6 +138804,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -137445,6 +139029,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
@@ -137481,6 +139066,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
@@ -137522,6 +139108,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -137536,6 +139128,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -137601,6 +139194,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -137615,6 +139214,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -137898,6 +139498,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderCreateNestedOneWithoutSalesquotationInput
     company: companyCreateNestedOneWithoutSalesquotationInput
     customer: customerCreateNestedOneWithoutSalesquotationInput
@@ -137930,6 +139531,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
     salesorder?: salesorderUncheckedCreateNestedOneWithoutSalesquotationInput
   }
 
@@ -138181,6 +139783,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUpdateOneWithoutSalesquotationNestedInput
     company?: companyUpdateOneRequiredWithoutSalesquotationNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesquotationNestedInput
@@ -138213,6 +139816,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUncheckedUpdateOneWithoutSalesquotationNestedInput
   }
 
@@ -138361,6 +139965,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -138375,6 +139985,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -138440,6 +140051,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -138454,6 +140071,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -138632,6 +140250,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -138678,6 +140297,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     transaction?: transactionUncheckedCreateNestedManyWithoutInvoiceInput
@@ -138757,6 +140377,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -138771,6 +140397,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -138836,6 +140463,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -138850,6 +140483,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -139040,6 +140674,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -139086,6 +140721,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     transaction?: transactionUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -139213,6 +140849,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
     company: companyCreateNestedOneWithoutSalesreturnInput
     customer: customerCreateNestedOneWithoutSalesreturnInput
     invoice?: invoiceCreateNestedOneWithoutSalesreturnInput
@@ -139232,6 +140869,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
   }
 
   export type salesreturnCreateOrConnectWithoutSalesreturnitemInput = {
@@ -139430,6 +141068,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutSalesreturnNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesreturnNestedInput
     invoice?: invoiceUpdateOneWithoutSalesreturnNestedInput
@@ -139449,6 +141088,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type warehouseUpsertWithoutSalesreturnitemInput = {
@@ -139671,6 +141311,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -139685,6 +141331,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -139750,6 +141397,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -139764,6 +141417,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -139936,6 +141590,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -139950,6 +141610,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -140015,6 +141676,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -140029,6 +141696,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -140483,6 +142151,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -140497,6 +142171,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -140562,6 +142237,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -140576,6 +142257,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -140757,6 +142439,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -140771,6 +142459,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -140836,6 +142525,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -140850,6 +142545,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -141410,6 +143106,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -141424,6 +143126,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -141489,6 +143192,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -141503,6 +143212,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -141695,6 +143405,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -141741,6 +143452,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -141789,6 +143501,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
@@ -141813,6 +143526,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -141833,6 +143547,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPosinvoiceInput
@@ -141855,6 +143570,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     posinvoiceitem?: posinvoiceitemUncheckedCreateNestedManyWithoutPosinvoiceInput
@@ -141895,6 +143611,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -141941,6 +143658,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -141963,6 +143681,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
@@ -141987,6 +143706,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     allocations?: receiptinvoiceallocationUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -142031,6 +143751,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -142045,6 +143771,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -142110,6 +143837,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -142124,6 +143857,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -142334,6 +144068,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -142380,6 +144115,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -142440,6 +144176,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
@@ -142464,6 +144201,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -142490,6 +144228,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPosinvoiceNestedInput
@@ -142512,6 +144251,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posinvoiceitem?: posinvoiceitemUncheckedUpdateManyWithoutPosinvoiceNestedInput
@@ -142558,6 +144298,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -142604,6 +144345,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -142632,6 +144374,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
@@ -142656,6 +144399,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -142684,6 +144428,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -142698,6 +144448,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -142763,6 +144514,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -142777,6 +144534,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -143409,6 +145167,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -143423,6 +145187,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -143488,6 +145253,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -143502,6 +145273,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -143769,6 +145541,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -143783,6 +145561,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -143848,6 +145627,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -143862,6 +145647,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -143956,6 +145742,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -143970,6 +145762,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -144035,6 +145828,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -144049,6 +145848,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -144091,6 +145891,7 @@ export namespace Prisma {
     date?: Date | string
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutGoodsreceiptnoteInput
@@ -144107,6 +145908,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedCreateNestedManyWithoutGoodsreceiptnoteInput
@@ -144193,6 +145995,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     bankLedger?: ledgerCreateNestedOneWithoutPayment_CashBankAccountInput
@@ -144216,6 +146019,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
     allocations?: paymentbillallocationUncheckedCreateNestedManyWithoutPaymentInput
   }
@@ -144260,6 +146064,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -144305,6 +146110,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -144347,6 +146153,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteCreateNestedManyWithoutPurchaseorderInput
@@ -144383,6 +146190,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedCreateNestedManyWithoutPurchaseorderInput
@@ -144417,6 +146225,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderCreateNestedOneWithoutPurchasequotationInput
     company: companyCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemCreateNestedManyWithoutPurchasequotationInput
@@ -144441,6 +146250,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
     purchaseorder?: purchaseorderUncheckedCreateNestedOneWithoutPurchasequotationInput
     purchasequotationitem?: purchasequotationitemUncheckedCreateNestedManyWithoutPurchasequotationInput
   }
@@ -144461,6 +146271,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutPurchasereturnInput
@@ -144477,6 +146288,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     purchasereturnitem?: purchasereturnitemUncheckedCreateNestedManyWithoutPurchasereturnInput
@@ -144504,6 +146316,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -144530,6 +146343,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     voucheritem?: voucheritemUncheckedCreateNestedManyWithoutVoucherInput
@@ -144609,6 +146423,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -144623,6 +146443,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -144688,6 +146509,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -144702,6 +146529,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -144974,6 +146802,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -144988,6 +146822,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -145053,6 +146888,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -145067,6 +146908,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -145757,6 +147599,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -145771,6 +147619,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -145836,6 +147685,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -145850,6 +147705,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -146253,6 +148109,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -146267,6 +148129,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -146332,6 +148195,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -146346,6 +148215,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -146424,6 +148294,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -146438,6 +148314,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -146503,6 +148380,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -146517,6 +148400,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -146968,6 +148852,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -146982,6 +148872,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -147047,6 +148938,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -147061,6 +148958,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -147480,6 +149378,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     company: companyCreateNestedOneWithoutVoucherInput
@@ -147507,6 +149406,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -147693,6 +149593,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -147720,6 +149621,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -147915,6 +149817,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -147929,6 +149837,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountCreateNestedManyWithoutCompanyInput
@@ -147994,6 +149903,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -148008,6 +149923,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
     accountgroup?: accountgroupUncheckedCreateNestedManyWithoutCompanyInput
     accountsubgroup?: accountsubgroupUncheckedCreateNestedManyWithoutCompanyInput
     bankaccount?: bankaccountUncheckedCreateNestedManyWithoutCompanyInput
@@ -148086,6 +150002,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -148100,6 +150022,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -148165,6 +150088,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -148179,6 +150108,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -148842,6 +150772,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -148888,6 +150819,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -149146,6 +151078,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -149192,6 +151125,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -149277,6 +151211,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -149323,6 +151258,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -149508,6 +151444,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -149554,6 +151491,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -149671,6 +151609,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutReceiptInput
     customer: customerCreateNestedOneWithoutReceiptInput
     invoice?: invoiceCreateNestedOneWithoutReceiptInput
@@ -149695,6 +151634,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutReceiptInput
   }
 
@@ -149733,6 +151673,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     company: companyCreateNestedOneWithoutInvoiceInput
     customer: customerCreateNestedOneWithoutInvoiceInput
     deliverychallan?: deliverychallanCreateNestedOneWithoutInvoiceInput
@@ -149779,6 +151720,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     invoiceitem?: invoiceitemUncheckedCreateNestedManyWithoutInvoiceInput
     receipt?: receiptUncheckedCreateNestedManyWithoutInvoiceInput
     salesreturn?: salesreturnUncheckedCreateNestedManyWithoutInvoiceInput
@@ -149812,6 +151754,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
@@ -149836,6 +151779,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
   }
 
@@ -149880,6 +151824,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -149926,6 +151871,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -149943,6 +151889,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
     company: companyCreateNestedOneWithoutPaymentInput
     purchasebill?: purchasebillCreateNestedOneWithoutPaymentInput
     vendor: vendorCreateNestedOneWithoutPaymentInput
@@ -149967,6 +151914,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
     transaction?: transactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
@@ -150005,6 +151953,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentCreateNestedManyWithoutPurchasebillInput
     company: companyCreateNestedOneWithoutPurchasebillInput
     goodsreceiptnote?: goodsreceiptnoteCreateNestedOneWithoutPurchasebillInput
@@ -150051,6 +152000,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     payment?: paymentUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasebillitem?: purchasebillitemUncheckedCreateNestedManyWithoutPurchasebillInput
     purchasereturn?: purchasereturnUncheckedCreateNestedManyWithoutPurchasebillInput
@@ -150084,6 +152034,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
@@ -150108,6 +152059,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
@@ -150152,6 +152104,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -150198,6 +152151,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -150720,6 +152674,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
   }
 
   export type expenseentryCreateManyCompanyInput = {
@@ -150729,6 +152684,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.expenseentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150741,6 +152697,7 @@ export namespace Prisma {
     purchaseOrderId?: number | null
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150752,6 +152709,7 @@ export namespace Prisma {
     amount: number
     paymentMode: $Enums.incomeentry_paymentMode
     description?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150816,6 +152774,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type journalentryCreateManyCompanyInput = {
@@ -150869,6 +152828,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type posinvoiceCreateManyCompanyInput = {
@@ -150885,6 +152845,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -150950,6 +152911,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type purchaseorderCreateManyCompanyInput = {
@@ -150979,6 +152941,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -151002,6 +152965,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
   }
 
   export type purchasereturnCreateManyCompanyInput = {
@@ -151013,6 +152977,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -151032,6 +152997,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type salesorderCreateManyCompanyInput = {
@@ -151063,6 +153029,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type salesquotationCreateManyCompanyInput = {
@@ -151091,6 +153058,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
   }
 
   export type salesreturnCreateManyCompanyInput = {
@@ -151106,6 +153074,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
   }
 
   export type serviceCreateManyCompanyInput = {
@@ -151153,6 +153122,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type uomCreateManyCompanyInput = {
@@ -151253,6 +153223,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -151574,6 +153545,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutDeliverychallanNestedInput
     salesorder?: salesorderUpdateOneWithoutDeliverychallanNestedInput
     deliverychallanitem?: deliverychallanitemUpdateManyWithoutDeliverychallanNestedInput
@@ -151601,6 +153573,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallanitem?: deliverychallanitemUncheckedUpdateManyWithoutDeliverychallanNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
@@ -151626,6 +153599,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type expenseentryUpdateWithoutCompanyInput = {
@@ -151634,6 +153608,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151645,6 +153620,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151656,6 +153632,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumexpenseentry_paymentModeFieldUpdateOperationsInput | $Enums.expenseentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151665,6 +153642,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchaseorder?: purchaseorderUpdateOneWithoutGoodsreceiptnoteNestedInput
@@ -151681,6 +153659,7 @@ export namespace Prisma {
     purchaseOrderId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -151695,6 +153674,7 @@ export namespace Prisma {
     purchaseOrderId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151705,6 +153685,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151716,6 +153697,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151727,6 +153709,7 @@ export namespace Prisma {
     amount?: FloatFieldUpdateOperationsInput | number
     paymentMode?: Enumincomeentry_paymentModeFieldUpdateOperationsInput | $Enums.incomeentry_paymentMode
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -151839,6 +153822,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
     salesorder?: salesorderUpdateOneWithoutInvoiceNestedInput
@@ -151884,6 +153868,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -151926,6 +153911,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type journalentryUpdateWithoutCompanyInput = {
@@ -152065,6 +154051,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
@@ -152088,6 +154075,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -152107,6 +154095,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type posinvoiceUpdateWithoutCompanyInput = {
@@ -152121,6 +154110,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: customerUpdateOneWithoutPosinvoiceNestedInput
@@ -152142,6 +154132,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posinvoiceitem?: posinvoiceitemUncheckedUpdateManyWithoutPosinvoiceNestedInput
@@ -152162,6 +154153,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -152312,6 +154304,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasebillNestedInput
@@ -152357,6 +154350,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -152399,6 +154393,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchaseorderUpdateWithoutCompanyInput = {
@@ -152425,6 +154420,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -152461,6 +154457,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -152495,6 +154492,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -152516,6 +154514,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasequotationNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUpdateManyWithoutPurchasequotationNestedInput
@@ -152540,6 +154539,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUncheckedUpdateOneWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUncheckedUpdateManyWithoutPurchasequotationNestedInput
   }
@@ -152563,6 +154563,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasereturnUpdateWithoutCompanyInput = {
@@ -152571,6 +154572,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasebill?: purchasebillUpdateOneWithoutPurchasereturnNestedInput
@@ -152587,6 +154589,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasereturnitem?: purchasereturnitemUncheckedUpdateManyWithoutPurchasereturnNestedInput
@@ -152601,6 +154604,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -152615,6 +154619,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
@@ -152638,6 +154643,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -152657,6 +154663,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderUpdateWithoutCompanyInput = {
@@ -152685,6 +154692,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesorderNestedInput
@@ -152721,6 +154729,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
@@ -152755,6 +154764,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesquotationUpdateWithoutCompanyInput = {
@@ -152781,6 +154791,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUpdateOneWithoutSalesquotationNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUpdateManyWithoutSalesquotationNestedInput
@@ -152812,6 +154823,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUncheckedUpdateOneWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUncheckedUpdateManyWithoutSalesquotationNestedInput
   }
@@ -152842,6 +154854,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesreturnUpdateWithoutCompanyInput = {
@@ -152854,6 +154867,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutSalesreturnNestedInput
     invoice?: invoiceUpdateOneWithoutSalesreturnNestedInput
     salesreturnitem?: salesreturnitemUpdateManyWithoutSalesreturnNestedInput
@@ -152872,6 +154886,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesreturnitem?: salesreturnitemUncheckedUpdateManyWithoutSalesreturnNestedInput
   }
 
@@ -152888,6 +154903,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type serviceUpdateWithoutCompanyInput = {
@@ -152984,6 +155000,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
     invoice?: invoiceUpdateOneWithoutTransactionNestedInput
@@ -153013,6 +155030,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutCompanyInput = {
@@ -153034,6 +155052,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type uomUpdateWithoutCompanyInput = {
@@ -153361,6 +155380,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: vendorUpdateOneWithoutVoucherNestedInput
@@ -153387,6 +155407,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -153409,6 +155430,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -153457,6 +155479,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
   }
 
   export type invoiceCreateManyCustomerInput = {
@@ -153493,6 +155516,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type posinvoiceCreateManyCustomerInput = {
@@ -153509,6 +155533,7 @@ export namespace Prisma {
     paymentMode?: string | null
     status?: string
     notes?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -153528,6 +155553,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type salesorderCreateManyCustomerInput = {
@@ -153559,6 +155585,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type salesquotationCreateManyCustomerInput = {
@@ -153587,6 +155614,7 @@ export namespace Prisma {
     shippingCity?: string | null
     shippingState?: string | null
     shippingZipCode?: string | null
+    customFields?: string | null
   }
 
   export type salesreturnCreateManyCustomerInput = {
@@ -153602,6 +155630,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
   }
 
   export type voucherCreateManyCustomerInput = {
@@ -153621,6 +155650,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -153658,6 +155688,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutDeliverychallanNestedInput
     salesorder?: salesorderUpdateOneWithoutDeliverychallanNestedInput
     deliverychallanitem?: deliverychallanitemUpdateManyWithoutDeliverychallanNestedInput
@@ -153685,6 +155716,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallanitem?: deliverychallanitemUncheckedUpdateManyWithoutDeliverychallanNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
@@ -153710,6 +155742,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type invoiceUpdateWithoutCustomerInput = {
@@ -153742,6 +155775,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
     salesorder?: salesorderUpdateOneWithoutInvoiceNestedInput
@@ -153787,6 +155821,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -153829,6 +155864,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type posinvoiceUpdateWithoutCustomerInput = {
@@ -153843,6 +155879,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPosinvoiceNestedInput
@@ -153864,6 +155901,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posinvoiceitem?: posinvoiceitemUncheckedUpdateManyWithoutPosinvoiceNestedInput
@@ -153884,6 +155922,7 @@ export namespace Prisma {
     paymentMode?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -153898,6 +155937,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
@@ -153921,6 +155961,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -153940,6 +155981,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderUpdateWithoutCustomerInput = {
@@ -153968,6 +156010,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUpdateManyWithoutSalesorderNestedInput
     company?: companyUpdateOneRequiredWithoutSalesorderNestedInput
@@ -154004,6 +156047,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallan?: deliverychallanUncheckedUpdateManyWithoutSalesorderNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutSalesorderNestedInput
     salesorderitem?: salesorderitemUncheckedUpdateManyWithoutSalesorderNestedInput
@@ -154038,6 +156082,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesquotationUpdateWithoutCustomerInput = {
@@ -154064,6 +156109,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUpdateOneWithoutSalesquotationNestedInput
     company?: companyUpdateOneRequiredWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUpdateManyWithoutSalesquotationNestedInput
@@ -154095,6 +156141,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesorder?: salesorderUncheckedUpdateOneWithoutSalesquotationNestedInput
     salesquotationitem?: salesquotationitemUncheckedUpdateManyWithoutSalesquotationNestedInput
   }
@@ -154125,6 +156172,7 @@ export namespace Prisma {
     shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesreturnUpdateWithoutCustomerInput = {
@@ -154137,6 +156185,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutSalesreturnNestedInput
     invoice?: invoiceUpdateOneWithoutSalesreturnNestedInput
     salesreturnitem?: salesreturnitemUpdateManyWithoutSalesreturnNestedInput
@@ -154155,6 +156204,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesreturnitem?: salesreturnitemUncheckedUpdateManyWithoutSalesreturnNestedInput
   }
 
@@ -154171,6 +156221,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type voucherUpdateWithoutCustomerInput = {
@@ -154185,6 +156236,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -154211,6 +156263,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -154233,6 +156286,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -154325,6 +156379,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type deliverychallanitemUpdateWithoutDeliverychallanInput = {
@@ -154386,6 +156441,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     salesorder?: salesorderUpdateOneWithoutInvoiceNestedInput
@@ -154431,6 +156487,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -154473,6 +156530,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type goodsreceiptnoteitemCreateManyGoodsreceiptnoteInput = {
@@ -154519,6 +156577,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type goodsreceiptnoteitemUpdateWithoutGoodsreceiptnoteInput = {
@@ -154580,6 +156639,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasebillNestedInput
@@ -154625,6 +156685,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -154667,6 +156728,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type inventoryadjustmentitemCreateManyInventoryadjustmentInput = {
@@ -154747,6 +156809,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type salesreturnCreateManyInvoiceInput = {
@@ -154762,6 +156825,7 @@ export namespace Prisma {
     autoVoucherNo?: string | null
     manualVoucherNo?: string | null
     status?: $Enums.salesreturn_status
+    customFields?: string | null
   }
 
   export type transactionCreateManyInvoiceInput = {
@@ -154783,6 +156847,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type inventory_consumptionCreateManyInvoiceInput = {
@@ -154861,6 +156926,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     cashBankAccount?: ledgerUpdateOneWithoutReceipt_CashBankAccountNestedInput
@@ -154884,6 +156950,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -154903,6 +156970,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesreturnUpdateWithoutInvoiceInput = {
@@ -154915,6 +156983,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutSalesreturnNestedInput
     customer?: customerUpdateOneRequiredWithoutSalesreturnNestedInput
     salesreturnitem?: salesreturnitemUpdateManyWithoutSalesreturnNestedInput
@@ -154933,6 +157002,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     salesreturnitem?: salesreturnitemUncheckedUpdateManyWithoutSalesreturnNestedInput
   }
 
@@ -154949,6 +157019,7 @@ export namespace Prisma {
     autoVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     manualVoucherNo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumsalesreturn_statusFieldUpdateOperationsInput | $Enums.salesreturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUpdateWithoutInvoiceInput = {
@@ -154961,6 +157032,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -154990,6 +157062,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutInvoiceInput = {
@@ -155011,6 +157084,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type inventory_consumptionUpdateWithoutInvoiceInput = {
@@ -155087,6 +157161,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionUpdateWithoutJournalentryInput = {
@@ -155099,6 +157174,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -155128,6 +157204,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutJournalentryInput = {
@@ -155149,6 +157226,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ledgerCreateManyLedgerInput = {
@@ -155188,6 +157266,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type transactionCreateManyLedger_transaction_debitLedgerIdToledgerInput = {
@@ -155209,6 +157288,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type voucherCreateManyPaidFromLedgerInput = {
@@ -155228,6 +157308,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -155249,6 +157330,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -155268,6 +157350,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type paymentCreateManyBankLedgerInput = {
@@ -155285,6 +157368,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type receiptCreateManyDiscountLedgerInput = {
@@ -155302,6 +157386,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
   }
 
   export type paymentCreateManyDiscountLedgerInput = {
@@ -155319,6 +157404,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     discountAmount?: number
+    customFields?: string | null
   }
 
   export type voucheritemCreateManyLedgerInput = {
@@ -155421,6 +157507,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
     invoice?: invoiceUpdateOneWithoutTransactionNestedInput
@@ -155450,6 +157537,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutLedger_transaction_creditLedgerIdToledgerInput = {
@@ -155471,6 +157559,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUpdateWithoutLedger_transaction_debitLedgerIdToledgerInput = {
@@ -155483,6 +157572,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     invoice?: invoiceUpdateOneWithoutTransactionNestedInput
@@ -155512,6 +157602,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutLedger_transaction_debitLedgerIdToledgerInput = {
@@ -155533,6 +157624,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type voucherUpdateWithoutPaidFromLedgerInput = {
@@ -155547,6 +157639,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -155573,6 +157666,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -155595,6 +157689,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -155611,6 +157706,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -155637,6 +157733,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -155659,6 +157756,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -155673,6 +157771,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
@@ -155696,6 +157795,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -155715,6 +157815,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type paymentUpdateWithoutBankLedgerInput = {
@@ -155727,6 +157828,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
@@ -155750,6 +157852,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -155769,6 +157872,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type receiptUpdateWithoutDiscountLedgerInput = {
@@ -155781,6 +157885,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutReceiptNestedInput
     customer?: customerUpdateOneRequiredWithoutReceiptNestedInput
     invoice?: invoiceUpdateOneWithoutReceiptNestedInput
@@ -155804,6 +157909,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutReceiptNestedInput
     allocations?: receiptinvoiceallocationUncheckedUpdateManyWithoutReceiptNestedInput
   }
@@ -155823,6 +157929,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type paymentUpdateWithoutDiscountLedgerInput = {
@@ -155835,6 +157942,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
@@ -155858,6 +157966,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -155877,6 +157986,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type voucheritemUpdateWithoutLedgerInput = {
@@ -155948,6 +158058,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type paymentbillallocationCreateManyPaymentInput = {
@@ -155969,6 +158080,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -155998,6 +158110,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutPaymentInput = {
@@ -156019,6 +158132,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type paymentbillallocationUpdateWithoutPaymentInput = {
@@ -156073,6 +158187,12 @@ export namespace Prisma {
     accountNumber?: string | null
     ifsc?: string | null
     terms?: string | null
+    termsInvoice?: string | null
+    termsReceipt?: string | null
+    termsPurchase?: string | null
+    termsSalesOrder?: string | null
+    termsQuotation?: string | null
+    termsCreditNote?: string | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -156087,6 +158207,7 @@ export namespace Prisma {
     paymentColor?: string | null
     paymentLabels?: string | null
     paymentTableHeaders?: string | null
+    customFieldsConfig?: string | null
   }
 
   export type planrequestCreateManyPlanInput = {
@@ -156129,6 +158250,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -156143,6 +158270,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUpdateManyWithoutCompanyNestedInput
@@ -156207,6 +158335,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -156221,6 +158355,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
     accountgroup?: accountgroupUncheckedUpdateManyWithoutCompanyNestedInput
     accountsubgroup?: accountsubgroupUncheckedUpdateManyWithoutCompanyNestedInput
     bankaccount?: bankaccountUncheckedUpdateManyWithoutCompanyNestedInput
@@ -156285,6 +158420,12 @@ export namespace Prisma {
     accountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifsc?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    termsInvoice?: NullableStringFieldUpdateOperationsInput | string | null
+    termsReceipt?: NullableStringFieldUpdateOperationsInput | string | null
+    termsPurchase?: NullableStringFieldUpdateOperationsInput | string | null
+    termsSalesOrder?: NullableStringFieldUpdateOperationsInput | string | null
+    termsQuotation?: NullableStringFieldUpdateOperationsInput | string | null
+    termsCreditNote?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -156299,6 +158440,7 @@ export namespace Prisma {
     paymentColor?: NullableStringFieldUpdateOperationsInput | string | null
     paymentLabels?: NullableStringFieldUpdateOperationsInput | string | null
     paymentTableHeaders?: NullableStringFieldUpdateOperationsInput | string | null
+    customFieldsConfig?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type planrequestUpdateWithoutPlanInput = {
@@ -156378,6 +158520,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type posinvoiceitemUpdateWithoutPosinvoiceInput = {
@@ -156431,6 +158574,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -156460,6 +158604,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutPosinvoiceInput = {
@@ -156481,6 +158626,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type deliverychallanitemCreateManyProductInput = {
@@ -157414,6 +159560,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type purchasebillitemCreateManyPurchasebillInput = {
@@ -157440,6 +159587,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -157463,6 +159611,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type inventory_batchCreateManyPurchasebillInput = {
@@ -157497,6 +159646,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     vendor?: vendorUpdateOneRequiredWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
@@ -157520,6 +159670,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -157539,6 +159690,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasebillitemUpdateWithoutPurchasebillInput = {
@@ -157591,6 +159743,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPurchasereturnNestedInput
@@ -157607,6 +159760,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasereturnitem?: purchasereturnitemUncheckedUpdateManyWithoutPurchasereturnNestedInput
@@ -157621,6 +159775,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -157635,6 +159790,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -157664,6 +159820,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutPurchasebillInput = {
@@ -157685,6 +159842,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type inventory_batchUpdateWithoutPurchasebillInput = {
@@ -157761,6 +159919,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -157799,6 +159958,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type purchaseorderitemCreateManyPurchaseorderInput = {
@@ -157820,6 +159980,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutGoodsreceiptnoteNestedInput
@@ -157836,6 +159997,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -157850,6 +160012,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -157884,6 +160047,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -157929,6 +160093,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -157971,6 +160136,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchaseorderitemUpdateWithoutPurchaseorderInput = {
@@ -158131,6 +160297,7 @@ export namespace Prisma {
     posInvoiceId?: number | null
     signature?: string | null
     logo?: string | null
+    customFields?: string | null
   }
 
   export type receiptinvoiceallocationCreateManyReceiptInput = {
@@ -158152,6 +160319,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutTransactionNestedInput
     ledger_transaction_creditLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_creditLedgerIdToledgerNestedInput
     ledger_transaction_debitLedgerIdToledger?: ledgerUpdateOneRequiredWithoutTransaction_transaction_debitLedgerIdToledgerNestedInput
@@ -158181,6 +160349,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transactionUncheckedUpdateManyWithoutReceiptInput = {
@@ -158202,6 +160371,7 @@ export namespace Prisma {
     posInvoiceId?: NullableIntFieldUpdateOperationsInput | number | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type receiptinvoiceallocationUpdateWithoutReceiptInput = {
@@ -158251,6 +160421,7 @@ export namespace Prisma {
     carrier?: string | null
     transportNote?: string | null
     remarks?: string | null
+    customFields?: string | null
   }
 
   export type invoiceCreateManySalesorderInput = {
@@ -158287,6 +160458,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type salesorderitemCreateManySalesorderInput = {
@@ -158322,6 +160494,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutDeliverychallanNestedInput
     customer?: customerUpdateOneRequiredWithoutDeliverychallanNestedInput
     deliverychallanitem?: deliverychallanitemUpdateManyWithoutDeliverychallanNestedInput
@@ -158349,6 +160522,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     deliverychallanitem?: deliverychallanitemUncheckedUpdateManyWithoutDeliverychallanNestedInput
     invoice?: invoiceUncheckedUpdateManyWithoutDeliverychallanNestedInput
   }
@@ -158374,6 +160548,7 @@ export namespace Prisma {
     carrier?: NullableStringFieldUpdateOperationsInput | string | null
     transportNote?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type invoiceUpdateWithoutSalesorderInput = {
@@ -158406,6 +160581,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutInvoiceNestedInput
     customer?: customerUpdateOneRequiredWithoutInvoiceNestedInput
     deliverychallan?: deliverychallanUpdateOneWithoutInvoiceNestedInput
@@ -158451,6 +160627,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     invoiceitem?: invoiceitemUncheckedUpdateManyWithoutInvoiceNestedInput
     receipt?: receiptUncheckedUpdateManyWithoutInvoiceNestedInput
     salesreturn?: salesreturnUncheckedUpdateManyWithoutInvoiceNestedInput
@@ -158493,6 +160670,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type salesorderitemUpdateWithoutSalesorderInput = {
@@ -159642,6 +161820,7 @@ export namespace Prisma {
     companyId: number
     notes?: string | null
     status?: string
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -159661,6 +161840,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     discountAmount?: number
     discountLedgerId?: number | null
+    customFields?: string | null
   }
 
   export type purchasebillCreateManyVendorInput = {
@@ -159697,6 +161877,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
   }
 
   export type purchaseorderCreateManyVendorInput = {
@@ -159726,6 +161907,7 @@ export namespace Prisma {
     shippingState?: string | null
     shippingZipCode?: string | null
     shippingCountry?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -159749,6 +161931,7 @@ export namespace Prisma {
     attachments?: string | null
     manualReference?: string | null
     terms?: string | null
+    customFields?: string | null
   }
 
   export type purchasereturnCreateManyVendorInput = {
@@ -159760,6 +161943,7 @@ export namespace Prisma {
     totalAmount: number
     reason?: string | null
     status?: $Enums.purchasereturn_status
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -159781,6 +161965,7 @@ export namespace Prisma {
     totalAmount: number
     notes?: string | null
     signature?: string | null
+    customFields?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -159805,6 +161990,7 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutGoodsreceiptnoteNestedInput
@@ -159821,6 +162007,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnoteitem?: goodsreceiptnoteitemUncheckedUpdateManyWithoutGoodsreceiptnoteNestedInput
@@ -159835,6 +162022,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -159849,6 +162037,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     company?: companyUpdateOneRequiredWithoutPaymentNestedInput
     purchasebill?: purchasebillUpdateOneWithoutPaymentNestedInput
     bankLedger?: ledgerUpdateOneWithoutPayment_CashBankAccountNestedInput
@@ -159872,6 +162061,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     transaction?: transactionUncheckedUpdateManyWithoutPaymentNestedInput
     allocations?: paymentbillallocationUncheckedUpdateManyWithoutPaymentNestedInput
   }
@@ -159891,6 +162081,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     discountAmount?: FloatFieldUpdateOperationsInput | number
     discountLedgerId?: NullableIntFieldUpdateOperationsInput | number | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasebillUpdateWithoutVendorInput = {
@@ -159923,6 +162114,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUpdateManyWithoutPurchasebillNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasebillNestedInput
     goodsreceiptnote?: goodsreceiptnoteUpdateOneWithoutPurchasebillNestedInput
@@ -159968,6 +162160,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: paymentUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasebillitem?: purchasebillitemUncheckedUpdateManyWithoutPurchasebillNestedInput
     purchasereturn?: purchasereturnUncheckedUpdateManyWithoutPurchasebillNestedInput
@@ -160010,6 +162203,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchaseorderUpdateWithoutVendorInput = {
@@ -160036,6 +162230,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUpdateManyWithoutPurchaseorderNestedInput
@@ -160072,6 +162267,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     goodsreceiptnote?: goodsreceiptnoteUncheckedUpdateManyWithoutPurchaseorderNestedInput
@@ -160106,6 +162302,7 @@ export namespace Prisma {
     shippingState?: NullableStringFieldUpdateOperationsInput | string | null
     shippingZipCode?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -160127,6 +162324,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUpdateOneWithoutPurchasequotationNestedInput
     company?: companyUpdateOneRequiredWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUpdateManyWithoutPurchasequotationNestedInput
@@ -160151,6 +162349,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     purchaseorder?: purchaseorderUncheckedUpdateOneWithoutPurchasequotationNestedInput
     purchasequotationitem?: purchasequotationitemUncheckedUpdateManyWithoutPurchasequotationNestedInput
   }
@@ -160174,6 +162373,7 @@ export namespace Prisma {
     attachments?: NullableStringFieldUpdateOperationsInput | string | null
     manualReference?: NullableStringFieldUpdateOperationsInput | string | null
     terms?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type purchasereturnUpdateWithoutVendorInput = {
@@ -160182,6 +162382,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutPurchasereturnNestedInput
@@ -160198,6 +162399,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     purchasereturnitem?: purchasereturnitemUncheckedUpdateManyWithoutPurchasereturnNestedInput
@@ -160212,6 +162414,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     status?: Enumpurchasereturn_statusFieldUpdateOperationsInput | $Enums.purchasereturn_status
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -160228,6 +162431,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: companyUpdateOneRequiredWithoutVoucherNestedInput
@@ -160254,6 +162458,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     voucheritem?: voucheritemUncheckedUpdateManyWithoutVoucherNestedInput
@@ -160276,6 +162481,7 @@ export namespace Prisma {
     totalAmount?: FloatFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     signature?: NullableStringFieldUpdateOperationsInput | string | null
+    customFields?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

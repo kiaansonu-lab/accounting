@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Sales Quotation
 const createQuotation = async (req, res) => {
     try {
-        const { quotationNumber, date, expiryDate, customerId, items, notes, overallDiscount, overallDiscountType } = req.body;
+        const { quotationNumber, date, expiryDate, customerId, items, notes, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!companyId) {
@@ -94,6 +95,7 @@ const createQuotation = async (req, res) => {
                     overallDiscount: parseFloat(overallDiscount) || 0,
                     overallDiscountType: overallDiscountType || 'percentage',
                     taxAmount,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     totalAmount: (() => {
                         const baseTotal = (subtotal - totalDiscount) + taxAmount;
                         if (overallDiscountType === 'percentage') {
@@ -141,6 +143,7 @@ const createQuotation = async (req, res) => {
             timeout: 60000
         });
 
+        await numberingService.incrementNumber(companyId, 'salesquotation', quotationNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Quotation Error:', error);
@@ -207,7 +210,7 @@ const getQuotationById = async (req, res) => {
 const updateQuotation = async (req, res) => {
     try {
         const { id } = req.params;
-        const { quotationNumber, date, expiryDate, customerId, items, notes, status, overallDiscount, overallDiscountType } = req.body;
+        const { quotationNumber, date, expiryDate, customerId, items, notes, status, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!companyId) {
@@ -305,6 +308,7 @@ const updateQuotation = async (req, res) => {
                     overallDiscount: parseFloat(overallDiscount) || 0,
                     overallDiscountType: overallDiscountType || 'percentage',
                     taxAmount,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     totalAmount: (() => {
                         const baseTotal = (subtotal - totalDiscount) + taxAmount;
                         if (overallDiscountType === 'percentage') {

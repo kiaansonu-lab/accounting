@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Sales Order
 const createOrder = async (req, res) => {
     try {
-        const { orderNumber, date, expectedDate, customerId, items, notes, quotationId, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType } = req.body;
+        const { orderNumber, date, expectedDate, customerId, items, notes, quotationId, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!companyId) {
@@ -105,6 +106,7 @@ const createOrder = async (req, res) => {
                     overallDiscountType: overallDiscountType || 'percentage',
                     totalAmount: finalTotal,
                     notes,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     billingName,
                     billingAddress,
                     billingCity,
@@ -181,6 +183,7 @@ const createOrder = async (req, res) => {
             return order;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'salesorder', orderNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Order Error:', error);
@@ -256,7 +259,7 @@ const getOrderById = async (req, res) => {
 const updateOrder = async (req, res) => {
     try {
         const { id } = req.params;
-        const { orderNumber, date, expectedDate, customerId, items, notes, status, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType } = req.body;
+        const { orderNumber, date, expectedDate, customerId, items, notes, status, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!companyId) {
@@ -363,6 +366,7 @@ const updateOrder = async (req, res) => {
                     totalAmount: finalTotal,
                     notes,
                     status,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     billingName,
                     billingAddress,
                     billingCity,

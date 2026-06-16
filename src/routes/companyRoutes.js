@@ -4,7 +4,10 @@ const {
     getCompanies,
     getCompanyById,
     updateCompany,
-    deleteCompany
+    deleteCompany,
+    getNumberingSettings,
+    updateNumberingSettings,
+    getNextNumberEndpoint
 } = require('../controllers/companyController');
 const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
 const { upload } = require('../utils/cloudinaryConfig');
@@ -48,5 +51,10 @@ router.delete('/:id', authenticateToken, authorizeRoles('SUPERADMIN'), deleteCom
 // Both Superadmin and Company Admin can view/update their own company
 router.get('/:id', authenticateToken, checkCompanyAccess, getCompanyById);
 router.put('/:id', authenticateToken, checkCompanyAccess, upload.fields([{ name: 'logo', maxCount: 1 }, { name: 'invoiceLogo', maxCount: 1 }]), updateCompany);
+
+// Numbering configuration endpoints
+router.get('/:id/numbering-settings', authenticateToken, checkCompanyAccess, getNumberingSettings);
+router.put('/:id/numbering-settings', authenticateToken, checkCompanyAccess, updateNumberingSettings);
+router.get('/:id/next-number', authenticateToken, checkCompanyAccess, getNextNumberEndpoint);
 
 module.exports = router;

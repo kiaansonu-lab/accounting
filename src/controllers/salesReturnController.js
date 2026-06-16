@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Sales Return
 const createReturn = async (req, res) => {
     try {
-        const { returnNumber, date, customerId, invoiceId, items, reason, manualVoucherNo } = req.body;
+        const { returnNumber, date, customerId, invoiceId, items, reason, manualVoucherNo, customFields } = req.body;
         const companyId = req.user.companyId;
 
         if (!returnNumber || !customerId || !items || items.length === 0) {
@@ -82,6 +83,7 @@ const createReturn = async (req, res) => {
                     totalAmount,
                     reason,
                     status: 'Pending', // Default status
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     salesreturnitem: {
                         create: returnItems
                     }
@@ -201,6 +203,7 @@ const createReturn = async (req, res) => {
             return salesReturn;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'salesreturn', returnNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Sales Return Error:', error);
@@ -270,7 +273,7 @@ const getReturnById = async (req, res) => {
 const updateReturn = async (req, res) => {
     try {
         const { id } = req.params;
-        const { returnNumber, date, customerId, invoiceId, items, reason, manualVoucherNo } = req.body;
+        const { returnNumber, date, customerId, invoiceId, items, reason, manualVoucherNo, customFields } = req.body;
         const companyId = req.user.companyId;
 
         if (!returnNumber || !customerId || !items || items.length === 0) {
@@ -326,6 +329,7 @@ const updateReturn = async (req, res) => {
                     invoiceId: invoiceId ? parseInt(invoiceId) : null,
                     totalAmount,
                     reason,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     salesreturnitem: {
                         create: returnItems
                     }

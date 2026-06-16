@@ -23,10 +23,24 @@ const getFormattedDate = (dateObj) => {
 
 // Global Prisma middleware to validate transaction dates
 prisma.$use(async (params, next) => {
-    if (params.model === 'transaction' && (params.action === 'create' || params.action === 'createMany')) {
-        const transactions = params.action === 'create'
-            ? [params.args.data]
-            : (Array.isArray(params.args.data) ? params.args.data : [params.args.data]);
+    if (params.model === 'transaction' && (params.action === 'create' || params.action === 'createMany' || params.action === 'update')) {
+        let transactions = [];
+        if (params.action === 'create') {
+            transactions = [params.args.data];
+        } else if (params.action === 'createMany') {
+            transactions = Array.isArray(params.args.data) ? params.args.data : [params.args.data];
+        } else if (params.action === 'update') {
+            // Fetch the existing transaction to merge updated fields
+            const existingTx = await prisma.transaction.findUnique({
+                where: params.args.where
+            });
+            if (existingTx) {
+                transactions = [{
+                    ...existingTx,
+                    ...params.args.data
+                }];
+            }
+        }
 
         for (const txData of transactions) {
             if (!txData) continue;

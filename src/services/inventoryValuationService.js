@@ -8,8 +8,7 @@
  * - Reversal: on bill/invoice deletion or update
  */
 
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../config/prisma');
 
 /**
  * Get the company's inventory configuration

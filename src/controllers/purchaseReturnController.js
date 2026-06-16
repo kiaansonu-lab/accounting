@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Purchase Return (Stock OUT + Ledger Debit Vendor)
 const createReturn = async (req, res) => {
     try {
-        const { returnNumber, date, vendorId, purchaseBillId, items, reason, totalAmount } = req.body;
+        const { returnNumber, date, vendorId, purchaseBillId, items, reason, totalAmount, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!returnNumber || !vendorId || !items || items.length === 0) {
@@ -31,6 +32,7 @@ const createReturn = async (req, res) => {
                     totalAmount: parseFloat(totalAmount),
                     reason,
                     status: 'Processed',
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     purchasereturnitem: {
                         create: returnItems
                     }
@@ -132,6 +134,7 @@ const createReturn = async (req, res) => {
             return purchaseReturn;
         });
 
+        await numberingService.incrementNumber(companyId, 'purchasereturn', returnNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Purchase Return Error:', error);
@@ -211,7 +214,7 @@ const getReturnById = async (req, res) => {
 const updateReturn = async (req, res) => {
     try {
         const { id } = req.params;
-        const { returnNumber, date, vendorId, purchaseBillId, items, reason, totalAmount, narration, warehouseId } = req.body;
+        const { returnNumber, date, vendorId, purchaseBillId, items, reason, totalAmount, narration, warehouseId, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const existingReturn = await prisma.purchasereturn.findFirst({
@@ -245,6 +248,7 @@ const updateReturn = async (req, res) => {
                 purchaseBillId: purchaseBillId ? parseInt(purchaseBillId) : undefined,
                 totalAmount: totalAmount ? parseFloat(totalAmount) : undefined,
                 reason,
+                customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                 purchasereturnitem: {
                     create: returnItems
                 }

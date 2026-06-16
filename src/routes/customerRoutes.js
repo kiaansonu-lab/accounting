@@ -9,6 +9,8 @@ router.use(authenticateToken);
 // Customer Routes
 router.post('/', authorizePermissions('create accounts'), customerController.createCustomer);
 router.get('/', authorizePermissions('view accounts'), customerController.getAllCustomers);
+// Static action routes MUST come before /:id to avoid routing conflicts
+router.post('/recalculate-all', authorizePermissions('edit accounts'), customerController.recalculateAllBalances);
 router.get('/:id', authorizePermissions('view accounts'), customerController.getCustomerById);
 router.put('/:id', authorizePermissions('edit accounts'), customerController.updateCustomer);
 router.delete('/:id', authorizePermissions('delete accounts'), customerController.deleteCustomer);

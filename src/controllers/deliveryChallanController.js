@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Delivery Challan
 const createChallan = async (req, res) => {
@@ -7,7 +8,7 @@ const createChallan = async (req, res) => {
         const {
             challanNumber, manualReference, date, customerId, salesOrderId, items, notes,
             shippingAddress, shippingCity, shippingState, shippingZipCode, shippingPhone, shippingEmail,
-            vehicleNo, carrier, transportNote, remarks
+            vehicleNo, carrier, transportNote, remarks, customFields
         } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -44,6 +45,7 @@ const createChallan = async (req, res) => {
                     customer: { connect: { id: parseInt(customerId) } },
                     salesorder: salesOrderId ? { connect: { id: parseInt(salesOrderId) } } : undefined,
                     company: { connect: { id: parseInt(companyId) } },
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     shippingAddress,
                     shippingCity,
                     shippingState,
@@ -147,6 +149,7 @@ const createChallan = async (req, res) => {
             return challan;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'deliverychallan', challanNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Challan Error:', error);
@@ -226,7 +229,7 @@ const updateChallan = async (req, res) => {
         const {
             challanNumber, date, customerId, salesOrderId, items, notes,
             shippingAddress, shippingCity, shippingState, shippingZipCode, shippingPhone, shippingEmail,
-            vehicleNo, transportNote, remarks
+            vehicleNo, transportNote, remarks, customFields
         } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -266,6 +269,7 @@ const updateChallan = async (req, res) => {
                     customer: { connect: { id: parseInt(customerId) } },
                     salesorder: salesOrderId ? { connect: { id: parseInt(salesOrderId) } } : { disconnect: true },
                     company: { connect: { id: parseInt(companyId) } },
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     vehicleNo,
                     shippingAddress,
                     shippingCity,

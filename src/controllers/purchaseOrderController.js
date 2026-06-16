@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Purchase Order (Direct or from Quotation)
 const createOrder = async (req, res) => {
     try {
-        const { orderNumber, date, expectedDate, vendorId, items, notes, quotationId, overallDiscount, overallDiscountType } = req.body;
+        const { orderNumber, date, expectedDate, vendorId, items, notes, quotationId, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         if (!orderNumber || !vendorId || !items || items.length === 0) {
@@ -97,6 +98,7 @@ const createOrder = async (req, res) => {
                     overallDiscountType: overallDiscountType || 'percentage',
                     totalAmount: finalTotal,
                     notes,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     purchaseorderitem: {
                         create: orderItems.map(i => ({
                             productId: i.productId,
@@ -126,6 +128,7 @@ const createOrder = async (req, res) => {
             return order;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'purchaseorder', orderNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Purchase Order Error:', error);
@@ -195,7 +198,7 @@ const getOrderById = async (req, res) => {
 const updateOrder = async (req, res) => {
     try {
         const { id } = req.params;
-        const { orderNumber, date, expectedDate, vendorId, items, notes, status, overallDiscount, overallDiscountType } = req.body;
+        const { orderNumber, date, expectedDate, vendorId, items, notes, status, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const existing = await prisma.purchaseorder.findFirst({
@@ -297,6 +300,7 @@ const updateOrder = async (req, res) => {
                     totalAmount: finalTotal,
                     notes,
                     status: (status === 'OPEN' || !status) ? 'PENDING' : status,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     purchaseorderitem: {
                         create: orderItems.map(i => ({
                             productId: i.productId,

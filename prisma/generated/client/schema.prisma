@@ -118,6 +118,12 @@ model company {
   accountNumber        String?
   ifsc                 String?
   terms                String?                @db.Text
+  termsInvoice         String?                @db.Text
+  termsReceipt         String?                @db.Text
+  termsPurchase        String?                @db.Text
+  termsSalesOrder      String?                @db.Text
+  termsQuotation       String?                @db.Text
+  termsCreditNote      String?                @db.Text
   notes                String?                @db.Text
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @default(now()) @updatedAt
@@ -132,6 +138,7 @@ model company {
   paymentColor         String?                @default("#004aad")
   paymentLabels        String?                @db.LongText
   paymentTableHeaders  String?                @db.LongText
+  customFieldsConfig   String?                @db.LongText
   accountgroup         accountgroup[]
   accountsubgroup      accountsubgroup[]
   bankaccount          bankaccount[]
@@ -259,6 +266,7 @@ model deliverychallan {
   carrier             String?
   transportNote       String?                @db.Text
   remarks             String?                @db.Text
+  customFields        String?                @db.Text
   company             company                @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "DeliveryChallan_companyId_fkey")
   customer            customer               @relation(fields: [customerId], references: [id], map: "DeliveryChallan_customerId_fkey")
   salesorder          salesorder?            @relation(fields: [salesOrderId], references: [id], map: "DeliveryChallan_salesOrderId_fkey")
@@ -289,16 +297,17 @@ model deliverychallanitem {
 }
 
 model expenseentry {
-  id          Int                      @id @default(autoincrement())
-  date        DateTime                 @default(now())
-  expenseType expenseentry_expenseType
-  amount      Float
-  paymentMode expenseentry_paymentMode
-  description String?                  @db.Text
-  companyId   Int
-  createdAt   DateTime                 @default(now())
-  updatedAt   DateTime                 @default(now()) @updatedAt
-  company     company                  @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "ExpenseEntry_companyId_fkey")
+  id           Int                      @id @default(autoincrement())
+  date         DateTime                 @default(now())
+  expenseType  expenseentry_expenseType
+  amount       Float
+  paymentMode  expenseentry_paymentMode
+  description  String?                  @db.Text
+  customFields String?                  @db.Text
+  companyId    Int
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @default(now()) @updatedAt
+  company      company                  @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "ExpenseEntry_companyId_fkey")
 
   @@index([companyId], map: "ExpenseEntry_companyId_fkey")
 }
@@ -312,6 +321,7 @@ model goodsreceiptnote {
   companyId            Int
   notes                String?                @db.Text
   status               String                 @default("Received")
+  customFields         String?                @db.Text
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @default(now()) @updatedAt
   company              company                @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "GoodsReceiptNote_companyId_fkey")
@@ -344,16 +354,17 @@ model goodsreceiptnoteitem {
 }
 
 model incomeentry {
-  id          Int                     @id @default(autoincrement())
-  date        DateTime                @default(now())
-  incomeType  incomeentry_incomeType
-  amount      Float
-  paymentMode incomeentry_paymentMode
-  description String?                 @db.Text
-  companyId   Int
-  createdAt   DateTime                @default(now())
-  updatedAt   DateTime                @default(now()) @updatedAt
-  company     company                 @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "IncomeEntry_companyId_fkey")
+  id           Int                     @id @default(autoincrement())
+  date         DateTime                @default(now())
+  incomeType   incomeentry_incomeType
+  amount       Float
+  paymentMode  incomeentry_paymentMode
+  description  String?                 @db.Text
+  customFields String?                 @db.Text
+  companyId    Int
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @default(now()) @updatedAt
+  company      company                 @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "IncomeEntry_companyId_fkey")
 
   @@index([companyId], map: "IncomeEntry_companyId_fkey")
 }
@@ -456,6 +467,7 @@ model invoice {
   shippingState         String?
   shippingZipCode       String?
   shippingCountry       String?
+  customFields          String?                    @db.Text
   company               company                    @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "Invoice_companyId_fkey")
   customer              customer                   @relation(fields: [customerId], references: [id], onDelete: Cascade, map: "Invoice_customerId_fkey")
   deliverychallan       deliverychallan?           @relation(fields: [deliveryChallanId], references: [id], onDelete: Cascade, map: "Invoice_deliveryChallanId_fkey")
@@ -590,6 +602,7 @@ model payment {
   bankLedger        ledger?                 @relation("Payment_CashBankAccount", fields: [cashBankAccountId], references: [id], map: "Payment_cashBankAccountId_fkey")
   discountAmount    Float                   @default(0)
   discountLedgerId  Int?
+  customFields      String?                 @db.Text
   discountLedger    ledger?                 @relation("Payment_DiscountLedger", fields: [discountLedgerId], references: [id], map: "Payment_discountLedgerId_fkey")
   transaction       transaction[]
   allocations       paymentbillallocation[]
@@ -666,6 +679,7 @@ model posinvoice {
   paymentMode    String?
   status         String           @default("Paid")
   notes          String?          @db.Text
+  customFields   String?          @db.Text
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @default(now()) @updatedAt
   company        company          @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "PosInvoice_companyId_fkey")
@@ -793,6 +807,7 @@ model purchasebill {
   shippingState       String?
   shippingZipCode     String?
   shippingCountry     String?
+  customFields        String?                 @db.Text
   payment             payment[]
   company             company                 @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "PurchaseBill_companyId_fkey")
   goodsreceiptnote    goodsreceiptnote?       @relation(fields: [grnId], references: [id], onDelete: Cascade, map: "PurchaseBill_grnId_fkey")
@@ -863,6 +878,7 @@ model purchaseorder {
   shippingState       String?
   shippingZipCode     String?
   shippingCountry     String?
+  customFields        String?              @db.Text
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @default(now()) @updatedAt
   goodsreceiptnote    goodsreceiptnote[]
@@ -918,6 +934,7 @@ model purchasequotation {
   attachments           String?                  @db.Text
   manualReference       String?
   terms                 String?                  @db.Text
+  customFields          String?                  @db.Text
   purchaseorder         purchaseorder?
   company               company                  @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "PurchaseQuotation_companyId_fkey")
   vendor                vendor                   @relation(fields: [vendorId], references: [id], map: "PurchaseQuotation_vendorId_fkey")
@@ -959,6 +976,7 @@ model purchasereturn {
   totalAmount        Float
   reason             String?               @db.Text
   status             purchasereturn_status @default(Pending)
+  customFields       String?               @db.Text
   createdAt          DateTime              @default(now())
   updatedAt          DateTime              @default(now()) @updatedAt
   company            company               @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "PurchaseReturn_companyId_fkey")
@@ -1010,6 +1028,7 @@ model receipt {
   cashBankAccount   ledger?                    @relation("Receipt_CashBankAccount", fields: [cashBankAccountId], references: [id], map: "Receipt_cashBankAccountId_fkey")
   discountAmount    Float                      @default(0)
   discountLedgerId  Int?
+  customFields      String?                    @db.Text
   discountLedger    ledger?                    @relation("Receipt_DiscountLedger", fields: [discountLedgerId], references: [id], map: "Receipt_discountLedgerId_fkey")
   transaction       transaction[]
   allocations       receiptinvoiceallocation[]
@@ -1051,6 +1070,7 @@ model salesorder {
   shippingState       String?
   shippingZipCode     String?
   shippingCountry     String?
+  customFields        String?           @db.Text
   company             company           @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "SalesOrder_companyId_fkey")
   customer            customer          @relation(fields: [customerId], references: [id], map: "SalesOrder_customerId_fkey")
   salesquotation      salesquotation?   @relation(fields: [quotationId], references: [id], map: "SalesOrder_quotationId_fkey")
@@ -1113,6 +1133,7 @@ model salesquotation {
   shippingCity        String?
   shippingState       String?
   shippingZipCode     String?
+  customFields        String?               @db.Text
   company             company               @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "SalesQuotation_companyId_fkey")
   customer            customer              @relation(fields: [customerId], references: [id], map: "SalesQuotation_customerId_fkey")
   salesquotationitem  salesquotationitem[]
@@ -1160,6 +1181,7 @@ model salesreturn {
   autoVoucherNo   String?
   manualVoucherNo String?
   status          salesreturn_status @default(Pending)
+  customFields    String?            @db.Text
   company         company            @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "SalesReturn_companyId_fkey")
   customer        customer           @relation(fields: [customerId], references: [id], map: "SalesReturn_customerId_fkey")
   invoice         invoice?           @relation(fields: [invoiceId], references: [id], map: "SalesReturn_invoiceId_fkey")
@@ -1288,6 +1310,7 @@ model transaction {
   posInvoiceId                              Int?
   signature                                 String?                 @db.LongText
   logo                                      String?                 @db.LongText
+  customFields                              String?                 @db.Text
   company                                   company                 @relation(fields: [companyId], references: [id], onDelete: Cascade, map: "Transaction_companyId_fkey")
   ledger_transaction_creditLedgerIdToledger ledger                  @relation("transaction_creditLedgerIdToledger", fields: [creditLedgerId], references: [id], onDelete: Cascade, map: "Transaction_creditLedgerId_fkey")
   ledger_transaction_debitLedgerIdToledger  ledger                  @relation("transaction_debitLedgerIdToledger", fields: [debitLedgerId], references: [id], onDelete: Cascade, map: "Transaction_debitLedgerId_fkey")
@@ -1639,6 +1662,7 @@ model voucher {
   totalAmount      Float
   notes            String?       @db.Text
   signature        String?       @db.LongText
+  customFields     String?       @db.Text
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now()) @updatedAt
   company          company       @relation(fields: [companyId], references: [id], onDelete: Cascade)

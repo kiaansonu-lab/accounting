@@ -202,6 +202,12 @@ exports.Prisma.CompanyScalarFieldEnum = {
   accountNumber: 'accountNumber',
   ifsc: 'ifsc',
   terms: 'terms',
+  termsInvoice: 'termsInvoice',
+  termsReceipt: 'termsReceipt',
+  termsPurchase: 'termsPurchase',
+  termsSalesOrder: 'termsSalesOrder',
+  termsQuotation: 'termsQuotation',
+  termsCreditNote: 'termsCreditNote',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -215,7 +221,8 @@ exports.Prisma.CompanyScalarFieldEnum = {
   paymentTemplate: 'paymentTemplate',
   paymentColor: 'paymentColor',
   paymentLabels: 'paymentLabels',
-  paymentTableHeaders: 'paymentTableHeaders'
+  paymentTableHeaders: 'paymentTableHeaders',
+  customFieldsConfig: 'customFieldsConfig'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -290,7 +297,8 @@ exports.Prisma.DeliverychallanScalarFieldEnum = {
   vehicleNo: 'vehicleNo',
   carrier: 'carrier',
   transportNote: 'transportNote',
-  remarks: 'remarks'
+  remarks: 'remarks',
+  customFields: 'customFields'
 };
 
 exports.Prisma.DeliverychallanitemScalarFieldEnum = {
@@ -311,6 +319,7 @@ exports.Prisma.ExpenseentryScalarFieldEnum = {
   amount: 'amount',
   paymentMode: 'paymentMode',
   description: 'description',
+  customFields: 'customFields',
   companyId: 'companyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -325,6 +334,7 @@ exports.Prisma.GoodsreceiptnoteScalarFieldEnum = {
   companyId: 'companyId',
   notes: 'notes',
   status: 'status',
+  customFields: 'customFields',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -347,6 +357,7 @@ exports.Prisma.IncomeentryScalarFieldEnum = {
   amount: 'amount',
   paymentMode: 'paymentMode',
   description: 'description',
+  customFields: 'customFields',
   companyId: 'companyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -427,7 +438,8 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   shippingCity: 'shippingCity',
   shippingState: 'shippingState',
   shippingZipCode: 'shippingZipCode',
-  shippingCountry: 'shippingCountry'
+  shippingCountry: 'shippingCountry',
+  customFields: 'customFields'
 };
 
 exports.Prisma.InvoiceitemScalarFieldEnum = {
@@ -501,7 +513,8 @@ exports.Prisma.PaymentScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   discountAmount: 'discountAmount',
-  discountLedgerId: 'discountLedgerId'
+  discountLedgerId: 'discountLedgerId',
+  customFields: 'customFields'
 };
 
 exports.Prisma.PaymentrecordScalarFieldEnum = {
@@ -565,6 +578,7 @@ exports.Prisma.PosinvoiceScalarFieldEnum = {
   paymentMode: 'paymentMode',
   status: 'status',
   notes: 'notes',
+  customFields: 'customFields',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -646,7 +660,8 @@ exports.Prisma.PurchasebillScalarFieldEnum = {
   shippingCity: 'shippingCity',
   shippingState: 'shippingState',
   shippingZipCode: 'shippingZipCode',
-  shippingCountry: 'shippingCountry'
+  shippingCountry: 'shippingCountry',
+  customFields: 'customFields'
 };
 
 exports.Prisma.PurchasebillitemScalarFieldEnum = {
@@ -693,6 +708,7 @@ exports.Prisma.PurchaseorderScalarFieldEnum = {
   shippingState: 'shippingState',
   shippingZipCode: 'shippingZipCode',
   shippingCountry: 'shippingCountry',
+  customFields: 'customFields',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -731,7 +747,8 @@ exports.Prisma.PurchasequotationScalarFieldEnum = {
   updatedAt: 'updatedAt',
   attachments: 'attachments',
   manualReference: 'manualReference',
-  terms: 'terms'
+  terms: 'terms',
+  customFields: 'customFields'
 };
 
 exports.Prisma.PurchasequotationitemScalarFieldEnum = {
@@ -759,6 +776,7 @@ exports.Prisma.PurchasereturnScalarFieldEnum = {
   totalAmount: 'totalAmount',
   reason: 'reason',
   status: 'status',
+  customFields: 'customFields',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -790,7 +808,8 @@ exports.Prisma.ReceiptScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   discountAmount: 'discountAmount',
-  discountLedgerId: 'discountLedgerId'
+  discountLedgerId: 'discountLedgerId',
+  customFields: 'customFields'
 };
 
 exports.Prisma.SalesorderScalarFieldEnum = {
@@ -822,7 +841,8 @@ exports.Prisma.SalesorderScalarFieldEnum = {
   shippingCity: 'shippingCity',
   shippingState: 'shippingState',
   shippingZipCode: 'shippingZipCode',
-  shippingCountry: 'shippingCountry'
+  shippingCountry: 'shippingCountry',
+  customFields: 'customFields'
 };
 
 exports.Prisma.SalesorderitemScalarFieldEnum = {
@@ -867,7 +887,8 @@ exports.Prisma.SalesquotationScalarFieldEnum = {
   shippingAddress: 'shippingAddress',
   shippingCity: 'shippingCity',
   shippingState: 'shippingState',
-  shippingZipCode: 'shippingZipCode'
+  shippingZipCode: 'shippingZipCode',
+  customFields: 'customFields'
 };
 
 exports.Prisma.SalesquotationitemScalarFieldEnum = {
@@ -899,7 +920,8 @@ exports.Prisma.SalesreturnScalarFieldEnum = {
   updatedAt: 'updatedAt',
   autoVoucherNo: 'autoVoucherNo',
   manualVoucherNo: 'manualVoucherNo',
-  status: 'status'
+  status: 'status',
+  customFields: 'customFields'
 };
 
 exports.Prisma.SalesreturnitemScalarFieldEnum = {
@@ -986,7 +1008,8 @@ exports.Prisma.TransactionScalarFieldEnum = {
   updatedAt: 'updatedAt',
   posInvoiceId: 'posInvoiceId',
   signature: 'signature',
-  logo: 'logo'
+  logo: 'logo',
+  customFields: 'customFields'
 };
 
 exports.Prisma.UomScalarFieldEnum = {
@@ -1092,6 +1115,7 @@ exports.Prisma.VoucherScalarFieldEnum = {
   totalAmount: 'totalAmount',
   notes: 'notes',
   signature: 'signature',
+  customFields: 'customFields',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

@@ -1,11 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const { getInventoryConfig, consumeStock } = require('../services/inventoryValuationService');
+const numberingService = require('../services/numberingService');
 
 // Create POS Invoice
 const createPOSInvoice = async (req, res) => {
     try {
         const {
+            invoiceNumber,
             companyId,
             customerId, // Optional (for walk-in)
             items,
@@ -15,13 +17,20 @@ const createPOSInvoice = async (req, res) => {
             receivedAmount, // The actual amount paid by customer
             accountId,   // Explicit ledger selection for payment (Cash/Bank)
             dueAccountId, // Explicit ledger selection for the sale debit (Customer/Receivable)
-            payments
+            payments,
+            customFields
         } = req.body;
 
         const currentCompanyId = req.user?.companyId || companyId;
 
         if (!currentCompanyId || !items || items.length === 0) {
             return res.status(400).json({ success: false, message: 'Invalid data provided' });
+        }
+
+        let resolvedInvoiceNumber = invoiceNumber;
+        if (!resolvedInvoiceNumber) {
+            const nextNumObj = await numberingService.getNextNumber(currentCompanyId, 'posinvoice');
+            resolvedInvoiceNumber = nextNumObj.formattedNumber;
         }
 
         // 1. Calculate Totals
@@ -78,8 +87,7 @@ const createPOSInvoice = async (req, res) => {
             };
 
             // A. Generate Invoice Number
-            const count = await tx.posinvoice.count({ where: { companyId: parseInt(currentCompanyId) } });
-            const invoiceNumber = `POS-${String(count + 1).padStart(6, '0')}`;
+            const invoiceNumber = resolvedInvoiceNumber;
 
             // B. Find/Create Ledgers
 
@@ -149,6 +157,7 @@ const createPOSInvoice = async (req, res) => {
                     status: balance <= 0 ? 'Paid' : (finalReceived > 0 ? 'Partial' : 'Due'),
                     updatedAt: new Date(),
                     notes: notes || null,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     posinvoiceitem: {
                         create: processedItems.map(i => ({
                             productId: parseInt(i.productId),
@@ -358,6 +367,7 @@ const createPOSInvoice = async (req, res) => {
             timeout: 90000
         });
 
+        await numberingService.incrementNumber(currentCompanyId, 'posinvoice', resolvedInvoiceNumber);
         res.status(201).json({ success: true, data: result });
 
     } catch (error) {
@@ -580,7 +590,8 @@ const updatePOSInvoice = async (req, res) => {
             receivedAmount,
             accountId,
             dueAccountId,
-            payments
+            payments,
+            customFields
         } = req.body;
 
         const currentCompanyId = req.user?.companyId || companyId;
@@ -782,6 +793,7 @@ const updatePOSInvoice = async (req, res) => {
                     status: balance <= 0 ? 'Paid' : (finalReceived > 0 ? 'Partial' : 'Due'),
                     updatedAt: new Date(),
                     notes: notes || null,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     posinvoiceitem: {
                         create: processedItems.map(i => ({
                             productId: parseInt(i.productId),
@@ -991,11 +1003,24 @@ const updatePOSInvoice = async (req, res) => {
     }
 };
 
+const getNextNumber = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
+        if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
+
+        const result = await numberingService.getNextNumber(companyId, 'posinvoice');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createPOSInvoice,
     getPOSInvoices,
     getPOSInvoiceById,
     deletePOSInvoice,
     getPublicPOSInvoiceById,
-    updatePOSInvoice
+    updatePOSInvoice,
+    getNextNumber
 };

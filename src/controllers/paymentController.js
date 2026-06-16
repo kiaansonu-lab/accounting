@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 const createPayment = async (req, res) => {
     try {
@@ -15,7 +16,8 @@ const createPayment = async (req, res) => {
             notes,
             discountAmount,
             discountLedgerId,
-            allocations
+            allocations,
+            customFields
         } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -69,6 +71,7 @@ const createPayment = async (req, res) => {
         const result = await prisma.$transaction(async (tx) => {
             const payment = await tx.payment.create({
                 data: {
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     paymentNumber: paymentNumber || `PAY-${Date.now()}`,
                     date: date ? new Date(date) : new Date(),
                     vendorId: parseInt(vendorId),
@@ -200,6 +203,7 @@ const createPayment = async (req, res) => {
             timeout: 30000
         });
 
+        await numberingService.incrementNumber(companyId, 'payment', paymentNumber || result.paymentNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Payment Error:', error);
@@ -308,7 +312,8 @@ const updatePayment = async (req, res) => {
             notes,
             discountAmount,
             discountLedgerId,
-            allocations
+            allocations,
+            customFields
         } = req.body;
         const currentCompanyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
@@ -442,6 +447,7 @@ const updatePayment = async (req, res) => {
             const updatedPayment = await tx.payment.update({
                 where: { id: parseInt(id) },
                 data: {
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     paymentNumber,
                     date: date ? new Date(date) : undefined,
                     vendorId: vendorId ? parseInt(vendorId) : undefined,

@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 const chartOfAccountsService = require('../services/chartOfAccountsService');
+const numberingService = require('../services/numberingService');
 const { isCloudinaryConfigured } = require('../utils/cloudinaryConfig');
 
 const createCompany = async (req, res) => {
@@ -205,6 +206,12 @@ const updateCompany = async (req, res) => {
             bankName, accountHolder, accountNumber,
             ifsc,
             terms,
+            termsInvoice,
+            termsReceipt,
+            termsPurchase,
+            termsSalesOrder,
+            termsQuotation,
+            termsCreditNote,
             notes,
             inventoryConfig,
             storageCapacity,
@@ -217,7 +224,8 @@ const updateCompany = async (req, res) => {
             paymentTemplate,
             paymentColor,
             paymentLabels,
-            paymentTableHeaders
+            paymentTableHeaders,
+            customFieldsConfig
         } = req.body;
 
         // Fetch current company to get existing inventoryConfig
@@ -264,6 +272,12 @@ const updateCompany = async (req, res) => {
             accountNumber,
             ifsc,
             terms,
+            termsInvoice,
+            termsReceipt,
+            termsPurchase,
+            termsSalesOrder,
+            termsQuotation,
+            termsCreditNote,
             notes,
             inventoryConfig: finalInventoryConfig,
             invoiceTableHeaders: invoiceTableHeaders ? (typeof invoiceTableHeaders === 'string' ? invoiceTableHeaders : JSON.stringify(invoiceTableHeaders)) : undefined,
@@ -275,7 +289,8 @@ const updateCompany = async (req, res) => {
             paymentTemplate: paymentTemplate || undefined,
             paymentColor: paymentColor || undefined,
             paymentLabels: paymentLabels ? (typeof paymentLabels === 'string' ? paymentLabels : JSON.stringify(paymentLabels)) : undefined,
-            paymentTableHeaders: paymentTableHeaders ? (typeof paymentTableHeaders === 'string' ? paymentTableHeaders : JSON.stringify(paymentTableHeaders)) : undefined
+            paymentTableHeaders: paymentTableHeaders ? (typeof paymentTableHeaders === 'string' ? paymentTableHeaders : JSON.stringify(paymentTableHeaders)) : undefined,
+            customFieldsConfig: customFieldsConfig !== undefined ? (typeof customFieldsConfig === 'string' ? customFieldsConfig : JSON.stringify(customFieldsConfig)) : undefined
         };
 
         if (req.files) {
@@ -338,10 +353,101 @@ const deleteCompany = async (req, res) => {
     }
 };
 
+const getNumberingSettings = async (req, res) => {
+    try {
+        const companyId = parseInt(req.params.id || req.user?.companyId);
+        if (!companyId) {
+            return res.status(400).json({ success: false, message: 'Company ID is required' });
+        }
+
+        // Use raw SQL helpers — works even if prisma client is not regenerated yet
+        const existingConfigs = await numberingService.findAllConfigs(companyId);
+
+        const configsMap = {};
+        existingConfigs.forEach(cfg => {
+            configsMap[cfg.transactionType] = cfg;
+        });
+
+        const allTypes = Object.keys(numberingService.TRANSACTION_TYPES);
+        const results = await Promise.all(allTypes.map(async (type) => {
+            if (configsMap[type]) return configsMap[type];
+            const defInfo = numberingService.TRANSACTION_TYPES[type];
+            return await numberingService.upsertConfig(companyId, type, {
+                prefix: defInfo.defaultPrefix,
+                currentNumber: 1,
+                paddingLength: 4,
+                pattern: 'numeric'
+            });
+        }));
+
+        res.json({ success: true, data: results });
+    } catch (error) {
+        console.error('Get Numbering Settings Error:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+const updateNumberingSettings = async (req, res) => {
+    try {
+        const companyId = parseInt(req.params.id || req.user?.companyId);
+        if (!companyId) {
+            return res.status(400).json({ success: false, message: 'Company ID is required' });
+        }
+
+        const { settings } = req.body;
+        if (!Array.isArray(settings)) {
+            return res.status(400).json({ success: false, message: 'Settings array is required' });
+        }
+
+        const results = [];
+        for (const item of settings) {
+            const { transactionType, prefix, currentNumber, paddingLength, pattern } = item;
+            if (!transactionType) continue;
+
+            const updated = await numberingService.upsertConfig(companyId, transactionType, {
+                prefix:        prefix !== undefined ? prefix : '',
+                currentNumber: currentNumber !== undefined ? parseInt(currentNumber) : 1,
+                paddingLength: paddingLength !== undefined ? parseInt(paddingLength) : 4,
+                pattern:       pattern || 'numeric'
+            });
+            results.push(updated);
+        }
+
+        res.json({ success: true, data: results });
+    } catch (error) {
+        console.error('Update Numbering Settings Error:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+const getNextNumberEndpoint = async (req, res) => {
+    try {
+        const companyId = parseInt(req.params.id || req.user?.companyId || req.query.companyId);
+        const { type } = req.query;
+
+        if (!companyId) {
+            return res.status(400).json({ success: false, message: 'Company ID is required' });
+        }
+        if (!type) {
+            return res.status(400).json({ success: false, message: 'Transaction type is required' });
+        }
+
+        const result = await numberingService.getNextNumber(companyId, type);
+        res.json({ success: true, nextNumber: result.formattedNumber, details: result });
+    } catch (error) {
+        console.error('Get Next Number Error:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createCompany,
     getCompanies,
     getCompanyById,
     updateCompany,
-    deleteCompany
+    deleteCompany,
+    getNumberingSettings,
+    updateNumberingSettings,
+    getNextNumberEndpoint
 };
+

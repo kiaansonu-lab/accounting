@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Purchase Quotation
 const createQuotation = async (req, res) => {
     try {
-        const { quotationNumber, manualReference, date, expiryDate, vendorId, items, notes, terms, attachments, overallDiscount, overallDiscountType } = req.body;
+        const { quotationNumber, manualReference, date, expiryDate, vendorId, items, notes, terms, attachments, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.body.companyId;
 
         if (!quotationNumber || !vendorId || !items || items.length === 0) {
@@ -100,6 +101,7 @@ const createQuotation = async (req, res) => {
                     notes,
                     terms,
                     attachments,
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     purchasequotationitem: {
                         create: quotationItems.map(i => ({
                             productId: i.productId,
@@ -122,6 +124,7 @@ const createQuotation = async (req, res) => {
             return quotation;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'purchasequotation', quotationNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Purchase Quotation Error:', error);
@@ -182,7 +185,7 @@ const getQuotationById = async (req, res) => {
 const updateQuotation = async (req, res) => {
     try {
         const { id } = req.params;
-        const { quotationNumber, manualReference, date, expiryDate, vendorId, items, notes, terms, attachments, status, overallDiscount, overallDiscountType } = req.body;
+        const { quotationNumber, manualReference, date, expiryDate, vendorId, items, notes, terms, attachments, status, overallDiscount, overallDiscountType, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const existing = await prisma.purchasequotation.findFirst({
@@ -289,6 +292,7 @@ const updateQuotation = async (req, res) => {
                     terms,
                     attachments,
                     status,
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     purchasequotationitem: {
                         create: quotationItems.map(i => ({
                             productId: i.productId,

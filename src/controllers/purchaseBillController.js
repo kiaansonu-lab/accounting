@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 const {
     getInventoryConfig,
     recordStockIn,
@@ -10,7 +11,7 @@ const {
 // Create Purchase Bill (Financial Posting)
 const createBill = async (req, res) => {
     try {
-        const { billNumber, date, dueDate, vendorId, purchaseOrderId, grnId, items, notes, discountAmount, taxAmount, totalAmount, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, currency, exchangeRate } = req.body;
+        const { billNumber, date, dueDate, vendorId, purchaseOrderId, grnId, items, notes, discountAmount, taxAmount, totalAmount, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, currency, exchangeRate, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const docCurrency = currency || 'USD';
@@ -101,6 +102,7 @@ const createBill = async (req, res) => {
             // 1. Create Purchase Bill
             const bill = await tx.purchasebill.create({
                 data: {
+                    customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
                     billNumber,
                     date: new Date(date),
                     dueDate: dueDate ? new Date(dueDate) : null,
@@ -433,6 +435,7 @@ const createBill = async (req, res) => {
             timeout: 30000
         });
 
+        await numberingService.incrementNumber(companyId, 'purchasebill', billNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Create Purchase Bill Error:', error);
@@ -743,7 +746,7 @@ const deleteBill = async (req, res) => {
 const updateBill = async (req, res) => {
     try {
         const { id } = req.params;
-        const { notes, dueDate, items, totalAmount, taxAmount, discountAmount, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, currency, exchangeRate } = req.body;
+        const { notes, dueDate, items, totalAmount, taxAmount, discountAmount, billingName, billingAddress, billingCity, billingState, billingZipCode, billingCountry, shippingName, shippingAddress, shippingCity, shippingState, shippingZipCode, shippingCountry, overallDiscount, overallDiscountType, currency, exchangeRate, customFields } = req.body;
         const companyId = req.user?.companyId || req.query.companyId || req.body.companyId;
 
         const updated = await prisma.$transaction(async (tx) => {
@@ -1093,6 +1096,7 @@ const updateBill = async (req, res) => {
             return await tx.purchasebill.update({
                 where: { id: parseInt(id), companyId: parseInt(companyId) },
                 data: {
+                    customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                     notes,
                     dueDate: dueDate ? new Date(dueDate) : undefined,
                     subtotal: calculatedSubtotal,
@@ -1144,35 +1148,8 @@ const getNextNumber = async (req, res) => {
         const companyId = req.user?.companyId || req.query.companyId;
         if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
 
-        const cid = parseInt(companyId);
-
-        // Scan ALL existing purchase bills with PB- prefix
-        const allBills = await prisma.purchasebill.findMany({
-            where: { companyId: cid, billNumber: { startsWith: 'PB-' } },
-            select: { billNumber: true }
-        });
-
-        // Scan ALL journal entries with PB- prefix voucher numbers (catches soft-deleted bills)
-        const allJournals = await prisma.journalentry.findMany({
-            where: { companyId: cid, voucherNumber: { startsWith: 'PB-' } },
-            select: { voucherNumber: true }
-        });
-
-        // Extract max numeric suffix from both sources
-        let maxNum = 100; // Start from PB-101
-        for (const b of allBills) {
-            const numStr = (b.billNumber || '').replace(/^PB-/, '');
-            const num = parseInt(numStr);
-            if (!isNaN(num) && num > maxNum) maxNum = num;
-        }
-        for (const j of allJournals) {
-            const numStr = (j.voucherNumber || '').replace(/^PB-/, '');
-            const num = parseInt(numStr);
-            if (!isNaN(num) && num > maxNum) maxNum = num;
-        }
-
-        const nextNumber = `PB-${maxNum + 1}`;
-        res.status(200).json({ success: true, nextNumber });
+        const result = await numberingService.getNextNumber(companyId, 'purchasebill');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

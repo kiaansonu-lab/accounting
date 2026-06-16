@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Get All Stock Transfers
 const getStockTransfers = async (req, res) => {
@@ -70,7 +71,13 @@ const createStockTransfer = async (req, res) => {
             voucherNo, manualVoucherNo, date, toWarehouseId, narration, items
         } = req.body;
 
-        if (!voucherNo || !toWarehouseId || !items || items.length === 0) {
+        let resolvedVoucherNo = voucherNo;
+        if (!resolvedVoucherNo) {
+            const nextNumObj = await numberingService.getNextNumber(companyId, 'stocktransfer');
+            resolvedVoucherNo = nextNumObj.formattedNumber;
+        }
+
+        if (!resolvedVoucherNo || !toWarehouseId || !items || items.length === 0) {
             return res.status(400).json({ success: false, message: 'Invalid stock transfer data' });
         }
 
@@ -81,7 +88,7 @@ const createStockTransfer = async (req, res) => {
             // 1. Create Stock Transfer Record
             const transfer = await tx.stocktransfer.create({
                 data: {
-                    voucherNo,
+                    voucherNo: resolvedVoucherNo,
                     manualVoucherNo,
                     date: date ? new Date(date) : new Date(),
                     toWarehouseId: parseInt(toWarehouseId),
@@ -142,7 +149,7 @@ const createStockTransfer = async (req, res) => {
                         fromWarehouseId: fromWH,
                         toWarehouseId: toWH,
                         quantity: qty,
-                        reason: `Voucher: ${voucherNo}. ${item.narration || ''}`,
+                        reason: `Voucher: ${resolvedVoucherNo}. ${item.narration || ''}`,
                         companyId: parseInt(companyId)
                     }
                 });
@@ -151,6 +158,7 @@ const createStockTransfer = async (req, res) => {
             return transfer;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'stocktransfer', resolvedVoucherNo);
         res.status(201).json({ success: true, message: 'Stock transfer created successfully', data: result });
     } catch (error) {
         console.error('Error creating stock transfer:', error);
@@ -332,10 +340,23 @@ const updateStockTransfer = async (req, res) => {
     }
 };
 
+const getNextNumber = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId;
+        if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
+
+        const result = await numberingService.getNextNumber(companyId, 'stocktransfer');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     getStockTransfers,
     getStockTransferById,
     createStockTransfer,
     deleteStockTransfer,
-    updateStockTransfer
+    updateStockTransfer,
+    getNextNumber
 };

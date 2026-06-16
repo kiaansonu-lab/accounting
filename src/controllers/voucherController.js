@@ -1,5 +1,6 @@
 const { PrismaClient } = require('../../prisma/generated/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Voucher
 const createVoucher = async (req, res) => {
@@ -18,7 +19,8 @@ const createVoucher = async (req, res) => {
             customerId,
             items,
             notes,
-            signature
+            signature,
+            customFields
         } = req.body;
 
         const companyId = req.body.companyId || req.user?.companyId;
@@ -27,8 +29,14 @@ const createVoucher = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Company ID is required' });
         }
 
+        let resolvedVoucherNumber = voucherNumber;
+        if (!resolvedVoucherNumber) {
+            const nextNumObj = await numberingService.getNextNumber(companyId, 'voucher');
+            resolvedVoucherNumber = nextNumObj.formattedNumber;
+        }
+
         if (req.body.isJournal) {
-            const { journalRows, voucherNumber, date, notes, manualReceiptNo } = req.body;
+            const { journalRows, date, notes, manualReceiptNo } = req.body;
 
             // Validate totals
             const totalDr = journalRows.reduce((sum, r) => sum + (parseFloat(r.debit) || 0), 0);
@@ -40,16 +48,16 @@ const createVoucher = async (req, res) => {
 
             // Check for duplicate voucher number
             const existingJE = await prisma.journalentry.findFirst({
-                where: { voucherNumber, companyId: parseInt(companyId) }
+                where: { voucherNumber: resolvedVoucherNumber, companyId: parseInt(companyId) }
             });
             if (existingJE) {
-                return res.status(400).json({ success: false, message: `Journal Voucher ${voucherNumber} already exists.` });
+                return res.status(400).json({ success: false, message: `Journal Voucher ${resolvedVoucherNumber} already exists.` });
             }
 
             // Create Journal Entry Header
             const je = await prisma.journalentry.create({
                 data: {
-                    voucherNumber,
+                    voucherNumber: resolvedVoucherNumber,
                     date: date ? new Date(date) : new Date(),
                     narration: notes,
                     companyId: parseInt(companyId),
@@ -95,7 +103,7 @@ const createVoucher = async (req, res) => {
                         debitLedgerId: d.accountId,
                         creditLedgerId: c.accountId,
                         voucherType: 'JOURNAL',
-                        voucherNumber,
+                        voucherNumber: resolvedVoucherNumber,
                         narration: (d.narration || c.narration || notes || '').trim(),
                         companyId: parseInt(companyId),
                         journalEntryId: je.id
@@ -129,7 +137,8 @@ const createVoucher = async (req, res) => {
 
             await prisma.voucher.create({
                 data: {
-                    voucherNumber,
+                    customFields: req.body.customFields ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : null,
+                    voucherNumber: resolvedVoucherNumber,
                     voucherType: 'JOURNAL',
                     date: date ? new Date(date) : new Date(),
                     companyId: parseInt(companyId),
@@ -145,10 +154,11 @@ const createVoucher = async (req, res) => {
                 }
             });
 
+            await numberingService.incrementNumber(companyId, 'voucher', resolvedVoucherNumber);
             return res.status(201).json({ success: true, message: 'Journal Voucher created successfully', data: je });
         }
 
-        if (!voucherNumber || !voucherType || !items || items.length === 0) {
+        if (!resolvedVoucherNumber || !voucherType || !items || items.length === 0) {
             return res.status(400).json({ success: false, message: 'Please provide all required fields' });
         }
 
@@ -172,7 +182,8 @@ const createVoucher = async (req, res) => {
 
         const voucher = await prisma.voucher.create({
             data: {
-                voucherNumber,
+                customFields: customFields ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : null,
+                voucherNumber: resolvedVoucherNumber,
                 voucherType: voucherType.toUpperCase(),
                 date: date ? new Date(date) : new Date(),
                 companyId: parseInt(companyId),
@@ -267,8 +278,8 @@ const createVoucher = async (req, res) => {
                             debitLedgerId: parseInt(debitLedgerId),
                             creditLedgerId: parseInt(creditLedgerId),
                             voucherType: txnType,
-                            voucherNumber: voucherNumber,
-                            narration: notes || `${voucherType} Voucher ${voucherNumber}`,
+                            voucherNumber: resolvedVoucherNumber,
+                            narration: notes || `${voucherType} Voucher ${resolvedVoucherNumber}`,
                             companyId: parseInt(companyId)
                         }
                     });
@@ -280,6 +291,7 @@ const createVoucher = async (req, res) => {
             }
         }
 
+        await numberingService.incrementNumber(companyId, 'voucher', resolvedVoucherNumber);
         res.status(201).json({ success: true, data: voucher });
     } catch (error) {
         console.error('Create Voucher Error:', error);
@@ -537,6 +549,7 @@ const updateVoucher = async (req, res) => {
                 await tx.voucher.update({
                     where: { id: existingVoucher.id },
                     data: {
+                        customFields: req.body.customFields !== undefined ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : undefined,
                         voucherNumber,
                         voucherType: 'JOURNAL',
                         date: date ? new Date(date) : new Date(),
@@ -587,7 +600,8 @@ const updateVoucher = async (req, res) => {
                 customerId,
                 items,
                 notes,
-                signature
+                signature,
+                customFields
             } = req.body;
 
             const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
@@ -654,6 +668,7 @@ const updateVoucher = async (req, res) => {
                 const v = await tx.voucher.update({
                     where: { id: existingVoucher.id },
                     data: {
+                        customFields: customFields !== undefined ? (typeof customFields === 'string' ? customFields : JSON.stringify(customFields)) : undefined,
                         voucherNumber,
                         voucherType: voucherType ? voucherType.toUpperCase() : undefined,
                         date: date ? new Date(date) : undefined,
@@ -836,10 +851,23 @@ const deleteVoucher = async (req, res) => {
     }
 };
 
+const getNextNumber = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId;
+        if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
+
+        const result = await numberingService.getNextNumber(companyId, 'voucher');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     createVoucher,
     getVouchers,
     getVoucherById,
     updateVoucher,
-    deleteVoucher
+    deleteVoucher,
+    getNextNumber
 };

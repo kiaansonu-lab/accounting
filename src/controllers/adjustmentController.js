@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 const getAdjustments = async (req, res) => {
     try {
@@ -70,7 +71,13 @@ const createAdjustment = async (req, res) => {
             items
         } = req.body;
 
-        if (!voucherNo || !type || !items || items.length === 0) {
+        let resolvedVoucherNo = voucherNo;
+        if (!resolvedVoucherNo) {
+            const nextNumObj = await numberingService.getNextNumber(companyId, 'adjustment');
+            resolvedVoucherNo = nextNumObj.formattedNumber;
+        }
+
+        if (!resolvedVoucherNo || !type || !items || items.length === 0) {
             return res.status(400).json({ success: false, message: 'Required fields are missing' });
         }
 
@@ -81,7 +88,7 @@ const createAdjustment = async (req, res) => {
 
             const adjustment = await tx.inventoryadjustment.create({
                 data: {
-                    voucherNo,
+                    voucherNo: resolvedVoucherNo,
                     manualVoucherNo,
                     date: date ? new Date(date) : new Date(),
                     type,
@@ -122,7 +129,7 @@ const createAdjustment = async (req, res) => {
                             toWarehouseId: whId,
                             quantity: qty,
                             type: 'ADJUSTMENT',
-                            reason: `Adjustment (Add): ${voucherNo}. ${item.narration || ''}`,
+                            reason: `Adjustment (Add): ${resolvedVoucherNo}. ${item.narration || ''}`,
                             companyId: parseInt(companyId)
                         }
                     });
@@ -146,7 +153,7 @@ const createAdjustment = async (req, res) => {
                             fromWarehouseId: whId,
                             quantity: qty,
                             type: 'ADJUSTMENT',
-                            reason: `Adjustment (Remove): ${voucherNo}. ${item.narration || ''}`,
+                            reason: `Adjustment (Remove): ${resolvedVoucherNo}. ${item.narration || ''}`,
                             companyId: parseInt(companyId)
                         }
                     });
@@ -198,9 +205,9 @@ const createAdjustment = async (req, res) => {
                             debitLedgerId,
                             creditLedgerId,
                             amount: totalAmt,
-                            narration: `Inventory Adjustment (${type}): ${voucherNo}. ${note || ''}`,
+                             narration: `Inventory Adjustment (${type}): ${resolvedVoucherNo}. ${note || ''}`,
                             voucherType: 'JOURNAL',
-                            voucherNumber: voucherNo,
+                            voucherNumber: resolvedVoucherNo,
                             companyId: parseInt(companyId)
                         }
                     });
@@ -219,6 +226,7 @@ const createAdjustment = async (req, res) => {
             return adjustment;
         }, { timeout: 30000 });
 
+        await numberingService.incrementNumber(companyId, 'adjustment', resolvedVoucherNo);
         res.status(201).json({ success: true, message: 'Adjustment saved successfully', data: result });
     } catch (error) {
         console.error('Error creating adjustment:', error);
@@ -464,10 +472,23 @@ const updateAdjustment = async (req, res) => {
     }
 };
 
+const getNextNumber = async (req, res) => {
+    try {
+        const companyId = req.user?.companyId || req.query.companyId;
+        if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
+
+        const result = await numberingService.getNextNumber(companyId, 'adjustment');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     getAdjustments,
     getAdjustmentById,
     createAdjustment,
     deleteAdjustment,
-    updateAdjustment
+    updateAdjustment,
+    getNextNumber
 };

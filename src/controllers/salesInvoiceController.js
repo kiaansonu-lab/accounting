@@ -1,4 +1,5 @@
 const prisma = require('../config/prisma');
+const numberingService = require('../services/numberingService');
 const {
     getInventoryConfig,
     consumeStock,
@@ -136,6 +137,7 @@ const createInvoice = async (req, res) => {
             // A. Create Invoice
             const invoice = await tx.invoice.create({
                 data: {
+                    customFields: req.body.customFields ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : null,
                     invoiceNumber,
                     date: new Date(date),
                     dueDate: dueDate ? new Date(dueDate) : null,
@@ -667,6 +669,7 @@ const createInvoice = async (req, res) => {
             timeout: 90000 // 90 seconds timeout
         });
 
+        await numberingService.incrementNumber(companyId, 'invoice', invoiceNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Invoice Creation Error:', error);
@@ -1044,6 +1047,7 @@ const updateInvoice = async (req, res) => {
             const updatedInvoice = await tx.invoice.update({
                 where: { id: parseInt(id) },
                 data: {
+                    customFields: req.body.customFields !== undefined ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : undefined,
                     invoiceNumber: data.invoiceNumber,
                     date: data.date ? new Date(data.date) : undefined,
                     dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
@@ -1486,35 +1490,8 @@ const getNextNumber = async (req, res) => {
         const companyId = req.user?.companyId || req.query.companyId;
         if (!companyId) return res.status(400).json({ success: false, message: 'Company ID Missing' });
 
-        const cid = parseInt(companyId);
-
-        // Scan ALL existing invoices to find max number used
-        const allInvoices = await prisma.invoice.findMany({
-            where: { companyId: cid },
-            select: { invoiceNumber: true }
-        });
-
-        // Scan ALL journal entries to find max number used (catches soft-deleted invoices)
-        const allJournals = await prisma.journalentry.findMany({
-            where: { companyId: cid },
-            select: { voucherNumber: true }
-        });
-
-        // Extract max numeric suffix from both sources
-        let maxNum = 100; // Start from 101
-        for (const inv of allInvoices) {
-            const numStr = (inv.invoiceNumber || '').replace(/\D/g, '');
-            const num = parseInt(numStr);
-            if (!isNaN(num) && num > maxNum) maxNum = num;
-        }
-        for (const j of allJournals) {
-            const numStr = (j.voucherNumber || '').replace(/\D/g, '');
-            const num = parseInt(numStr);
-            if (!isNaN(num) && num > maxNum) maxNum = num;
-        }
-
-        const nextNumber = (maxNum + 1).toString();
-        res.status(200).json({ success: true, nextNumber });
+        const result = await numberingService.getNextNumber(companyId, 'invoice');
+        res.status(200).json({ success: true, nextNumber: result.formattedNumber });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const numberingService = require('../services/numberingService');
 
 // Create Customer Receipt (Payment)
 const createReceipt = async (req, res) => {
@@ -47,6 +48,7 @@ const createReceipt = async (req, res) => {
             // 1. Create Receipt Record
             const receipt = await tx.receipt.create({
                 data: {
+                    customFields: req.body.customFields ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : null,
                     receiptNumber,
                     date: new Date(date),
                     customerId: parseInt(customerId),
@@ -168,6 +170,7 @@ const createReceipt = async (req, res) => {
             timeout: 30000
         });
 
+        await numberingService.incrementNumber(companyId, 'receipt', receiptNumber);
         res.status(201).json({ success: true, data: result });
     } catch (error) {
         console.error('Receipt Creation Error:', error);
@@ -298,6 +301,7 @@ const updateReceipt = async (req, res) => {
             const updatedReceipt = await tx.receipt.update({
                 where: { id: parseInt(id) },
                 data: {
+                    customFields: req.body.customFields !== undefined ? (typeof req.body.customFields === 'string' ? req.body.customFields : JSON.stringify(req.body.customFields)) : undefined,
                     date: date ? new Date(date) : undefined,
                     amount: finalAmount,
                     paymentMode,

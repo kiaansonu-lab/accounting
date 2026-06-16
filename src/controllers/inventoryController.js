@@ -189,10 +189,128 @@ const getInventoryHistory = async (req, res) => {
         console.error('History Error:', error);
         res.status(500).json({ success: false, message: 'Failed to fetch history' });
     }
-}
+};
+
+// Recalculate Inventory Quantities for all product-warehouse mappings
+const recalculateInventory = async (req, res) => {
+    try {
+        const companyId = req.user.companyId;
+
+        // 1. Get all products of this company
+        const products = await prisma.product.findMany({
+            where: { companyId: parseInt(companyId) },
+            include: { stock: true }
+        });
+
+        // 2. Get all warehouses of this company
+        const warehouses = await prisma.warehouse.findMany({
+            where: { companyId: parseInt(companyId) }
+        });
+
+        const results = [];
+
+        // 3. Perform the recalculation inside a transaction
+        await prisma.$transaction(async (tx) => {
+            for (const product of products) {
+                let productTotalQty = 0;
+
+                for (const warehouse of warehouses) {
+                    // Find existing stock record or default initialQty
+                    const existingStock = product.stock.find(s => s.warehouseId === warehouse.id);
+                    const initialQty = existingStock ? parseFloat(existingStock.initialQty || 0) : 0;
+
+                    // Query all inventory transactions for this product and warehouse
+                    const txs = await tx.inventorytransaction.findMany({
+                        where: {
+                            companyId: parseInt(companyId),
+                            productId: product.id,
+                            OR: [
+                                { fromWarehouseId: warehouse.id },
+                                { toWarehouseId: warehouse.id }
+                            ]
+                        }
+                    });
+
+                    let calculatedQty = 0;
+                    let hasOpeningStockTx = false;
+
+                    for (const t of txs) {
+                        if (t.type === 'OPENING_STOCK' && t.toWarehouseId === warehouse.id) {
+                            hasOpeningStockTx = true;
+                        }
+                        
+                        if (t.toWarehouseId === warehouse.id) {
+                            calculatedQty += parseFloat(t.quantity);
+                        }
+                        if (t.fromWarehouseId === warehouse.id) {
+                            calculatedQty -= parseFloat(t.quantity);
+                        }
+                    }
+
+                    // If there was no OPENING_STOCK transaction but initialQty is > 0, include it
+                    if (!hasOpeningStockTx && initialQty > 0) {
+                        calculatedQty += initialQty;
+                    }
+
+                    // Update or create stock entry
+                    await tx.stock.upsert({
+                        where: {
+                            warehouseId_productId: {
+                                warehouseId: warehouse.id,
+                                productId: product.id
+                            }
+                        },
+                        update: { quantity: calculatedQty },
+                        create: {
+                            warehouseId: warehouse.id,
+                            productId: product.id,
+                            quantity: calculatedQty,
+                            initialQty: initialQty,
+                            minOrderQty: existingStock ? parseFloat(existingStock.minOrderQty || 0) : 0
+                        }
+                    });
+
+                    productTotalQty += calculatedQty;
+
+                    results.push({
+                        productName: product.name,
+                        warehouseName: warehouse.name,
+                        productId: product.id,
+                        warehouseId: warehouse.id,
+                        oldQty: existingStock ? existingStock.quantity : 0,
+                        newQty: calculatedQty
+                    });
+                }
+
+                // Update the product's totalQty and totalInventoryValue based on averageCost/initialCost
+                const averageCost = parseFloat(product.averageCost || product.initialCost || product.purchasePrice || 0);
+                const totalInventoryValue = productTotalQty * averageCost;
+
+                await tx.product.update({
+                    where: { id: product.id },
+                    data: {
+                        totalQty: productTotalQty,
+                        totalInventoryValue: totalInventoryValue
+                    }
+                });
+            }
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'Inventory stock quantities recalculated successfully',
+            data: results
+        });
+
+    } catch (error) {
+        console.error('Recalculate Inventory Error:', error);
+        res.status(500).json({ success: false, message: 'Failed to recalculate inventory', error: error.message });
+    }
+};
 
 module.exports = {
     transferStock,
     adjustStock,
-    getInventoryHistory
+    getInventoryHistory,
+    recalculateInventory
 };

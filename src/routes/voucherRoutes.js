@@ -7,6 +7,7 @@ router.use(authenticateToken);
 
 router.post('/', voucherController.createVoucher);
 router.get('/', voucherController.getVouchers);
+router.get('/next-number', voucherController.getNextNumber);
 router.get('/:id', voucherController.getVoucherById);
 router.put('/:id', voucherController.updateVoucher);
 router.delete('/:id', voucherController.deleteVoucher);
